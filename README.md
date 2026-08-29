@@ -1,232 +1,257 @@
-# PortoSpace — Dokumentasi Proyek
+# PortoSpace — Developer Guide & Documentation
 
-## Gambaran Umum
+Selamat datang di repositori **PortoSpace**! Dokumen ini dirancang sebagai panduan lengkap untuk pengembang (developers) mengenai instalasi, alur kerja Git, struktur folder, konvensi penamaan file, hingga penggunaan icon dan styling.
 
-**PortoSpace** adalah portfolio website yang dibangun dari awal dengan styling custom, menggunakan stack berikut:
+---
+
+## 🛠️ Stack Teknologi
 
 | Teknologi | Versi | Fungsi |
 |---|---|---|
 | [Astro](https://astro.build) | v7.2 | Framework utama (SSG/SSR) |
-| [Tailwind CSS](https://tailwindcss.com) | v4.3 | Styling utility-first |
-| [GSAP](https://gsap.com) | v3.15 | Animasi JavaScript |
-| [Lenis](https://lenis.darkroom.engineering) | v1.3 | Smooth scroll |
-| [Bun](https://bun.sh) | latest | Package manager & runtime |
+| [Tailwind CSS](https://tailwindcss.com) | v4.3 | Framework styling utility-first |
+| [Lucide Icons](https://lucide.dev) | `@lucide/astro` | Library Icon resmi untuk Astro |
+| [GSAP](https://gsap.com) | v3.15 | Engine animasi JavaScript |
+| [Lenis](https://lenis.darkroom.engineering) | v1.3 | Smooth scroll library |
+| [Bun](https://bun.sh) | latest | Package Manager & JavaScript Runtime |
 
 ---
 
-## Struktur Direktori
+## 🚀 Panduan Instalasi & Setup Lokal
 
-```
+### Prasyarat
+- **Bun**: Pastikan Bun sudah terinstall di komputer Anda ([Panduan Install Bun](https://bun.sh)).
+
+### Langkah-Langkah Instalasi
+
+1. **Clone Repositori**:
+   ```bash
+   git clone <repository-url>
+   cd PortoSpace
+   ```
+
+2. **Instalasi Dependencies**:
+   ```bash
+   bun install
+   ```
+
+3. **Menjalankan Dev Server**:
+   ```bash
+   bun dev
+   ```
+   Aplikasi akan berjalan secara lokal di `http://localhost:4321`.
+
+   > [!TIP]
+   > Anda juga dapat menjalankan dev server di background mode agar terminal tidak terblokir:
+   > ```bash
+   > bunx astro dev --background
+   > ```
+
+4. **Build untuk Production**:
+   ```bash
+   bun run build
+   
+   # Preview hasil build secara lokal:
+   bun run preview
+   ```
+
+---
+
+## 🌿 Alur Kerja Git & Aturan Branching (Wajib Dibaca)
+
+Untuk menjaga histori commit tetap rapi dan menghindari *conflict* pada branch utama, seluruh tim pengembang wajib mengikuti alur kerja berikut:
+
+### ⚠️ Aturan Pembuatan Branch Baru:
+
+Sebelum mulai mengerjakan fitur, halaman, atau komponen baru:
+
+1. **Switch ke branch `development`**:
+   ```bash
+   git switch development
+   ```
+
+2. **Pull update terbaru dari `development`**:
+   ```bash
+   git pull origin development
+   ```
+
+3. **Buat branch baru dari branch `development`**:
+   - Untuk fitur/komponen: `git checkout -b feature/nama-fitur`
+   - Untuk halaman baru: `git checkout -b page/nama-halaman`
+   - Untuk perbaikan bug: `git checkout -b fix/nama-bug`
+
+4. **Kirim Pull Request (PR)**:
+   Setiap PR yang dibuat **wajib ditujukan ke branch `development`** (bukan langsung ke branch `main`). Branch `main` hanya digunakan untuk rilis rilis production yang sudah stabil.
+
+---
+
+## 📁 Struktur Folder Project
+
+```text
 PortoSpace/
-├── public/                  # Aset statis (favicon, gambar, dll)
+├── docs/                        # Dokumentasi desain, responsive, & tipografi
+│   ├── designImplementation.md  # Token warna, aturan Tailwind, & panduan desain
+│   ├── responsive.md            # Breakpoints & grid margin
+│   └── typography.md            # Penggunaan font family & skala teks
+├── public/                      # Asset statis publik (favicon, robots.txt, dll)
 ├── src/
+│   ├── assets/                  # Asset gambar & vector SVG
+│   │   ├── pattern/             # File SVG pattern dekoratif (pattern_line.svg, pattern_4.svg)
+│   │   └── student/             # Foto & gambar siswa/mentor
+│   ├── components/              # Seluruh komponen UI Astro
+│   │   ├── card/                # Komponen kartu reusable (cardProgramUnggulan.astro)
+│   │   ├── pages/               # Komponen section spesifik per halaman
+│   │   │   └── homepage/        # Section khusus halaman depan (heroSection.astro, etc)
+│   │   └── ui/                  # Komponen UI atomik/dasar (button.astro, sectionTitle.astro)
 │   ├── layouts/
-│   │   └── Layout.astro     # Base layout (HTML shell, global script loader)
+│   │   └── Layout.astro         # Base layout (HTML shell, import CSS global & Lenis)
 │   ├── pages/
-│   │   └── index.astro      # Halaman utama (route: /)
+│   │   └── index.astro          # Halaman utama (route: /)
 │   ├── scripts/
-│   │   ├── smoothScroll.ts  # Setup Lenis + integrasi GSAP ScrollTrigger
-│   │   └── animations.ts    # Animasi GSAP per halaman
+│   │   ├── smoothScroll.ts      # Integrasi Lenis Smooth Scroll + GSAP ScrollTrigger
+│   │   └── animations.ts        # Script animasi global GSAP
 │   └── styles/
-│       └── global.css       # Global styles + import Tailwind & Lenis CSS
-├── astro.config.mjs         # Konfigurasi Astro + Tailwind Vite plugin
+│       └── global.css           # Styling global & import Tailwind v4 (@import "tailwindcss";)
+├── astro.config.mjs             # Konfigurasi Astro + Plugin Tailwind Vite
 ├── package.json
-└── tsconfig.json
+└── README.md
 ```
 
 ---
 
-## Setup & Konfigurasi
+## 🏷️ Konvensi Penamaan File (*Naming Conventions*)
 
-### Menjalankan Dev Server
+Agar repositori konsisten dan teratur, ikuti aturan penamaan file berikut:
 
-```bash
-bun dev
-# atau
-bunx astro dev --background   # background mode (tidak blokir terminal)
+1. **Komponen Section Halaman (`src/components/pages/<halaman>/`)**:
+   - Gunakan format **`camelCase`** dengan suffix **`Section.astro`**.
+   - Contoh:
+     - `heroSection.astro`
+     - `mahasiswaSection.astro`
+     - `programUnggulanSection.astro`
+     - `successStorySection.astro`
+
+2. **Komponen Card / Kartu (`src/components/card/`)**:
+   - Gunakan format **`camelCase`** dengan prefix **`card`** + **`.astro`**.
+   - Contoh:
+     - `cardProgramUnggulan.astro`
+     - `cardTestimonial.astro`
+
+3. **Komponen UI Reusable / Atomik (`src/components/ui/`)**:
+   - Gunakan format **`camelCase`** + **`.astro`**.
+   - Contoh:
+     - `button.astro`
+     - `sectionTitle.astro`
+     - `badge.astro`
+
+4. **File Halaman (`src/pages/`)**:
+   - Gunakan format `kebab-case.astro` atau `index.astro`.
+   - Contoh: `index.astro`, `about-us.astro`, `programs.astro`.
+
+---
+
+## 📸 Format Asset Gambar & Pattern
+
+Untuk menjaga performa loading dan kualitas visual:
+
+1. **Foto / Media Gambar (`.webp`)**:
+   - Seluruh foto siswa, mentor, produk, atau background hero **wajib menggunakan format WebP** (`.webp`).
+   - Simpan foto di folder `src/assets/student/` atau `src/assets/images/`.
+   - Gunakan komponen `<Image />` bawaan Astro dari `astro:assets` untuk optimasi otomatis.
+
+2. **Pattern & Dekorasi Vektor (`.svg`)**:
+   - Seluruh elemen pattern dekoratif, aksen garis, dan icon vektor **wajib menggunakan format SVG** (`.svg`).
+   - Simpan file pattern di folder `src/assets/pattern/`.
+
+---
+
+## 🎨 Penggunaan Icon (Lucide Icons)
+
+Proyek ini menggunakan **Lucide Icons** via package `@lucide/astro`.
+
+### Cara Menggunakan Icon di Komponen Astro:
+
+```astro
+---
+import { ArrowRight, ChevronDown, CheckCircle } from "@lucide/astro";
+---
+
+<!-- Contoh Penggunaan Icon -->
+<button class="inline-flex items-center gap-2 bg-citrus-normal text-black font-semibold px-4 py-2 rounded">
+  <span>Konsultasi Gratis</span>
+  <ArrowRight size={18} class="text-black" />
+</button>
 ```
 
 > [!TIP]
-> Gunakan `--background` agar terminal tetap bebas. Kelola server dengan:
-> ```bash
-> bunx astro dev stop     # hentikan
-> bunx astro dev status   # cek status
-> bunx astro dev logs     # lihat log
-> ```
-
-### Build Production
-
-```bash
-bun run build
-bun run preview   # preview hasil build secara lokal
-```
+> Cari dan temukan nama icon yang tersedia melalui [Lucide Icons Directory](https://lucide.dev/icons/).
 
 ---
 
-## Penjelasan File Kunci
+## 🎭 Animasi & Smooth Scroll (GSAP + Lenis)
 
-### `astro.config.mjs`
+Proyek ini menggabungkan **Lenis Smooth Scroll** dan **GSAP ScrollTrigger** untuk pengalaman pengeluar smooth scrolling dan animasi interaktif.
 
-```js
-import { defineConfig } from "astro/config";
-import tailwindcss from "@tailwindcss/vite";
+### Integrasi Smooth Scroll (`src/scripts/smoothScroll.ts`)
+- Lenis berjalan tersinkronisasi dengan GSAP ticker (`autoRaf: false` pada Lenis) agar animasi ScrollTrigger tidak mengalami *desync*.
+- Di-import secara global di `src/layouts/Layout.astro`.
 
-export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()],  // Tailwind v4 via Vite plugin (bukan astro integration)
-  },
-});
-```
-
-> [!IMPORTANT]
-> Tailwind v4 tidak menggunakan `@astrojs/tailwind`. Plugin dipasang langsung di Vite.
-
----
-
-### `src/styles/global.css`
-
-```css
-@import "tailwindcss";          /* Tailwind v4 — satu baris, menggantikan 3 direktif lama */
-@import "lenis/dist/lenis.css"; /* CSS bawaan Lenis */
-```
-
-> [!NOTE]
-> Berbeda dengan Tailwind v3 yang membutuhkan tiga direktif (`@tailwind base`, `@tailwind components`, `@tailwind utilities`), Tailwind v4 cukup satu baris `@import "tailwindcss"`.
-
----
-
-### `src/layouts/Layout.astro`
-
-Layout dasar yang dipakai oleh semua halaman. Bertanggung jawab untuk:
-- Mengimport CSS global (Tailwind + Lenis)
-- Memuat script animasi global (Lenis + GSAP)
-
+### Panduan Animasi GSAP per Komponen:
 ```astro
----
-import "../styles/global.css";
----
-<html lang="en">
-  <head>...</head>
-  <body>
-    <slot />
-    <script>
-      import "../scripts/smoothScroll.ts";
-      import "../scripts/animations.ts";
-    </script>
-  </body>
-</html>
-```
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-> [!WARNING]
-> **Jangan** gunakan `<script src="...">` untuk file TypeScript lokal di Astro.
->
-> ```astro
-> <!-- ❌ Salah — dikirim ke browser sebagai URL, TS tidak diproses -->
-> <script src="../scripts/smoothScroll.ts"></script>
->
-> <!-- ✅ Benar — diproses oleh Vite, TypeScript support penuh -->
-> <script>
->   import "../scripts/smoothScroll.ts";
-> </script>
-> ```
+  gsap.registerPlugin(ScrollTrigger);
 
----
+  const initAnimations = () => {
+    gsap.from(".my-element", {
+      scrollTrigger: {
+        trigger: "#my-section",
+        start: "top 85%",
+        once: true, // Animasi diputar 1 kali dan elemen tetap tampil permanen
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      clearProps: "transform,opacity", // Hapus inline style setelah animasi selesai
+    });
 
-### `src/scripts/smoothScroll.ts`
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  };
 
-Mengintegrasikan Lenis dengan GSAP ScrollTrigger agar keduanya sinkron.
-
-```ts
-import Lenis from "lenis";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
-const lenis = new Lenis({
-  autoRaf: false,   // matikan RAF bawaan Lenis, gunakan GSAP ticker
-});
-
-lenis.on("scroll", ScrollTrigger.update);
-
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000);
-});
-
-gsap.ticker.lagSmoothing(0);
-
-export default lenis;
-```
-
-**Kenapa `autoRaf: false`?**
-Lenis secara default menggunakan `requestAnimationFrame`-nya sendiri. Karena GSAP ScrollTrigger juga perlu tahu posisi scroll terkini, keduanya harus dijalankan dalam satu ticker yang sama (GSAP ticker) agar tidak terjadi desync antara animasi dan scroll.
-
----
-
-### `src/scripts/animations.ts`
-
-Tempat mendefinisikan animasi GSAP per elemen. Dijalankan setelah DOM siap.
-
-```ts
-import { gsap } from "gsap";
-
-const heroTitle = document.querySelector(".hero-title");
-
-if (heroTitle) {
-  gsap.from(heroTitle, {
-    y: 80,        // mulai dari 80px di bawah
-    opacity: 0,
-    duration: 1,
-    ease: "power3.out",
-  });
-}
-```
-
-**Cara menambah animasi ScrollTrigger:**
-
-```ts
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.from(".card", {
-  y: 50,
-  opacity: 0,
-  duration: 0.8,
-  stagger: 0.15,
-  scrollTrigger: {
-    trigger: ".card",
-    start: "top 80%",
-  },
-});
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAnimations);
+  } else {
+    initAnimations();
+  }
+</script>
 ```
 
 ---
 
-## Cara Menambah Halaman Baru
+## 🎨 Styling & Breakpoints
 
-1. Buat file di `src/pages/`, contoh `src/pages/about.astro`
-2. Gunakan layout:
+### 1. Tailwind CSS v4 & Theme Tokens
+- Selalu utamakan menggunakan **Theme Tokens** yang terdefinisi di `@theme` (`global.css`) dan **utility class bawaan Tailwind** (seperti `text-base`, `text-2xl`, `rounded-sm`, `p-6`, `flex-1`).
+- **Hindari penggunaan *arbitrary value*** (`text-[16px]`, `p-[24px]`) jika Tailwind atau `@theme` sudah menyediakan nilainya.
+- Baca panduan lengkap styling di **[docs/designImplementation.md](docs/designImplementation.md)**.
 
-```astro
----
-import Layout from "../layouts/Layout.astro";
----
-
-<Layout>
-  <main class="min-h-screen bg-black text-white">
-    <h1 class="text-5xl font-bold">About</h1>
-  </main>
-</Layout>
-```
-
-Script Lenis dan GSAP otomatis termuat karena sudah ada di `Layout.astro`.
+### 2. Grid Margin & Breakpoints Responsif
+- Margin horizontal seksi disesuaikan per breakpoint: `px-5 tablet:px-7 desktop:px-8`.
+- Breakpoint kustom:
+  - `tablet:` -> `768px`
+  - `desktop:` -> `1024px`
+  - `desktop-large:` -> `1440px`
+- Baca panduan lengkap di **[docs/responsive.md](docs/responsive.md)**.
 
 ---
 
-## Referensi
+## 📚 Dokumen Referensi Lainnya
 
-- [Astro Docs](https://docs.astro.build)
-- [Tailwind CSS v4 Docs](https://tailwindcss.com/docs)
-- [GSAP Docs](https://gsap.com/docs)
-- [Lenis Docs](https://lenis.darkroom.engineering)
-- [Astro + GSAP Guide](https://gsap.com/resources/frameworks/astro/)
+- **[docs/designImplementation.md](docs/designImplementation.md)**: Panduan warna (@theme), aturan Tailwind, dan desain UI.
+- **[docs/responsive.md](docs/responsive.md)**: Panduan sistem responsif dan breakpoint.
+- **[docs/typography.md](docs/typography.md)**: Panduan penggunaan font family (`font-momo`, `font-jakarta`, `font-caveat`).
