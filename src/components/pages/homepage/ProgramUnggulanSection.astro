@@ -1,0 +1,169 @@
+---
+import { Image } from "astro:assets";
+import patternLine from "@/assets/pattern/pattern_line.svg";
+import Button from "@/components/ui/button.astro";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import CardProgramUnggulan from "@/components/card/cardProgramUnggulan.astro";
+---
+
+<section
+  id="program-unggulan"
+  class="relative w-full bg-violet-normal flex flex-col items-center overflow-hidden"
+  aria-label="Program Unggulan Maker's Academy"
+  data-navbar="violet"
+>
+  <!-- Background Decorative Pattern SVG - Top Right -->
+  <Image
+    src={patternLine}
+    alt=""
+    class="absolute pointer-events-none z-0 select-none"
+    style="position: absolute; right: -0.222px; top: 0; width: 477px; height: 521px;"
+    aria-hidden="true"
+  />
+
+  <!-- Background Decorative Pattern SVG - Bottom Left -->
+  <Image
+    src={patternLine}
+    alt=""
+    class="absolute pointer-events-none z-0 select-none transform rotate-180"
+    style="position: absolute; left: 0; bottom: 0.349px; width: 477px; height: 521px;"
+    aria-hidden="true"
+  />
+
+  <!-- Main Section Wrapper -->
+  <div
+    class="w-full px-[20px] tablet:px-[28px] desktop:px-[32px] py-[80px] flex flex-col items-start gap-[40px] z-10 relative"
+  >
+    <!-- Top Content / Header -->
+    <div
+      class="w-full flex flex-col desktop:flex-row desktop:items-end justify-between gap-6 desktop:gap-8"
+    >
+      <!-- Left Column: Pill & Heading -->
+      <div class="w-full desktop:max-w-[933px] flex flex-col items-start gap-2">
+        <!-- Section Title Badge -->
+        <SectionTitle title="Program Unggulan" />
+
+        <!-- Heading -->
+        <h2
+          id="program-heading"
+          class="font-momo font-semibold text-white text-[32px] tablet:text-[44px] desktop:text-[54px] leading-[110%] tracking-[-1.08px]"
+        >
+          Maker's Academy by PortoSpace, Pilih Bidang yang Sesuai dengan Potensi
+          dan <span
+            class="font-caveat font-bold text-[42px] tablet:text-[54px] desktop:text-[64px] leading-[80%] tracking-[-2.56px] text-white"
+            >Ambisimu</span
+          >
+        </h2>
+      </div>
+
+      <!-- Right Column: CTA Button -->
+      <div class="flex-shrink-0">
+        <Button
+          href="#konsultasi"
+          variant="secondary"
+          arrow
+          class="!bg-citrus-normal !text-black-normal hover:!bg-citrus-normal-hover font-jakarta font-semibold text-sm px-6 py-3.5 rounded-sm shadow-md"
+        >
+          Konsultasi Portfolio Gratis
+        </Button>
+      </div>
+    </div>
+
+    <!-- Grid Container -->
+    <div id="program-cards" class="w-full flex flex-col gap-5">
+      <!-- Container Row 1 -->
+      <div
+        class="w-full flex flex-col desktop:flex-row justify-between items-stretch gap-5"
+      >
+        <!-- Card 1: Card Panjang (STEM Research) -->
+        <CardProgramUnggulan
+          title="STEM Research"
+          description="Kembangkan ide menjadi penelitian ilmiah yang terstruktur melalui pendampingan mentor, mulai dari eksplorasi topik, penyusunan metodologi, hingga menghasilkan karya yang siap dipublikasikan atau diikutsertakan dalam kompetisi."
+          href="#stem-research"
+          type="wide"
+        />
+
+        <!-- Card 2: Card Pendek (Robotics & IoT) -->
+        <CardProgramUnggulan
+          title="Robotics & IoT"
+          description="Rancang dan bangun solusi berbasis robotika dan Internet of Things (IoT) melalui proyek nyata yang mengasah kemampuan teknis sekaligus menghasilkan inovasi yang berdampak."
+          href="#robotics-iot"
+          type="narrow"
+        />
+      </div>
+
+      <!-- Container Row 2 -->
+      <div
+        class="w-full flex flex-col desktop:flex-row justify-between items-stretch gap-5"
+      >
+        <!-- Card 3: Card Pendek (Coding & AI) -->
+        <CardProgramUnggulan
+          title="Coding & AI"
+          description="Bangun website, aplikasi, dan solusi berbasis Artificial Intelligence melalui pengalaman belajar berbasis proyek yang memperkuat keterampilan dan portofoliomu."
+          href="#coding-ai"
+          type="narrow"
+        />
+
+        <!-- Card 4: Card Panjang (Entrepreneurship / Business & Finance) -->
+        <CardProgramUnggulan
+          title="Entrepreneurship / Business & Finance"
+          description="Pelajari cara mengubah ide menjadi solusi yang bernilai melalui validasi pasar, penyusunan model bisnis, strategi keuangan, hingga presentasi bisnis yang meyakinkan."
+          href="#entrepreneurship"
+          type="wide"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initAnimations = () => {
+    const heading = document.querySelector("#program-heading");
+    if (heading) {
+      gsap.from(heading, {
+        scrollTrigger: {
+          trigger: "#program-unggulan",
+          start: "top 90%",
+          once: true,
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+    }
+
+    const cards = document.querySelectorAll("#program-unggulan .program-card");
+    if (cards.length > 0) {
+      gsap.from(cards, {
+        scrollTrigger: {
+          trigger: "#program-cards",
+          start: "top 90%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+    }
+
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAnimations);
+  } else {
+    initAnimations();
+  }
+</script>

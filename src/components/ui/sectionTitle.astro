@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import pattern4 from "@/assets/pattern/pattern_4.svg";
+
+interface Props {
+  /** Optional text content (can also pass content via slot) */
+  title?: string;
+  /** Icon size in px (default 22px) */
+  iconSize?: number;
+  /** Optional HTML id */
+  id?: string;
+  /** Additional CSS classes */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  title,
+  iconSize = 22,
+  id,
+  class: className = "",
+  ...rest
+} = Astro.props;
+---
+
+<div
+  id={id}
+  class:list={[
+    "inline-flex items-center gap-2 font-jakarta text-[16px] font-normal leading-[150%] text-white",
+    className,
+  ]}
+  {...rest}
+>
+  <Image
+    src={pattern4}
+    alt=""
+    width={iconSize}
+    height={iconSize}
+    class="flex-shrink-0 select-none pointer-events-none object-contain"
+    style={`width: ${iconSize}px; height: ${iconSize}px;`}
+    aria-hidden="true"
+  />
+  <span>
+    {title ? title : <slot />}
+  </span>
+</div>

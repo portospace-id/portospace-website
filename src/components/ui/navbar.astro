@@ -1,0 +1,419 @@
+---
+import Button from "@/components/ui/button.astro";
+import {
+  AtSign,
+  Atom,
+  ChevronDown,
+  Mail,
+  Menu,
+  MessageCircle,
+  X,
+} from "@lucide/astro";
+
+interface NavLink {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+}
+
+const navLinks: NavLink[] = [
+  { label: "About Us", href: "/about" },
+  { label: "Maker's Academy", href: "/makers-academy" },
+  {
+    label: "Programs",
+    href: "/programs",
+    children: [
+      { label: "STEM Research", href: "/programs/stem-research" },
+      { label: "Robotics & IOT", href: "/programs/robotics-iot" },
+      { label: "Coding & AI", href: "/programs/coding-ai" },
+      {
+        label: "Entrepreneurship / Business & Finance",
+        href: "/programs/entrepreneurship",
+      },
+    ],
+  },
+  { label: "How It Works", href: "/how-it-works" },
+  { label: "Mentors", href: "/mentors" },
+  { label: "Faq", href: "/faq" },
+];
+---
+
+<!-- Fixed Header Container -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 w-full">
+  <!-- Topbar -->
+  <div
+    id="hero-announcement"
+    class="w-full bg-violet-normal text-white text-[14px] font-jakarta font-medium py-3 text-center"
+  >
+    Konsultasi Portfolio Gratis — Temukan Jalur STEM Terbaik untuk Masa Depanmu
+    <a
+      href="#konsultasi"
+      class="inline-flex items-center gap-1 ml-1 underline underline-offset-2 hover:text-citrus-normal transition-colors duration-200"
+      aria-label="Daftar konsultasi gratis"
+    >
+      →
+    </a>
+  </div>
+
+  <!-- Navbar -->
+  <nav
+    id="navbar"
+    class="w-full transition-all duration-300 border-b border-transparent relative"
+    aria-label="Main navigation"
+    data-theme="transparent"
+  >
+    <div
+      class="mx-auto w-full px-5 tablet:px-7 desktop:px-8 flex items-center justify-between desktop:py-3 relative"
+    >
+      <!-- Logo -->
+      <a
+        href="/"
+        id="navbar-logo"
+        class="flex items-center gap-2.5 py-3 desktop:py-0 flex-shrink-0 z-20"
+        aria-label="PortoSpace home"
+      >
+        <Atom size={28} class="text-violet-normal" />
+        <span id="navbar-logo-text" class="font-momo font-bold text-[18px] tracking-tight leading-none text-white transition-colors duration-200">
+          PortoSpace
+        </span>
+      </a>
+
+      <!-- Right side: Nav links + CTA + Mobile toggle -->
+      <div class="flex items-center gap-1 z-20">
+        <!-- Desktop Nav Links -->
+        <ul
+          id="navbar-links"
+          class="hidden desktop:flex items-center gap-1 mr-4"
+          role="list"
+        >
+          {
+            navLinks.map((link) =>
+              link.children ? (
+                <li class="group/dropdown static">
+                  <button
+                    id="programs-dropdown-btn"
+                    class="navbar-link flex items-center gap-1 text-[15px] font-jakarta font-semibold text-white px-3.5 py-2 rounded-md transition-all duration-200 cursor-pointer"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    {link.label}
+                    <ChevronDown size={14} aria-hidden="true" class="transition-transform duration-200 group-hover/dropdown:rotate-180 lucide-chevron-down" />
+                  </button>
+
+                  <!-- Mega Dropdown Panel (Anchored directly to bottom of navbar with 0px gap) -->
+                  <div
+                    id="mega-menu"
+                    class="absolute left-0 right-0 top-full w-full bg-white text-gray-900 shadow-2xl border-t border-gray-100 opacity-0 invisible -translate-y-2 pointer-events-none group-hover/dropdown:opacity-100 group-hover/dropdown:visible group-hover/dropdown:translate-y-0 group-hover/dropdown:pointer-events-auto transition-all duration-300 ease-out z-10"
+                  >
+                    <div class="w-full px-5 tablet:px-7 desktop:px-8 py-8 flex items-end min-h-[220px] relative bg-white">
+                      <!-- Left: Social Media Icons -->
+                      <div class="flex items-center gap-2.5">
+                        <a
+                          href="https://threads.net"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Threads"
+                          class="w-10 h-10 rounded-full bg-violet-normal hover:bg-violet-normal-hover text-white flex items-center justify-center transition-transform hover:-translate-y-0.5"
+                        >
+                          <AtSign size={18} />
+                        </a>
+                        <a
+                          href="https://instagram.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Instagram"
+                          class="w-10 h-10 rounded-full bg-violet-normal hover:bg-violet-normal-hover text-white flex items-center justify-center transition-transform hover:-translate-y-0.5"
+                        >
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                          </svg>
+                        </a>
+                        <a
+                          href="https://linkedin.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="LinkedIn"
+                          class="w-10 h-10 rounded-full bg-violet-normal hover:bg-violet-normal-hover text-white flex items-center justify-center transition-transform hover:-translate-y-0.5"
+                        >
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                            <rect width="4" height="12" x="2" y="9"/>
+                            <circle cx="4" cy="4" r="2"/>
+                          </svg>
+                        </a>
+                        <a
+                          href="mailto:info@portospace.com"
+                          aria-label="Email"
+                          class="w-10 h-10 rounded-full bg-violet-normal hover:bg-violet-normal-hover text-white flex items-center justify-center transition-transform hover:-translate-y-0.5"
+                        >
+                          <Mail size={18} />
+                        </a>
+                        <a
+                          href="https://wa.me/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="WhatsApp"
+                          class="w-10 h-10 rounded-full bg-violet-normal hover:bg-violet-normal-hover text-white flex items-center justify-center transition-transform hover:-translate-y-0.5"
+                        >
+                          <MessageCircle size={18} />
+                        </a>
+                      </div>
+
+                      <!-- Program items aligned directly under Programs menu button -->
+                      <div
+                        class="absolute top-8 flex flex-col gap-3 text-left"
+                        style="left: var(--programs-left, 50%);"
+                      >
+                        {link.children.map((child) => (
+                          <a
+                            href={child.href}
+                            class="text-[20px] desktop:text-[22px] font-jakarta font-bold text-gray-900 hover:text-violet-normal transition-colors leading-tight"
+                          >
+                            {child.label}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ) : (
+                <li>
+                  <a
+                    href={link.href}
+                    class="navbar-link block text-[15px] font-jakarta font-semibold text-white px-3.5 py-2 rounded-md transition-all duration-200"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              )
+            )
+          }
+        </ul>
+
+        <!-- CTA Desktop -->
+        <div class="hidden desktop:block">
+          <Button href="#konsultasi" id="navbar-cta" variant="primary">
+            Konsultasi Portfolio Gratis
+          </Button>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button
+          id="navbar-toggle"
+          class="desktop:hidden flex justify-center items-center w-9 h-9 rounded-sm hover:bg-white/10 transition-colors duration-200"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="navbar-mobile-menu"
+        >
+          <Menu id="icon-menu" size={20} aria-hidden="true" class="text-white" />
+          <X id="icon-close" size={20} aria-hidden="true" class="text-white hidden" />
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      id="navbar-mobile-menu"
+      class="desktop:hidden hidden border-t border-white/10 bg-black/90 backdrop-blur-md"
+      aria-hidden="true"
+    >
+      <ul class="flex flex-col px-5 py-4 gap-1" role="list">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="block text-[15px] font-jakarta font-semibold text-white/80 hover:text-white px-3 py-2.5 rounded-sm hover:bg-white/5 transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="px-5 pb-5">
+        <Button href="#konsultasi" variant="primary" class="w-full justify-center">
+          Konsultasi Portfolio Gratis
+        </Button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  /* Base link transitions */
+  .navbar-link {
+    transition: opacity 0.2s ease, color 0.2s ease !important;
+  }
+
+  /* Transparent theme (Hero / Image sections) */
+  #navbar[data-theme="transparent"] {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    backdrop-filter: none !important;
+  }
+  #navbar[data-theme="transparent"] #navbar-logo-text {
+    color: #ffffff !important;
+  }
+  #navbar[data-theme="transparent"] .navbar-link {
+    color: #ffffff !important;
+    opacity: 1;
+  }
+
+  /* White theme (100% Solid Opaque White — Zero Transparency) */
+  #navbar[data-theme="white"] {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    opacity: 1 !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+  }
+  #navbar[data-theme="white"] #navbar-logo-text {
+    color: #111111 !important;
+  }
+  #navbar[data-theme="white"] .navbar-link {
+    color: rgba(17, 17, 17, 0.9) !important;
+    opacity: 1;
+  }
+
+  /* Focus Hover Effect: Dim other menu links to 70% opacity when hovering any menu link */
+  #navbar-links:hover .navbar-link {
+    opacity: 0.7 !important;
+  }
+  #navbar-links .navbar-link:hover {
+    opacity: 1 !important;
+  }
+
+  /* When Dropdown is Open via Click / Active state */
+  .group\/dropdown.is-open #mega-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+  }
+  .group\/dropdown.is-open #programs-dropdown-btn .lucide-chevron-down {
+    transform: rotate(180deg) !important;
+  }
+
+  /* Mega Menu Panel: 100% Solid Opaque White Background (No transparency) */
+  #mega-menu {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+  }
+</style>
+
+<script>
+  // ─── Mobile hamburger ───────────────────────────────────────────────────────
+  const toggle = document.getElementById("navbar-toggle");
+  const menu = document.getElementById("navbar-mobile-menu");
+  const iconMenu = document.getElementById("icon-menu");
+  const iconClose = document.getElementById("icon-close");
+  let isOpen = false;
+
+  toggle?.addEventListener("click", () => {
+    isOpen = !isOpen;
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) {
+      menu?.classList.remove("hidden");
+      menu?.setAttribute("aria-hidden", "false");
+      iconMenu?.classList.add("hidden");
+      iconClose?.classList.remove("hidden");
+    } else {
+      menu?.classList.add("hidden");
+      menu?.setAttribute("aria-hidden", "true");
+      iconMenu?.classList.remove("hidden");
+      iconClose?.classList.add("hidden");
+    }
+  });
+
+  // ─── Dynamic navbar theme & mega menu alignment ─────────────────────────────
+  const navbar = document.getElementById("navbar") as HTMLElement;
+  const dropdownGroup = document.querySelector<HTMLElement>(".group\\/dropdown");
+  const dropdownGroups = document.querySelectorAll<HTMLElement>(".group\\/dropdown");
+  const programsBtn = document.getElementById("programs-dropdown-btn");
+  let isDropdownClickedOpen = false;
+
+  function updateMegaMenuPosition() {
+    if (programsBtn) {
+      const btnRect = programsBtn.getBoundingClientRect();
+      document.documentElement.style.setProperty("--programs-left", `${btnRect.left}px`);
+    }
+  }
+
+  function applyTheme(theme: string) {
+    if (!navbar) return;
+    navbar.setAttribute("data-theme", theme);
+  }
+
+  function detectTheme() {
+    if (isDropdownClickedOpen) return;
+    const sections = document.querySelectorAll<HTMLElement>("section[data-navbar]");
+    if (!sections.length || !navbar) {
+      applyTheme("transparent");
+      return;
+    }
+
+    const navBottom = navbar.getBoundingClientRect().bottom;
+
+    for (const section of sections) {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= navBottom && rect.bottom > navBottom) {
+        applyTheme(section.dataset.navbar ?? "transparent");
+        return;
+      }
+    }
+
+    applyTheme("transparent");
+  }
+
+  function setDropdownOpen(open: boolean) {
+    isDropdownClickedOpen = open;
+    if (open) {
+      dropdownGroup?.classList.add("is-open");
+      programsBtn?.setAttribute("aria-expanded", "true");
+      updateMegaMenuPosition();
+      applyTheme("white");
+    } else {
+      dropdownGroup?.classList.remove("is-open");
+      programsBtn?.setAttribute("aria-expanded", "false");
+      detectTheme();
+    }
+  }
+
+  // Toggle dropdown on click of Programs button
+  programsBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    setDropdownOpen(!isDropdownClickedOpen);
+  });
+
+  // Close dropdown on click outside
+  document.addEventListener("click", (e) => {
+    if (isDropdownClickedOpen && dropdownGroup && !dropdownGroup.contains(e.target as Node)) {
+      setDropdownOpen(false);
+    }
+  });
+
+  // Hover triggers white navbar background when hovering mega dropdown
+  dropdownGroups.forEach((group) => {
+    group.addEventListener("mouseenter", () => {
+      updateMegaMenuPosition();
+      applyTheme("white");
+    });
+    group.addEventListener("mouseleave", () => {
+      if (!isDropdownClickedOpen) {
+        detectTheme();
+      }
+    });
+  });
+
+  // Initial call + listen scroll & resize
+  updateMegaMenuPosition();
+  detectTheme();
+  window.addEventListener("scroll", () => {
+    updateMegaMenuPosition();
+    detectTheme();
+  }, { passive: true });
+  window.addEventListener("resize", updateMegaMenuPosition);
+</script>

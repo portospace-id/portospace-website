@@ -1,25 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import HeroSection from "../components/pages/homepage/heroSection.astro";
+import MahasiswaSection from "../components/pages/homepage/mahasiswaSection.astro";
+import ProgramUnggulanSection from "../components/pages/homepage/ProgramUnggulanSection.astro";
+import SuccessStorySection from "../components/pages/homepage/SuccessStorySection.astro";
 ---
 
 <Layout>
-  <main class="min-h-screen bg-black text-white">
-    <section class="flex min-h-screen items-center justify-center">
-      <div class="text-center">
-        <p class="mb-4 text-sm uppercase tracking-[0.3em] text-zinc-400">
-          PortoSpace
-        </p>
-
-        <h1 class="hero-title text-6xl font-bold tracking-tight">
-          Build the future.
-        </h1>
-
-        <p class="mt-6 text-zinc-400">Astro + Tailwind + Lenis + GSAP</p>
-      </div>
-    </section>
-
-    <section class="flex min-h-screen items-center justify-center bg-zinc-900">
-      <h2 class="text-5xl font-bold">Scroll me</h2>
-    </section>
+  <main>
+    <HeroSection />
+    <MahasiswaSection />
+    <ProgramUnggulanSection />
+    <SuccessStorySection />
   </main>
 </Layout>
