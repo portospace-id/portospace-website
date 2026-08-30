@@ -1,0 +1,73 @@
+---
+/**
+ * PatternLine — Inline SVG path dengan animasi "snake draw" saat masuk viewport.
+ * GSAP ScrollTrigger menganimasikan stroke-dashoffset dari 1200 → 0.
+ */
+
+interface Props {
+  class?: string;
+  style?: string;
+  color?: string;
+  id?: string;
+}
+
+const {
+  class: className = "",
+  style = "",
+  color = "#6F1DD1",
+  id,
+  ...rest
+} = Astro.props;
+
+// Unique ID per instance agar tidak collision
+const uid = id ?? `pattern-line-${Math.random().toString(36).slice(2, 7)}`;
+---
+
+<svg
+  id={uid}
+  width="477"
+  height="521"
+  viewBox="0 0 477 521"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class:list={["pattern-line-svg pointer-events-none select-none", className]}
+  style={style}
+  aria-hidden="true"
+  {...rest}
+>
+  <path
+    class="pattern-line-path"
+    d="M60.7216 460.714C60.7216 460.714 46.3655 229.102 145.722 219.714C227.428 211.993 217.67 364.473 299.722 362.714C416.588 360.209 227.598 14.0949 332.722 65.2139C378.475 87.4628 416.222 165.214 416.222 165.214"
+    stroke={color}
+    stroke-width="120"
+    stroke-linecap="round"
+    stroke-dasharray="1200"
+    stroke-dashoffset="1200"
+  />
+</svg>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  // Animate semua pattern-line-svg yang belum dianimasikan
+  const svgs = document.querySelectorAll<SVGElement>(".pattern-line-svg:not([data-animated])");
+
+  svgs.forEach((svg) => {
+    const path = svg.querySelector(".pattern-line-path");
+    if (!path) return;
+
+    svg.setAttribute("data-animated", "true");
+
+    gsap.to(path, {
+      strokeDashoffset: 0,
+      duration: 2,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: svg,
+        start: "top 85%",
+        once: true,
+      },
+    });
+  });
+</script>

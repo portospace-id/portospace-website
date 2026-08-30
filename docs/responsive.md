@@ -1,112 +1,87 @@
 # Responsive Design Context
 
-Panduan breakpoint dan layout responsif untuk PortoSpace.
+Panduan breakpoint dan layout responsif untuk PortoSpace berdasarkan standar Tailwind CSS.
 
 ---
 
-## Breakpoints
+## Predefined Breakpoints
 
-| Context         | Min Width | Max Width |
-| --------------- | --------- | --------- |
-| `mobile`        | `0px`     | `767px`   |
-| `tablet`        | `768px`   | `1023px`  |
-| `desktop`       | `1024px`  | `1439px`  |
-| `desktop-large` | `1440px`  | `∞`       |
+Proyek PortoSpace menggunakan breakpoint berbasis standar Tailwind CSS yang terkonfigurasi di `@theme` (`src/styles/global.css`):
 
----
-
-## Content Margin (Horizontal Padding)
-
-Margin kiri dan kanan konten utama di setiap breakpoint:
-
-| Context         | Margin Horizontal |
-| --------------- | ----------------- |
-| `mobile`        | `20px`            |
-| `tablet`        | `28px`            |
-| `desktop`       | `32px`            |
-| `desktop-large` | `32px`            |
-
-> **Catatan:** Margin ini diterapkan sebagai `padding-inline` pada wrapper/container utama konten, bukan pada elemen `body` secara langsung.
+| Prefix | Minimum Width | Typical Device | Layout Adaptations |
+| ------ | ------------- | -------------- | ------------------ |
+| *(default)* | `0px`    | Mobile Portrait | Layout 1-kolom, padding ringkas `px-[20px]`, mobile-first approach |
+| `sm:`  | `640px`       | Large Smartphones | Penyesuaian padding `sm:px-[24px]`, grid 2-kolom ringkas |
+| `md:`  | `768px`       | Tablets | Transisi grid multi-kolom `md:grid-cols-2`, padding `md:px-[28px]` |
+| `lg:`  | `1024px`      | Laptops / Desktops | Layout penuh desktop, flex-row side-by-side, header sticky, padding `lg:px-[32px]` |
+| `xl:`  | `1440px`      | Large Desktops / Max Limit | Container `xl:max-w-none` aktif, margin 32px rata kiri-kanan |
 
 ---
 
-## Implementasi CSS
+## Content Margin & Padding Hierarchy
 
-### Custom Properties (CSS Variables)
+Margin horizontal dan padding internal di setiap breakpoint:
 
-```css
-:root {
-  --content-margin: 20px; /* mobile default */
-}
-
-@media (min-width: 768px) {
-  :root {
-    --content-margin: 28px; /* tablet */
-  }
-}
-
-@media (min-width: 1024px) {
-  :root {
-    --content-margin: 32px; /* desktop */
-  }
-}
-
-@media (min-width: 1440px) {
-  :root {
-    --content-margin: 32px; /* desktop-large (sama dengan desktop) */
-  }
-}
-```
-
-### Penggunaan pada Container
-
-```css
-.content-wrapper {
-  padding-inline: var(--content-margin);
-}
-```
+| Prefix | Screen Width | Horizontal Padding | Container Max Width Behavior |
+| ------ | ------------ | ------------------ | ---------------------------- |
+| *(default)* | `0px – 639px` | `20px` (`px-[20px]`) | Full width (`w-full`) |
+| `sm:`  | `640px – 767px` | `24px` (`sm:px-[24px]`) | Full width (`w-full`) |
+| `md:`  | `768px – 1023px` | `28px` (`md:px-[28px]`) | Centered (`max-w-[1440px] mx-auto`) |
+| `lg:`  | `1024px – 1439px` | `32px` (`lg:px-[32px]`) | Centered (`max-w-[1440px] mx-auto`) |
+| `xl:`  | `≥ 1440px` | `32px` (`xl:px-[32px]`) | Full-bleed dengan margin 32px (`xl:max-w-none`) |
 
 ---
 
-## Implementasi Tailwind (jika diperlukan)
-
-Karena project ini menggunakan Tailwind v4, breakpoint dapat dikonfigurasi via `@theme`:
+## Konfigurasi Theme (`src/styles/global.css`)
 
 ```css
 @theme {
-  --breakpoint-tablet: 768px;
-  --breakpoint-desktop: 1024px;
-  --breakpoint-desktop-large: 1440px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1440px;
 }
 ```
-
-Gunakan class utility untuk content margin:
-
-```html
-<div class="px-5 md:px-7 lg:px-8">
-  <!-- px-5 = 20px | px-7 = 28px | px-8 = 32px -->
-</div>
-```
-
-> `md` = tablet (768px+), `lg` = desktop (1024px+)
 
 ---
 
-## Konteks Penggunaan
+## Pattern Standard Container Component
 
-- **`mobile`** — Prioritas utama desain (mobile-first approach)
-- **`tablet`** — Layout mulai menyesuaikan menjadi 2-kolom atau lebih
-- **`desktop`** — Layout penuh, sidebar atau navigasi muncul
-- **`desktop-large`** — Konten dibatasi max-width agar tidak terlalu lebar
+Gunakan pola class berikut pada wrapper utama setiap section:
 
-### Contoh Max Width Container
-
-Untuk `desktop-large`, gunakan `max-width` agar konten tidak membentang terlalu lebar:
-
-```css
-.content-wrapper {
-  max-width: 1440px;
-  margin-inline: auto;
-  padding-inline: var(--content-margin);
-}
+```html
+<div class="w-full max-w-[1440px] mx-auto xl:max-w-none
+            px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px]">
+  <!-- Konten section -->
+</div>
 ```
+
+---
+
+## Guideline Per Responsif Breakpoint
+
+### 1. Mobile Default (`< 640px`)
+- Layout flex bertumpuk secara vertikal (`flex-col`).
+- Ukuran heading utama `text-[32px] font-momo`.
+- Padding horizontal `20px`.
+
+### 2. Large Smartphones (`sm: 640px`)
+- Penyesuaian grid sederhana `sm:grid-cols-2`.
+- Padding horizontal `24px`.
+- Ukuran teks deskripsi & tombol disesuaikan secara proporsional.
+
+### 3. Tablets (`md: 768px`)
+- Transisi dari 1 kolom ke 2 kolom pada card/list (`md:grid-cols-2`).
+- Padding horizontal `28px`.
+- Heading berskala ke `md:text-[44px]`.
+
+### 4. Laptops / Desktops (`lg: 1024px`)
+- Layout berubah menjadi berdampingan (`lg:flex-row`).
+- Grid 3 kolom untuk card (`lg:grid-cols-3`).
+- Navigasi desktop penuh & sticky header aktif.
+- Heading berskala ke `lg:text-[54px]`.
+- Padding horizontal `32px`.
+
+### 5. Ultra-wide / Large Desktops (`xl: 1440px`)
+- Batas `max-w-[1440px]` dilepas (`xl:max-w-none`).
+- Konten tidak lagi berada di tengah (`mx-auto` dinonaktifkan oleh fill-width), melainkan memenuhi layar dengan **padding persis 32px** di tepi kiri dan kanan.

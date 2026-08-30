@@ -57,9 +57,9 @@ Project menggunakan Tailwind v4 via plugin Vite (`@tailwindcss/vite`). Konfigura
   --font-handwriting: "Caveat", cursive;
 
   /* Breakpoint */
-  --breakpoint-tablet:        768px;
-  --breakpoint-desktop:       1024px;
-  --breakpoint-desktop-large: 1440px;
+  --breakpoint-md:        768px;
+  --breakpoint-lg:       1024px;
+  --breakpoint-lg-large: 1440px;
 }
 ```
 
@@ -71,7 +71,7 @@ Selalu prioritaskan token dari `@theme` dan utility class bawaan Tailwind CSS (m
 
 ```html
 <!-- Gunakan nama token & utility bawaan yang tersedia -->
-<div class="bg-violet-normal text-white text-base font-semibold rounded-sm px-5 desktop:px-8">
+<div class="bg-violet-normal text-white text-base font-semibold rounded-sm px-5 lg:px-8">
 ```
 
 #### ❌ DON'T — Menggunakan arbitrary value jika Tailwind/theme sudah menyediakan nilainya
@@ -91,7 +91,7 @@ Hindari penggunaan *arbitrary value* (seperti `bg-[#7b20e8]`, `text-[16px]`, `p-
 Sesuai `responsive.md`, margin konten diterapkan via class:
 
 ```html
-<div class="px-5 tablet:px-7 desktop:px-8 max-w-[1440px] mx-auto">
+<div class="px-5 md:px-7 lg:px-8 max-w-[1440px] mx-auto">
   <!-- Konten halaman -->
 </div>
 ```
@@ -108,12 +108,12 @@ Sesuai `typography.md`, gunakan class font yang sudah dikonfigurasi:
 
 ```html
 <!-- Heading XL (Momo Trust Sans) -->
-<h1 class="font-display text-[32px] tablet:text-[40px] desktop:text-[54px] font-bold leading-tight tracking-tight">
+<h1 class="font-display text-[32px] md:text-[40px] lg:text-[54px] font-bold leading-tight tracking-tight">
   Build Your
 </h1>
 
 <!-- Aksen Caveat di akhir kalimat -->
-<span class="font-handwriting text-[38px] tablet:text-[48px] desktop:text-[64px] font-semibold text-citrus-normal">
+<span class="font-handwriting text-[38px] md:text-[48px] lg:text-[64px] font-semibold text-citrus-normal">
   Portfolio.
 </span>
 
@@ -315,10 +315,10 @@ const { title, description } = Astro.props;
 ---
 
 <section id="section-name" class="section">
-  <div class="mx-auto max-w-[1440px] px-5 tablet:px-7 desktop:px-8">
-    <h2 class="font-display text-[24px] tablet:text-[32px] desktop:text-[48px] font-bold text-white">
+  <div class="mx-auto max-w-[1440px] px-5 md:px-7 lg:px-8">
+    <h2 class="font-display text-[24px] md:text-[32px] lg:text-[48px] font-bold text-white">
       {title}
-      <span class="font-handwriting text-[30px] tablet:text-[38px] desktop:text-[54px] text-citrus-normal">accent.</span>
+      <span class="font-handwriting text-[30px] md:text-[38px] lg:text-[54px] text-citrus-normal">accent.</span>
     </h2>
     {description && (
       <p class="font-sans text-base text-white/60 leading-relaxed mt-4 max-w-xl">

@@ -1,0 +1,70 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: ImageMetadata | string;
+  imageSrc?: string;
+  imageAlt?: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  title,
+  description,
+  image,
+  imageSrc,
+  imageAlt = title,
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const cardImage = image || imageSrc;
+---
+
+<div
+  class:list={[
+    "teaser-card-item flex flex-col items-start gap-[24px] p-[12px] rounded-[4px] bg-white w-full lg:w-[342px] min-h-[380px] lg:h-[402px]",
+    className,
+  ]}
+  {...rest}
+>
+  <!-- Content: title + description -->
+  <div class="flex flex-col items-start gap-2 w-full">
+    <h3
+      class="font-jakarta font-semibold text-[#161616] text-[24px] leading-[150%] text-left"
+    >
+      {title}
+    </h3>
+    <p
+      class="font-jakarta font-normal text-[#161616] text-[16px] leading-[150%] text-left"
+    >
+      {description}
+    </p>
+  </div>
+
+  <!-- Image / Foto -->
+  <div
+    class="w-full h-[240px] rounded-[4px] overflow-hidden flex-shrink-0 bg-[#e0e0e0]"
+  >
+    {
+      cardImage && typeof cardImage === "object" ? (
+        <Image
+          src={cardImage}
+          alt={imageAlt}
+          class="w-full h-full object-cover"
+        />
+      ) : cardImage && typeof cardImage === "string" ? (
+        <img
+          src={cardImage}
+          alt={imageAlt}
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+      ) : null
+    }
+  </div>
+</div>

@@ -1,38 +1,41 @@
 ---
 import { Image } from "astro:assets";
+import pattern1 from "@/assets/pattern/pattern_1.svg";
 import pattern4 from "@/assets/pattern/pattern_4.svg";
 
 interface Props {
-  /** Optional text content (can also pass content via slot) */
+  /** "dark" = white text + pattern_4 (default), "light" = dark text + pattern_1 */
+  variant?: "dark" | "light";
   title?: string;
-  /** Icon size in px (default 22px) */
   iconSize?: number;
-  /** Optional HTML id */
   id?: string;
-  /** Additional CSS classes */
   class?: string;
   [key: string]: unknown;
 }
 
 const {
+  variant = "dark",
   title,
   iconSize = 22,
   id,
   class: className = "",
   ...rest
 } = Astro.props;
+
+const isLight = variant === "light";
 ---
 
 <div
   id={id}
   class:list={[
-    "inline-flex items-center gap-2 font-jakarta text-[16px] font-normal leading-[150%] text-white",
+    "inline-flex items-center gap-2 font-jakarta text-[16px] font-normal leading-[150%]",
+    isLight ? "text-[#111]" : "text-white",
     className,
   ]}
   {...rest}
 >
   <Image
-    src={pattern4}
+    src={isLight ? pattern1 : pattern4}
     alt=""
     width={iconSize}
     height={iconSize}

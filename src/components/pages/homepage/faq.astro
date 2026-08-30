@@ -1,0 +1,214 @@
+---
+import { Image } from "astro:assets";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import AccordionFaq from "@/components/accordions/accordionFaq.astro";
+import pattern4 from "@/assets/pattern/pattern_4.svg";
+
+const faqItems = [
+  {
+    id: "faq-1",
+    question: "Apa itu Maker's Academy?",
+    answer:
+      "Maker's Academy adalah program pendampingan intensif dari PortoSpace yang membantu siswa sekolah (SD, SMP, SMA) membangun portofolio unggulan di bidang STEM, Coding, AI, Riset, dan Entrepreneurship.",
+  },
+  {
+    id: "faq-2",
+    question: "Apakah ada sesi percobaan sebelum mendaftar?",
+    answer:
+      "Ya, kami menyediakan sesi konsultasi dan trial gratis untuk membantu siswa dan orang tua memahami metode pembelajaran serta memilih program yang paling sesuai.",
+  },
+  {
+    id: "faq-3",
+    question: "Apa perbedaan antara paket Lite, Pro, dan Pro Max?",
+    answer:
+      "Paket Lite berfokus pada bimbingan dasar, paket Pro menawarkan pendampingan intensif 1 proyek portofolio, sedangkan Pro Max adalah paket komprehensif dengan hingga 3 mentor, sesi offline, website pribadi, dan pendampingan publikasi SCOPUS.",
+  },
+  {
+    id: "faq-4",
+    question: "Siapa mentor-mentor di PortoSpace?",
+    answer:
+      "Mentor PortoSpace terdiri dari praktisi industri berpengalaman, peneliti, alumni dan mahasiswa dari universitas ternama seperti ITB, UI, NTU, dan kampus top dunia lainnya.",
+  },
+  {
+    id: "faq-5",
+    question: "Apakah PortoSpace membantu proses aplikasi universitas?",
+    answer:
+      "Ya! Kami membantu mematangkan portofolio riset, proyek, dan pencapaian yang menjadi poin krusial dalam pendaftaran universitas dalam maupun luar negeri.",
+  },
+  {
+    id: "faq-6",
+    question: "Apakah sesinya bisa dilakukan secara online dan offline?",
+    answer:
+      "Sesi bimbingan dilakukan secara online via video call interaktif. Khusus paket Pro Max, tersedia juga 5 sesi pendampingan offline.",
+  },
+  {
+    id: "faq-7",
+    question: "Apa saja jenis project yang bisa dibimbing?",
+    answer:
+      "Project meliputi pembuatan aplikasi web/mobile, model Machine Learning/AI, eksperimen STEM/bioteknologi, robotika, karya ilmiah, hingga perencanaan bisnis start-up.",
+  },
+  {
+    id: "faq-8",
+    question: "Apakah ada batasan kelas atau usia untuk ikut program ini?",
+    answer:
+      "Program dirancang khusus untuk siswa usia sekolah dari jenjang SD, SMP, hingga SMA/K.",
+  },
+  {
+    id: "faq-9",
+    question: "Apakah orang tua bisa memantau perkembangan anaknya?",
+    answer:
+      "Tentu saja! Orang tua akan mendapatkan laporan perkembangan bulanan (monthly report) serta akses ke Personal Success Manager.",
+  },
+  {
+    id: "faq-10",
+    question: "Berapa lama tim PortoSpace merespon setelah saya mendaftar?",
+    answer:
+      "Tim konsultan kami akan menghubungi Anda dalam waktu 1x24 jam kerja setelah formulir pendaftaran diterima.",
+  },
+];
+---
+
+<section
+  id="faq"
+  class="relative w-full bg-white py-[60px] lg:py-[100px] flex flex-col items-center overflow-hidden"
+  aria-label="Frequently Asked Questions PortoSpace"
+  data-navbar="white"
+>
+  <!-- Background Pattern SVG - Bottom Left -->
+  <Image
+    src={pattern4}
+    alt=""
+    class="absolute pointer-events-none select-none z-0"
+    style="width: 486px; height: 488px; left: -180px; bottom: -180px; display: block;"
+    aria-hidden="true"
+  />
+
+  <!-- Main Section Wrapper -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-20"
+  >
+    <!-- Left Column: Header (Starts at top) -->
+    <div
+      id="faq-header"
+      class="w-full lg:w-[420px] flex flex-col items-start gap-4"
+    >
+      <div id="faq-badge">
+        <SectionTitle variant="light" title="FAQ" />
+      </div>
+
+      <h2
+        id="faq-heading"
+        class="font-momo font-semibold text-[#111] text-[32px] md:text-[44px] lg:text-[54px] leading-[110%] tracking-[-1.08px]"
+      >
+        Frequently<br />
+        Asked <span
+          class="font-caveat font-medium italic text-[#111] text-[42px] md:text-[54px] lg:text-[64px] leading-[80%] tracking-[-2.56px]"
+          >Questions</span
+        >
+      </h2>
+
+      <p
+        id="faq-desc"
+        class="font-jakarta font-normal text-gray-600 text-sm lg:text-base leading-[160%] max-w-[380px]"
+      >
+        Masih penasaran? Semua yang perlu kamu tahu ada di sini.
+      </p>
+    </div>
+
+    <!-- Right Column: Accordion List Component -->
+    <AccordionFaq items={faqItems} class="lg:flex-1" />
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initFaqAccordion = () => {
+    const triggers = document.querySelectorAll(".faq-trigger");
+    const section = document.getElementById("faq");
+    const faqHeader = document.getElementById("faq-header");
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", (e) => {
+        e.preventDefault();
+        const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+        const contentId = trigger.getAttribute("aria-controls");
+        if (!contentId) return;
+
+        const content = document.getElementById(contentId);
+        const chevron = trigger.querySelector(".faq-chevron");
+
+        // Toggle clicked item
+        if (isExpanded) {
+          trigger.setAttribute("aria-expanded", "false");
+          if (content) content.style.display = "none";
+          if (chevron)
+            chevron.classList.remove("rotate-180", "text-violet-normal");
+        } else {
+          trigger.setAttribute("aria-expanded", "true");
+          if (content) content.style.display = "block";
+          if (chevron)
+            chevron.classList.add("rotate-180", "text-violet-normal");
+        }
+
+        // Refresh ScrollTrigger pin bounds smoothly after DOM expands/collapses
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+        }, 50);
+      });
+    });
+
+    if (!section || !faqHeader) return;
+
+    // GSAP ScrollTrigger Pinning for Desktop Header Pin
+    ScrollTrigger.matchMedia({
+      "(min-width: 1024px)": function () {
+        const pinTrigger = ScrollTrigger.create({
+          trigger: faqHeader,
+          start: "top 140px", // Margin offset below navbar when fixed/pinned
+          endTrigger: section,
+          end: "bottom bottom-=100px",
+          pin: faqHeader,
+          pinSpacing: false,
+          invalidateOnRefresh: true,
+        });
+
+        return () => {
+          pinTrigger.kill();
+        };
+      },
+    });
+
+    gsap.from(faqHeader, {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%",
+        once: true,
+      },
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+    });
+
+    gsap.from(".faq-accordion-item", {
+      scrollTrigger: {
+        trigger: "#faq-list",
+        start: "top 85%",
+        once: true,
+      },
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.05,
+      ease: "power2.out",
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initFaqAccordion);
+  } else {
+    initFaqAccordion();
+  }
+</script>

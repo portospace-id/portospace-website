@@ -1,5 +1,6 @@
 ---
 import { ArrowRight } from "@lucide/astro";
+import { Image } from "astro:assets";
 
 interface Props {
   /** Title of the program card */
@@ -14,6 +15,8 @@ interface Props {
   type?: "wide" | "narrow";
   /** Optional custom background color class */
   bgColor?: string;
+  /** Optional background image */
+  image?: ImageMetadata;
   /** Extra CSS classes */
   class?: string;
   [key: string]: unknown;
@@ -26,41 +29,54 @@ const {
   buttonText = "Pelajari Selengkapnya",
   type = "wide",
   bgColor,
+  image,
   class: className = "",
   ...rest
 } = Astro.props;
 
 const isWide = type === "wide";
 const defaultBgClass = isWide ? "bg-[#3B0E70]" : "bg-[#2E0B57]";
-const flexClass = isWide ? "desktop:flex-[2]" : "desktop:flex-1";
+const flexClass = isWide ? "lg:flex-[2]" : "lg:flex-1";
 const descMaxW = isWide ? "max-w-[780px]" : "";
 ---
 
 <div
   class:list={[
-    "program-card w-full h-[500px] p-6 flex flex-col justify-end items-start gap-2.5 rounded border border-white/10 hover:border-citrus-normal/40 transition-all duration-300 relative overflow-hidden group shadow-lg",
+    "program-card w-full h-[500px] p-6 flex flex-col justify-end items-start gap-2.5 rounded transition-all duration-300 relative overflow-hidden ",
     flexClass,
     bgColor || defaultBgClass,
     className,
   ]}
   {...rest}
 >
-  <!-- Subtle Glow Overlay on Hover -->
+  <!-- Background Image -->
+  {
+    image && (
+      <Image
+        src={image}
+        alt=""
+        class="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+        aria-hidden="true"
+      />
+    )
+  }
+
+  <!-- Gradient Overlay -->
   <div
-    class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"
+    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 pointer-events-none"
   >
   </div>
 
   <!-- Card Content -->
   <div class="relative z-10 flex flex-col gap-2.5 items-start w-full">
     <h3
-      class="font-momo font-medium text-white text-[28px] tablet:text-[32px] leading-[110%] tracking-[-0.64px]"
+      class="font-momo font-medium text-white text-[28px] md:text-[32px] leading-[110%] tracking-[-0.64px]"
     >
       {title}
     </h3>
     <p
       class:list={[
-        "font-jakarta font-normal text-white text-sm desktop:text-[16px] leading-[150%]",
+        "font-jakarta font-normal text-white text-sm lg:text-[16px] leading-[150%]",
         descMaxW,
       ]}
     >

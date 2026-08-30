@@ -1,0 +1,193 @@
+---
+import { Image } from "astro:assets";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import CardPortfolioOutput from "@/components/card/cardPortfolioOutput.astro";
+
+import setmImg from "@/assets/image/homepage/setm.webp";
+import roboticsImg from "@/assets/image/homepage/robotics.webp";
+import codingImg from "@/assets/image/homepage/coding.webp";
+import entrepreneurshipImg from "@/assets/image/homepage/entepreneurship.webp";
+import successStoryImg from "@/assets/image/homepage/successStory.webp";
+
+import PatternLine from "@/components/ui/patternLine.astro";
+
+const portfolioOutputs = [
+  {
+    id: "output-1",
+    title: "Deteksi Emosi untuk Pembelajaran Inklusif",
+    subtitle: "GEMASTIK Finalist",
+    image: setmImg,
+  },
+  {
+    id: "output-2",
+    title: "Sistem Monitoring Kualitas Udara Berbasis IoT",
+    subtitle: "NYIA Gold Winner",
+    image: roboticsImg,
+  },
+  {
+    id: "output-3",
+    title: "Platform AI Diagnosis Dini Penyakit Tanaman",
+    subtitle: "IEYI International Award",
+    image: codingImg,
+  },
+  {
+    id: "output-4",
+    title: "Startup EdTech Berbasis Komunitas Belajar",
+    subtitle: "Young Entrepreneurship Champion",
+    image: entrepreneurshipImg,
+  },
+  {
+    id: "output-5",
+    title: "Inovasi Sel Surya Thermoelectric Ramah Lingkungan",
+    subtitle: "National Science Project Winner",
+    image: successStoryImg,
+  },
+  {
+    id: "output-6",
+    title: "Robot Navigasi Otonom untuk Penyelamatan Bencana",
+    subtitle: "Robotics Olympiad Winner",
+    image: roboticsImg,
+  },
+  {
+    id: "output-7",
+    title: "Algoritma Pemrosesan Bahasa Alami Bahasa Daerah",
+    subtitle: "Research Paper Publication",
+    image: setmImg,
+  },
+];
+---
+
+<section
+  id="portfolio-output"
+  class="relative w-full min-h-screen bg-violet-normal py-[40px] lg:py-[60px] flex flex-col justify-center overflow-hidden"
+  aria-label="Portfolio Output"
+  data-navbar="violet"
+>
+  <!-- Background Decorative Pattern SVG - Top Right -->
+  <PatternLine
+    class="absolute z-0"
+    style="top: 0; right: -80px; width: 477px; height: 521px; display: block;"
+  />
+
+  <!-- Background Decorative Pattern SVG - Bottom Left -->
+  <PatternLine
+    class="absolute z-0 rotate-180"
+    style="bottom: 0; left: -61px; width: 477px; height: 521px; display: block;"
+  />
+
+  <!-- Header -->
+  <div
+    class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] relative z-10 mb-[28px] lg:mb-[36px]"
+  >
+    <div
+      id="portfolio-output-header"
+      class="w-full flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-12"
+    >
+      <!-- Title & Heading -->
+      <div class="flex flex-col items-start gap-4 max-w-[720px]">
+        <SectionTitle title="Portfolio Output" />
+        <h2
+          class="font-momo font-semibold text-white leading-[110%] tracking-[-1.5px] text-[36px] md:text-[48px] lg:text-[54px]"
+        >
+          Dari Ide Sederhana Menjadi<br />
+          Karya yang <span
+            class="font-caveat font-bold text-white text-[48px] md:text-[60px] lg:text-[68px] leading-[80%] tracking-[-2px]"
+            >Berdampak.</span
+          >
+        </h2>
+      </div>
+
+      <!-- Subtext -->
+      <p
+        class="font-jakarta font-normal text-white/90 text-sm lg:text-base leading-[160%] max-w-[420px]"
+      >
+        Kami mendampingi setiap langkahmu, mulai dari menemukan tujuan,
+        membangun karya, hingga meraih prestasi yang membuka lebih banyak
+        peluang di masa depan.
+      </p>
+    </div>
+  </div>
+
+  <!-- Cards Carousel Track (Fixed height prevents layout shift on card hover) -->
+  <div
+    id="portfolio-cards-container"
+    class="w-full h-[600px] lg:h-[620px] overflow-hidden relative z-10 flex items-start"
+  >
+    <div
+      id="portfolio-cards-track"
+      class="flex items-start gap-[16px] w-max h-[600px] lg:h-[620px] px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] will-change-transform"
+    >
+      {
+        portfolioOutputs.map((item) => (
+          <CardPortfolioOutput
+            title={item.title}
+            subtitle={item.subtitle}
+            image={item.image}
+            alt={item.title}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import lenis from "@/scripts/smoothScroll";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initPortfolioScroll = () => {
+    const section = document.getElementById("portfolio-output");
+    const track = document.getElementById("portfolio-cards-track");
+    const container = document.getElementById("portfolio-cards-container");
+
+    if (!section || !track || !container) return;
+
+    // Header animation
+    gsap.from("#portfolio-output-header", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    });
+
+    // Horizontal scroll calculation
+    const getScrollAmount = () => {
+      return Math.max(0, track.scrollWidth - window.innerWidth);
+    };
+
+    const horizontalTween = gsap.to(track, {
+      x: () => -getScrollAmount(),
+      ease: "none",
+    });
+
+    // Pin section & scrub horizontal track
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top top",
+      end: () => `+=${getScrollAmount()}`,
+      pin: true,
+      animation: horizontalTween,
+      scrub: true,
+      invalidateOnRefresh: true,
+      anticipatePin: 1,
+    });
+
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPortfolioScroll);
+  } else {
+    initPortfolioScroll();
+  }
+</script>

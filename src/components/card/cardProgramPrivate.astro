@@ -1,0 +1,91 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+export type CardSize = "small" | "medium" | "large" | "kecil" | "sedang";
+
+interface Props {
+  /** Card title text */
+  title: string;
+  /** Card image source (string path or imported ImageMetadata) */
+  image: string | ImageMetadata;
+  /** Image alt text */
+  alt?: string;
+  /** Card size variant: "large" (562x700), "medium"/"sedang" (445x340), "small"/"kecil" (329x340) */
+  size?: CardSize;
+  /** Optional destination URL */
+  href?: string;
+  /** Additional CSS classes */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  title,
+  image,
+  alt = title,
+  size = "medium",
+  href,
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const isStringImage = typeof image === "string";
+
+const isLarge = size === "large";
+const isSedang = size === "sedang" || size === "medium";
+const isKecil = size === "kecil" || size === "small";
+---
+
+<div
+  class:list={[
+    "program-private-card relative overflow-hidden rounded-xl md:rounded-2xl shadow-sm group transition-all duration-300 hover:shadow-lg bg-zinc-800 flex-shrink-0",
+    isLarge && "w-full lg:w-[562px] h-[340px] sm:h-[450px] lg:h-[700px]",
+    isSedang && "w-full sm:w-[calc(57%-10px)] lg:w-[445px] h-[240px] sm:h-[280px] lg:h-[340px]",
+    isKecil && "w-full sm:w-[calc(43%-10px)] lg:w-[329px] h-[240px] sm:h-[280px] lg:h-[340px]",
+    className,
+  ]}
+  {...rest}
+>
+  <!-- Card Background Image -->
+  {
+    isStringImage ? (
+      <img
+        src={image as string}
+        alt={alt}
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
+        loading="lazy"
+      />
+    ) : (
+      <Image
+        src={image as ImageMetadata}
+        alt={alt}
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
+        loading="lazy"
+      />
+    )
+  }
+
+  <!-- Gradient Overlay -->
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent pointer-events-none z-[1]"
+  >
+  </div>
+
+  <!-- Card Content / Label -->
+  <div class="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
+    {
+      href ? (
+        <a href={href} class="block group-hover:underline">
+          <h3 class="font-momo font-medium text-white text-lg md:text-xl lg:text-2xl leading-snug drop-shadow-sm">
+            {title}
+          </h3>
+        </a>
+      ) : (
+        <h3 class="font-momo font-medium text-white text-lg md:text-xl lg:text-2xl leading-snug drop-shadow-sm">
+          {title}
+        </h3>
+      )
+    }
+  </div>
+</div>

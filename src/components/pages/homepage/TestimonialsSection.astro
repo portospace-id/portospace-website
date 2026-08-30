@@ -1,0 +1,269 @@
+---
+import { Image } from "astro:assets";
+import pattern4 from "@/assets/pattern/pattern_4.svg";
+import CardTestimonials from "@/components/card/cardTestimonials.astro";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import testimonialImg1 from "@/assets/image/homepage/testimonial.webp";
+import testimonialImg2 from "@/assets/image/homepage/testimonial-2.webp";
+import testimonialImg3 from "@/assets/image/homepage/testimonial-3.webp";
+import testimonialImg4 from "@/assets/image/homepage/testimonial-4.webp";
+import testimonialImg5 from "@/assets/image/homepage/testimonial-5.webp";
+
+type Testimonial =
+  | {
+      variant: "photo";
+      name: string;
+      role: string;
+      image: ImageMetadata;
+      imageAlt?: string;
+    }
+  | {
+      variant: "quote";
+      name: string;
+      role: string;
+      quote: string;
+    };
+
+const testimonials: Testimonial[] = [
+  {
+    variant: "photo",
+    name: "Raka Pratama",
+    role: "Coding & AI Student",
+    image: testimonialImg1,
+  },
+  {
+    variant: "quote",
+    name: "Raka Pratama",
+    role: "Coding & AI Student",
+    quote:
+      '"Saya belajar bukan cuma coding, tapi juga bagaimana membuat ide menjadi produk yang benar-benar bisa digunakan."',
+  },
+  {
+    variant: "photo",
+    name: "Sari Dewi",
+    role: "Robotics & Engineering",
+    image: testimonialImg2,
+  },
+  {
+    variant: "quote",
+    name: "Sari Dewi",
+    role: "Robotics & Engineering",
+    quote:
+      '"Mentor di PortoSpace benar-benar peduli dengan perkembangan saya. Mereka tidak hanya mengajar, tapi juga membimbing saya berpikir seperti seorang engineer."',
+  },
+  {
+    variant: "photo",
+    name: "Dimas Aditya",
+    role: "Research & Science",
+    image: testimonialImg3,
+  },
+  {
+    variant: "quote",
+    name: "Dimas Aditya",
+    role: "Research & Science",
+    quote:
+      '"Portfolio saya berhasil membuat universitas impian saya tertarik. PortoSpace bukan sekadar kursus — ini investasi terbaik yang pernah saya lakukan."',
+  },
+  {
+    variant: "photo",
+    name: "Nadia Kusuma",
+    role: "Coding & AI Student",
+    image: testimonialImg4,
+  },
+  {
+    variant: "quote",
+    name: "Nadia Kusuma",
+    role: "Coding & AI Student",
+    quote:
+      '"Dengan bimbingan mentor PortoSpace, saya bisa menyelesaikan proyek AI pertama saya dalam 3 bulan. Sesuatu yang tidak pernah saya bayangkan sebelumnya."',
+  },
+  {
+    variant: "photo",
+    name: "Budi Santoso",
+    role: "STEM Research Student",
+    image: testimonialImg5,
+  },
+];
+---
+
+<section
+  id="testimonials"
+  class="relative w-full bg-white overflow-hidden"
+  aria-label="Testimonials dari siswa PortoSpace"
+  data-navbar="white"
+>
+  <!-- Decorative Pattern SVG -->
+  <Image
+    src={pattern4}
+    alt=""
+    class="absolute pointer-events-none select-none z-0"
+    style="width: 486.515px; height: 488px; left: -149px; top: -180.041px; display: block;"
+    aria-hidden="true"
+  />
+
+  <!-- Header -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pt-[80px] pb-10 flex flex-col items-center"
+  >
+    <div id="testimonials-badge" class="mb-4">
+      <SectionTitle variant="light">Testimonials</SectionTitle>
+    </div>
+
+    <h2
+      id="testimonials-heading"
+      class="font-momo font-semibold text-[#111] text-[32px] md:text-[40px] lg:text-[54px] leading-[110%] tracking-[-0.02em] lg:tracking-[-1.08px] max-w-[980px] text-center"
+    >
+      Mereka Memulai di PortoSpace, Kini Siap Melangkah
+      <span
+        class="font-caveat font-bold text-[#111] text-[38px] md:text-[48px] lg:text-[64px] leading-[80%] tracking-[-0.04em] lg:tracking-[-2.56px] align-bottom ml-2"
+      >
+        Lebih Jauh.
+      </span>
+    </h2>
+  </div>
+
+  <!-- Carousel -->
+  <div
+    id="testimonials-carousel-outer"
+    class="relative z-10 w-full overflow-hidden"
+  >
+    <div
+      id="testimonials-track"
+      class="flex gap-[10px] will-change-transform"
+      style="width: max-content;"
+    >
+      {
+        testimonials.map((t) => (
+          <CardTestimonials
+            variant={t.variant}
+            name={t.name}
+            role={t.role}
+            quote={t.variant === "quote" ? t.quote : ""}
+            image={t.variant === "photo" ? t.image : undefined}
+          />
+        ))
+      }
+      {
+        testimonials.map((t) => (
+          <CardTestimonials
+            variant={t.variant}
+            name={t.name}
+            role={t.role}
+            quote={t.variant === "quote" ? t.quote : ""}
+            image={t.variant === "photo" ? t.image : undefined}
+            aria-hidden="true"
+          />
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="pb-[80px]"></div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from("#testimonials-badge", {
+    scrollTrigger: {
+      trigger: "#testimonials",
+      start: "top 85%",
+      once: true,
+    },
+    y: 16,
+    opacity: 0,
+    duration: 0.5,
+    ease: "power2.out",
+    clearProps: "transform,opacity",
+  });
+
+  gsap.from("#testimonials-heading", {
+    scrollTrigger: {
+      trigger: "#testimonials",
+      start: "top 80%",
+      once: true,
+    },
+    y: 35,
+    opacity: 0,
+    duration: 0.8,
+    ease: "power3.out",
+    delay: 0.1,
+    clearProps: "transform,opacity",
+  });
+
+  gsap.from(".testimonial-card", {
+    scrollTrigger: {
+      trigger: "#testimonials-carousel-outer",
+      start: "top 90%",
+      once: true,
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.06,
+    ease: "power2.out",
+    delay: 0.2,
+    clearProps: "transform,opacity",
+  });
+
+  // Auto-scroll
+  const track = document.getElementById("testimonials-track");
+
+  if (track) {
+    const trackEl: HTMLElement = track;
+    const halfCount = trackEl.children.length / 2;
+
+    function getHalfWidth(): number {
+      let w = 0;
+      for (let i = 0; i < halfCount; i++) {
+        w += (trackEl.children[i] as HTMLElement).offsetWidth;
+      }
+      return w;
+    }
+
+    let halfWidth = getHalfWidth();
+    let currentX = 0;
+    let isPaused = false;
+    const speed = 0.3;
+
+    trackEl.addEventListener("mouseenter", () => {
+      isPaused = true;
+    });
+    trackEl.addEventListener("mouseleave", () => {
+      isPaused = false;
+    });
+    trackEl.addEventListener(
+      "touchstart",
+      () => {
+        isPaused = true;
+      },
+      { passive: true },
+    );
+    trackEl.addEventListener("touchend", () => {
+      setTimeout(() => {
+        isPaused = false;
+      }, 1500);
+    });
+
+    window.addEventListener("resize", () => {
+      halfWidth = getHalfWidth();
+    });
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      (function animate() {
+        if (!isPaused) {
+          currentX -= speed;
+          if (Math.abs(currentX) >= halfWidth) {
+            currentX = 0;
+            halfWidth = getHalfWidth();
+          }
+          trackEl.style.transform = `translate3d(${currentX}px, 0, 0)`;
+        }
+        requestAnimationFrame(animate);
+      })();
+    }
+  }
+</script>

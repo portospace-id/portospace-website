@@ -1,0 +1,205 @@
+---
+import { Image } from "astro:assets";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import CardPaket from "@/components/card/cardPaket.astro";
+import pattern4 from "@/assets/pattern/pattern_4.svg";
+
+const packages = [
+  {
+    id: "paket-pro",
+    title: "PRO",
+    description:
+      "Bangun portofolio yang lebih kuat dengan pendampingan intensif dan proyek yang siap dipublikasikan maupun dilombakan.",
+    features: [
+      "1 proyek unggulan untuk portofolio atau kompetisi",
+      "Bimbingan mentor dari akademisi & praktisi industri",
+      "Maker's Handbook (Digital)",
+      "Konsultasi melalui Chat",
+      "Laporan perkembangan bulanan untuk orang tua",
+      "Reminder kompetisi & lomba",
+      "Personal Success Manager",
+    ],
+    buttonText: "Mulai Bersama Pro",
+    featured: false,
+  },
+  {
+    id: "paket-promax",
+    title: "PRO MAX",
+    description:
+      "Program pendampingan paling lengkap untuk membangun portofolio, mempersiapkan kompetisi, hingga meraih peluang studi di universitas terbaik dunia.",
+    features: [
+      "3 proyek unggulan untuk portofolio & kompetisi",
+      "Hingga 3 mentor dari akademisi & praktisi industri",
+      "Maker's Handbook (Digital)",
+      "Konsultasi melalui Chat",
+      "Laporan perkembangan bulanan untuk orang tua",
+      "Reminder kompetisi & lomba",
+      "Personal Success Manager",
+      "Pendampingan riset & proyek",
+      "5 sesi pendampingan offline",
+      "Website portofolio pribadi",
+      "Pendampingan publikasi SCOPUS",
+    ],
+    buttonText: "Mulai dengan Pro Max",
+    featured: true,
+  },
+  {
+    id: "paket-lite",
+    title: "LITE",
+    description:
+      "Sudah punya dasar? Tingkatkan kemampuanmu dengan bimbingan mentor dan pengalaman belajar yang terarah.",
+    features: [
+      "Bimbingan mentor dari akademisi & praktisi industri",
+      "Maker's Handbook (Digital)",
+      "Konsultasi melalui Chat",
+      "Laporan perkembangan bulanan untuk orang tua",
+    ],
+    buttonText: "Mulai Belajar",
+    featured: false,
+  },
+];
+---
+
+<section
+  id="paket-programs"
+  class="relative w-full bg-white py-[60px] lg:py-[100px] flex flex-col items-center overflow-hidden"
+  aria-label="Paket Programs PortoSpace"
+  data-navbar="white"
+>
+  <!-- Top-Left Decorative Pattern SVG -->
+  <Image
+    src={pattern4}
+    alt=""
+    class="absolute pointer-events-none select-none z-0"
+    style="width: 486px; height: 488px; left: -149px; top: -180px; display: block;"
+    aria-hidden="true"
+  />
+
+  <!-- Bottom-Right Decorative Pattern SVG -->
+  <Image
+    src={pattern4}
+    alt=""
+    class="absolute pointer-events-none select-none z-0 transform rotate-180"
+    style="width: 486px; height: 488px; right: -149px; bottom: -180px; display: block;"
+    aria-hidden="true"
+  />
+
+  <!-- Main Section Wrapper -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-center"
+  >
+    <!-- Header -->
+    <div class="flex flex-col items-center text-center gap-4 mb-12 lg:mb-16">
+      <div id="paket-badge">
+        <SectionTitle variant="light" title="Paket Programs" />
+      </div>
+
+      <h2
+        id="paket-heading"
+        class="font-momo font-semibold text-[#111] text-[32px] md:text-[44px] lg:text-[54px] leading-[110%] tracking-[-1.08px] max-w-[980px]"
+      >
+        Pilih Program yang<br class="hidden md:block" />
+        Membawa Kamu <span
+          class="font-caveat font-medium italic text-[#111] text-[42px] md:text-[54px] lg:text-[64px] leading-[80%] tracking-[-2.56px]"
+          >Lebih Jauh</span
+        >
+      </h2>
+
+      <p
+        id="paket-desc"
+        class="font-jakarta font-normal text-gray-600 text-sm lg:text-base leading-[160%] max-w-[680px]"
+      >
+        Semua program dirancang untuk membimbingmu dari belajar, berkarya, hingga siap
+        bersaing di tingkat nasional maupun internasional.
+      </p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div
+      id="paket-cards-grid"
+      class="w-full max-w-[1400px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:items-center items-stretch justify-center justify-items-center"
+    >
+      {
+        packages.map((pkg) => (
+          <CardPaket
+            title={pkg.title}
+            description={pkg.description}
+            features={pkg.features}
+            buttonText={pkg.buttonText}
+            featured={pkg.featured}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initPaketAnimations = () => {
+    const section = document.getElementById("paket-programs");
+    if (!section) return;
+
+    gsap.from("#paket-badge", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+    });
+
+    gsap.from("#paket-heading", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      delay: 0.1,
+    });
+
+    gsap.from("#paket-desc", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%",
+        once: true,
+      },
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      delay: 0.2,
+    });
+
+    gsap.from(".paket-card", {
+      scrollTrigger: {
+        trigger: "#paket-cards-grid",
+        start: "top 85%",
+        once: true,
+      },
+      y: 40,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.15,
+      ease: "power3.out",
+      clearProps: "transform,opacity",
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPaketAnimations);
+  } else {
+    initPaketAnimations();
+  }
+</script>
