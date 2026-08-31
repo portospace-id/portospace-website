@@ -89,25 +89,28 @@ const bgSrc = isStringBg ? (bgImage as string) : (bgImage as ImageMetadata).src;
   <div
     class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px]"
   >
+    <!-- 1 Flex Container: Section Title | Heading | Description & List (justify-between) -->
     <div
-      class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
+      class="w-full flex flex-col lg:flex-row items-start justify-between gap-6 lg:gap-8 xl:gap-12"
     >
-      <!-- Left Column: Badge + Heading -->
-      <div class="lg:col-span-7">
+      <!-- Item 1: Section Title -->
+      <div class="flex-shrink-0">
         {
           badgeText && (
             <SectionTitle
               id="target-siswa-badge"
               variant="dark"
               title={badgeText}
-              class="mb-4 md:mb-6"
             />
           )
         }
+      </div>
 
+      <!-- Item 2: Heading (600px max-width) -->
+      <div class="w-full lg:max-w-[600px]">
         <h2
           id="target-siswa-heading"
-          class="font-momo font-bold text-white text-[28px] sm:text-[36px] md:text-[44px] lg:text-[50px] xl:text-[54px] leading-[1.15] tracking-tight max-w-[620px]"
+          class="font-momo font-bold text-white text-[28px] sm:text-[36px] md:text-[44px] lg:text-[46px] xl:text-[52px] leading-[1.15] tracking-tight"
         >
           {titleLine1 && <span class="block">{titleLine1}</span>}
           {titleLine2 && <span class="block">{titleLine2}</span>}
@@ -115,7 +118,7 @@ const bgSrc = isStringBg ? (bgImage as string) : (bgImage as ImageMetadata).src;
             {titleLine3 && titleLine3}
             {
               titleHighlight && (
-                <span class="font-caveat font-semibold italic text-white text-[36px] sm:text-[44px] md:text-[52px] lg:text-[60px] xl:text-[64px] leading-none align-baseline">
+                <span class="font-caveat font-semibold italic text-white text-[36px] sm:text-[44px] md:text-[52px] lg:text-[54px] xl:text-[60px] leading-none align-baseline">
                   {titleHighlight}
                 </span>
               )
@@ -124,13 +127,13 @@ const bgSrc = isStringBg ? (bgImage as string) : (bgImage as ImageMetadata).src;
         </h2>
       </div>
 
-      <!-- Right Column: Description + Item List -->
-      <div class="lg:col-span-5">
+      <!-- Item 3: Description & List Container (width: 564px; flex-col; gap: 62px; flex-shrink: 0;) -->
+      <div class="w-full lg:w-[564px] flex flex-col items-start gap-[62px] flex-shrink-0">
         {
           description && (
             <p
               id="target-siswa-desc"
-              class="font-jakarta font-normal text-white/90 text-sm md:text-base leading-relaxed mb-6 md:mb-8"
+              class="font-jakarta font-normal text-white/90 text-sm md:text-base leading-relaxed"
             >
               {description}
             </p>
@@ -138,7 +141,7 @@ const bgSrc = isStringBg ? (bgImage as string) : (bgImage as ImageMetadata).src;
         }
 
         <!-- List Items with Dividers -->
-        <div class="target-siswa-items flex flex-col border-t border-white/20">
+        <div class="target-siswa-items w-full flex flex-col border-t border-white/20">
           {
             items.map((item) => {
               const textContent = typeof item === "string" ? item : item.text;

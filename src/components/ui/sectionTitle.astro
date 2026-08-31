@@ -8,6 +8,8 @@ interface Props {
   variant?: "dark" | "light";
   title?: string;
   iconSize?: number;
+  /** Set to false to render text-only badge without pattern icon */
+  showIcon?: boolean;
   id?: string;
   class?: string;
   [key: string]: unknown;
@@ -17,6 +19,7 @@ const {
   variant = "dark",
   title,
   iconSize = 22,
+  showIcon = true,
   id,
   class: className = "",
   ...rest
@@ -28,21 +31,25 @@ const isLight = variant === "light";
 <div
   id={id}
   class:list={[
-    "inline-flex items-center gap-2 font-jakarta text-[16px] font-normal leading-[150%]",
-    isLight ? "text-[#111]" : "text-white",
+    "inline-flex items-center gap-2 font-sans text-[16px] font-normal leading-[150%]",
+    isLight ? "text-[#161616]" : "text-white",
     className,
   ]}
   {...rest}
 >
-  <Image
-    src={isLight ? pattern1 : pattern4}
-    alt=""
-    width={iconSize}
-    height={iconSize}
-    class="flex-shrink-0 select-none pointer-events-none object-contain"
-    style={`width: ${iconSize}px; height: ${iconSize}px;`}
-    aria-hidden="true"
-  />
+  {
+    showIcon && (
+      <Image
+        src={isLight ? pattern1 : pattern4}
+        alt=""
+        width={iconSize}
+        height={iconSize}
+        class="flex-shrink-0 select-none pointer-events-none object-contain"
+        style={`width: ${iconSize}px; height: ${iconSize}px;`}
+        aria-hidden="true"
+      />
+    )
+  }
   <span>
     {title ? title : <slot />}
   </span>

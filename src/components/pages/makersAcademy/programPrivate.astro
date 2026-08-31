@@ -81,7 +81,7 @@ const {
 <section
   id="program-private"
   class:list={[
-    "relative w-full py-16 md:py-24 bg-white overflow-hidden z-10",
+    "relative w-full py-16 lg:py-[80px] bg-white overflow-hidden z-10",
     className,
   ]}
 >
@@ -103,7 +103,7 @@ const {
     aria-hidden="true"
   />
 
-  <!-- Content Container -->
+  <!-- Content Container (Matching standard section wrapper in PortoSpace) -->
   <div
     class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px]"
   >
@@ -157,10 +157,10 @@ const {
     <!-- Cards Layout: Left (Row 1 + Row 2) + Right Large Card -->
     <div
       id="program-private-cards"
-      class="w-full flex flex-col lg:flex-row gap-5 items-start justify-center"
+      class="w-full flex flex-col lg:flex-row gap-5 items-stretch justify-between"
     >
       <!-- Left Area (Row 1: Card 1 + Card 2, Row 2: Card 3 + Card 4) -->
-      <div class="flex flex-col gap-5 w-full lg:w-[794px] flex-shrink-0">
+      <div class="flex flex-col gap-5 w-full lg:w-[calc(58.5%-10px)] lg:flex-[1.41] flex-shrink-0">
         <!-- Row 1: Card 1 (Sedang - 445px) & Card 2 (Kecil - 329px) -->
         {
           cards.length >= 2 && (

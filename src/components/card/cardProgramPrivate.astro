@@ -39,10 +39,10 @@ const isKecil = size === "kecil" || size === "small";
 
 <div
   class:list={[
-    "program-private-card relative overflow-hidden rounded-xl md:rounded-2xl shadow-sm group transition-all duration-300 hover:shadow-lg bg-zinc-800 flex-shrink-0",
-    isLarge && "w-full lg:w-[562px] h-[340px] sm:h-[450px] lg:h-[700px]",
-    isSedang && "w-full sm:w-[calc(57%-10px)] lg:w-[445px] h-[240px] sm:h-[280px] lg:h-[340px]",
-    isKecil && "w-full sm:w-[calc(43%-10px)] lg:w-[329px] h-[240px] sm:h-[280px] lg:h-[340px]",
+    "program-private-card relative overflow-hidden rounded-[4px] shadow-sm group transition-all duration-300 hover:shadow-xl bg-zinc-900 flex-shrink-0",
+    isLarge && "w-full lg:w-[calc(41.5%-10px)] lg:flex-1 h-[340px] sm:h-[480px] lg:h-[700px]",
+    isSedang && "w-full sm:w-[calc(57.5%-10px)] lg:w-[calc(57.5%-10px)] h-[240px] sm:h-[280px] lg:h-[340px]",
+    isKecil && "w-full sm:w-[calc(42.5%-10px)] lg:w-[calc(42.5%-10px)] h-[240px] sm:h-[280px] lg:h-[340px]",
     className,
   ]}
   {...rest}
@@ -68,21 +68,21 @@ const isKecil = size === "kecil" || size === "small";
 
   <!-- Gradient Overlay -->
   <div
-    class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent pointer-events-none z-[1]"
+    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none z-[1]"
   >
   </div>
 
-  <!-- Card Content / Label -->
-  <div class="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
+  <!-- Card Content / Label with 24px padding -->
+  <div class="absolute bottom-0 left-0 right-0 p-[24px] z-10">
     {
       href ? (
         <a href={href} class="block group-hover:underline">
-          <h3 class="font-momo font-medium text-white text-lg md:text-xl lg:text-2xl leading-snug drop-shadow-sm">
+          <h3 class="font-momo font-semibold text-white text-xl md:text-[22px] lg:text-[24px] leading-[1.25] tracking-tight drop-shadow-sm">
             {title}
           </h3>
         </a>
       ) : (
-        <h3 class="font-momo font-medium text-white text-lg md:text-xl lg:text-2xl leading-snug drop-shadow-sm">
+        <h3 class="font-momo font-semibold text-white text-xl md:text-[22px] lg:text-[24px] leading-[1.25] tracking-tight drop-shadow-sm">
           {title}
         </h3>
       )

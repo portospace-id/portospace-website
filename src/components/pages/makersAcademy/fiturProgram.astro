@@ -1,0 +1,247 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import PatternLine from "@/components/ui/patternLine.astro";
+
+// Default Images
+import imgStem from "@/assets/image/homepage/setm.png";
+import imgRobotics from "@/assets/image/homepage/robotics.png";
+import imgCoding from "@/assets/image/homepage/coding.png";
+import imgEntrepreneurship from "@/assets/image/homepage/entepreneurship.png";
+
+export interface FiturProgramCardData {
+  title: string;
+  image: string | ImageMetadata;
+  alt?: string;
+  href?: string;
+}
+
+interface Props {
+  /** Small badge tag text (default: "Fitur Programs") */
+  badgeText?: string;
+  /** Heading line 1 */
+  titleLine1?: string;
+  /** Heading line 2 */
+  titleLine2?: string;
+  /** Heading line 3 prefix */
+  titleLine3?: string;
+  /** Highlight italic script text with Caveat font */
+  titleHighlight?: string;
+  /** Right side description paragraph */
+  description?: string;
+  /** List of 4 feature program cards */
+  cards?: FiturProgramCardData[];
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const defaultCards: FiturProgramCardData[] = [
+  {
+    title: "STEM Research",
+    image: imgStem,
+    alt: "STEM Research",
+  },
+  {
+    title: "Robotics & IoT",
+    image: imgRobotics,
+    alt: "Robotics & IoT",
+  },
+  {
+    title: "Coding & AI",
+    image: imgCoding,
+    alt: "Coding & AI",
+  },
+  {
+    title: "Entrepreneurship",
+    image: imgEntrepreneurship,
+    alt: "Entrepreneurship",
+  },
+];
+
+const {
+  badgeText = "Fitur Programs",
+  titleLine1 = "Semua yang Kamu",
+  titleLine2 = "Butuhkan untuk Belajar,",
+  titleLine3 = "Berkarya, dan ",
+  titleHighlight = "Berprestasi",
+  description = "Dari pendampingan 1–on–1 hingga proyek nyata, setiap bagian program dirancang untuk mendukung perjalanan belajarmu.",
+  cards = defaultCards,
+  class: className = "",
+} = Astro.props;
+---
+
+<section
+  id="fitur-program"
+  class:list={[
+    "relative w-full bg-violet-normal flex flex-col items-center overflow-hidden z-10",
+    className,
+  ]}
+  aria-label="Fitur Programs Maker's Academy"
+  data-navbar="violet"
+>
+  <!-- Background Wavy Pattern SVG - Bottom Left -->
+  <PatternLine
+    color="#6F1DD1"
+    class="absolute z-0 rotate-180 pointer-events-none select-none"
+    style="bottom: -80px; left: -60px; width: 477px; height: 521px; display: block;"
+  />
+
+  <!-- Main Section Wrapper (Matching PortoSpace Standards) -->
+  <div
+    class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] py-[80px] flex flex-col items-start gap-[32px] lg:gap-[40px] z-10 relative"
+  >
+    <!-- Header Container: Heading (Left) & Description (Right) -->
+    <!-- display: flex; justify-content: space-between; align-items: flex-end; align-self: stretch; -->
+    <div
+      class="w-full flex flex-col lg:flex-row justify-between items-start lg:items-end self-stretch gap-6 lg:gap-12"
+    >
+      <!-- Left Column: Badge + Heading -->
+      <div class="w-full lg:max-w-[580px] xl:max-w-[640px] flex flex-col items-start gap-4">
+        {
+          badgeText && (
+            <SectionTitle
+              id="fitur-program-badge"
+              variant="dark"
+              title={badgeText}
+              class="mb-1"
+            />
+          )
+        }
+
+        <h2
+          id="fitur-program-heading"
+          class="font-display font-bold text-white text-[32px] md:text-[40px] lg:text-[54px] leading-tight tracking-tight"
+        >
+          {titleLine1 && <span class="block">{titleLine1}</span>}
+          {titleLine2 && <span class="block">{titleLine2}</span>}
+          <span class="block">
+            {titleLine3 && titleLine3}
+            {
+              titleHighlight && (
+                <span class="font-handwriting font-semibold italic text-white text-[38px] md:text-[48px] lg:text-[64px] leading-none align-baseline">
+                  {titleHighlight}
+                </span>
+              )
+            }
+          </span>
+        </h2>
+      </div>
+
+      <!-- Right Column: Description -->
+      {
+        description && (
+          <p
+            id="fitur-program-desc"
+            class="font-sans font-normal text-white/90 text-base leading-relaxed w-full lg:max-w-[520px] xl:max-w-[560px]"
+          >
+            {description}
+          </p>
+        )
+      }
+    </div>
+
+    <!-- 2x2 Grid Cards Container (Aligned Right on Desktop) -->
+    <div class="w-full flex justify-end">
+      <div
+        id="fitur-program-cards"
+        class="w-full lg:max-w-[520px] xl:max-w-[560px] grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5"
+      >
+        {
+          cards.map((card) => {
+            const isStringImg = typeof card.image === "string";
+            return (
+              <div class="fitur-card relative overflow-hidden rounded-sm shadow-md group aspect-square bg-zinc-900 transition-all duration-300 hover:shadow-xl">
+                {/* Card Background Image */}
+                {isStringImg ? (
+                  <img
+                    src={card.image as string}
+                    alt={card.alt || card.title}
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
+                    loading="lazy"
+                  />
+                ) : (
+                  <Image
+                    src={card.image as ImageMetadata}
+                    alt={card.alt || card.title}
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
+                    loading="lazy"
+                  />
+                )}
+
+                {/* Dark Overlay */}
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none z-[1]" />
+
+                {/* Label Text at Bottom Left */}
+                <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 z-10">
+                  <h3 class="font-display font-medium text-white text-base sm:text-lg md:text-xl leading-snug drop-shadow-sm">
+                    {card.title}
+                  </h3>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initAnimations = () => {
+    const section = document.querySelector("#fitur-program");
+    if (!section) return;
+
+    const badge = document.querySelector("#fitur-program-badge");
+    const heading = document.querySelector("#fitur-program-heading");
+    const desc = document.querySelector("#fitur-program-desc");
+    const cards = document.querySelectorAll(".fitur-card");
+
+    if (heading) {
+      gsap.from([badge, heading, desc].filter(Boolean), {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.15,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+    }
+
+    if (cards.length > 0) {
+      gsap.from(cards, {
+        scrollTrigger: {
+          trigger: "#fitur-program-cards",
+          start: "top 90%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+    }
+
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAnimations);
+  } else {
+    initAnimations();
+  }
+</script>

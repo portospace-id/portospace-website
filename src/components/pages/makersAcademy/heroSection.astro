@@ -5,6 +5,8 @@ import SectionTitle from "@/components/ui/sectionTitle.astro";
 interface Props {
   /** Label tag badge on the left side (default: "Program Unggulan") */
   badge?: string;
+  /** Whether to show pattern icon next to badge text (default: false for text-only) */
+  showBadgeIcon?: boolean;
   /** Title first line prefix (default: "Membangun Potensi Menjadi") */
   titleLine1?: string;
   /** Title second line prefix (default: "Karya yang") */
@@ -27,6 +29,7 @@ interface Props {
 
 const {
   badge = "Program Unggulan",
+  showBadgeIcon = false,
   titleLine1 = "Membangun Potensi Menjadi",
   titleLine2 = "Karya yang",
   titleHighlight = "Berdampak.",
@@ -67,30 +70,6 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
   >
   </div>
 
-  <!-- Left Side Vertical Control Indicator -->
-  {
-    showControls && (
-      <div
-        class="hero-control-left absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex flex-col items-center"
-        aria-hidden="true"
-      >
-        <div class="w-[3px] h-7 bg-white/90 rounded-full shadow-sm" />
-      </div>
-    )
-  }
-
-  <!-- Right Side Vertical Control Indicator -->
-  {
-    showControls && (
-      <div
-        class="hero-control-right absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex flex-col items-center"
-        aria-hidden="true"
-      >
-        <div class="w-[3px] h-7 bg-white/90 rounded-full shadow-sm" />
-      </div>
-    )
-  }
-
   <!-- Main Hero Content -->
   <div
     class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pb-8 md:pb-12 lg:pb-16"
@@ -98,13 +77,14 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
     <div
       class="flex flex-col lg:flex-row items-start lg:items-start justify-between gap-6 lg:gap-12"
     >
-      <!-- Badge Label (Left / Bottom-Left) -->
+      <!-- Badge Label (Left) -->
       {
         badge && (
           <SectionTitle
             id="hero-badge"
             variant="dark"
             title={badge}
+            showIcon={showBadgeIcon}
             class="flex-shrink-0 mb-2 lg:mb-4"
           />
         )
@@ -150,61 +130,49 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
         }
       </div>
     </div>
-
-    <!-- Bottom Center Slider Indicator Bar -->
-    {
-      showControls && (
-        <div id="hero-indicator" class="flex justify-center pt-8 md:pt-12">
-          <div
-            class="w-10 h-1 bg-white/90 rounded-full shadow-sm"
-            aria-hidden="true"
-          />
-        </div>
-      )
-    }
   </div>
+
+  <script>
+    import { gsap } from "gsap";
+
+    // Hero entrance animation timeline
+    const tl = gsap.timeline({ delay: 0.2 });
+
+    tl.from("#hero-badge", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power2.out",
+    })
+      .from(
+        "#hero-heading",
+        {
+          y: 35,
+          opacity: 0,
+          duration: 0.75,
+          ease: "power3.out",
+        },
+        "-=0.3",
+      )
+      .from(
+        "#hero-desc",
+        {
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.4",
+      )
+      .from(
+        "#hero-indicator",
+        {
+          opacity: 0,
+          scaleX: 0.5,
+          duration: 0.5,
+          ease: "power2.out",
+        },
+        "-=0.3",
+      );
+  </script>
 </section>
-
-<script>
-  import { gsap } from "gsap";
-
-  // Hero entrance animation timeline
-  const tl = gsap.timeline({ delay: 0.2 });
-
-  tl.from("#hero-badge", {
-    y: 20,
-    opacity: 0,
-    duration: 0.5,
-    ease: "power2.out",
-  })
-    .from(
-      "#hero-heading",
-      {
-        y: 35,
-        opacity: 0,
-        duration: 0.75,
-        ease: "power3.out",
-      },
-      "-=0.3",
-    )
-    .from(
-      "#hero-desc",
-      {
-        y: 20,
-        opacity: 0,
-        duration: 0.6,
-        ease: "power2.out",
-      },
-      "-=0.4",
-    )
-    .from(
-      "#hero-indicator",
-      {
-        opacity: 0,
-        scaleX: 0.5,
-        duration: 0.5,
-        ease: "power2.out",
-      },
-      "-=0.3",
-    );
-</script>

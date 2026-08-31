@@ -1,0 +1,61 @@
+---
+export interface Props {
+  /** Step number e.g. "01", "02" */
+  number: string;
+  /** Step title e.g. "Goal Setting" */
+  title: string;
+  /** Step description */
+  description: string;
+  /** Initial active/highlighted state */
+  isActive?: boolean;
+  /** Additional CSS classes */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  number,
+  title,
+  description,
+  isActive = false,
+  class: className = "",
+  ...rest
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "list-mentorship-scope-item group w-full py-[32px] px-4 sm:px-6 md:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-6 border-b border-gray-200 cursor-pointer transition-all duration-300 rounded-sm sticky top-[100px] md:top-[120px] bg-white text-[#161616] transform-gpu",
+    isActive
+      ? "bg-violet-normal text-white border-transparent"
+      : "hover:bg-violet-normal hover:text-white hover:border-transparent",
+    className,
+  ]}
+  {...rest}
+>
+  <!-- Column 1: Number (40px) -->
+  <div class="w-16 md:w-24 lg:w-28 shrink-0">
+    <span class="font-display font-medium text-[28px] md:text-[34px] lg:text-[40px] leading-none">
+      {number}
+    </span>
+  </div>
+
+  <!-- Column 2: Title (40px) -->
+  <div class="w-full md:w-auto">
+    <h3 class="font-display font-semibold text-[24px] sm:text-[30px] md:text-[34px] lg:text-[40px] leading-[120%] tracking-tight">
+      {title}
+    </h3>
+  </div>
+
+  <!-- Column 3: Description (328px width, 16px font-size) -->
+  <div class="w-full md:w-[328px] shrink-0">
+    <p
+      class:list={[
+        "font-sans text-[16px] leading-[150%] transition-colors duration-300 m-0",
+        isActive ? "text-white/90" : "text-gray-600 group-hover:text-white/90",
+      ]}
+    >
+      {description}
+    </p>
+  </div>
+</div>

@@ -9,7 +9,13 @@ interface Props {
   class?: string;
 }
 
-const { title, subtitle, image, alt = title, class: className = "" } = Astro.props;
+const {
+  title,
+  subtitle,
+  image,
+  alt = title,
+  class: className = "",
+} = Astro.props;
 ---
 
 <div
@@ -33,7 +39,9 @@ const { title, subtitle, image, alt = title, class: className = "" } = Astro.pro
     >
       {title}
     </h3>
-    <p class="font-jakarta font-normal text-white/80 text-[14px] leading-[140%]">
+    <p
+      class="font-jakarta font-normal text-white/80 text-[14px] leading-[140%]"
+    >
       {subtitle}
     </p>
   </div>
