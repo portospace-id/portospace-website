@@ -9,10 +9,16 @@ import {
   X,
 } from "@lucide/astro";
 
+interface NavChild {
+  label: string;
+  href: string;
+  color?: string;
+}
+
 interface NavLink {
   label: string;
   href: string;
-  children?: { label: string; href: string }[];
+  children?: NavChild[];
 }
 
 const navLinks: NavLink[] = [
@@ -22,12 +28,13 @@ const navLinks: NavLink[] = [
     label: "Programs",
     href: "/programs",
     children: [
-      { label: "STEM Research", href: "/programs/stem-research" },
-      { label: "Robotics & IOT", href: "/programs/robotics-iot" },
-      { label: "Coding & AI", href: "/programs/coding-ai" },
+      { label: "STEM Research", href: "/programs/stem-research", color: "#4dd3f2" },
+      { label: "Robotics & IOT", href: "/programs/robotics-iot", color: "#bfed45" },
+      { label: "Coding & AI", href: "/programs/coding-ai", color: "#000000" },
       {
         label: "Entrepreneurship / Business & Finance",
         href: "/programs/entrepreneurship",
+        color: "#fe9b2a",
       },
     ],
   },
@@ -35,6 +42,7 @@ const navLinks: NavLink[] = [
   { label: "Plans & Pricing", href: "/pricing" },
   { label: "Mentors", href: "/mentors" },
   { label: "Faq", href: "/faq" },
+  { label: "Contact Us", href: "/contact" },
 ];
 ---
 
@@ -130,7 +138,7 @@ const navLinks: NavLink[] = [
                   <!-- Mega Dropdown Panel (Anchored directly to bottom of navbar with 0px gap) -->
                   <div
                     id="mega-menu"
-                    class="absolute left-0 right-0 top-full w-full bg-white text-gray-900 shadow-2xl border-t border-gray-100 opacity-0 invisible -translate-y-2 pointer-events-none group-hover/dropdown:opacity-100 group-hover/dropdown:visible group-hover/dropdown:translate-y-0 group-hover/dropdown:pointer-events-auto transition-all duration-300 ease-out z-10"
+                    class="absolute left-0 right-0 top-full w-full bg-white text-gray-900 shadow-2xl opacity-0 invisible -translate-y-2 pointer-events-none group-hover/dropdown:opacity-100 group-hover/dropdown:visible group-hover/dropdown:translate-y-0 group-hover/dropdown:pointer-events-auto transition-all duration-300 ease-out z-10"
                   >
                     <div class="w-full px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] py-8 flex items-end min-h-[220px] relative bg-white">
                       <!-- Left: Social Media Icons -->
@@ -190,15 +198,19 @@ const navLinks: NavLink[] = [
 
                       <!-- Program items aligned directly under Programs menu button -->
                       <div
-                        class="absolute top-8 flex flex-col gap-3 text-left"
+                        class="absolute top-8 flex flex-col gap-3.5 text-left"
                         style="left: var(--programs-left, 50%);"
                       >
                         {link.children.map((child) => (
                           <a
                             href={child.href}
-                            class="text-[20px] lg:text-[22px] font-jakarta font-bold text-gray-900 hover:text-violet-normal transition-colors leading-tight"
+                            class="flex items-center gap-3 text-[20px] lg:text-[22px] font-jakarta font-bold text-gray-900 hover:text-violet-normal transition-colors leading-tight group/item"
                           >
-                            {child.label}
+                            <span
+                              class="w-3.5 h-3.5 rounded-full flex-shrink-0 transition-transform group-hover/item:scale-125"
+                              style={`background-color: ${child.color || "#7b20e8"};`}
+                            ></span>
+                            <span>{child.label}</span>
                           </a>
                         ))}
                       </div>
@@ -306,6 +318,11 @@ const navLinks: NavLink[] = [
         <!-- FAQ -->
         <a href="/faq" class="font-jakarta font-semibold text-[20px] text-[#111111] hover:text-violet-normal py-1 transition-colors">
           FAQ
+        </a>
+
+        <!-- Contact Us -->
+        <a href="/contact" class="font-jakarta font-semibold text-[20px] text-[#111111] hover:text-violet-normal py-1 transition-colors">
+          Contact Us
         </a>
 
         <!-- CTA Button Mobile Dropdown -->
@@ -452,6 +469,27 @@ const navLinks: NavLink[] = [
   #mega-menu {
     background-color: #ffffff !important;
     background: #ffffff !important;
+  }
+
+  /* Unified White Background when Mega Menu Dropdown is hovered or open */
+  #navbar:has(.group\/dropdown:hover),
+  #navbar:has(.group\/dropdown.is-open) {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+  #navbar:has(.group\/dropdown:hover) #navbar-logo-text,
+  #navbar:has(.group\/dropdown.is-open) #navbar-logo-text {
+    color: #7b20e8 !important;
+  }
+  #navbar:has(.group\/dropdown:hover) .navbar-logo-svg,
+  #navbar:has(.group\/dropdown.is-open) .navbar-logo-svg {
+    color: #7b20e8 !important;
+  }
+  #navbar:has(.group\/dropdown:hover) .navbar-link,
+  #navbar:has(.group\/dropdown.is-open) .navbar-link {
+    color: rgba(17, 17, 17, 0.9) !important;
   }
 </style>
 
