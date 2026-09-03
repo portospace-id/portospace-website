@@ -1,0 +1,167 @@
+---
+import type { ImageMetadata } from "astro";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import defaultBg from "@/assets/image/pricing/jumlahKarya.png";
+
+interface Props {
+  /** Label tag badge (default: "Jumlah Karya") */
+  badge?: string;
+  /** Background image (url string or ImageMetadata) */
+  bgImage?: string | ImageMetadata;
+  /** Alt text for background image */
+  bgAlt?: string;
+  /** Additional CSS class */
+  class?: string;
+}
+
+const {
+  badge = "Jumlah Karya",
+  bgImage = defaultBg,
+  bgAlt = "Jumlah Karya PortoSpace Hero",
+  class: className = "",
+} = Astro.props;
+
+const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
+
+const karyaStats = [
+  { package: "Lite", count: "2 Karya" },
+  { package: "Pro", count: "4 Karya" },
+  { package: "Pro Max", count: "6 Karya" },
+];
+---
+
+<section
+  id="jumlah-karya"
+  class:list={[
+    "relative w-full min-h-svh overflow-hidden flex flex-col justify-between py-16 sm:py-20 md:py-24 lg:py-28",
+    className,
+  ]}
+  aria-label="Jumlah Karya Section"
+  data-navbar="transparent"
+>
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src={bgUrl}
+      alt={bgAlt}
+      class="w-full h-full object-cover object-center"
+      fetchpriority="high"
+    />
+  </div>
+
+  <!-- Dark Overlay -->
+  <div
+    class="absolute inset-0 z-[1] pointer-events-none bg-black/50"
+    aria-hidden="true"
+  >
+  </div>
+
+  <!-- Main Section Wrapper -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col justify-between h-full flex-1 gap-12 lg:gap-[160px]"
+  >
+    <!-- Top Content: Badge & Main Title -->
+    <div class="flex flex-col items-start gap-4 sm:gap-6">
+      <SectionTitle
+        id="jumlah-karya-badge"
+        variant="dark"
+        title={badge}
+        showIcon={true}
+        class="flex-shrink-0"
+      />
+
+      <h2
+        id="jumlah-karya-heading"
+        class="font-momo font-bold text-white text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px] leading-[1.15] tracking-tight max-w-[800px]"
+      >
+        Semakin Besar Targetmu,<br class="hidden sm:block" />
+        Semakin Banyak Karya yang<br class="hidden sm:block" />
+        Dapat Kamu{" "}
+        <span
+          class="font-caveat font-semibold italic text-white text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px] leading-none inline-block mt-1 sm:mt-0"
+        >
+          Hasilkan.
+        </span>
+      </h2>
+    </div>
+
+    <!-- Bottom Content: Karya Stats (Right Aligned Row) -->
+    <div class="w-full flex justify-end mt-auto pt-8">
+      <div
+        id="jumlah-karya-stats"
+        class="flex flex-row items-end justify-end gap-8 sm:gap-12 lg:gap-16 flex-wrap"
+      >
+        {
+          karyaStats.map((stat) => (
+            <div class="flex flex-col items-start text-left">
+              <span class="font-jakarta font-normal text-white/80 text-sm md:text-base leading-tight mb-1">
+                {stat.package}
+              </span>
+              <h3 class="font-momo font-bold text-white text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px] leading-tight tracking-tight">
+                {stat.count}
+              </h3>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- GSAP Entrance Animation -->
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initAnimations = () => {
+      const section = document.querySelector("#jumlah-karya");
+      if (!section) return;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      tl.from("#jumlah-karya-badge", {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        clearProps: "all",
+      })
+        .from(
+          "#jumlah-karya-heading",
+          {
+            y: 35,
+            opacity: 0,
+            duration: 0.75,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          "-=0.3"
+        )
+        .from(
+          "#jumlah-karya-stats > div",
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: "power2.out",
+            clearProps: "all",
+          },
+          "-=0.3"
+        );
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initAnimations);
+    } else {
+      initAnimations();
+    }
+  </script>
+</section>

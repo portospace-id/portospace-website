@@ -1,0 +1,44 @@
+---
+interface Props {
+  /** Package title name (e.g. "Lite", "Pro", "Pro Max") */
+  title: string;
+  /** Recommendation description text */
+  description: string;
+  /** Additional CSS class */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  title,
+  description,
+  class: className = "",
+  ...rest
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "card-rekomendasi-paket relative w-full h-[460px] sm:h-[490px] lg:h-[520px] rounded-sm bg-[#e5e5e5] text-[#111111] p-6 sm:p-7 lg:p-8 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1 group select-none shadow-sm",
+    className,
+  ]}
+  {...rest}
+>
+  <!-- Top Package Title -->
+  <div class="relative z-10">
+    <h3
+      class="font-momo font-semibold text-[28px] sm:text-[32px] lg:text-[36px] text-[#111111] tracking-tight text-left"
+    >
+      {title}
+    </h3>
+  </div>
+
+  <!-- Bottom Recommendation Description -->
+  <div class="relative z-10 flex flex-col items-start mt-auto">
+    <p
+      class="font-jakarta font-normal text-xs sm:text-sm md:text-base leading-relaxed text-gray-700 max-w-[340px] text-left m-0"
+    >
+      {description}
+    </p>
+  </div>
+</div>
