@@ -1,0 +1,123 @@
+---
+import { Image } from "astro:assets";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import pattern4 from "@/assets/pattern/pattern_4.svg";
+
+interface Props {
+  /** Additional CSS class for section */
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+const statementText =
+  "Setiap Perjalanan Belajar Membutuhkan Pendampingan yang Konsisten agar Prosesnya Tetap Terarah dan Tujuan Dapat Tercapai dengan Optimal.";
+
+const words = statementText.split(" ");
+---
+
+<section
+  id="success-manager"
+  class:list={[
+    "relative w-full min-h-svh h-screen flex items-center justify-center overflow-hidden bg-white py-20 sm:py-24 md:py-28 lg:py-36",
+    className,
+  ]}
+  aria-label="Success Manager Section"
+>
+  <!-- Background Pattern (Top Right) -->
+  <div
+    class="absolute -top-[168px] -right-[163px] w-[500px] h-[501.526px] pointer-events-none z-0 select-none"
+  >
+    <Image
+      src={pattern4}
+      alt=""
+      width={500}
+      height={502}
+      class="w-full h-full object-contain pointer-events-none"
+      aria-hidden="true"
+    />
+  </div>
+
+  <!-- Background Pattern 4 (Bottom Left) -->
+  <div
+    class="absolute -bottom-[245.526px] -left-[158px] w-[500px] h-[501.526px] pointer-events-none z-0 select-none"
+  >
+    <Image
+      src={pattern4}
+      alt=""
+      width={500}
+      height={502}
+      class="w-full h-full object-contain pointer-events-none"
+      aria-hidden="true"
+    />
+  </div>
+
+  <!-- Main Content Container -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-center justify-center text-center"
+  >
+    <!-- Section Title Badge -->
+    <div id="success-manager-badge-wrapper" class="mb-8 sm:mb-10 md:mb-12">
+      <SectionTitle
+        id="success-manager-badge"
+        variant="light"
+        title="Success Manager"
+        showIcon={true}
+      />
+    </div>
+
+    <!-- Pinned Text Highlight Statement -->
+    <h2
+      id="success-manager-statement"
+      class="font-momo font-bold text-[28px] sm:text-[36px] md:text-[46px] lg:text-[54px] leading-[1.25] tracking-tight max-w-[1100px] mx-auto text-center"
+    >
+      {
+        words.map((word) => (
+          <span class="success-manager-word text-[#A3A3A3] inline-block mr-[0.25em] select-none">
+            {word}
+          </span>
+        ))
+      }
+    </h2>
+  </div>
+
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initAnimation = () => {
+      const section = document.querySelector("#success-manager");
+      const words = document.querySelectorAll(".success-manager-word");
+
+      if (section && words.length > 0) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "+=250%",
+            pin: true,
+            scrub: 1,
+            anticipatePin: 1,
+          },
+        });
+
+        tl.to(words, {
+          color: "#7b20e8",
+          stagger: {
+            each: 0.15,
+          },
+          duration: 0.05,
+          ease: "power1.inOut",
+        });
+      }
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initAnimation);
+    } else {
+      initAnimation();
+    }
+  </script>
+</section>

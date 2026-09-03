@@ -1,6 +1,17 @@
 ---
 import "../styles/global.css";
 import Navbar from "../components/ui/navbar.astro";
+import Footer from "../components/ui/footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "PortoSpace — Platform Mentorship Riset, Robotics & Coding",
+  description = "Program mentorship riset, robotics, dan coding untuk siswa kelas 9–12. Dibimbing langsung oleh PhD, Master, dan pakar industri lulusan global.",
+} = Astro.props;
 ---
 
 <!doctype html>

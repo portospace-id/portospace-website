@@ -1,0 +1,169 @@
+---
+import { Image } from "astro:assets";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import pattern4 from "@/assets/pattern/pattern_4.svg";
+
+interface Props {
+  /** Label tag badge (default: "Goal Setting & Discovery") */
+  badge?: string;
+  /** Title main text */
+  titleLine?: string;
+  /** Title handwriting accent (Caveat font) */
+  titleHighlight?: string;
+  /** Additional CSS class */
+  class?: string;
+}
+
+const {
+  badge = "Goal Setting & Discovery",
+  titleLine = "Memulai Perjalanan Belajar dengan Mengenali Potensi, Menemukan Arah, dan Menetapkan Tujuan yang Ingin",
+  titleHighlight = "Dicapai.",
+  class: className = "",
+} = Astro.props;
+
+const goalsData = [
+  {
+    tag: "Discovery",
+    description: "Mengenali potensi dan minat belajar.",
+  },
+  {
+    tag: "Goal",
+    description: "Menentukan target yang ingin dicapai.",
+  },
+  {
+    tag: "Roadmap",
+    description: "Menyusun rencana belajar yang terarah.",
+  },
+];
+---
+
+<section
+  id="goals"
+  class:list={[
+    "relative w-full min-h-svh flex flex-col justify-center overflow-hidden bg-white text-black py-16 sm:py-20 md:py-24 lg:py-32",
+    className,
+  ]}
+  aria-label="Goal Setting & Discovery Section"
+>
+  <!-- Bottom-Left Decorative Background Pattern -->
+  <div
+    class="absolute left-[-230px] bottom-[-225px] w-[680px] h-[682px] pointer-events-none z-0 select-none"
+  >
+    <Image
+      src={pattern4}
+      alt=""
+      width={680}
+      height={682}
+      class="w-full h-full object-contain pointer-events-none"
+      aria-hidden="true"
+    />
+  </div>
+
+  <!-- Main Content Container -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px]"
+  >
+    <div
+      class="flex flex-col lg:flex-row items-start gap-8 lg:gap-16 xl:gap-[400px]"
+    >
+      <!-- Left Column: Section Title Badge -->
+      <div class="flex-shrink-0 lg:w-[260px]">
+        <SectionTitle
+          id="goals-badge"
+          variant="light"
+          title={badge}
+          showIcon={true}
+        />
+      </div>
+
+      <!-- Right Column: Heading & 3 Goal Items -->
+      <div class="flex-1 w-full flex flex-col gap-12 sm:gap-16 lg:gap-20">
+        <!-- Main Section Title -->
+        <h2
+          id="goals-heading"
+          class="font-momo font-bold text-[#161616] text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px] leading-[1.15] tracking-tight"
+        >
+          {titleLine}{" "}
+          <span
+            class="font-caveat font-semibold italic text-[#161616] text-[36px] sm:text-[48px] md:text-[58px] lg:text-[68px] leading-none inline-block mt-1 sm:mt-2"
+          >
+            {titleHighlight}
+          </span>
+        </h2>
+
+        <!-- 3 Goal Items Grid -->
+        <div
+          id="goals-items"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12"
+        >
+          {
+            goalsData.map((item) => (
+              <div class="goals-card flex flex-col w-full items-start gap-3">
+                <div class="inline-flex items-center justify-start py-2 px-3 rounded-sm bg-violet-normal text-white font-momo text-base md:text-3xl font-medium w-3/4 select-none">
+                  {item.tag}
+                </div>
+                <p class="font-jakarta font-normal text-[#333333] text-sm md:text-2xl leading-relaxed w-3/4">
+                  {item.description}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initAnimations = () => {
+      const section = document.querySelector("#goals");
+      if (!section) return;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      tl.from("#goals-badge", {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      })
+        .from(
+          "#goals-heading",
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.7,
+            ease: "power3.out",
+          },
+          "-=0.3",
+        )
+        .from(
+          ".goals-card",
+          {
+            y: 25,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.12,
+            ease: "power2.out",
+          },
+          "-=0.3",
+        );
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initAnimations);
+    } else {
+      initAnimations();
+    }
+  </script>
+</section>
