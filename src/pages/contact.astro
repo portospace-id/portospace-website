@@ -1,0 +1,154 @@
+---
+import Layout from "../layouts/Layout.astro";
+// import Footer from "./footer.astro";
+---
+
+<Layout title="Contact | PortoSpace">
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="relative w-full flex items-end min-h-[100vh] md:min-h-[137vh]">
+      <!-- Background Image -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="/contact-1.webp" 
+          alt="Contact PortoSpace Mentorship" 
+          class="w-full h-full object-cover"
+        />
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"></div>
+      </div>
+      
+      <!-- Content Container -->
+      <div class="relative z-10 w-full px-5 md:px-8 lg:px-8 pb-12 md:pb-32 pt-32">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-10 w-full text-white">
+          <span class="block text-[16px] md:text-base font-medium text-gray-300 shrink-0">
+            Contact
+          </span>
+          <div class="max-w-[898px] w-full md:pr-12 lg:pr-20">
+            <h1 class="text-[28px] md:text-[42px] font-medium leading-tight md:leading-none mb-4 md:mb-6 text-white">
+              Kami Siap Membantu Menjawab Pertanyaan dan Mendampingimu Memilih Program yang Tepat.
+            </h1>
+            <p class="text-[16px] md:text-[20px] font-normal leading-relaxed md:leading-none text-white">
+              Hubungi kami melalui WhatsApp untuk konsultasi yang lebih cepat, atau gunakan informasi kontak lainnya sesuai kebutuhanmu.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Info & Form Section -->
+    <section class="relative w-full bg-white py-20 px-6 md:px-12 lg:px-20 overflow-hidden">
+      <!-- Background Pattern -->
+      <img src="/pattern.svg" alt="" class="absolute -right-1 -bottom-[12px] w-[200px] lg:w-[400px] pointer-events-none z-0" />
+
+      <div class="relative z-10 w-full max-w-7xl mx-auto flex flex-col md:flex-row gap-16">
+        <!-- Left Column: Info -->
+        <div class="w-full md:w-[40%] lg:w-[30%] shrink-0 text-gray-900 pt-4">
+          <h2 class="text-4xl md:text-5xl font-medium mb-16 text-[#1a1a1a]">Hubungi Kami</h2>
+          
+          <div class="space-y-6">
+            <div>
+              <p class="text-[#666666] text-[20px] font-normal leading-none mb-3">WhatsApp</p>
+              <p class="text-[20px] font-normal leading-none text-[#333333]">+62 857-9305-7466</p>
+            </div>
+            
+            <div>
+              <p class="text-[#666666] text-[20px] font-normal leading-none mb-3">Email</p>
+              <p class="text-[20px] font-normal leading-none text-[#333333]">admin@portospace.id</p>
+            </div>
+            
+            <div>
+              <p class="text-[#666666] text-[20px] font-normal leading-none mb-3">Lokasi</p>
+              <p class="text-[20px] font-normal leading-none text-[#333333]">Bandung, Jawa Barat</p>
+            </div>
+            
+            <div>
+              <p class="text-[#666666] text-[20px] font-normal leading-none mb-3">Jam Operasional</p>
+              <p class="text-[20px] font-normal leading-none text-[#333333]">Senin – Jumat<br/><span class="inline-block mt-2">09.00 – 18.00 WIB</span></p>
+            </div>
+          </div>
+
+          <!-- Social Icons -->
+          <div class="flex items-center gap-4 mt-10">
+            <a href="#" class="w-12 h-12 rounded-full bg-[#B14EFF] flex items-center justify-center hover:opacity-90 transition-opacity">
+              <img src="/thread.svg" alt="Threads" class="w-11 h-11" />
+            </a>
+            <a href="#" class="w-12 h-12 rounded-full bg-[#B14EFF] flex items-center justify-center hover:opacity-90 transition-opacity">
+              <img src="/instagram.svg" alt="Instagram" class="w-11 h-11" />
+            </a>
+            <a href="#" class="w-12 h-12 rounded-full bg-[#B14EFF] flex items-center justify-center hover:opacity-90 transition-opacity">
+              <img src="/linkedin.svg" alt="LinkedIn" class="w-11 h-11" />
+            </a>
+            <a href="#" class="w-12 h-12 rounded-full bg-[#B14EFF] flex items-center justify-center hover:opacity-90 transition-opacity">
+              <img src="/email.svg" alt="Email" class="w-11 h-11" />
+            </a>
+            <a href="#" class="w-12 h-12 rounded-full bg-[#B14EFF] flex items-center justify-center hover:opacity-90 transition-opacity">
+              <img src="/whatssapp.svg" alt="WhatsApp" class="w-11 h-11" />
+            </a>
+          </div>
+        </div>
+        
+        <!-- Right Column: Form -->
+        <div class="flex-1 w-full pt-4 flex flex-col">
+          <form class="flex flex-col gap-6 flex-1">
+            <div class="flex flex-col lg:flex-row gap-6">
+              <div class="flex-1 flex flex-col gap-4">
+                <label for="nama" class="text-[20px] font-normal leading-none text-[#333333]">Nama</label>
+                <input id="nama" type="text" placeholder="Nama Lengkap" class="w-full bg-[#EAEAEA] border-none rounded-md px-4 py-4 focus:outline-none focus:ring-2 focus:ring-[#B14EFF] text-[20px] font-normal leading-none text-[#333333] placeholder-[#999999]" />
+              </div>
+              <div class="flex-1 flex flex-col gap-4">
+                <label for="email" class="text-[20px] font-normal leading-none text-[#333333]">Email</label>
+                <input id="email" type="email" placeholder="Email Anda" class="w-full bg-[#EAEAEA] border-none rounded-md px-4 py-4 focus:outline-none focus:ring-2 focus:ring-[#B14EFF] text-[20px] font-normal leading-none text-[#333333] placeholder-[#999999]" />
+              </div>
+            </div>
+            
+            <div class="flex flex-col gap-4 flex-1">
+              <label for="pesan" class="text-[20px] font-normal leading-none text-[#333333]">Pesan</label>
+              <textarea id="pesan" placeholder="Tulis pesanmu di sini..." class="w-full h-full min-h-[200px] md:min-h-0 bg-[#EAEAEA] border-none rounded-md px-4 py-4 focus:outline-none focus:ring-2 focus:ring-[#B14EFF] resize-none text-[20px] font-normal leading-none text-[#333333] placeholder-[#999999]"></textarea>
+            </div>
+            
+            <button type="submit" class="w-full bg-[#B14EFF] text-white text-[20px] font-normal leading-none py-4 rounded-md hover:bg-[#9739e5] transition-colors mt-0">
+              Kirim Pesan
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / Konsultasi Section -->
+    <section class="relative w-full py-24 md:py-32 px-6 flex items-center justify-center min-h-[calc(100vh+10px)]">
+      <!-- Background Image & Overlay -->
+      <div class="absolute inset-0 z-0">
+        <img src="/section-wa.webp" alt="Konsultasi PortoSpace" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-black/10"></div>
+      </div>
+      
+      <!-- Content -->
+      <div class="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center text-center">
+        <h2 class="text-[24px] md:text-[32px] font-medium leading-tight md:leading-none text-white mb-4">
+          <span class="hidden md:inline">Konsultasi Gratis Bersama Tim PortoSpace</span>
+          <span class="md:hidden">Konsultasi Gratis Bersama Tim<br/>PortoSpace</span>
+        </h2>
+        <p class="text-[14px] md:text-[16px] font-normal text-white max-w-[600px] mb-8 leading-relaxed">
+          <span class="hidden md:inline">
+            Masih bingung memilih program atau paket yang sesuai? Tim kami siap<br/>
+            membantu menjawab pertanyaanmu dan memberikan rekomendasi<br/>
+            yang paling tepat sesuai tujuan belajarmu.
+          </span>
+          <span class="md:hidden">
+            Masih bingung memilih program atau paket<br/>
+            yang sesuai? Tim kami siap membantu<br/>
+            menjawab pertanyaanmu dan memberikan<br/>
+            rekomendasi yang paling tepat sesuai tujuan<br/>
+            belajarmu.
+          </span>
+        </p>
+        <a href="#" class="inline-block hover:opacity-90 transition-opacity">
+          <img src="/CTA.svg" alt="Konsultasi Sekarang Juga" />
+        </a>
+      </div>
+    </section>
+
+    <!-- <Footer /> -->
+  </main>
+</Layout>
