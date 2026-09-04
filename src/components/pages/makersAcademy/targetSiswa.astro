@@ -55,7 +55,7 @@ const bgSrc = isStringBg ? (bgImage as string) : (bgImage as ImageMetadata).src;
 <section
   id="target-siswa"
   class:list={[
-    "relative w-full min-h-svh py-16 md:py-20 lg:py-24 flex items-center overflow-hidden z-10",
+    "relative z-10 flex min-h-svh w-full items-center overflow-hidden py-16 md:py-20 lg:py-24",
     className,
   ]}
 >
@@ -65,14 +65,14 @@ const bgSrc = isStringBg ? (bgImage as string) : (bgImage as ImageMetadata).src;
       <img
         src={bgSrc}
         alt="Target Siswa Background"
-        class="absolute inset-0 z-0 w-full h-full object-cover object-center pointer-events-none select-none"
+        class="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-center select-none"
         fetchpriority="high"
       />
     ) : (
       <Image
         src={bgImage as ImageMetadata}
         alt="Target Siswa Background"
-        class="absolute inset-0 z-0 w-full h-full object-cover object-center pointer-events-none select-none"
+        class="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-center select-none"
         fetchpriority="high"
       />
     )
@@ -80,37 +80,29 @@ const bgSrc = isStringBg ? (bgImage as string) : (bgImage as ImageMetadata).src;
 
   <!-- Dark Overlay -->
   <div
-    class="absolute inset-0 z-[1] bg-black/60 md:bg-black/50 pointer-events-none"
+    class="pointer-events-none absolute inset-0 z-[1] bg-black/60 md:bg-black/50"
     aria-hidden="true"
   >
   </div>
 
   <!-- Content Container -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px]"
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- 1 Flex Container: Section Title | Heading | Description & List (justify-between) -->
     <div
-      class="w-full flex flex-col lg:flex-row items-start justify-between gap-6 lg:gap-8 xl:gap-12"
+      class="flex w-full flex-col items-start justify-between gap-6 lg:flex-row lg:gap-8 xl:gap-12"
     >
       <!-- Item 1: Section Title -->
       <div class="flex-shrink-0">
-        {
-          badgeText && (
-            <SectionTitle
-              id="target-siswa-badge"
-              variant="dark"
-              title={badgeText}
-            />
-          )
-        }
+        {badgeText && <SectionTitle id="target-siswa-badge" variant="dark" title={badgeText} />}
       </div>
 
       <!-- Item 2: Heading (600px max-width) -->
       <div class="w-full lg:max-w-[600px]">
         <h2
           id="target-siswa-heading"
-          class="font-momo font-bold text-white text-[28px] sm:text-[36px] md:text-[44px] lg:text-[46px] xl:text-[52px] leading-[1.15] tracking-tight"
+          class="font-momo text-[28px] leading-[1.15] font-bold tracking-tight text-white sm:text-[36px] md:text-[44px] lg:text-[46px] xl:text-[52px]"
         >
           {titleLine1 && <span class="block">{titleLine1}</span>}
           {titleLine2 && <span class="block">{titleLine2}</span>}
@@ -118,7 +110,7 @@ const bgSrc = isStringBg ? (bgImage as string) : (bgImage as ImageMetadata).src;
             {titleLine3 && titleLine3}
             {
               titleHighlight && (
-                <span class="font-caveat font-semibold italic text-white text-[36px] sm:text-[44px] md:text-[52px] lg:text-[54px] xl:text-[60px] leading-none align-baseline">
+                <span class="font-caveat align-baseline text-[36px] leading-none font-semibold text-white italic sm:text-[44px] md:text-[52px] lg:text-[54px] xl:text-[60px]">
                   {titleHighlight}
                 </span>
               )
@@ -128,12 +120,12 @@ const bgSrc = isStringBg ? (bgImage as string) : (bgImage as ImageMetadata).src;
       </div>
 
       <!-- Item 3: Description & List Container (width: 564px; flex-col; gap: 62px; flex-shrink: 0;) -->
-      <div class="w-full lg:w-[564px] flex flex-col items-start gap-[62px] flex-shrink-0">
+      <div class="flex w-full flex-shrink-0 flex-col items-start gap-[62px] lg:w-[564px]">
         {
           description && (
             <p
               id="target-siswa-desc"
-              class="font-jakarta font-normal text-white/90 text-sm md:text-base leading-relaxed"
+              class="font-jakarta text-sm leading-relaxed font-normal text-white/90 md:text-base"
             >
               {description}
             </p>
@@ -141,13 +133,13 @@ const bgSrc = isStringBg ? (bgImage as string) : (bgImage as ImageMetadata).src;
         }
 
         <!-- List Items with Dividers -->
-        <div class="target-siswa-items w-full flex flex-col border-t border-white/20">
+        <div class="target-siswa-items flex w-full flex-col border-t border-white/20">
           {
             items.map((item) => {
               const textContent = typeof item === "string" ? item : item.text;
               return (
-                <div class="target-siswa-item border-b border-white/20 py-3.5 md:py-4 transition-colors duration-200 hover:border-white/50">
-                  <span class="font-jakarta font-medium text-white text-base md:text-lg leading-snug block">
+                <div class="target-siswa-item border-b border-white/20 py-3.5 transition-colors duration-200 hover:border-white/50 md:py-4">
+                  <span class="font-jakarta block text-base leading-snug font-medium text-white md:text-lg">
                     {textContent}
                   </span>
                 </div>

@@ -17,20 +17,12 @@ interface Props {
   [key: string]: unknown;
 }
 
-const {
-  name,
-  field,
-  university,
-  image,
-  alt = name,
-  class: className = "",
-  ...rest
-} = Astro.props;
+const { name, field, university, image, alt = name, class: className = "", ...rest } = Astro.props;
 ---
 
 <div
   class:list={[
-    "mentor-card relative w-[260px] sm:w-[300px] md:w-[350px] lg:w-[400px] h-[380px] sm:h-[440px] md:h-[480px] lg:h-[500px] flex-shrink-0 rounded-sm overflow-hidden bg-[#dce3de] group cursor-pointer select-none",
+    "mentor-card group relative h-[380px] w-[260px] flex-shrink-0 cursor-pointer overflow-hidden rounded-sm bg-[#dce3de] select-none sm:h-[440px] sm:w-[300px] md:h-[480px] md:w-[350px] lg:h-[500px] lg:w-[400px]",
     className,
   ]}
   {...rest}
@@ -39,26 +31,22 @@ const {
   <Image
     src={image}
     alt={alt}
-    class="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none select-none"
+    class="pointer-events-none h-full w-full object-cover object-top transition-transform duration-500 ease-out select-none group-hover:scale-105"
   />
 
   <!-- Bottom Info Box (Solid White Badge Overlay) -->
   <div
-    class="absolute bottom-3 left-3 right-3 z-10 bg-white rounded-sm p-4 lg:p-5 flex flex-col justify-center items-start gap-1 pointer-events-none"
+    class="pointer-events-none absolute right-3 bottom-3 left-3 z-10 flex flex-col items-start justify-center gap-1 rounded-sm bg-white p-4 lg:p-5"
   >
-    <span
-      class="font-jakarta font-medium text-[#4B5563] text-xs lg:text-sm tracking-tight"
-    >
+    <span class="font-jakarta text-xs font-medium tracking-tight text-[#4B5563] lg:text-sm">
       {field}
     </span>
     <h3
-      class="font-momo font-bold text-[#111827] text-xl lg:text-[24px] leading-tight tracking-tight"
+      class="font-momo text-xl leading-tight font-bold tracking-tight text-[#111827] lg:text-[24px]"
     >
       {name}
     </h3>
-    <p
-      class="font-jakarta font-normal text-[#374151] text-sm lg:text-base leading-snug"
-    >
+    <p class="font-jakarta text-sm leading-snug font-normal text-[#374151] lg:text-base">
       {university}
     </p>
   </div>

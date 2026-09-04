@@ -29,21 +29,21 @@ const cardImage = image || imageSrc;
 
 <div
   class:list={[
-    "teaser-card-item flex flex-col justify-between items-start gap-[16px] p-[14px] sm:p-[16px] rounded-[4px] w-full lg:w-[342px] min-h-[380px] lg:h-[402px]",
+    "teaser-card-item flex min-h-[380px] w-full flex-col items-start justify-between gap-[16px] rounded-[4px] p-[14px] sm:p-[16px] lg:h-[402px] lg:w-[342px]",
     bgColor,
     className,
   ]}
   {...rest}
 >
   <!-- Content: title + description -->
-  <div class="flex flex-col items-start gap-2 w-full">
+  <div class="flex w-full flex-col items-start gap-2">
     <h3
-      class="font-jakarta font-bold text-[#161616] text-[20px] sm:text-[22px] leading-[130%] text-left"
+      class="font-jakarta text-left text-[20px] leading-[130%] font-bold text-[#161616] sm:text-[22px]"
     >
       {title}
     </h3>
     <p
-      class="font-jakarta font-normal text-[#161616]/90 text-[13px] sm:text-[14px] leading-[140%] text-left"
+      class="font-jakarta text-left text-[13px] leading-[140%] font-normal text-[#161616]/90 sm:text-[14px]"
     >
       {description}
     </p>
@@ -51,22 +51,13 @@ const cardImage = image || imageSrc;
 
   <!-- Image / Foto -->
   <div
-    class="w-full h-[220px] sm:h-[235px] rounded-[4px] overflow-hidden flex-shrink-0 bg-black/10"
+    class="h-[220px] w-full flex-shrink-0 overflow-hidden rounded-[4px] bg-black/10 sm:h-[235px]"
   >
     {
       cardImage && typeof cardImage === "object" ? (
-        <Image
-          src={cardImage}
-          alt={imageAlt}
-          class="w-full h-full object-cover"
-        />
+        <Image src={cardImage} alt={imageAlt} class="h-full w-full object-cover" />
       ) : cardImage && typeof cardImage === "string" ? (
-        <img
-          src={cardImage}
-          alt={imageAlt}
-          class="w-full h-full object-cover"
-          loading="lazy"
-        />
+        <img src={cardImage} alt={imageAlt} class="h-full w-full object-cover" loading="lazy" />
       ) : null
     }
   </div>

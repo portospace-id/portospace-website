@@ -9,17 +9,12 @@ interface Props {
   [key: string]: unknown;
 }
 
-const {
-  title,
-  description,
-  class: className = "",
-  ...rest
-} = Astro.props;
+const { title, description, class: className = "", ...rest } = Astro.props;
 ---
 
 <div
   class:list={[
-    "card-rekomendasi-paket relative w-full h-[460px] sm:h-[490px] lg:h-[520px] rounded-sm bg-[#e5e5e5] text-[#111111] p-6 sm:p-7 lg:p-8 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1 group select-none shadow-sm",
+    "card-rekomendasi-paket group relative flex h-[460px] w-full flex-col justify-between overflow-hidden rounded-sm bg-[#e5e5e5] p-6 text-[#111111] shadow-sm transition-all duration-300 select-none hover:-translate-y-1 sm:h-[490px] sm:p-7 lg:h-[520px] lg:p-8",
     className,
   ]}
   {...rest}
@@ -27,16 +22,16 @@ const {
   <!-- Top Package Title -->
   <div class="relative z-10">
     <h3
-      class="font-momo font-semibold text-[28px] sm:text-[32px] lg:text-[36px] text-[#111111] tracking-tight text-left"
+      class="font-momo text-left text-[28px] font-semibold tracking-tight text-[#111111] sm:text-[32px] lg:text-[36px]"
     >
       {title}
     </h3>
   </div>
 
   <!-- Bottom Recommendation Description -->
-  <div class="relative z-10 flex flex-col items-start mt-auto">
+  <div class="relative z-10 mt-auto flex flex-col items-start">
     <p
-      class="font-jakarta font-normal text-xs sm:text-sm md:text-base leading-relaxed text-gray-700 max-w-[340px] text-left m-0"
+      class="font-jakarta m-0 max-w-[340px] text-left text-xs leading-relaxed font-normal text-gray-700 sm:text-sm md:text-base"
     >
       {description}
     </p>

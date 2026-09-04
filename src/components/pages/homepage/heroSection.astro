@@ -4,7 +4,7 @@ import Button from "@/components/ui/button.astro";
 
 <section
   id="hero"
-  class="relative w-full min-h-svh overflow-hidden"
+  class="relative min-h-svh w-full overflow-hidden"
   aria-label="Hero section"
   data-navbar="transparent"
 >
@@ -13,37 +13,31 @@ import Button from "@/components/ui/button.astro";
     <img
       src="/hero-bg.png"
       alt="Students doing STEM activities"
-      class="w-full h-full object-cover object-center"
+      class="h-full w-full object-cover object-center"
       fetchpriority="high"
     />
   </div>
 
   <!-- Black overlay 30% -->
-  <div
-    class="absolute inset-0 z-[1] pointer-events-none bg-black/30"
-    aria-hidden="true"
-  >
-  </div>
+  <div class="pointer-events-none absolute inset-0 z-[1] bg-black/30" aria-hidden="true"></div>
 
   <!-- Content -->
-  <div
-    class="relative z-10 flex flex-col justify-end min-h-svh pb-12 lg:pb-16"
-  >
+  <div class="relative z-10 flex min-h-svh flex-col justify-end pb-12 lg:pb-16">
     <div
-      class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 lg:gap-8"
+      class="mx-auto flex w-full max-w-[1440px] flex-col items-start justify-between gap-6 px-[20px] sm:px-[24px] md:px-[28px] lg:flex-row lg:items-end lg:gap-8 lg:px-[32px] xl:max-w-none xl:px-[32px]"
     >
       <!-- Heading & Description -->
       <div id="hero-text" class="flex flex-col gap-[12px]">
         <h1
           id="hero-heading"
-          class="font-momo font-bold text-white leading-[1.1] tracking-tight mb-0"
+          class="font-momo mb-0 leading-[1.1] font-bold tracking-tight text-white"
         >
           <span class="block text-[24px] md:text-[36px] lg:text-[48px]">
             Masuk Universitas Impian
           </span>
           <span class="block text-[24px] md:text-[36px] lg:text-[48px]">
             Dengan Portfolio Nyata Kelas&nbsp;<span
-              class="font-caveat text-citrus-normal font-semibold italic text-[38px] md:text-[48px] lg:text-[64px] leading-none align-bottom"
+              class="font-caveat align-bottom text-[38px] leading-none font-bold md:text-[48px] lg:text-[64px]"
               >Dunia.</span
             >
           </span>
@@ -52,10 +46,10 @@ import Button from "@/components/ui/button.astro";
         <!-- Description -->
         <p
           id="hero-desc"
-          class="font-jakarta text-base text-white leading-relaxed max-w-[480px] md:max-w-[560px]"
+          class="font-jakarta max-w-[480px] text-base leading-relaxed text-white md:max-w-[560px]"
         >
-          Program mentorship riset, robotics, dan coding untuk siswa kelas 9–12.
-          Dibimbing langsung oleh PhD, Master, dan pakar industri lulusan global.
+          Program mentorship riset, robotics, dan coding untuk siswa kelas 9–12. Dibimbing langsung
+          oleh PhD, Master, dan pakar industri lulusan global.
         </p>
       </div>
 
@@ -106,7 +100,7 @@ import Button from "@/components/ui/button.astro";
         duration: 0.6,
         ease: "power2.out",
       },
-      "-=0.45",
+      "-=0.45"
     )
     .from(
       "#hero-actions",
@@ -116,6 +110,6 @@ import Button from "@/components/ui/button.astro";
         duration: 0.55,
         ease: "power2.out",
       },
-      "-=0.4",
+      "-=0.4"
     );
 </script>

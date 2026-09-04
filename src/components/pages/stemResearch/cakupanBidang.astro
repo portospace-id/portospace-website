@@ -1,0 +1,217 @@
+---
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import PatternLine from "@/components/ui/patternLine.astro";
+import CardCakupanBidang from "@/components/card/cardCakupanBidang.astro";
+
+import biologyImg from "@/assets/image/stemResearch/biology.png";
+import chemistryImg from "@/assets/image/stemResearch/chemistry.png";
+import physicsImg from "@/assets/image/stemResearch/physics.png";
+import mathematicsImg from "@/assets/image/stemResearch/mathematics.png";
+import computerScienceImg from "@/assets/image/stemResearch/computerScience.png";
+import roboticsImg from "@/assets/image/stemResearch/robotics.png";
+import environmentalImg from "@/assets/image/stemResearch/environmental.png";
+import biomedicalImg from "@/assets/image/stemResearch/biomedical.png";
+
+interface Props {
+  /** Additional CSS class for section */
+  class?: string;
+  id?: string;
+}
+
+const { class: className = "", id = "cakupan-bidang" } = Astro.props;
+
+const fields = [
+  {
+    title: "Biology",
+    image: biologyImg,
+    alt: "Eksplorasi penelitian laboratorium bidang Biologi",
+  },
+  {
+    title: "Chemistry",
+    image: chemistryImg,
+    alt: "Eksperimen reaksi dan penelitian Kimia",
+  },
+  {
+    title: "Physics",
+    image: physicsImg,
+    alt: "Eksperimen fisika dan riset instrumen ilmiah",
+  },
+  {
+    title: "Mathematics",
+    image: mathematicsImg,
+    alt: "Pengembangan pemodelan matematika dan formula ilmiah",
+  },
+  {
+    title: "Computer Science & AI",
+    image: computerScienceImg,
+    alt: "Pemrograman sistem, algoritma artificial intelligence, dan komputasi",
+  },
+  {
+    title: "Robotics & IoT",
+    image: roboticsImg,
+    alt: "Riset rekayasa robotika, mikrokontroler, dan internet of things",
+  },
+  {
+    title: "Environmental Science",
+    image: environmentalImg,
+    alt: "Penelitian lingkungan, ekologi, dan sains keberlanjutan",
+  },
+  {
+    title: "Biomedical Science",
+    image: biomedicalImg,
+    alt: "Riset rekayasa biomedis dan teknologi kesehatan",
+  },
+];
+---
+
+<section
+  id={id}
+  class:list={[
+    "bg-spicy-normal relative z-10 flex min-h-svh w-full flex-col items-center justify-center overflow-hidden py-12 lg:py-16",
+    className,
+  ]}
+  aria-label="Cakupan Bidang STEM Research Section"
+  data-navbar="spicy"
+>
+  <!-- Background Decorative Pattern SVG - Top Right -->
+  <PatternLine
+    color="#38b6d4"
+    class="pointer-events-none absolute top-0 right-[-60px] z-0 select-none"
+    style="width: 477px; height: 521px; display: block;"
+  />
+
+  <!-- Background Decorative Pattern SVG - Bottom Left -->
+  <PatternLine
+    color="#38b6d4"
+    class="pointer-events-none absolute bottom-0 left-[-60px] z-0 rotate-180 select-none"
+    style="width: 477px; height: 521px; display: block;"
+  />
+
+  <!-- Header Container -->
+  <div
+    class="relative z-10 mx-auto mb-10 flex w-full max-w-[1440px] flex-col items-center px-[20px] sm:px-[24px] md:px-[28px] lg:mb-12 lg:px-[32px] xl:max-w-none xl:px-[32px]"
+  >
+    <!-- Header Content (Centered) -->
+    <div class="flex w-full max-w-[880px] flex-col items-center text-center">
+      <!-- Section Title Badge -->
+      <SectionTitle id="cakupan-bidang-badge" variant="light" title="Cakupan Bidang" />
+
+      <!-- Heading -->
+      <h2
+        id="cakupan-bidang-heading"
+        class="font-momo mt-3 text-[32px] leading-[1.12] font-bold tracking-tight text-[#111111] sm:text-[40px] md:text-[48px] lg:text-[52px]"
+      >
+        Eksplorasi Berbagai Bidang STEM<br />
+        Sesuai Minat dan{" "}
+        <span
+          class="font-caveat ml-1 inline-block align-baseline text-[42px] leading-none font-bold text-[#111111] italic sm:text-[54px] md:text-[64px] lg:text-[72px]"
+        >
+          Potensimu.
+        </span>
+      </h2>
+    </div>
+  </div>
+
+  <!-- Cards Container / Full Section Width Track (No right margin restriction) -->
+  <div
+    id="cakupan-bidang-cards-container"
+    class="relative z-10 w-full overflow-hidden pt-1 pb-4 select-none"
+  >
+    <div
+      id="cakupan-bidang-cards-track"
+      class="flex w-max items-center gap-4 px-[20px] will-change-transform sm:gap-5 sm:px-[24px] md:px-[28px] lg:gap-6 lg:px-[32px] xl:px-[32px]"
+    >
+      {
+        fields.map((field) => (
+          <CardCakupanBidang title={field.title} image={field.image} alt={field.alt} />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initCakupanHorizontalScroll() {
+    const section = document.querySelector("#cakupan-bidang") as HTMLElement;
+    const cardsContainer = document.querySelector("#cakupan-bidang-cards-container") as HTMLElement;
+    const cardsTrack = document.querySelector("#cakupan-bidang-cards-track") as HTMLElement;
+
+    if (!section || !cardsContainer || !cardsTrack) return;
+
+    // Measure total scrollable distance for horizontal track
+    const getScrollAmount = () => {
+      return cardsTrack.scrollWidth - window.innerWidth;
+    };
+
+    // Entrance animation for header elements
+    gsap.from("#cakupan-bidang-badge", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+
+    gsap.from("#cakupan-bidang-heading", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      delay: 0.1,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+
+    gsap.from(".card-cakupan", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 35,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+
+    // Pinned horizontal scroll animation on vertical scroll down
+    if (getScrollAmount() > 0) {
+      gsap.to(cardsTrack, {
+        x: () => -getScrollAmount(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          pin: true,
+          start: "top top",
+          end: () => `+=${getScrollAmount()}`,
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCakupanHorizontalScroll);
+  } else {
+    initCakupanHorizontalScroll();
+  }
+
+  document.addEventListener("astro:page-load", initCakupanHorizontalScroll);
+</script>

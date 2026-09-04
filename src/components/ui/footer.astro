@@ -2,36 +2,34 @@
 import PatternLine from "./patternLine.astro";
 ---
 
-<footer
-  class="relative overflow-hidden bg-windsor-normal text-white font-jakarta"
->
+<footer class="bg-windsor-normal font-jakarta relative overflow-hidden text-white">
   <!-- Decorative Pattern Lines -->
   <PatternLine
-    class="absolute z-0 pointer-events-none select-none"
+    class="pointer-events-none absolute z-0 select-none"
     style="top: 0; right: -80px; width: 477px; height: 521px; display: block;"
     color="#380E68"
   />
   <PatternLine
-    class="absolute z-0 rotate-180 pointer-events-none select-none"
+    class="pointer-events-none absolute z-0 rotate-180 select-none"
     style="bottom: 0; left: -61px; width: 477px; height: 521px; display: block;"
     color="#380E68"
   />
 
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pt-[60px] pb-8 flex flex-col"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col px-[20px] pt-[60px] pb-8 sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Main Content Container -->
-    <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 justify-between items-start">
+    <div class="flex flex-col items-start justify-between gap-10 lg:flex-row lg:gap-16">
       <!-- Column 1: Brand & Tagline -->
-      <div class="w-full lg:max-w-[340px] flex flex-col">
-        <div class="flex items-center gap-2.5 mb-4">
+      <div class="flex w-full flex-col lg:max-w-[340px]">
+        <div class="mb-4 flex items-center gap-2.5">
           <svg
             width="34"
             height="34"
             viewBox="0 0 28 28"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            class="w-8 h-8 sm:w-[34px] sm:h-[34px] text-white flex-shrink-0"
+            class="h-8 w-8 flex-shrink-0 text-white sm:h-[34px] sm:w-[34px]"
             aria-hidden="true"
           >
             <g clip-path="url(#footer_logo_clip)">
@@ -39,88 +37,77 @@ import PatternLine from "./patternLine.astro";
                 fill-rule="evenodd"
                 clip-rule="evenodd"
                 d="M13.9908 9.79102C16.3426 9.79102 18.2491 11.7029 18.2491 14.0613C18.2491 16.4197 16.3426 18.3316 13.9908 18.3316C11.6389 18.3316 9.73236 16.4197 9.73236 14.0613C9.73236 11.7029 11.6389 9.79102 13.9908 9.79102ZM13.9908 11.8245C12.7588 11.8245 11.7601 12.8259 11.7601 14.0613C11.7601 15.2966 12.7588 16.2981 13.9908 16.2981C15.2227 16.2981 16.2213 15.2966 16.2213 14.0613C16.2213 12.8259 15.2227 11.8245 13.9908 11.8245Z"
-                fill="currentColor"
-              />
+                fill="currentColor"></path>
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
                 d="M13.8887 2.33696C18.7994 -0.401627 23.5492 -0.854519 26.0508 1.62545C28.571 4.12385 28.1485 8.94389 25.4201 13.9388C28.1982 18.9698 28.6436 23.8384 26.1064 26.3537C23.5955 28.8428 18.8199 28.3765 13.8899 25.6106C8.95961 28.3767 4.18363 28.8429 1.67261 26.3537C-0.864554 23.8384 -0.419286 18.9699 2.35877 13.939C-0.369584 8.94405 -0.791922 4.12365 1.72825 1.62525C4.22968 -0.854448 8.97863 -0.4011 13.8887 2.33696ZM24.6252 3.07151C23.5933 2.04859 21.5304 1.59984 18.4156 2.56572C17.6055 2.81697 16.7606 3.15602 15.8963 3.57929C16.0684 3.69652 16.2405 3.81633 16.4122 3.93889C16.9124 4.29598 16.9583 5.01691 16.5241 5.45228C16.1642 5.81308 15.5952 5.85019 15.1799 5.55534C14.7492 5.2496 14.3184 4.96314 13.8893 4.69589C12.1504 5.77898 10.3834 7.18063 8.70794 8.88017C7.08959 10.5218 5.74943 12.2459 4.70461 13.944C5.75738 15.6715 7.11633 17.428 8.76358 19.0989C8.87758 19.2146 8.99207 19.3288 9.10698 19.4417C9.5191 19.8464 9.53524 20.5127 9.12735 20.9217C8.74359 21.3065 8.12423 21.3206 7.73562 20.9407C7.59685 20.8051 7.45866 20.6678 7.32134 20.5285C5.87642 19.0628 4.62672 17.5215 3.5903 15.9693C3.13756 16.9034 2.78053 17.8157 2.52274 18.6869C1.59533 21.8212 2.06637 23.8846 3.09821 24.9076C4.13005 25.9305 6.19304 26.3792 9.30776 25.4134C10.1382 25.1558 11.0051 24.8058 11.892 24.3677C11.7822 24.2925 11.6722 24.2166 11.5625 24.1393C11.0582 23.7838 11.0102 23.0598 11.4461 22.6227C11.8044 22.2635 12.3704 22.2248 12.7857 22.5159C13.1541 22.7741 13.5224 23.0182 13.8895 23.2482C15.6105 22.17 17.358 20.7802 19.0157 19.0987C20.6629 17.4278 22.0215 15.6712 23.0743 13.9438C22.0294 12.2457 20.6894 10.5217 19.0711 8.88017C18.9944 8.80237 18.9175 8.72515 18.8404 8.64864C18.4319 8.24314 18.4176 7.5796 18.824 7.17201C19.2093 6.78566 19.8317 6.77293 20.2197 7.1565C20.3179 7.25362 20.4158 7.3517 20.5133 7.45058C21.9283 8.88588 23.1559 10.3938 24.1794 11.9133C24.6102 11.0128 24.9519 10.1334 25.2009 9.29222C26.1283 6.1579 25.657 4.09443 24.6252 3.07151ZM24.1887 15.9693C23.1524 17.5214 21.9027 19.0628 20.4577 20.5285C18.9918 22.0154 17.4461 23.302 15.8876 24.368C16.7742 24.8062 17.641 25.1557 18.4713 25.4132C21.586 26.379 23.649 25.9305 24.6809 24.9076C25.7127 23.8847 26.1839 21.8212 25.2565 18.6869C24.9987 17.8157 24.6415 16.9035 24.1887 15.9693ZM9.3634 2.56572C6.24868 1.59986 4.18569 2.04861 3.15385 3.07151C2.12207 4.09446 1.65084 6.15784 2.57819 9.29203C2.82711 10.1333 3.16881 11.0128 3.5996 11.9133C4.6232 10.3938 5.85093 8.88588 7.26589 7.45058C8.74637 5.94885 10.308 4.65129 11.8823 3.57909C11.0182 3.15585 10.1735 2.81693 9.3634 2.56572Z"
-                fill="currentColor"
-              />
+                fill="currentColor"></path>
             </g>
             <defs>
               <clipPath id="footer_logo_clip">
-                <rect width="27.8062" height="28" fill="currentColor" />
+                <rect width="27.8062" height="28" fill="currentColor"></rect>
               </clipPath>
             </defs>
           </svg>
-          <h3 class="font-momo font-bold text-3xl sm:text-4xl text-white tracking-tight leading-none">
+          <h3
+            class="font-momo text-3xl leading-none font-bold tracking-tight text-white sm:text-4xl"
+          >
             PortoSpace
           </h3>
         </div>
-        <p class="font-jakarta text-base text-white leading-relaxed">
-          Shaping the Next Generation of STEM Prodigies — mentorship portfolio nyata untuk siswa SMA Indonesia.
+        <p class="font-jakarta text-base leading-relaxed text-white">
+          Shaping the Next Generation of STEM Prodigies — mentorship portfolio nyata untuk siswa SMA
+          Indonesia.
         </p>
       </div>
 
       <!-- Navigation & Links Group (Middle Container 600px) -->
-      <div class="w-full lg:max-w-[600px] flex flex-col gap-8 lg:gap-10">
+      <div class="flex w-full flex-col gap-8 lg:max-w-[600px] lg:gap-10">
         <!-- Top Container: Programs & Navigasi (Justify Between) -->
-        <div class="flex flex-col sm:flex-row justify-between gap-8 sm:gap-10 lg:gap-16">
+        <div class="flex flex-col justify-between gap-8 sm:flex-row sm:gap-10 lg:gap-16">
           <!-- Programs Column -->
           <div>
-            <h4 class="font-momo font-semibold text-lg lg:text-xl text-white tracking-tight mb-3 lg:mb-4">
+            <h4
+              class="font-momo mb-3 text-lg font-semibold tracking-tight text-white lg:mb-4 lg:text-xl"
+            >
               Programs
             </h4>
-            <ul class="space-y-2 font-jakarta text-base text-white">
+            <ul class="font-jakarta space-y-2 text-base text-white">
               <li>
-                <a href="/programs/stem-research" class="hover:underline"
-                  >STEM Research</a
-                >
+                <a href="/programs/stem-research" class="hover:underline">STEM Research</a>
               </li>
               <li>
-                <a href="/programs/robotics-iot" class="hover:underline"
-                  >Robotics & IoT</a
-                >
+                <a href="/programs/robotics-iot" class="hover:underline">Robotics & IoT</a>
               </li>
               <li>
-                <a href="/programs/coding-ai" class="hover:underline"
-                  >Coding & Apps</a
-                >
+                <a href="/programs/coding-ai" class="hover:underline">Coding & Apps</a>
               </li>
               <li>
-                <a href="/programs/entrepreneurship" class="hover:underline"
-                  >Entrepreneurship</a
-                >
+                <a href="/programs/entrepreneurship" class="hover:underline">Entrepreneurship</a>
               </li>
             </ul>
           </div>
 
           <!-- Navigation Column -->
           <div>
-            <h4 class="font-momo font-semibold text-lg lg:text-xl text-white tracking-tight mb-3 lg:mb-4">
+            <h4
+              class="font-momo mb-3 text-lg font-semibold tracking-tight text-white lg:mb-4 lg:text-xl"
+            >
               Navigasi
             </h4>
-            <ul class="space-y-2 font-jakarta text-base text-white">
+            <ul class="font-jakarta space-y-2 text-base text-white">
               <li>
-                <a href="/makers-academy" class="hover:underline"
-                  >Program & Pricing</a
-                >
+                <a href="/makers-academy" class="hover:underline">Program & Pricing</a>
               </li>
               <li>
-                <a href="/about" class="hover:underline"
-                  >Kenapa PortoSpace</a
-                >
+                <a href="/about" class="hover:underline">Kenapa PortoSpace</a>
               </li>
               <li>
-                <a href="/mentors" class="hover:underline"
-                  >Mentors</a
-                >
+                <a href="/mentors" class="hover:underline">Mentors</a>
               </li>
               <li>
-                <a href="/faq" class="hover:underline"
-                  >FAQ</a
-                >
+                <a href="/faq" class="hover:underline">FAQ</a>
               </li>
             </ul>
           </div>
@@ -128,13 +115,14 @@ import PatternLine from "./patternLine.astro";
 
         <!-- Bottom Container: Alamat (Width 600px max) -->
         <div class="w-full">
-          <h4 class="font-momo font-semibold text-lg lg:text-xl text-white tracking-tight mb-3 lg:mb-4">
+          <h4
+            class="font-momo mb-3 text-lg font-semibold tracking-tight text-white lg:mb-4 lg:text-xl"
+          >
             Alamat
           </h4>
-          <p class="font-jakarta text-base text-white leading-relaxed w-full max-w-[600px]">
-            Gedung Artha Graha, 26 Floor (SCBD), Unit 2601, Jalan Jend. Sudirman
-            No. 52-53, RT. 000/RW. 000, Senayan, Kebayoran Baru, Kota Adm.
-            Jakarta Selatan, DKI Jakarta
+          <p class="font-jakarta w-full max-w-[600px] text-base leading-relaxed text-white">
+            Gedung Artha Graha, 26 Floor (SCBD), Unit 2601, Jalan Jend. Sudirman No. 52-53, RT.
+            000/RW. 000, Senayan, Kebayoran Baru, Kota Adm. Jakarta Selatan, DKI Jakarta
           </p>
         </div>
       </div>
@@ -144,7 +132,7 @@ import PatternLine from "./patternLine.astro";
         <a
           href="#"
           aria-label="Threads"
-          class="hover:scale-110 transition-transform block w-10 h-10 lg:w-11 lg:h-11"
+          class="block h-10 w-10 transition-transform hover:scale-110 lg:h-11 lg:w-11"
         >
           <svg
             width="100%"
@@ -160,7 +148,7 @@ import PatternLine from "./patternLine.astro";
         <a
           href="#"
           aria-label="Instagram"
-          class="hover:scale-110 transition-transform block w-10 h-10 lg:w-11 lg:h-11"
+          class="block h-10 w-10 transition-transform hover:scale-110 lg:h-11 lg:w-11"
         >
           <svg
             width="100%"
@@ -176,7 +164,7 @@ import PatternLine from "./patternLine.astro";
         <a
           href="#"
           aria-label="LinkedIn"
-          class="hover:scale-110 transition-transform block w-10 h-10 lg:w-11 lg:h-11"
+          class="block h-10 w-10 transition-transform hover:scale-110 lg:h-11 lg:w-11"
         >
           <svg
             width="100%"
@@ -192,7 +180,7 @@ import PatternLine from "./patternLine.astro";
         <a
           href="#"
           aria-label="Email"
-          class="hover:scale-110 transition-transform block w-10 h-10 lg:w-11 lg:h-11"
+          class="block h-10 w-10 transition-transform hover:scale-110 lg:h-11 lg:w-11"
         >
           <svg
             width="100%"
@@ -208,7 +196,7 @@ import PatternLine from "./patternLine.astro";
         <a
           href="#"
           aria-label="WhatsApp"
-          class="hover:scale-110 transition-transform block w-10 h-10 lg:w-11 lg:h-11"
+          class="block h-10 w-10 transition-transform hover:scale-110 lg:h-11 lg:w-11"
         >
           <svg
             width="100%"
@@ -223,14 +211,15 @@ import PatternLine from "./patternLine.astro";
         </a>
       </div>
     </div>
-
   </div>
 
   <!-- Big Brand Watermark Text at Bottom (Full Width with 32px Margin) -->
-  <div class="relative z-10 w-full mt-6 sm:mt-10 lg:mt-12 px-[32px] overflow-hidden pointer-events-none select-none">
+  <div
+    class="pointer-events-none relative z-10 mt-6 w-full overflow-hidden px-[32px] select-none sm:mt-10 lg:mt-12"
+  >
     <svg
       viewBox="0 0 1000 175"
-      class="w-full h-auto block select-none pointer-events-none"
+      class="pointer-events-none block h-auto w-full select-none"
       aria-hidden="true"
     >
       <text
@@ -238,7 +227,7 @@ import PatternLine from "./patternLine.astro";
         y="140"
         textLength="1000"
         lengthAdjust="spacingAndGlyphs"
-        class="font-momo font-bold fill-white"
+        class="font-momo fill-white font-bold"
         font-size="175"
       >
         PortoSpace

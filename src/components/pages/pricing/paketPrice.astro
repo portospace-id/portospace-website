@@ -62,7 +62,7 @@ const packages = [
 
 <section
   id="paket-programs"
-  class="relative w-full bg-white py-[60px] lg:py-[100px] flex flex-col items-center overflow-hidden"
+  class="relative flex w-full flex-col items-center overflow-hidden bg-white py-[60px] lg:py-[100px]"
   aria-label="Paket Programs PortoSpace"
   data-navbar="white"
 >
@@ -70,45 +70,45 @@ const packages = [
   <Image
     src={pattern4}
     alt=""
-    class="absolute pointer-events-none select-none z-0"
+    class="pointer-events-none absolute z-0 select-none"
     style="width: 486px; height: 488px; right: -218px; top: -170px; display: block;"
     aria-hidden="true"
   />
 
   <!-- Main Section Wrapper -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-center"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Header -->
-    <div class="flex flex-col items-center text-center gap-4 mb-12 lg:mb-16">
+    <div class="mb-12 flex flex-col items-center gap-4 text-center lg:mb-16">
       <div id="paket-badge">
         <SectionTitle variant="light" title="Paket Programs" />
       </div>
 
       <h2
         id="paket-heading"
-        class="font-momo font-semibold text-[#111] text-[32px] md:text-[44px] lg:text-[54px] leading-[110%] tracking-[-1.08px] max-w-[980px]"
+        class="font-momo max-w-[980px] text-[32px] leading-[110%] font-semibold tracking-[-1.08px] text-[#111] md:text-[44px] lg:text-[54px]"
       >
         Bandingkan Setiap Paket dan Temukan <br class="hidden md:block" />
         yang Paling Sesuai <span
-          class="font-caveat font-medium italic text-[#111] text-[42px] md:text-[54px] lg:text-[64px] leading-[80%] tracking-[-2.56px]"
+          class="font-caveat text-[42px] leading-[80%] font-medium tracking-[-2.56px] text-[#111] italic md:text-[54px] lg:text-[64px]"
           >Untukmu</span
         >
       </h2>
 
       <p
         id="paket-desc"
-        class="font-jakarta font-normal text-gray-600 text-sm lg:text-base leading-[160%] max-w-[680px]"
+        class="font-jakarta max-w-[680px] text-sm leading-[160%] font-normal text-gray-600 lg:text-base"
       >
-        Lihat perbedaan jumlah sesi, durasi, fasilitas, dan hasil yang akan kamu
-        dapatkan dari setiap paket.
+        Lihat perbedaan jumlah sesi, durasi, fasilitas, dan hasil yang akan kamu dapatkan dari
+        setiap paket.
       </p>
     </div>
 
     <!-- Cards Grid -->
     <div
       id="paket-cards-grid"
-      class="w-full max-w-[1400px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:items-center items-stretch justify-center justify-items-center"
+      class="grid w-full max-w-[1400px] grid-cols-1 items-stretch justify-center justify-items-center gap-6 md:grid-cols-2 lg:grid-cols-3 lg:items-center"
     >
       {
         packages.map((pkg) => (

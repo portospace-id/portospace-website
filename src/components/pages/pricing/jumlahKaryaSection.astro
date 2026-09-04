@@ -33,7 +33,7 @@ const karyaStats = [
 <section
   id="jumlah-karya"
   class:list={[
-    "relative w-full min-h-svh overflow-hidden flex flex-col justify-between py-16 sm:py-20 md:py-24 lg:py-28",
+    "relative flex min-h-svh w-full flex-col justify-between overflow-hidden py-16 sm:py-20 md:py-24 lg:py-28",
     className,
   ]}
   aria-label="Jumlah Karya Section"
@@ -44,21 +44,17 @@ const karyaStats = [
     <img
       src={bgUrl}
       alt={bgAlt}
-      class="w-full h-full object-cover object-center"
+      class="h-full w-full object-cover object-center"
       fetchpriority="high"
     />
   </div>
 
   <!-- Dark Overlay -->
-  <div
-    class="absolute inset-0 z-[1] pointer-events-none bg-black/50"
-    aria-hidden="true"
-  >
-  </div>
+  <div class="pointer-events-none absolute inset-0 z-[1] bg-black/50" aria-hidden="true"></div>
 
   <!-- Main Section Wrapper -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col justify-between h-full flex-1 gap-12 lg:gap-[160px]"
+    class="relative z-10 mx-auto flex h-full w-full max-w-[1440px] flex-1 flex-col justify-between gap-12 px-[20px] sm:px-[24px] md:px-[28px] lg:gap-[160px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Top Content: Badge & Main Title -->
     <div class="flex flex-col items-start gap-4 sm:gap-6">
@@ -72,13 +68,13 @@ const karyaStats = [
 
       <h2
         id="jumlah-karya-heading"
-        class="font-momo font-bold text-white text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px] leading-[1.15] tracking-tight max-w-[800px]"
+        class="font-momo max-w-[800px] text-[28px] leading-[1.15] font-bold tracking-tight text-white sm:text-[36px] md:text-[44px] lg:text-[54px]"
       >
         Semakin Besar Targetmu,<br class="hidden sm:block" />
         Semakin Banyak Karya yang<br class="hidden sm:block" />
         Dapat Kamu{" "}
         <span
-          class="font-caveat font-semibold italic text-white text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px] leading-none inline-block mt-1 sm:mt-0"
+          class="font-caveat mt-1 inline-block text-[34px] leading-none font-semibold text-white italic sm:mt-0 sm:text-[44px] md:text-[54px] lg:text-[64px]"
         >
           Hasilkan.
         </span>
@@ -86,18 +82,18 @@ const karyaStats = [
     </div>
 
     <!-- Bottom Content: Karya Stats (Right Aligned Row) -->
-    <div class="w-full flex justify-end mt-auto pt-8">
+    <div class="mt-auto flex w-full justify-end pt-8">
       <div
         id="jumlah-karya-stats"
-        class="flex flex-row items-end justify-end gap-8 sm:gap-12 lg:gap-16 flex-wrap"
+        class="flex flex-row flex-wrap items-end justify-end gap-8 sm:gap-12 lg:gap-16"
       >
         {
           karyaStats.map((stat) => (
             <div class="flex flex-col items-start text-left">
-              <span class="font-jakarta font-normal text-white/80 text-sm md:text-base leading-tight mb-1">
+              <span class="font-jakarta mb-1 text-sm leading-tight font-normal text-white/80 md:text-base">
                 {stat.package}
               </span>
-              <h3 class="font-momo font-bold text-white text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px] leading-tight tracking-tight">
+              <h3 class="font-momo text-[32px] leading-tight font-bold tracking-tight text-white sm:text-[40px] md:text-[48px] lg:text-[54px]">
                 {stat.count}
               </h3>
             </div>

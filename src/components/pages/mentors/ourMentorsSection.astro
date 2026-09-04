@@ -56,7 +56,7 @@ const mentors = [
 
 <section
   id="our-mentors"
-  class="relative w-full bg-white text-black py-[60px] lg:py-[100px] flex flex-col justify-center overflow-hidden"
+  class="relative flex w-full flex-col justify-center overflow-hidden bg-white py-[60px] text-black lg:py-[100px]"
   aria-label="Our Mentors"
   data-navbar="light"
 >
@@ -64,14 +64,14 @@ const mentors = [
   <img
     src={pattern4.src}
     alt=""
-    class="absolute z-0 pointer-events-none select-none"
+    class="pointer-events-none absolute z-0 select-none"
     style="width: 500px; height: 501.526px; position: absolute; right: -223px; top: -171px;"
     aria-hidden="true"
   />
 
   <!-- Header Content -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-center text-center gap-4 mb-10 lg:mb-14"
+    class="relative z-10 mx-auto mb-10 flex w-full max-w-[1440px] flex-col items-center gap-4 px-[20px] text-center sm:px-[24px] md:px-[28px] lg:mb-14 lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <div id="our-mentors-badge">
       <SectionTitle title="Our Mentors" variant="light" />
@@ -79,40 +79,36 @@ const mentors = [
 
     <h2
       id="our-mentors-heading"
-      class="font-momo font-semibold text-black text-[32px] md:text-[44px] lg:text-[54px] leading-[110%] tracking-[-1.08px] max-w-[980px]"
+      class="font-momo max-w-[980px] text-[32px] leading-[110%] font-semibold tracking-[-1.08px] text-black md:text-[44px] lg:text-[54px]"
     >
       Temukan Mentor yang Tepat untuk<br class="hidden md:block" />
       Mendukung Perjalanan <span
-        class="font-caveat font-medium italic text-black text-[42px] md:text-[54px] lg:text-[64px] leading-[80%] tracking-[-2.56px]"
+        class="font-caveat text-[42px] leading-[80%] font-medium tracking-[-2.56px] text-black italic md:text-[54px] lg:text-[64px]"
         >Belajarmu.</span
       >
     </h2>
 
     <p
       id="our-mentors-desc"
-      class="font-jakarta font-normal text-black/75 text-sm lg:text-base leading-[160%] max-w-[680px]"
+      class="font-jakarta max-w-[680px] text-sm leading-[160%] font-normal text-black/75 lg:text-base"
     >
-      Jelajahi profil mentor dari berbagai bidang keahlian yang siap membimbingmu melalui pendampingan personal.
+      Jelajahi profil mentor dari berbagai bidang keahlian yang siap membimbingmu melalui
+      pendampingan personal.
     </p>
   </div>
 
   <!-- Cards Container / Horizontal Track -->
   <div
     id="our-mentors-cards-container"
-    class="relative z-10 w-full overflow-x-auto no-scrollbar pb-4 cursor-grab active:cursor-grabbing select-none"
+    class="no-scrollbar relative z-10 w-full cursor-grab overflow-x-auto pb-4 select-none active:cursor-grabbing"
   >
     <div
       id="our-mentors-cards-track"
-      class="flex items-center gap-5 w-max px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] will-change-transform"
+      class="flex w-max items-center gap-5 px-[20px] will-change-transform sm:px-[24px] md:px-[28px] lg:px-[32px]"
     >
       {
         mentors.map((m) => (
-          <CardMentor
-            name={m.name}
-            field={m.field}
-            university={m.university}
-            image={m.image}
-          />
+          <CardMentor name={m.name} field={m.field} university={m.university} image={m.image} />
         ))
       }
     </div>

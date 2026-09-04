@@ -17,7 +17,7 @@ const {
 <section
   id="hero"
   class:list={[
-    "relative w-full min-h-svh flex flex-col justify-end overflow-hidden pb-12 sm:pb-16 md:pb-24 lg:pb-28 pt-32",
+    "relative flex min-h-svh w-full flex-col justify-end overflow-hidden pt-32 pb-12 sm:pb-16 md:pb-24 lg:pb-28",
     className,
   ]}
   aria-label="Contact Hero Section"
@@ -28,7 +28,7 @@ const {
     <img
       src={bgImage}
       alt={bgAlt}
-      class="w-full h-full object-cover object-center"
+      class="h-full w-full object-cover object-center"
       fetchpriority="high"
     />
     <!-- Gradient Overlay -->
@@ -41,30 +41,27 @@ const {
 
   <!-- Content Container -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px]"
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
-    <div
-      class="flex flex-col lg:flex-row items-start justify-between gap-6 lg:gap-12 text-white"
-    >
+    <div class="flex flex-col items-start justify-between gap-6 text-white lg:flex-row lg:gap-12">
       <!-- Badge Label (Left) -->
       <SectionTitle
         id="contact-hero-badge"
         variant="dark"
         title="Contact"
         showIcon={false}
-        class="flex-shrink-0 mb-2 lg:mb-4"
+        class="mb-2 flex-shrink-0 lg:mb-4"
       />
 
       <!-- Main Heading & Subtitle (Right) -->
-      <div class="flex-1 max-w-[860px] lg:ml-auto flex flex-col gap-4">
+      <div class="flex max-w-[860px] flex-1 flex-col gap-4 lg:ml-auto">
         <h1
           id="contact-hero-heading"
-          class="font-momo font-bold text-white text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px] leading-[1.15] tracking-tight"
+          class="font-momo text-[28px] leading-[1.15] font-bold tracking-tight text-white sm:text-[36px] md:text-[44px] lg:text-[54px]"
         >
-          Kami Siap Membantu Menjawab Pertanyaan dan Mendampingimu Memilih
-          Program yang{" "}
+          Kami Siap Membantu Menjawab Pertanyaan dan Mendampingimu Memilih Program yang{" "}
           <span
-            class="font-caveat font-semibold italic text-white text-[38px] sm:text-[48px] md:text-[58px] lg:text-[68px] leading-none"
+            class="font-caveat text-[38px] leading-none font-semibold text-white italic sm:text-[48px] md:text-[58px] lg:text-[68px]"
           >
             Tepat.
           </span>
@@ -72,10 +69,10 @@ const {
 
         <p
           id="contact-hero-desc"
-          class="font-jakarta font-normal text-white/90 text-sm md:text-base lg:text-lg leading-relaxed max-w-[720px]"
+          class="font-jakarta max-w-[720px] text-sm leading-relaxed font-normal text-white/90 md:text-base lg:text-lg"
         >
-          Hubungi kami melalui WhatsApp untuk konsultasi yang lebih cepat, atau
-          gunakan informasi kontak lainnya sesuai kebutuhanmu.
+          Hubungi kami melalui WhatsApp untuk konsultasi yang lebih cepat, atau gunakan informasi
+          kontak lainnya sesuai kebutuhanmu.
         </p>
       </div>
     </div>
@@ -100,7 +97,7 @@ const {
           duration: 0.75,
           ease: "power3.out",
         },
-        "-=0.3",
+        "-=0.3"
       )
       .from(
         "#contact-hero-desc",
@@ -110,7 +107,7 @@ const {
           duration: 0.6,
           ease: "power2.out",
         },
-        "-=0.4",
+        "-=0.4"
       );
   </script>
 </section>

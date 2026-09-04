@@ -35,61 +35,57 @@ const learningSteps = [
 <section
   id="learning-process"
   class:list={[
-    "relative w-full bg-white text-[#161616] py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden",
+    "relative w-full overflow-hidden bg-white py-16 text-[#161616] sm:py-20 md:py-24 lg:py-28",
     className,
   ]}
   aria-label="Proses Belajar Section"
 >
   <!-- Standard Responsive Container -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col gap-10 lg:gap-14"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-[20px] sm:px-[24px] md:px-[28px] lg:gap-14 lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Section Main Heading -->
     <h2
       id="learning-process-heading"
-      class="font-momo font-bold text-[#161616] text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px] leading-[1.15] tracking-tight max-w-[1100px]"
+      class="font-momo max-w-[1100px] text-[28px] leading-[1.15] font-bold tracking-tight text-[#161616] sm:text-[36px] md:text-[44px] lg:text-[54px]"
     >
       Belajar, Berkolaborasi, dan Mengembangkan Proyek Hingga Menjadi{" "}
       <span
-        class="font-caveat font-semibold italic text-[#161616] text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px] leading-none inline-block mt-1 sm:mt-0"
+        class="font-caveat mt-1 inline-block text-[34px] leading-none font-semibold text-[#161616] italic sm:mt-0 sm:text-[44px] md:text-[54px] lg:text-[64px]"
       >
         Karya Nyata
       </span>
     </h2>
 
     <!-- Main Content: Image & Process List -->
-    <div
-      class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-stretch w-full"
-    >
+    <div class="grid w-full grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-12 xl:gap-16">
       <!-- Left Column: Image (Stretches to match right column height on desktop) -->
       <div
         id="learning-process-image"
-        class="lg:col-span-5 w-full h-[360px] sm:h-[460px] lg:h-full min-h-[380px] rounded-sm overflow-hidden shrink-0"
+        class="h-[360px] min-h-[380px] w-full shrink-0 overflow-hidden rounded-sm sm:h-[460px] lg:col-span-5 lg:h-full"
       >
         <Image
           src={learningProcessImg}
           alt="Proses Belajar dan Kolaborasi"
           width={800}
           height={600}
-          class="w-full h-full object-cover rounded-sm"
+          class="h-full w-full rounded-sm object-cover"
         />
       </div>
 
       <!-- Right Column: Description & Steps List -->
-      <div class="lg:col-span-7 flex flex-col justify-between w-full">
+      <div class="flex w-full flex-col justify-between lg:col-span-7">
         <!-- Top Description Text -->
         <p
           id="learning-process-desc"
-          class="font-jakarta font-normal text-gray-600 text-sm sm:text-base leading-[160%] mb-6 lg:mb-8 max-w-2xl"
+          class="font-jakarta mb-6 max-w-2xl text-sm leading-[160%] font-normal text-gray-600 sm:text-base lg:mb-8"
         >
-          Setiap sesi menggabungkan pembelajaran, praktik, dan pendampingan mentor agar setiap ide berkembang menjadi proyek yang bermakna.
+          Setiap sesi menggabungkan pembelajaran, praktik, dan pendampingan mentor agar setiap ide
+          berkembang menjadi proyek yang bermakna.
         </p>
 
         <!-- List Items Container -->
-        <div
-          id="learning-process-list"
-          class="flex flex-col w-full border-t border-gray-200"
-        >
+        <div id="learning-process-list" class="flex w-full flex-col border-t border-gray-200">
           {
             learningSteps.map((step) => (
               <ListLearningProcess

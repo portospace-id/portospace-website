@@ -23,42 +23,40 @@ const founders: Founder[] = [
 
 <section
   id="founder-section"
-  class="relative w-full bg-white text-black py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden"
+  class="relative w-full overflow-hidden bg-white py-16 text-black sm:py-20 md:py-24 lg:py-28"
   aria-label="Profile Founders PortoSpace"
 >
   <!-- Background Decorative Pattern 4 SVG - Top Right -->
   <div
-    class="absolute -top-[160px] -right-[160px] sm:-top-[220px] sm:-right-[220px] md:-top-[280px] md:-right-[280px] w-[500px] sm:w-[700px] md:w-[900px] pointer-events-none z-0 select-none opacity-90"
+    class="pointer-events-none absolute -top-[160px] -right-[160px] z-0 w-[500px] opacity-90 select-none sm:-top-[220px] sm:-right-[220px] sm:w-[700px] md:-top-[280px] md:-right-[280px] md:w-[900px]"
   >
     <Image
       src={pattern4}
       alt=""
       width={1064}
       height={1068}
-      class="w-full h-auto object-contain pointer-events-none"
+      class="pointer-events-none h-auto w-full object-contain"
       aria-hidden="true"
     />
   </div>
 
   <!-- Main Content Wrapper -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-center gap-12 sm:gap-16"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center gap-12 px-[20px] sm:gap-16 sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Top Header -->
-    <div
-      class="flex flex-col items-center text-center gap-3 max-w-[800px] mx-auto"
-    >
+    <div class="mx-auto flex max-w-[800px] flex-col items-center gap-3 text-center">
       <!-- Section Title Badge -->
       <SectionTitle variant="light" title="Profile Founders" />
 
       <!-- Heading -->
       <h2
         id="founder-heading"
-        class="font-momo font-bold text-[#161616] text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.15] tracking-tight"
+        class="font-momo text-[32px] leading-[1.15] font-bold tracking-tight text-[#161616] sm:text-[44px] lg:text-[54px]"
       >
         Mengenal Tim yang<br />
         Membangun <span
-          class="font-caveat font-semibold italic text-[#161616] text-[38px] sm:text-[52px] lg:text-[64px] leading-none"
+          class="font-caveat text-[38px] leading-none font-semibold text-[#161616] italic sm:text-[52px] lg:text-[64px]"
           >PortoSpace.</span
         >
       </h2>
@@ -66,57 +64,28 @@ const founders: Founder[] = [
       <!-- Description -->
       <p
         id="founder-desc"
-        class="font-jakarta font-normal text-[#475467] text-sm sm:text-base leading-relaxed max-w-[560px]"
+        class="font-jakarta max-w-[560px] text-sm leading-relaxed font-normal text-[#475467] sm:text-base"
       >
-        Orang-orang di balik PortoSpace yang berkomitmen menghadirkan pengalaman
-        belajar terbaik bagi setiap siswa.
+        Orang-orang di balik PortoSpace yang berkomitmen menghadirkan pengalaman belajar terbaik
+        bagi setiap siswa.
       </p>
     </div>
 
     <!-- Founders Container (2 Rows Layout with Row 2 justify-between) -->
-    <div
-      id="founder-cards"
-      class="w-full flex flex-col gap-10 sm:gap-12"
-    >
+    <div id="founder-cards" class="flex w-full flex-col gap-10 sm:gap-12">
       <!-- Row 1: Card 1, Card 2, Card 3 -->
-      <div class="w-full flex flex-wrap items-start gap-[12px]">
-        <CardFounder
-          name={founders[0].name}
-          role={founders[0].role}
-          image={founders[0].image}
-        />
-        <CardFounder
-          name={founders[1].name}
-          role={founders[1].role}
-          image={founders[1].image}
-        />
-        <CardFounder
-          name={founders[2].name}
-          role={founders[2].role}
-          image={founders[2].image}
-        />
+      <div class="flex w-full flex-wrap items-start gap-[12px]">
+        <CardFounder name={founders[0].name} role={founders[0].role} image={founders[0].image} />
+        <CardFounder name={founders[1].name} role={founders[1].role} image={founders[1].image} />
+        <CardFounder name={founders[2].name} role={founders[2].role} image={founders[2].image} />
       </div>
 
       <!-- Row 2: Card 4 on left, Card 5 & Card 6 on right (justify-between) -->
-      <div
-        class="w-full flex flex-col sm:flex-row items-start justify-between gap-6 sm:gap-0"
-      >
-        <CardFounder
-          name={founders[3].name}
-          role={founders[3].role}
-          image={founders[3].image}
-        />
+      <div class="flex w-full flex-col items-start justify-between gap-6 sm:flex-row sm:gap-0">
+        <CardFounder name={founders[3].name} role={founders[3].role} image={founders[3].image} />
         <div class="flex flex-wrap items-start gap-[12px]">
-          <CardFounder
-            name={founders[4].name}
-            role={founders[4].role}
-            image={founders[4].image}
-          />
-          <CardFounder
-            name={founders[5].name}
-            role={founders[5].role}
-            image={founders[5].image}
-          />
+          <CardFounder name={founders[4].name} role={founders[4].role} image={founders[4].image} />
+          <CardFounder name={founders[5].name} role={founders[5].role} image={founders[5].image} />
         </div>
       </div>
     </div>

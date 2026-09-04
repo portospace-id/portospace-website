@@ -12,7 +12,7 @@ const { bgImage = "/section-wa.webp", class: className = "" } = Astro.props;
 <section
   id="komunitas-wa"
   class:list={[
-    "relative w-full h-screen min-h-[100vh] flex flex-col items-center justify-center overflow-hidden bg-[#111]",
+    "relative flex h-screen min-h-[100vh] w-full flex-col items-center justify-center overflow-hidden bg-[#111]",
     className,
   ]}
   aria-label="Konsultasi PortoSpace"
@@ -22,24 +22,20 @@ const { bgImage = "/section-wa.webp", class: className = "" } = Astro.props;
   <img
     src={bgImage}
     alt="Konsultasi PortoSpace"
-    class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none z-0 opacity-50"
+    class="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-center opacity-50 select-none"
   />
 
   <!-- Dark Overlay for Text Contrast -->
-  <div
-    class="absolute inset-0 bg-black/50 pointer-events-none z-0"
-    aria-hidden="true"
-  >
-  </div>
+  <div class="pointer-events-none absolute inset-0 z-0 bg-black/50" aria-hidden="true"></div>
 
   <!-- Content Wrapper -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[48px] lg:px-[162px] xl:px-[162px] flex flex-col items-center text-center"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] text-center sm:px-[24px] md:px-[48px] lg:px-[162px] xl:max-w-none xl:px-[162px]"
   >
     <!-- Heading -->
     <h2
       id="komunitas-wa-heading"
-      class="font-momo font-bold text-white text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px] leading-tight max-w-[840px]"
+      class="font-momo max-w-[840px] text-[28px] leading-tight font-bold text-white sm:text-[36px] md:text-[44px] lg:text-[54px]"
     >
       Konsultasi Gratis Bersama Tim PortoSpace
     </h2>
@@ -47,11 +43,10 @@ const { bgImage = "/section-wa.webp", class: className = "" } = Astro.props;
     <!-- Subtitle / Description -->
     <p
       id="komunitas-wa-desc"
-      class="font-jakarta font-normal text-white/90 text-sm md:text-base lg:text-lg leading-relaxed max-w-[640px] mt-4 mb-8 lg:mb-10"
+      class="font-jakarta mt-4 mb-8 max-w-[640px] text-sm leading-relaxed font-normal text-white/90 md:text-base lg:mb-10 lg:text-lg"
     >
-      Masih bingung memilih program atau paket yang sesuai? Tim kami siap
-      membantu menjawab pertanyaanmu dan memberikan rekomendasi yang paling
-      tepat sesuai tujuan belajarmu.
+      Masih bingung memilih program atau paket yang sesuai? Tim kami siap membantu menjawab
+      pertanyaanmu dan memberikan rekomendasi yang paling tepat sesuai tujuan belajarmu.
     </p>
 
     <!-- WhatsApp Button -->
@@ -60,10 +55,10 @@ const { bgImage = "/section-wa.webp", class: className = "" } = Astro.props;
         href="https://wa.me/6285793057466"
         target="_blank"
         rel="noopener noreferrer"
-        class="!bg-[#25D366] hover:!bg-[#20ba5a] active:!bg-[#1ca650] !text-slate-900 font-bold px-6 py-3.5 rounded-sm shadow-none hover:shadow-none hover:-translate-y-0.5 inline-flex items-center gap-2.5 text-base"
+        class="inline-flex items-center gap-2.5 rounded-sm !bg-[#25D366] px-6 py-3.5 text-base font-bold !text-slate-900 shadow-none hover:-translate-y-0.5 hover:!bg-[#20ba5a] hover:shadow-none active:!bg-[#1ca650]"
       >
         <svg
-          class="w-5 h-5 flex-shrink-0 fill-current text-slate-900"
+          class="h-5 w-5 flex-shrink-0 fill-current text-slate-900"
           viewBox="0 0 24 24"
           aria-hidden="true"
         >

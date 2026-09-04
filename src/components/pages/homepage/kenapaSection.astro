@@ -41,16 +41,16 @@ const programs = [
 
 <section
   id="kenapa"
-  class="relative w-full bg-white overflow-hidden"
+  class="relative w-full overflow-hidden bg-white"
   aria-label="Kenapa PortoSpace"
   data-navbar="white"
 >
   <div
-    class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] py-[60px] lg:py-[80px] flex flex-col lg:flex-row items-center lg:items-stretch justify-between gap-10 lg:gap-12 xl:gap-[260px]"
+    class="mx-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-10 px-[20px] py-[60px] sm:px-[24px] md:px-[28px] lg:flex-row lg:items-stretch lg:gap-12 lg:px-[32px] lg:py-[80px] xl:max-w-none xl:gap-[260px] xl:px-[32px]"
   >
     <!-- Left: Content Container -->
     <div
-      class="w-full lg:w-[561px] flex flex-col items-start justify-center gap-8 lg:gap-12 flex-shrink-0"
+      class="flex w-full flex-shrink-0 flex-col items-start justify-center gap-8 lg:w-[561px] lg:gap-12"
     >
       <!-- Badge -->
       <div id="kenapa-badge">
@@ -61,21 +61,21 @@ const programs = [
       <div class="flex flex-col gap-4">
         <h2
           id="kenapa-heading"
-          class="font-momo font-semibold text-[#111] leading-[110%] tracking-[-1.5px] text-[36px] md:text-[48px] lg:text-[54px]"
+          class="font-momo text-[36px] leading-[110%] font-semibold tracking-[-1.5px] text-[#111] md:text-[48px] lg:text-[54px]"
         >
           Temukan Potensimu,<br />
           Bangun Karyamu,<br />
           Raih <span
-            class="font-caveat font-bold text-[#111] text-[48px] md:text-[60px] lg:text-[68px] leading-[80%] tracking-[-2px]"
+            class="font-caveat text-[48px] leading-[80%] font-bold tracking-[-2px] text-[#111] md:text-[60px] lg:text-[68px]"
             >Peluangmu</span
           >
         </h2>
         <p
           id="kenapa-desc"
-          class="font-jakarta font-normal text-[#444] text-[16px] leading-[160%] max-w-[440px]"
+          class="font-jakarta max-w-[440px] text-[16px] leading-[160%] font-normal text-[#444]"
         >
-          Belajar bersama mentor melalui proyek nyata yang membantu kamu
-          berkembang dan mempersiapkan masa depan.
+          Belajar bersama mentor melalui proyek nyata yang membantu kamu berkembang dan
+          mempersiapkan masa depan.
         </p>
       </div>
 
@@ -85,15 +85,15 @@ const programs = [
 
     <!-- Right: Image Container -->
     <div
-      class="relative w-full lg:flex-1 min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[645px] lg:h-auto self-stretch overflow-hidden rounded-[12px] bg-gray-100"
+      class="relative min-h-[300px] w-full self-stretch overflow-hidden rounded-[12px] bg-gray-100 sm:min-h-[400px] md:min-h-[500px] lg:h-auto lg:min-h-[645px] lg:flex-1"
     >
       {
         programs.map((p, i) => (
           <Image
             src={p.image}
             alt={p.title}
-            class={`kenapa-image absolute inset-0 w-full h-full object-cover pointer-events-none select-none transition-opacity duration-500 ${
-              i === 0 ? "opacity-100 z-10" : "opacity-0 z-0"
+            class={`kenapa-image pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-500 select-none ${
+              i === 0 ? "z-10 opacity-100" : "z-0 opacity-0"
             }`}
             data-image-index={i}
             loading={i === 0 ? "eager" : "lazy"}

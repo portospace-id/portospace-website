@@ -22,42 +22,42 @@ const { items, variant = "light", class: className = "", ...rest } = Astro.props
 const isDark = variant === "dark";
 ---
 
-<div id="faq-list" class:list={["w-full max-w-[840px] flex flex-col", className]} {...rest}>
+<div id="faq-list" class:list={["flex w-full max-w-[840px] flex-col", className]} {...rest}>
   {
     items.map((item, index) => (
       <div
         class:list={[
-          "faq-accordion-item border-b flex flex-col transition-colors duration-200",
+          "faq-accordion-item flex flex-col border-b transition-colors duration-200",
           isDark ? "border-white/20" : "border-gray-200",
-          index === 0 ? "pb-4 lg:pb-5 pt-0" : "py-4 lg:py-5",
+          index === 0 ? "pt-0 pb-4 lg:pb-5" : "py-4 lg:py-5",
         ]}
         data-index={index}
       >
         <button
           type="button"
           class:list={[
-            "faq-trigger w-full flex items-center justify-between gap-4 text-left group cursor-pointer",
-            index === 0 ? "pb-1 pt-0" : "py-1",
+            "faq-trigger group flex w-full cursor-pointer items-center justify-between gap-4 text-left",
+            index === 0 ? "pt-0 pb-1" : "py-1",
           ]}
           aria-expanded={index === 0 ? "true" : "false"}
           aria-controls={`faq-answer-${item.id}`}
         >
           <span
             class:list={[
-              "font-sans font-semibold text-base lg:text-[18px] leading-[150%] transition-colors duration-200",
+              "font-sans text-base leading-[150%] font-semibold transition-colors duration-200 lg:text-[18px]",
               isDark
                 ? "text-white group-hover:text-white/80"
-                : "text-[#161616] group-hover:text-violet-normal",
+                : "group-hover:text-violet-normal text-[#161616]",
             ]}
           >
             {item.question}
           </span>
           <ChevronDown
             class:list={[
-              "faq-chevron flex-shrink-0 w-5 h-5 transition-all duration-300",
+              "faq-chevron h-5 w-5 flex-shrink-0 transition-all duration-300",
               isDark
                 ? "text-white group-hover:text-white/80"
-                : "text-[#161616] group-hover:text-violet-normal",
+                : "group-hover:text-violet-normal text-[#161616]",
               index === 0 ? "rotate-180" : "",
             ]}
           />
@@ -65,12 +65,12 @@ const isDark = variant === "dark";
 
         <div
           id={`faq-answer-${item.id}`}
-          class="faq-content transition-all duration-300 overflow-hidden"
+          class="faq-content overflow-hidden transition-all duration-300"
           style={index === 0 ? "display: block;" : "display: none;"}
         >
           <p
             class:list={[
-              "font-sans font-normal text-sm lg:text-base leading-[160%] pt-3 pb-2",
+              "pt-3 pb-2 font-sans text-sm leading-[160%] font-normal lg:text-base",
               isDark ? "text-white/80" : "text-gray-600",
             ]}
           >

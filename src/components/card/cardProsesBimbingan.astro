@@ -41,28 +41,28 @@ const isFeatured = variant === "featured";
   isFeatured ? (
     <div
       class:list={[
-        "relative w-full h-full min-h-[380px] sm:min-h-[460px] lg:min-h-[1074px] lg:h-[1074px] rounded-[16px] overflow-hidden flex flex-col justify-end p-6 md:p-8 lg:p-10 xl:p-12 group shadow-sm border border-gray-100",
+        "group relative flex h-full min-h-[380px] w-full flex-col justify-end overflow-hidden rounded-[16px] border border-gray-100 p-6 shadow-sm sm:min-h-[460px] md:p-8 lg:h-[1074px] lg:min-h-[1074px] lg:p-10 xl:p-12",
         className,
       ]}
       {...rest}
     >
-      <!-- Background Image -->
+      {/* Background Image */}
       <Image
         src={image}
         alt={title}
-        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-500 select-none group-hover:scale-105"
       />
 
-      <!-- Dark Overlay Gradient -->
-      <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent pointer-events-none z-10" />
+      {/* Dark Overlay Gradient */}
+      <div class="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/95 via-black/60 to-transparent" />
 
-      <!-- Content -->
+      {/* Content */}
       <div class="relative z-20 flex flex-col items-start gap-4 lg:gap-6">
-        <h3 class="font-momo font-semibold text-white text-[28px] md:text-[36px] lg:text-[44px] xl:text-[52px] leading-[115%] tracking-[-1px]">
+        <h3 class="font-momo text-[28px] leading-[115%] font-semibold tracking-[-1px] text-white md:text-[36px] lg:text-[44px] xl:text-[52px]">
           {title}
         </h3>
 
-        <p class="font-jakarta font-normal text-white/90 text-sm lg:text-base xl:text-lg leading-[160%] max-w-[620px]">
+        <p class="font-jakarta max-w-[620px] text-sm leading-[160%] font-normal text-white/90 lg:text-base xl:text-lg">
           {description}
         </p>
 
@@ -71,7 +71,7 @@ const isFeatured = variant === "featured";
             href={ctaHref}
             variant="secondary"
             arrow
-            class="!bg-citrus-normal !text-black-normal hover:!bg-citrus-normal-hover font-jakarta font-semibold text-sm px-6 py-3.5 rounded-sm shadow-md mt-2"
+            class="!bg-citrus-normal !text-black-normal hover:!bg-citrus-normal-hover font-jakarta mt-2 rounded-sm px-6 py-3.5 text-sm font-semibold shadow-md"
           >
             {ctaText}
           </Button>
@@ -81,49 +81,45 @@ const isFeatured = variant === "featured";
   ) : (
     <div
       class:list={[
-        "relative w-full min-h-[220px] lg:min-h-0 lg:flex-1 rounded-[16px] overflow-hidden flex flex-col justify-end p-6 lg:p-7 group shadow-sm border border-gray-100",
+        "group relative flex min-h-[220px] w-full flex-col justify-end overflow-hidden rounded-[16px] border border-gray-100 p-6 shadow-sm lg:min-h-0 lg:flex-1 lg:p-7",
         className,
       ]}
       {...rest}
     >
-      <!-- Background Image -->
+      {/* Background Image */}
       <Image
         src={image}
         alt={title}
-        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-500 select-none group-hover:scale-105"
       />
 
-      <!-- Dark Overlay Gradient -->
-      <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 to-black/30 pointer-events-none z-10" />
+      {/* Dark Overlay Gradient */}
+      <div class="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/95 via-black/75 to-black/30" />
 
-      <!-- Content -->
+      {/* Content */}
       <div class="relative z-20 flex flex-col gap-2 text-white">
-        <h4 class="font-momo font-semibold text-white text-[18px] lg:text-[20px] leading-[130%] tracking-[-0.5px]">
+        <h4 class="font-momo text-[18px] leading-[130%] font-semibold tracking-[-0.5px] text-white lg:text-[20px]">
           {title}
         </h4>
 
-        <p class="font-jakarta font-normal text-white/80 text-[12px] lg:text-[13px] leading-[150%] max-w-[540px]">
+        <p class="font-jakarta max-w-[540px] text-[12px] leading-[150%] font-normal text-white/80 lg:text-[13px]">
           {description}
         </p>
 
-        <!-- Checklist Features -->
+        {/* Checklist Features */}
         {features && features.length > 0 && (
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1.5 mt-2">
+          <div class="mt-2 grid grid-cols-1 gap-x-4 gap-y-1.5 md:grid-cols-2">
             {features.map((feature) => (
-              <div class="flex items-center gap-2 text-white/90 font-jakarta text-[11px] lg:text-[12px] font-normal">
-                <div class="w-3.5 h-3.5 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
+              <div class="font-jakarta flex items-center gap-2 text-[11px] font-normal text-white/90 lg:text-[12px]">
+                <div class="flex h-3.5 w-3.5 flex-shrink-0 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
                   <svg
-                    class="w-2 h-2 text-white"
+                    class="h-2 w-2 text-white"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                     stroke-width="3"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M5 13l4 4L19 7"
-                    />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
                 <span class="truncate">{feature}</span>

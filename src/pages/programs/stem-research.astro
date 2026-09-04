@@ -1,0 +1,26 @@
+---
+// Layouts
+import Layout from "@/layouts/Layout.astro";
+
+// Sections
+import HeroSection from "@/components/pages/stemResearch/heroSection.astro";
+import ManfaatOutcome from "@/components/pages/stemResearch/manfaatOutcame.astro";
+import CakupanBidang from "@/components/pages/stemResearch/cakupanBidang.astro";
+import AlurRiset from "@/components/pages/stemResearch/alurRiset.astro";
+import ProjectSection from "@/components/pages/stemResearch/project.astro";
+import KomunitasWA from "@/components/pages/stemResearch/komunitasWA.astro";
+---
+
+<Layout
+  title="STEM Research — PortoSpace"
+  description="Program mentorship riset, robotics, dan coding untuk siswa kelas 9–12. Dibimbing langsung oleh PhD, Master, dan pakar industri lulusan global."
+>
+  <main>
+    <HeroSection />
+    <ManfaatOutcome />
+    <CakupanBidang />
+    <AlurRiset />
+    <ProjectSection />
+    <KomunitasWA />
+  </main>
+</Layout>

@@ -14,48 +14,42 @@ const { class: className = "" } = Astro.props;
 <section
   id="contact-info-form"
   class:list={[
-    "relative w-full min-h-screen flex flex-col justify-center bg-white py-20 lg:py-28 overflow-hidden",
+    "relative flex min-h-screen w-full flex-col justify-center overflow-hidden bg-white py-20 lg:py-28",
     className,
   ]}
   aria-label="Informasi dan Form Kontak"
   data-navbar="white"
 >
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[48px] lg:px-[162px] xl:px-[162px]"
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[48px] lg:px-[162px] xl:max-w-none xl:px-[162px]"
   >
-    <div
-      class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-stretch w-full"
-    >
+    <div class="flex w-full flex-col items-stretch gap-12 lg:flex-row lg:gap-16">
       <!-- Left Column: Contact Details (Equal Height, 24px gap) -->
       <div
         id="contact-info"
-        class="w-full lg:w-[40%] xl:w-[35%] shrink-0 text-gray-900 flex flex-col justify-between"
+        class="flex w-full shrink-0 flex-col justify-between text-gray-900 lg:w-[40%] xl:w-[35%]"
       >
         <div>
           <h2
-            class="font-momo font-bold text-[#1a1a1a] text-[32px] sm:text-[40px] lg:text-[54px] leading-none mb-10 md:mb-14 flex items-baseline gap-2"
+            class="font-momo mb-10 flex items-baseline gap-2 text-[32px] leading-none font-bold text-[#1a1a1a] sm:text-[40px] md:mb-14 lg:text-[54px]"
           >
             <span>Hubungi</span>
             <span
-              class="font-caveat font-semibold text-black text-[38px] sm:text-[48px] lg:text-[64px] leading-none"
+              class="font-caveat text-[38px] leading-none font-semibold text-black sm:text-[48px] lg:text-[64px]"
             >
               Kami
             </span>
           </h2>
 
-          <div class="flex flex-col gap-6 font-jakarta">
+          <div class="font-jakarta flex flex-col gap-6">
             <!-- WhatsApp -->
             <div class="flex flex-col gap-3">
-              <p
-                class="text-[#666666] text-sm md:text-base font-medium leading-none"
-              >
-                WhatsApp
-              </p>
+              <p class="text-sm leading-none font-medium text-[#666666] md:text-base">WhatsApp</p>
               <a
                 href="https://wa.me/6285793057466"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-[#333333] text-base md:text-lg font-normal leading-none hover:text-violet-normal transition-colors"
+                class="hover:text-violet-normal text-base leading-none font-normal text-[#333333] transition-colors md:text-lg"
               >
                 +62 857-9305-7466
               </a>
@@ -63,14 +57,10 @@ const { class: className = "" } = Astro.props;
 
             <!-- Email -->
             <div class="flex flex-col gap-3">
-              <p
-                class="text-[#666666] text-sm md:text-base font-medium leading-none"
-              >
-                Email
-              </p>
+              <p class="text-sm leading-none font-medium text-[#666666] md:text-base">Email</p>
               <a
                 href="mailto:admin@portospace.id"
-                class="text-[#333333] text-base md:text-lg font-normal leading-none hover:text-violet-normal transition-colors"
+                class="hover:text-violet-normal text-base leading-none font-normal text-[#333333] transition-colors md:text-lg"
               >
                 admin@portospace.id
               </a>
@@ -78,28 +68,18 @@ const { class: className = "" } = Astro.props;
 
             <!-- Lokasi -->
             <div class="flex flex-col gap-3">
-              <p
-                class="text-[#666666] text-sm md:text-base font-medium leading-none"
-              >
-                Lokasi
-              </p>
-              <p
-                class="text-[#333333] text-base md:text-lg font-normal leading-none"
-              >
+              <p class="text-sm leading-none font-medium text-[#666666] md:text-base">Lokasi</p>
+              <p class="text-base leading-none font-normal text-[#333333] md:text-lg">
                 admin@portospace.id
               </p>
             </div>
 
             <!-- Jam Operasional -->
             <div class="flex flex-col gap-3">
-              <p
-                class="text-[#666666] text-sm md:text-base font-medium leading-none"
-              >
+              <p class="text-sm leading-none font-medium text-[#666666] md:text-base">
                 Jam Operasional
               </p>
-              <p
-                class="text-[#333333] text-base md:text-lg font-normal leading-relaxed"
-              >
+              <p class="text-base leading-relaxed font-normal text-[#333333] md:text-lg">
                 Senin – Jumat <br />
                 <span>09.00 – 18.00 WIB</span>
               </p>
@@ -114,7 +94,7 @@ const { class: className = "" } = Astro.props;
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Threads"
-            class="w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#8b2cf5] hover:bg-[#7b20e8] text-white flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-[#8b2cf5] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#7b20e8] md:h-11 md:w-11"
           >
             <AtSign size={18} />
           </a>
@@ -123,7 +103,7 @@ const { class: className = "" } = Astro.props;
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            class="w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#8b2cf5] hover:bg-[#7b20e8] text-white flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-[#8b2cf5] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#7b20e8] md:h-11 md:w-11"
           >
             <svg
               width="18"
@@ -145,7 +125,7 @@ const { class: className = "" } = Astro.props;
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            class="w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#8b2cf5] hover:bg-[#7b20e8] text-white flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-[#8b2cf5] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#7b20e8] md:h-11 md:w-11"
           >
             <svg
               width="18"
@@ -167,7 +147,7 @@ const { class: className = "" } = Astro.props;
           <a
             href="mailto:admin@portospace.id"
             aria-label="Email"
-            class="w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#8b2cf5] hover:bg-[#7b20e8] text-white flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-[#8b2cf5] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#7b20e8] md:h-11 md:w-11"
           >
             <Mail size={18} />
           </a>
@@ -176,7 +156,7 @@ const { class: className = "" } = Astro.props;
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp"
-            class="w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#8b2cf5] hover:bg-[#7b20e8] text-white flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-[#8b2cf5] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#7b20e8] md:h-11 md:w-11"
           >
             <MessageCircle size={18} />
           </a>
@@ -184,15 +164,9 @@ const { class: className = "" } = Astro.props;
       </div>
 
       <!-- Right Column: Form (24px gap between elements) -->
-      <div
-        id="contact-form-wrapper"
-        class="flex-1 w-full flex flex-col justify-between"
-      >
-        <form
-          id="contact-form"
-          class="flex flex-col justify-between w-full h-full flex-1 gap-6"
-        >
-          <div class="flex flex-col sm:flex-row gap-6">
+      <div id="contact-form-wrapper" class="flex w-full flex-1 flex-col justify-between">
+        <form id="contact-form" class="flex h-full w-full flex-1 flex-col justify-between gap-6">
+          <div class="flex flex-col gap-6 sm:flex-row">
             <!-- Nama -->
             <Input
               id="nama"
@@ -233,7 +207,7 @@ const { class: className = "" } = Astro.props;
               type="submit"
               variant="primary"
               size="lg"
-              class="w-full justify-center text-base font-semibold py-4 rounded-sm !shadow-none"
+              class="w-full justify-center rounded-sm py-4 text-base font-semibold !shadow-none"
             >
               Kirim Pesan
             </Button>
@@ -278,10 +252,7 @@ const { class: className = "" } = Astro.props;
     };
 
     if (document.readyState === "loading") {
-      document.addEventListener(
-        "DOMContentLoaded",
-        initContactSectionAnimations,
-      );
+      document.addEventListener("DOMContentLoaded", initContactSectionAnimations);
     } else {
       initContactSectionAnimations();
     }

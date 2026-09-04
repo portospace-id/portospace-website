@@ -85,7 +85,7 @@ const columns = [column1, column2, column3, column4];
 <section
   id="fasilitas"
   class:list={[
-    "relative w-full bg-white py-[60px] lg:py-[100px] flex flex-col items-center overflow-hidden",
+    "relative flex w-full flex-col items-center overflow-hidden bg-white py-[60px] lg:py-[100px]",
     className,
   ]}
   aria-label="Fasilitas PortoSpace"
@@ -93,11 +93,11 @@ const columns = [column1, column2, column3, column4];
 >
   <!-- Standard Responsive Container -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-center"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Top Header Row: Left Badge & Right Heading -->
     <div
-      class="flex flex-col lg:flex-row items-start justify-between gap-6 lg:gap-12 w-full mb-12 lg:mb-16"
+      class="mb-12 flex w-full flex-col items-start justify-between gap-6 lg:mb-16 lg:flex-row lg:gap-12"
     >
       <!-- Badge Tag (Left) -->
       <SectionTitle
@@ -105,20 +105,20 @@ const columns = [column1, column2, column3, column4];
         variant="light"
         title="Fasilitas"
         showIcon={true}
-        class="flex-shrink-0 mb-2 lg:mb-4"
+        class="mb-2 flex-shrink-0 lg:mb-4"
       />
 
       <!-- Right Column: Main Heading -->
-      <div class="w-full lg:w-auto lg:ml-auto max-w-[880px]">
+      <div class="w-full max-w-[880px] lg:ml-auto lg:w-auto">
         <h2
           id="fasilitas-heading"
-          class="font-momo font-bold text-[#111111] text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px] leading-[1.15] tracking-tight mb-0 text-left w-full"
+          class="font-momo mb-0 w-full text-left text-[28px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[54px]"
         >
           Semua yang Kamu Butuhkan untuk<br class="hidden sm:block" />
           Belajar, Berkarya, dan Terus<br class="hidden sm:block" />
           Berkembang dalam Satu{" "}
           <span
-            class="font-caveat font-semibold italic text-[#111111] text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px] leading-none align-baseline mt-1 sm:mt-2 inline-block"
+            class="font-caveat mt-1 inline-block align-baseline text-[34px] leading-none font-semibold text-[#111111] italic sm:mt-2 sm:text-[44px] md:text-[54px] lg:text-[64px]"
           >
             Program
           </span>
@@ -129,11 +129,11 @@ const columns = [column1, column2, column3, column4];
     <!-- Bento Grid (4 Columns Masonry Layout) -->
     <div
       id="fasilitas-grid"
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 w-full items-start"
+      class="grid w-full grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6"
     >
       {
-        columns.map((col, colIdx) => (
-          <div class="flex flex-col gap-5 lg:gap-6 w-full" key={colIdx}>
+        columns.map((col) => (
+          <div class="flex w-full flex-col gap-5 lg:gap-6">
             {col.map((item) => (
               <CardFasilitas
                 title={item.title}
@@ -156,7 +156,7 @@ const columns = [column1, column2, column3, column4];
     gsap.registerPlugin(ScrollTrigger);
 
     const initAnimations = () => {
-      const section = document.querySelector("#fasilitas");
+      const section = document.querySelector<HTMLElement>("#fasilitas");
       if (!section) return;
 
       const tl = gsap.timeline({
@@ -183,7 +183,7 @@ const columns = [column1, column2, column3, column4];
             ease: "power3.out",
             clearProps: "all",
           },
-          "-=0.3",
+          "-=0.3"
         )
         .from(
           "#fasilitas-grid > div",
@@ -195,7 +195,7 @@ const columns = [column1, column2, column3, column4];
             ease: "power2.out",
             clearProps: "all",
           },
-          "-=0.4",
+          "-=0.4"
         );
     };
 

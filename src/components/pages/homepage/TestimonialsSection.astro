@@ -88,7 +88,7 @@ const testimonials: Testimonial[] = [
 
 <section
   id="testimonials"
-  class="relative w-full bg-white overflow-hidden"
+  class="relative w-full overflow-hidden bg-white"
   aria-label="Testimonials dari siswa PortoSpace"
   data-navbar="white"
 >
@@ -96,14 +96,14 @@ const testimonials: Testimonial[] = [
   <Image
     src={pattern4}
     alt=""
-    class="absolute pointer-events-none select-none z-0"
+    class="pointer-events-none absolute z-0 select-none"
     style="width: 486.515px; height: 488px; left: -149px; top: -180.041px; display: block;"
     aria-hidden="true"
   />
 
   <!-- Header -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pt-[80px] pb-10 flex flex-col items-center"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] pt-[80px] pb-10 sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <div id="testimonials-badge" class="mb-4">
       <SectionTitle variant="light">Testimonials</SectionTitle>
@@ -111,11 +111,11 @@ const testimonials: Testimonial[] = [
 
     <h2
       id="testimonials-heading"
-      class="font-momo font-semibold text-[#111] text-[32px] md:text-[40px] lg:text-[54px] leading-[110%] tracking-[-0.02em] lg:tracking-[-1.08px] max-w-[980px] text-center"
+      class="font-momo max-w-[980px] text-center text-[32px] leading-[110%] font-semibold tracking-[-0.02em] text-[#111] md:text-[40px] lg:text-[54px] lg:tracking-[-1.08px]"
     >
       Mereka Memulai di PortoSpace, Kini Siap Melangkah
       <span
-        class="font-caveat font-bold text-[#111] text-[38px] md:text-[48px] lg:text-[64px] leading-[80%] tracking-[-0.04em] lg:tracking-[-2.56px] align-bottom ml-2"
+        class="font-caveat ml-2 align-bottom text-[38px] leading-[80%] font-bold tracking-[-0.04em] text-[#111] md:text-[48px] lg:text-[64px] lg:tracking-[-2.56px]"
       >
         Lebih Jauh.
       </span>
@@ -123,10 +123,7 @@ const testimonials: Testimonial[] = [
   </div>
 
   <!-- Carousel -->
-  <div
-    id="testimonials-carousel-outer"
-    class="relative z-10 w-full overflow-hidden"
-  >
+  <div id="testimonials-carousel-outer" class="relative z-10 w-full overflow-hidden">
     <div
       id="testimonials-track"
       class="flex gap-[10px] will-change-transform"
@@ -240,7 +237,7 @@ const testimonials: Testimonial[] = [
       () => {
         isPaused = true;
       },
-      { passive: true },
+      { passive: true }
     );
     trackEl.addEventListener("touchend", () => {
       setTimeout(() => {

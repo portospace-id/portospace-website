@@ -43,7 +43,7 @@ const stats = [
 <section
   id="pencapaian"
   class:list={[
-    "relative w-full min-h-svh overflow-hidden flex flex-col justify-center py-12 md:py-16 lg:py-20",
+    "relative flex min-h-svh w-full flex-col justify-center overflow-hidden py-12 md:py-16 lg:py-20",
     className,
   ]}
   aria-label="Pencapaian Mentors Section"
@@ -54,47 +54,39 @@ const stats = [
     <img
       src={bgUrl}
       alt={bgAlt}
-      class="w-full h-full object-cover object-center"
+      class="h-full w-full object-cover object-center"
       fetchpriority="high"
     />
   </div>
 
   <!-- Dark Overlay -->
-  <div
-    class="absolute inset-0 z-[1] pointer-events-none bg-black/50"
-    aria-hidden="true"
-  >
-  </div>
+  <div class="pointer-events-none absolute inset-0 z-[1] bg-black/50" aria-hidden="true"></div>
 
   <!-- Main Content Container -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px]"
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Main Flex Row: Badge (Left) & Container (Right) -->
-    <div
-      class="flex flex-col lg:flex-row items-start gap-[32px] lg:gap-[200px] w-full"
-    >
+    <div class="flex w-full flex-col items-start gap-[32px] lg:flex-row lg:gap-[200px]">
       <!-- Badge Label (Left) -->
       <SectionTitle
         id="pencapaian-badge"
         variant="dark"
         title="Pencapaian"
-        class="flex-shrink-0 mb-2 lg:mb-4"
+        class="mb-2 flex-shrink-0 lg:mb-4"
       />
 
       <!-- Container (Right) -->
-      <div
-        class="flex-1 w-full flex flex-col items-start gap-[60px] lg:gap-[120px] text-left"
-      >
+      <div class="flex w-full flex-1 flex-col items-start gap-[60px] text-left lg:gap-[120px]">
         <!-- Heading -->
         <h2
           id="pencapaian-heading"
-          class="font-momo font-bold text-white text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px] leading-[1.15] tracking-tight mb-0 text-left w-full"
+          class="font-momo mb-0 w-full text-left text-[28px] leading-[1.15] font-bold tracking-tight text-white sm:text-[36px] md:text-[44px] lg:text-[54px]"
         >
-          Setiap Prestasi yang Diraih Menjadi Bukti Pengalaman, Kompetensi, dan
-          Dedikasi Mentor dalam Mendampingi Setiap Perjalanan{" "}
+          Setiap Prestasi yang Diraih Menjadi Bukti Pengalaman, Kompetensi, dan Dedikasi Mentor
+          dalam Mendampingi Setiap Perjalanan{" "}
           <span
-            class="font-caveat font-semibold italic text-white text-[38px] sm:text-[48px] md:text-[58px] lg:text-[68px] leading-none align-baseline mt-1 sm:mt-2 inline-block"
+            class="font-caveat mt-1 inline-block align-baseline text-[38px] leading-none font-semibold text-white italic sm:mt-2 sm:text-[48px] md:text-[58px] lg:text-[68px]"
           >
             Belajar.
           </span>
@@ -103,15 +95,15 @@ const stats = [
         <!-- 4 Stat Counter Items in Same Container -->
         <div
           id="pencapaian-stats"
-          class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-10 w-full"
+          class="grid w-full grid-cols-2 gap-6 md:grid-cols-4 md:gap-8 lg:gap-10"
         >
           {
             stats.map((stat) => (
               <div class="flex flex-col text-left">
-                <span class="font-momo font-bold text-white text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] leading-none tracking-tight">
+                <span class="font-momo text-[32px] leading-none font-bold tracking-tight text-white sm:text-[40px] md:text-[48px] lg:text-[56px]">
                   {stat.number}
                 </span>
-                <span class="font-jakarta font-normal text-white/85 text-xs sm:text-sm md:text-base mt-2 leading-tight">
+                <span class="font-jakarta mt-2 text-xs leading-tight font-normal text-white/85 sm:text-sm md:text-base">
                   {stat.label}
                 </span>
               </div>
@@ -153,7 +145,7 @@ const stats = [
             duration: 0.75,
             ease: "power3.out",
           },
-          "-=0.3",
+          "-=0.3"
         )
         .from(
           "#pencapaian-stats > div",
@@ -164,7 +156,7 @@ const stats = [
             stagger: 0.1,
             ease: "power2.out",
           },
-          "-=0.4",
+          "-=0.4"
         );
     }
   </script>

@@ -1,0 +1,187 @@
+---
+import { Image } from "astro:assets";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import pattern1 from "@/assets/pattern/pattern_1.svg";
+
+interface Props {
+  /** Additional CSS class for section */
+  class?: string;
+  id?: string;
+}
+
+const { class: className = "", id = "alur-riset" } = Astro.props;
+
+const steps = [
+  { number: "01", title: "Menentukan Ide" },
+  { number: "02", title: "Studi Literatur" },
+  { number: "03", title: "Metodologi Riset" },
+  { number: "04", title: "Eksperimen & Data" },
+  { number: "05", title: "Penyusunan Paper" },
+  { number: "06", title: "Publikasi & Lomba" },
+];
+---
+
+<section
+  id={id}
+  class:list={[
+    "relative w-full overflow-hidden bg-white py-16 sm:py-20 md:py-24 lg:py-28",
+    className,
+  ]}
+  aria-label="Alur Riset Section"
+>
+  <!-- Bottom Left Decorative Pattern 1 -->
+  <div
+    class="pointer-events-none absolute -bottom-[250.674px] -left-[241px] z-0 h-[803px] w-[800px] overflow-hidden select-none"
+  >
+    <Image
+      src={pattern1}
+      alt=""
+      width={800}
+      height={803}
+      class="pointer-events-none h-full w-full object-contain"
+      aria-hidden="true"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Main Container: Header Row & Steps List -->
+  <div
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] sm:px-[24px] md:px-[28px] lg:gap-12 lg:px-[32px] xl:max-w-none xl:px-[32px]"
+  >
+    <!-- Top Header Row Container: Left Badge & Heading, Right Bottom-aligned Description (items-end) -->
+    <div
+      class="flex w-full flex-col items-start justify-between gap-6 lg:flex-row lg:items-end lg:gap-12"
+    >
+      <!-- Left Column: Badge & 3-Line Heading -->
+      <div
+        id="alur-riset-header-col"
+        class="flex w-full shrink-0 flex-col items-start gap-4 sm:gap-5 lg:max-w-[560px] lg:gap-6 xl:max-w-[620px]"
+      >
+        <!-- Section Title Badge -->
+        <SectionTitle id="alur-riset-badge" variant="light" title="Alur Riset" showIcon={true} />
+
+        <!-- Heading (3 Lines) -->
+        <h2
+          id="alur-riset-heading"
+          class="font-momo text-[28px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[48px]"
+        >
+          Setiap Langkah Dirancang<br />
+          agar Ide Dapat Berkembang<br />
+          Menjadi{" "}
+          <span
+            class="font-caveat ml-1 inline-block align-baseline text-[34px] leading-none font-semibold text-[#111111] italic sm:text-[44px] md:text-[54px] lg:text-[60px]"
+          >
+            Karya Ilmiah.
+          </span>
+        </h2>
+      </div>
+
+      <!-- Right Column: Description Paragraph (Aligned to bottom of heading with items-end) -->
+      <div class="w-full max-w-[360px] shrink-0 text-left sm:max-w-[400px] lg:mb-1 lg:text-right">
+        <p
+          id="alur-riset-desc"
+          class="font-jakarta text-sm leading-relaxed font-normal text-black sm:text-base"
+        >
+          Mentor akan mendampingi setiap tahapan riset secara bertahap, mulai dari eksplorasi ide
+          hingga penyusunan hasil penelitian.
+        </p>
+      </div>
+    </div>
+
+    <!-- Steps List Container (Right Aligned) -->
+    <div id="alur-riset-right-col" class="flex w-full flex-col items-end">
+      <div
+        id="alur-riset-list"
+        class="flex w-full flex-col border-t border-purple-100/80 lg:max-w-[580px] xl:max-w-[640px]"
+      >
+        {
+          steps.map((step) => (
+            <div class="alur-step-item group hover:bg-spicy-100/50 flex cursor-pointer items-center justify-between gap-6 rounded-xs border-b border-purple-100/80 px-2 py-5 transition-all duration-300 sm:px-4 sm:py-6 md:py-7">
+              <span class="font-momo group-hover:text-spicy-dark shrink-0 text-2xl font-bold text-[#111111] transition-colors duration-200 sm:text-[28px] md:text-[32px]">
+                {step.number}
+              </span>
+              <h3 class="font-momo group-hover:text-spicy-dark text-right text-xl font-bold tracking-tight text-[#111111] transition-colors duration-200 sm:text-2xl md:text-[28px] lg:text-[32px]">
+                {step.title}
+              </h3>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initAlurRisetAnimations() {
+    const section = document.querySelector("#alur-riset");
+    if (!section) return;
+
+    gsap.from("#alur-riset-badge", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+
+    gsap.from("#alur-riset-heading", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      delay: 0.1,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+
+    gsap.from("#alur-riset-desc", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      delay: 0.2,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+
+    gsap.from(".alur-step-item", {
+      scrollTrigger: {
+        trigger: "#alur-riset-list",
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAlurRisetAnimations);
+  } else {
+    initAlurRisetAnimations();
+  }
+
+  document.addEventListener("astro:page-load", initAlurRisetAnimations);
+</script>

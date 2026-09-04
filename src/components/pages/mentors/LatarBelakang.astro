@@ -44,7 +44,7 @@ const mentorPhotos = [
 
 <section
   id="latar-belakang"
-  class="relative w-full h-screen min-h-[600px] lg:min-h-[700px] bg-white text-black flex flex-col justify-center items-center overflow-hidden"
+  class="relative flex h-screen min-h-[600px] w-full flex-col items-center justify-center overflow-hidden bg-white text-black lg:min-h-[700px]"
   aria-label="Latar Belakang Mentor"
   data-navbar="light"
 >
@@ -52,7 +52,7 @@ const mentorPhotos = [
   <img
     src={pattern4.src}
     alt=""
-    class="absolute z-0 pointer-events-none select-none"
+    class="pointer-events-none absolute z-0 select-none"
     style="width: 500px; height: 501.526px; position: absolute; right: -163px; top: -168px;"
     aria-hidden="true"
   />
@@ -61,7 +61,7 @@ const mentorPhotos = [
   <img
     src={pattern4.src}
     alt=""
-    class="absolute z-0 pointer-events-none select-none"
+    class="pointer-events-none absolute z-0 select-none"
     style="width: 500px; height: 501.526px; position: absolute; left: -158px; bottom: -165.526px;"
     aria-hidden="true"
   />
@@ -69,19 +69,15 @@ const mentorPhotos = [
   <!-- Floating Mentor Photos Container -->
   <div
     id="mentor-photos-container"
-    class="absolute inset-0 z-10 pointer-events-none select-none w-full h-full max-w-[1440px] mx-auto overflow-hidden"
+    class="pointer-events-none absolute inset-0 z-10 mx-auto h-full w-full max-w-[1440px] overflow-hidden select-none"
   >
     {
       mentorPhotos.map((photo) => (
         <div
-          class="mentor-floating-card absolute z-10 w-[182px] h-[182px] rounded-[4px] overflow-hidden bg-gray-100 opacity-0"
+          class="mentor-floating-card absolute z-10 h-[182px] w-[182px] overflow-hidden rounded-[4px] bg-gray-100 opacity-0"
           style={photo.style}
         >
-          <Image
-            src={photo.image}
-            alt={photo.alt}
-            class="w-full h-full object-cover object-top"
-          />
+          <Image src={photo.image} alt={photo.alt} class="h-full w-full object-cover object-top" />
         </div>
       ))
     }
@@ -89,11 +85,11 @@ const mentorPhotos = [
 
   <!-- Center Content -->
   <div
-    class="relative z-20 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-center text-center justify-center h-full"
+    class="relative z-20 mx-auto flex h-full w-full max-w-[1440px] flex-col items-center justify-center px-[20px] text-center sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <h2
       id="latar-belakang-heading"
-      class="font-momo font-semibold text-black text-[24px] sm:text-[32px] md:text-[42px] lg:text-[50px] leading-[115%] tracking-tight max-w-[1100px] z-20 pointer-events-auto text-center"
+      class="font-momo pointer-events-auto z-20 max-w-[1100px] text-center text-[24px] leading-[115%] font-semibold tracking-tight text-black sm:text-[32px] md:text-[42px] lg:text-[50px]"
     >
       <span class="block">Mentor dengan Latar Belakang Akademik dan</span>
       <span class="block">Profesional dari Institusi Terkemuka.</span>

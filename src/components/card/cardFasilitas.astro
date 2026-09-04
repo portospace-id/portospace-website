@@ -33,7 +33,7 @@ const isStringImage = typeof image === "string";
 
 <div
   class:list={[
-    "card-fasilitas relative w-full rounded-sm overflow-hidden group select-none flex flex-col justify-end transition-all duration-300 hover:-translate-y-1 shadow-sm",
+    "card-fasilitas group relative flex w-full flex-col justify-end overflow-hidden rounded-sm shadow-sm transition-all duration-300 select-none hover:-translate-y-1",
     variant === "short"
       ? "h-[200px] sm:h-[240px] lg:h-[360px]"
       : "h-[320px] sm:h-[380px] lg:h-[540px]",
@@ -48,14 +48,14 @@ const isStringImage = typeof image === "string";
         <img
           src={image as string}
           alt={alt}
-          class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+          class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
       ) : (
         <Image
           src={image as ImageMetadata}
           alt={alt}
-          class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+          class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
       )
@@ -64,21 +64,19 @@ const isStringImage = typeof image === "string";
 
   <!-- Gradient Overlay for Contrast & Readability -->
   <div
-    class="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-t from-black/85 via-black/35 to-transparent"
+    class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-black/85 via-black/35 to-transparent"
     aria-hidden="true"
   >
   </div>
 
   <!-- Text Content (Bottom Left) -->
-  <div class="relative z-10 p-5 sm:p-6 flex flex-col gap-1 text-left">
+  <div class="relative z-10 flex flex-col gap-1 p-5 text-left sm:p-6">
     <h3
-      class="font-momo font-semibold text-white text-base sm:text-lg lg:text-xl leading-snug tracking-tight"
+      class="font-momo text-base leading-snug font-semibold tracking-tight text-white sm:text-lg lg:text-xl"
     >
       {title}
     </h3>
-    <p
-      class="font-jakarta font-normal text-white/90 text-xs sm:text-sm leading-relaxed"
-    >
+    <p class="font-jakarta text-xs leading-relaxed font-normal text-white/90 sm:text-sm">
       {description}
     </p>
   </div>

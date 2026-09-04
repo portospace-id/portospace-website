@@ -54,65 +54,65 @@ const bimbinganSteps = [
 <!-- Section Proses Bimbingan / Perjalanan Belajar -->
 <section
   id="proses-bimbingan"
-  class="relative w-full bg-white py-[60px] lg:py-[100px] flex flex-col items-center z-10 overflow-hidden"
+  class="relative z-10 flex w-full flex-col items-center overflow-hidden bg-white py-[60px] lg:py-[100px]"
   aria-label="Proses Bimbingan PortoSpace"
   data-navbar="white"
 >
-  <div class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-center gap-[40px] lg:gap-[56px]">
-  <!-- Header Section -->
-  <div class="flex flex-col items-center text-center gap-4 max-w-[840px]">
-    <!-- Section Title Badge (Light Variant for White Background) -->
-    <SectionTitle variant="light" title="Pilih Program Sesuai Kamu" />
-
-    <!-- Main Heading -->
-    <h2
-      class="font-momo font-semibold text-[#111111] text-[32px] md:text-[44px] lg:text-[54px] leading-[110%] tracking-[-1.08px]"
-    >
-      Perjalanan Belajarmu di <span
-        class="font-caveat font-bold text-[#111111] text-[42px] md:text-[54px] lg:text-[64px] leading-[80%] tracking-[-2.56px]"
-        >PortoSpace</span
-      >
-    </h2>
-
-    <!-- Subtitle Description -->
-    <p
-      class="font-jakarta font-normal text-gray-600 text-sm lg:text-base leading-[160%] max-w-[620px]"
-    >
-      Kami mendampingi setiap langkahmu, mulai dari menemukan tujuan, membangun
-      karya, hingga meraih prestasi yang membuka lebih banyak peluang di masa depan.
-    </p>
-  </div>
-
-  <!-- Content Grid Container -->
   <div
-    class="w-full grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch"
+    class="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[40px] px-[20px] sm:px-[24px] md:px-[28px] lg:gap-[56px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
-    <!-- Left Column: Featured Large Card -->
-    <div class="lg:col-span-7 xl:col-span-8 flex">
-      <CardProsesBimbingan
-        variant="featured"
-        title="Dari Belajar Menjadi Berkarya."
-        description="Dengan pendampingan mentor dan proyek nyata, kamu tidak hanya memperoleh pengetahuan, tetapi juga menghasilkan portofolio yang siap menjadi bekal untuk kompetisi, beasiswa, hingga jenjang pendidikan berikutnya."
-        image={testimonial3Img}
-        ctaText="Mulai Perjalananmu Sekarang!"
-        ctaHref="#konsultasi"
-      />
+    <!-- Header Section -->
+    <div class="flex max-w-[840px] flex-col items-center gap-4 text-center">
+      <!-- Section Title Badge (Light Variant for White Background) -->
+      <SectionTitle variant="light" title="Pilih Program Sesuai Kamu" />
+
+      <!-- Main Heading -->
+      <h2
+        class="font-momo text-[32px] leading-[110%] font-semibold tracking-[-1.08px] text-[#111111] md:text-[44px] lg:text-[54px]"
+      >
+        Perjalanan Belajarmu di <span
+          class="font-caveat text-[42px] leading-[80%] font-bold tracking-[-2.56px] text-[#111111] md:text-[54px] lg:text-[64px]"
+          >PortoSpace</span
+        >
+      </h2>
+
+      <!-- Subtitle Description -->
+      <p
+        class="font-jakarta max-w-[620px] text-sm leading-[160%] font-normal text-gray-600 lg:text-base"
+      >
+        Kami mendampingi setiap langkahmu, mulai dari menemukan tujuan, membangun karya, hingga
+        meraih prestasi yang membuka lebih banyak peluang di masa depan.
+      </p>
     </div>
 
-    <!-- Right Column: 3 Stacked Cards -->
-    <div class="lg:col-span-5 xl:col-span-4 flex flex-col gap-5 justify-between">
-      {
-        bimbinganSteps.map((step) => (
-          <CardProsesBimbingan
-            variant="step"
-            title={step.title}
-            description={step.description}
-            image={step.image}
-            features={step.features}
-          />
-        ))
-      }
+    <!-- Content Grid Container -->
+    <div class="grid w-full grid-cols-1 items-stretch gap-5 lg:grid-cols-12">
+      <!-- Left Column: Featured Large Card -->
+      <div class="flex lg:col-span-7 xl:col-span-8">
+        <CardProsesBimbingan
+          variant="featured"
+          title="Dari Belajar Menjadi Berkarya."
+          description="Dengan pendampingan mentor dan proyek nyata, kamu tidak hanya memperoleh pengetahuan, tetapi juga menghasilkan portofolio yang siap menjadi bekal untuk kompetisi, beasiswa, hingga jenjang pendidikan berikutnya."
+          image={testimonial3Img}
+          ctaText="Mulai Perjalananmu Sekarang!"
+          ctaHref="#konsultasi"
+        />
+      </div>
+
+      <!-- Right Column: 3 Stacked Cards -->
+      <div class="flex flex-col justify-between gap-5 lg:col-span-5 xl:col-span-4">
+        {
+          bimbinganSteps.map((step) => (
+            <CardProsesBimbingan
+              variant="step"
+              title={step.title}
+              description={step.description}
+              image={step.image}
+              features={step.features}
+            />
+          ))
+        }
+      </div>
     </div>
   </div>
-</div>
 </section>

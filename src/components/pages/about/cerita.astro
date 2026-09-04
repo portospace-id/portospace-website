@@ -17,60 +17,62 @@ const descriptionText =
 <section
   id="cerita"
   class:list={[
-    "relative w-full overflow-hidden bg-violet-normal text-white py-16 sm:py-20 md:py-24 lg:py-32",
+    "bg-violet-normal relative w-full overflow-hidden py-16 text-white sm:py-20 md:py-24 lg:py-32",
     className,
   ]}
   aria-label="Cerita PortoSpace Section"
 >
   <!-- Background Pattern Line Overlay (Top Right) -->
   <div
-    class="absolute -top-[40px] -right-[40px] sm:-top-[60px] sm:-right-[60px] md:-top-[80px] md:-right-[80px] w-[380px] sm:w-[460px] md:w-[540px] lg:w-[600px] h-auto pointer-events-none z-0 select-none opacity-60"
+    class="pointer-events-none absolute -top-[40px] -right-[40px] z-0 h-auto w-[380px] opacity-60 select-none sm:-top-[60px] sm:-right-[60px] sm:w-[460px] md:-top-[80px] md:-right-[80px] md:w-[540px] lg:w-[600px]"
   >
     <Image
       src={patternLine}
       alt=""
       width={477}
       height={521}
-      class="w-full h-auto object-contain pointer-events-none"
+      class="pointer-events-none h-auto w-full object-contain"
       aria-hidden="true"
     />
   </div>
 
   <!-- Main Content Container -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px]"
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Section Title Heading -->
     <h2
       id="cerita-heading"
-      class="font-momo font-bold text-white text-[28px] sm:text-[36px] md:text-[44px] lg:text-[50px] leading-[1.15] tracking-tight mb-10 md:mb-14 max-w-[780px]"
+      class="font-momo mb-10 max-w-[780px] text-[28px] leading-[1.15] font-bold tracking-tight text-white sm:text-[36px] md:mb-14 md:text-[44px] lg:text-[50px]"
     >
       Semua Berawal dari Keinginan Membuat Belajar Menjadi Lebih <span
-        class="font-caveat font-semibold italic text-white text-[36px] sm:text-[46px] md:text-[56px] lg:text-[64px] leading-none align-baseline block sm:inline mt-1 sm:mt-0"
+        class="font-caveat mt-1 block align-baseline text-[36px] leading-none font-semibold text-white italic sm:mt-0 sm:inline sm:text-[46px] md:text-[56px] lg:text-[64px]"
         >Bermakna</span
       >
     </h2>
 
     <!-- Content Container (Photo + Description with 136px gap) -->
-    <div class="flex flex-col lg:flex-row items-end justify-between gap-8 lg:gap-[136px]">
+    <div class="flex flex-col items-end justify-between gap-8 lg:flex-row lg:gap-[136px]">
       <!-- Left Column: Story Image (Width: 562px) -->
-      <div id="cerita-image" class="w-full lg:w-[562px] flex-shrink-0">
-        <div class="w-full h-[400px] sm:h-[520px] lg:h-[660px] rounded-[4px] overflow-hidden shadow-2xl">
+      <div id="cerita-image" class="w-full flex-shrink-0 lg:w-[562px]">
+        <div
+          class="h-[400px] w-full overflow-hidden rounded-[4px] shadow-2xl sm:h-[520px] lg:h-[660px]"
+        >
           <Image
             src={ceritaImg}
             alt="Kisah PortoSpace"
             width={562}
             height={660}
-            class="w-full h-full object-cover object-center rounded-[4px]"
+            class="h-full w-full rounded-[4px] object-cover object-center"
             fetchpriority="high"
           />
         </div>
       </div>
 
       <!-- Right Column: Story Description (Full Width) -->
-      <div id="cerita-desc" class="flex-1 flex flex-col justify-end w-full">
+      <div id="cerita-desc" class="flex w-full flex-1 flex-col justify-end">
         <p
-          class="font-jakarta font-normal text-white/95 text-sm sm:text-base md:text-lg leading-relaxed w-full"
+          class="font-jakarta w-full text-sm leading-relaxed font-normal text-white/95 sm:text-base md:text-lg"
         >
           {descriptionText}
         </p>
@@ -107,7 +109,7 @@ const descriptionText =
             duration: 0.6,
             ease: "power2.out",
           },
-          "-=0.4",
+          "-=0.4"
         )
         .from(
           "#cerita-desc",
@@ -117,7 +119,7 @@ const descriptionText =
             duration: 0.6,
             ease: "power2.out",
           },
-          "-=0.4",
+          "-=0.4"
         );
     }
   </script>

@@ -36,7 +36,7 @@ const teaserCards = [
 
 <section
   id="teaser"
-  class="relative w-full py-16 lg:py-0 lg:h-screen lg:min-h-screen bg-violet-normal overflow-hidden flex flex-col justify-center"
+  class="bg-violet-normal relative flex w-full flex-col justify-center overflow-hidden py-16 lg:h-screen lg:min-h-screen lg:py-0"
   aria-label="Teaser Maker's Academy"
   data-navbar="violet"
 >
@@ -54,14 +54,16 @@ const teaserCards = [
 
   <!-- Section Container -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-center lg:justify-center lg:absolute lg:inset-0 gap-10 lg:gap-0"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 px-[20px] sm:px-[24px] md:px-[28px] lg:absolute lg:inset-0 lg:justify-center lg:gap-0 lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Heading -->
-    <div class="flex flex-col items-center justify-center gap-[16px] text-center w-full max-w-[1100px] z-0">
+    <div
+      class="z-0 flex w-full max-w-[1100px] flex-col items-center justify-center gap-[16px] text-center"
+    >
       <SectionTitle title="Maker's Academy" />
       <h2
         id="teaser-heading"
-        class="font-momo font-semibold text-white text-center leading-[110%] tracking-[-1.08px] w-full text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px]"
+        class="font-momo w-full text-center text-[28px] leading-[110%] font-semibold tracking-[-1.08px] text-white sm:text-[36px] md:text-[44px] lg:text-[54px]"
       >
         Maker's Academy Cocok untuk Kamu yang<br class="hidden sm:block" />
         Ingin Berkembang Lewat Project Nyata.
@@ -69,12 +71,11 @@ const teaserCards = [
     </div>
 
     <!-- Cards Container -->
-    <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:flex lg:contents gap-6 items-stretch justify-center max-w-[380px] md:max-w-[768px] lg:max-w-none mx-auto z-10">
+    <div
+      class="z-10 mx-auto grid w-full max-w-[380px] grid-cols-1 items-stretch justify-center gap-6 md:max-w-[768px] md:grid-cols-2 lg:contents lg:flex lg:max-w-none"
+    >
       <!-- Card Left -->
-      <div
-        id="teaser-card-left"
-        class="w-full lg:w-auto lg:absolute z-10"
-      >
+      <div id="teaser-card-left" class="z-10 w-full lg:absolute lg:w-auto">
         <CardTeaser
           title={teaserCards[0].title}
           description={teaserCards[0].description}
@@ -83,10 +84,7 @@ const teaserCards = [
       </div>
 
       <!-- Card Center -->
-      <div
-        id="teaser-card-center"
-        class="w-full lg:w-auto lg:absolute z-10"
-      >
+      <div id="teaser-card-center" class="z-10 w-full lg:absolute lg:w-auto">
         <CardTeaser
           title={teaserCards[1].title}
           description={teaserCards[1].description}
@@ -97,7 +95,7 @@ const teaserCards = [
       <!-- Card Right -->
       <div
         id="teaser-card-right"
-        class="w-full lg:w-auto lg:absolute z-10 md:col-span-2 md:w-[342px] md:mx-auto lg:w-auto lg:mx-0"
+        class="z-10 w-full md:col-span-2 md:mx-auto md:w-[342px] lg:absolute lg:mx-0 lg:w-auto"
       >
         <CardTeaser
           title={teaserCards[2].title}
@@ -124,7 +122,12 @@ const teaserCards = [
       "(min-width: 1024px)": function () {
         gsap.set("#teaser-card-left", { y: 700, left: "32px", top: "60px", right: "auto" });
         gsap.set("#teaser-card-right", { y: 600, right: "32px", top: "30px", left: "auto" });
-        gsap.set("#teaser-card-center", { y: 900, left: "calc(50% - 171px)", top: "230px", right: "auto" });
+        gsap.set("#teaser-card-center", {
+          y: 900,
+          left: "calc(50% - 171px)",
+          top: "230px",
+          right: "auto",
+        });
 
         // Heading fade
         gsap.from("#teaser-heading", {

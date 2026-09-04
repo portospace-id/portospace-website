@@ -16,43 +16,36 @@ interface Props {
   isOpen?: boolean;
 }
 
-const {
-  programs,
-  id,
-  title,
-  description,
-  index = 0,
-  isOpen = false,
-} = Astro.props;
+const { programs, id, title, description, index = 0, isOpen = false } = Astro.props;
 
 const items: ProgramItem[] =
   programs || (id && title && description ? [{ id, title, description }] : []);
 ---
 
-<div id="kenapa-accordion" class="flex flex-col w-full max-w-[480px]">
+<div id="kenapa-accordion" class="flex w-full max-w-[480px] flex-col">
   {
     items.map((p, i) => (
       <div
-        class="kenapa-accordion-item border-b border-[#E0E0E0] overflow-hidden"
+        class="kenapa-accordion-item overflow-hidden border-b border-[#E0E0E0]"
         data-index={programs ? i : index}
       >
         <button
-          class="kenapa-accordion-trigger w-full flex items-center justify-between py-4 gap-4 text-left group cursor-pointer"
+          class="kenapa-accordion-trigger group flex w-full cursor-pointer items-center justify-between gap-4 py-4 text-left"
           aria-expanded={(programs ? i === 0 : isOpen) ? "true" : "false"}
           aria-controls={`accordion-content-${p.id}`}
           data-index={programs ? i : index}
         >
-          <span class="font-jakarta font-semibold text-[#111] text-base leading-[150%] group-hover:text-violet-normal transition-colors duration-200">
+          <span class="font-jakarta group-hover:text-violet-normal text-base leading-[150%] font-semibold text-[#111] transition-colors duration-200">
             {p.title}
           </span>
-          <ChevronDown class="kenapa-accordion-icon flex-shrink-0 w-4 h-4 text-[#111] transition-transform duration-300" />
+          <ChevronDown class="kenapa-accordion-icon h-4 w-4 flex-shrink-0 text-[#111] transition-transform duration-300" />
         </button>
         <div
           id={`accordion-content-${p.id}`}
           class="kenapa-accordion-content"
           style={(programs ? i === 0 : isOpen) ? "" : "display: none;"}
         >
-          <p class="font-jakarta font-normal text-[#666] text-[16px] leading-[160%] pb-4">
+          <p class="font-jakarta pb-4 text-[16px] leading-[160%] font-normal text-[#666]">
             {p.description}
           </p>
         </div>
