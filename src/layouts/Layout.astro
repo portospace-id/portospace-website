@@ -6,11 +6,13 @@ import Footer from "../components/ui/footer.astro";
 interface Props {
   title?: string;
   description?: string;
+  showFooter?: boolean;
 }
 
 const {
   title = "PortoSpace — Platform Mentorship Riset, Robotics & Coding",
   description = "Program mentorship riset, robotics, dan coding untuk siswa kelas 9–12. Dibimbing langsung oleh PhD, Master, dan pakar industri lulusan global.",
+  showFooter = true,
 } = Astro.props;
 ---
 
@@ -27,7 +29,7 @@ const {
   <body>
     <Navbar />
     <slot />
-    <Footer />
+    {showFooter && <Footer />}
     <script>
       import "../scripts/smoothScroll.ts";
       import "../scripts/animations.ts";

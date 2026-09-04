@@ -1,0 +1,101 @@
+---
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+---
+
+<section
+  id="hero"
+  class="relative w-full overflow-hidden flex flex-col justify-end" style="min-height: 133vh; min-height: 133svh;"
+  aria-label="FAQ Hero Section"
+  data-navbar="transparent"
+>
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/collage_student.webp"
+      alt="Students collaborating at PortoSpace"
+      class="w-full h-full object-cover object-center"
+      fetchpriority="high"
+    />
+  </div>
+
+  <!-- Dark Overlay -->
+  <div
+    class="absolute inset-0 z-[1] pointer-events-none bg-black/45"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Main Hero Content -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pb-8 md:pb-12 lg:pb-16"
+  >
+    <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+      <!-- Badge Label (Kiri) -->
+      <SectionTitle
+        id="faq-hero-badge"
+        variant="dark"
+        title="FAQ"
+        showIcon={false}
+        class="flex-shrink-0"
+      />
+
+      <!-- Heading & Description (Kanan) -->
+      <div class="flex flex-col gap-[10px] max-w-[794px] ml-auto">
+        <h1
+          id="faq-hero-heading"
+          class="font-momo font-semibold text-white leading-[110%] tracking-[-2%] mb-0 text-[32px] sm:text-[40px] md:text-[48px]"
+          style="letter-spacing: -0.02em;"
+        >
+          Punya Pertanyaan? Kami Sudah<br />
+          Menyiapkan Jawabannya
+          <span
+            class="font-caveat font-bold italic text-white text-[44px] sm:text-[54px] md:text-[64px] leading-[80%] align-baseline"
+            style="letter-spacing: -0.04em;"
+          >
+            untukmu.
+          </span>
+        </h1>
+
+        <p
+          id="faq-hero-desc"
+          class="font-jakarta font-normal text-white text-[14px] sm:text-[16px] leading-[150%] max-w-[794px]"
+        >
+          Temukan jawaban atas berbagai pertanyaan seputar program, mentor,
+          paket, hingga proses belajar di PortoSpace.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { gsap } from "gsap";
+
+    const tl = gsap.timeline({ delay: 0.2 });
+
+    tl.from("#faq-hero-badge", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power2.out",
+    })
+      .from(
+        "#faq-hero-heading",
+        {
+          y: 35,
+          opacity: 0,
+          duration: 0.75,
+          ease: "power3.out",
+        },
+        "-=0.3",
+      )
+      .from(
+        "#faq-hero-desc",
+        {
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.4",
+      );
+  </script>
+</section>
