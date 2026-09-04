@@ -1,0 +1,100 @@
+---
+import { ArrowRight } from "@lucide/astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  /** Title of the program card */
+  title: string;
+  /** Description text */
+  description: string;
+  /** Destination link URL */
+  href?: string;
+  /** CTA button text (default: "Pelajari Selengkapnya") */
+  buttonText?: string;
+  /** Whether to show CTA button (default: true) */
+  showButton?: boolean;
+  /** Card layout type: "wide" (Card Panjang) or "narrow" (Card Pendek) */
+  type?: "wide" | "narrow";
+  /** Optional custom background color class */
+  bgColor?: string;
+  /** Optional background image */
+  image?: ImageMetadata;
+  /** Extra CSS classes */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  title,
+  description,
+  href = "#",
+  buttonText = "Pelajari Selengkapnya",
+  showButton = true,
+  type = "wide",
+  bgColor,
+  image,
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const isWide = type === "wide";
+const defaultBgClass = isWide ? "bg-[#3B0E70]" : "bg-[#2E0B57]";
+const flexClass = isWide ? "lg:flex-[2]" : "lg:flex-1";
+const descMaxW = isWide ? "max-w-[780px]" : "";
+---
+
+<div
+  class:list={[
+    "program-card w-full h-[500px] p-6 flex flex-col justify-end items-start gap-2.5 rounded-sm transition-all duration-300 relative overflow-hidden",
+    flexClass,
+    bgColor || defaultBgClass,
+    className,
+  ]}
+  {...rest}
+>
+  <!-- Background Image -->
+  {
+    image && (
+      <Image
+        src={image}
+        alt=""
+        class="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+        aria-hidden="true"
+      />
+    )
+  }
+
+  <!-- Gradient Overlay -->
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 pointer-events-none"
+  >
+  </div>
+
+  <!-- Card Content -->
+  <div class="relative z-10 flex flex-col gap-2.5 items-start w-full">
+    <h3
+      class="font-momo font-medium text-white text-[28px] md:text-[32px] leading-[110%] tracking-[-0.64px]"
+    >
+      {title}
+    </h3>
+    <p
+      class:list={[
+        "font-jakarta font-normal text-white text-sm lg:text-[16px] leading-[150%]",
+        descMaxW,
+      ]}
+    >
+      {description}
+    </p>
+    {
+      showButton && (
+        <a
+          href={href}
+          class="inline-flex items-center gap-2 bg-[#BFED45] hover:bg-[#acd53e] text-[#161616] font-jakarta font-semibold text-sm px-4 py-2.5 rounded-sm transition-all duration-200 group-hover:shadow-[0_0_18px_rgba(191,237,69,0.35)] mt-1"
+        >
+          <span>{buttonText}</span>
+          <ArrowRight size={16} aria-hidden="true" />
+        </a>
+      )
+    }
+  </div>
+</div>

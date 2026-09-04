@@ -1,0 +1,289 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import ListJadwal from "@/components/listJadwal.astro";
+
+// Default images for Online and Offline hover states
+import onlineDefaultImg from "@/assets/image/homepage/coding.webp";
+import offlineDefaultImg from "@/assets/image/homepage/robotics.webp";
+
+export interface Props {
+  /** Section badge title (default: "Jadwal") */
+  badgeText?: string;
+  /** Heading line 1 */
+  titleLine1?: string;
+  /** Heading line 2 prefix */
+  titleLine2?: string;
+  /** Heading accent text in Caveat font */
+  titleHighlight?: string;
+  /** Online items list */
+  onlineItems?: string[];
+  /** Offline items list */
+  offlineItems?: string[];
+  /** Image displayed for Online hover state */
+  onlineImage?: ImageMetadata | string;
+  /** Image displayed for Offline hover state */
+  offlineImage?: ImageMetadata | string;
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  badgeText = "Jadwal",
+  titleLine1 = "Belajar Kapan Saja, di Mana Saja,",
+  titleLine2 = "dengan Jadwal yang Menyesuaikan ",
+  titleHighlight = "Aktivitasmu.",
+  onlineItems = [
+    "Live Private 1-on-1 via Google Meet / Zoom",
+    "Jadwal fleksibel sesuai kesepakatan",
+    "Materi & progress terdokumentasi",
+    "Cocok untuk siswa di seluruh Indonesia",
+  ],
+  offlineItems = [
+    "Tatap muka langsung 1-on-1 bersama mentor",
+    "Jadwal fleksibel sesuai kesepakatan",
+    "Materi & progress terdokumentasi",
+    "Tersedia untuk area Jabodetabek & kota utama",
+  ],
+  onlineImage = onlineDefaultImg,
+  offlineImage = offlineDefaultImg,
+  class: className = "",
+} = Astro.props;
+
+const isOnlineString = typeof onlineImage === "string";
+const isOfflineString = typeof offlineImage === "string";
+---
+
+<section
+  id="jadwal"
+  class:list={[
+    "relative w-full bg-violet-normal py-16 md:py-20 lg:py-24 flex flex-col justify-center overflow-hidden z-10",
+    className,
+  ]}
+  aria-label="Jadwal Belajar Maker's Academy"
+  data-navbar="violet"
+>
+  <!-- Main Container -->
+  <div
+    class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] relative z-10 flex flex-col gap-8 md:gap-10"
+  >
+    <!-- Header Section: Badge + 2-Line Heading (Semantic h2 & em) -->
+    <div class="flex flex-col items-start gap-4 max-w-[1050px]">
+      {
+        badgeText && (
+          <SectionTitle id="jadwal-badge" variant="dark" title={badgeText} />
+        )
+      }
+
+      <h2
+        id="jadwal-heading"
+        class="font-display font-bold text-white text-[32px] md:text-[40px] lg:text-[54px] leading-[1.15] tracking-tight"
+      >
+        {titleLine1 && <span class="block">{titleLine1}</span>}
+        <span class="block">
+          {titleLine2 && titleLine2}
+          {
+            titleHighlight && (
+              <span class="font-handwriting font-semibold italic text-white text-[38px] md:text-[48px] lg:text-[64px] leading-none align-baseline">
+                {titleHighlight}
+              </span>
+            )
+          }
+        </span>
+      </h2>
+    </div>
+
+    <!-- Schedule Options Container -->
+    <div id="jadwal-list-container" class="relative w-full flex flex-col">
+      <!-- Online Option Row -->
+      <ListJadwal title="Online" items={onlineItems} dataKey="online" />
+
+      <!-- Offline Option Row -->
+      <ListJadwal title="Offline" items={offlineItems} dataKey="offline" />
+
+      <!-- Floating Photo Container over Active Hover Row -->
+      <div
+        id="jadwal-hover-photo-container"
+        class="absolute left-1/2 -translate-x-1/2 z-30 w-[85%] sm:w-[380px] lg:w-[440px] h-[200px] sm:h-[240px] lg:h-[270px] rounded-sm overflow-hidden transition-all duration-300 opacity-0 pointer-events-none scale-95"
+        aria-hidden="true"
+      >
+        <!-- Online Image -->
+        <div
+          id="jadwal-hover-photo-online"
+          class="absolute inset-0 transition-opacity duration-300 opacity-0"
+        >
+          {
+            isOnlineString ? (
+              <img
+                src={onlineImage as string}
+                alt="Online"
+                class="w-full h-full object-cover pointer-events-none select-none rounded-sm"
+              />
+            ) : (
+              <Image
+                src={onlineImage as ImageMetadata}
+                alt="Online"
+                class="w-full h-full object-cover pointer-events-none select-none rounded-sm"
+              />
+            )
+          }
+        </div>
+
+        <!-- Offline Image -->
+        <div
+          id="jadwal-hover-photo-offline"
+          class="absolute inset-0 transition-opacity duration-300 opacity-0"
+        >
+          {
+            isOfflineString ? (
+              <img
+                src={offlineImage as string}
+                alt="Offline"
+                class="w-full h-full object-cover pointer-events-none select-none rounded-sm"
+              />
+            ) : (
+              <Image
+                src={offlineImage as ImageMetadata}
+                alt="Offline"
+                class="w-full h-full object-cover pointer-events-none select-none rounded-sm"
+              />
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initJadwal = () => {
+    const section = document.querySelector("#jadwal");
+    if (!section) return;
+
+    const badge = document.querySelector("#jadwal-badge");
+    const heading = document.querySelector("#jadwal-heading");
+    const container = document.querySelector("#jadwal-list-container");
+    const photoBox = document.querySelector(
+      "#jadwal-hover-photo-container",
+    ) as HTMLElement;
+    const photoOnline = document.querySelector(
+      "#jadwal-hover-photo-online",
+    ) as HTMLElement;
+    const photoOffline = document.querySelector(
+      "#jadwal-hover-photo-offline",
+    ) as HTMLElement;
+    const items = document.querySelectorAll<HTMLElement>(".list-jadwal-item");
+
+    // Entrance Animation
+    gsap.from([badge, heading].filter(Boolean), {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.15,
+      ease: "power3.out",
+      clearProps: "transform,opacity",
+    });
+
+    if (items.length > 0) {
+      gsap.from(Array.from(items), {
+        scrollTrigger: {
+          trigger: items[0],
+          start: "top 80%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.15,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+    }
+
+    // Hover Interaction: Position photoBox dynamically over active list item & display corresponding photo
+    if (items.length > 0 && photoBox) {
+      items.forEach((item) => {
+        item.addEventListener("mouseenter", () => {
+          const key = item.getAttribute("data-jadwal-key");
+          const itemTop = item.offsetTop;
+          const itemHeight = item.offsetHeight;
+
+          // Position photoBox vertically centered over hovered item
+          const targetTop = itemTop + itemHeight / 2;
+          photoBox.style.top = `${targetTop}px`;
+          photoBox.style.transform = "translate(-50%, -50%) scale(1)";
+          photoBox.classList.remove(
+            "opacity-0",
+            "pointer-events-none",
+            "scale-95",
+          );
+          photoBox.classList.add("opacity-100");
+
+          // Active row styling (no shadow)
+          items.forEach((el) => {
+            if (el === item) {
+              el.classList.add("bg-windsor-dark");
+              el.classList.remove("bg-transparent");
+            } else {
+              el.classList.remove("bg-windsor-dark");
+              el.classList.add("bg-transparent");
+            }
+          });
+
+          // Switch active image opacity
+          if (key === "online") {
+            if (photoOnline) {
+              photoOnline.classList.remove("opacity-0");
+              photoOnline.classList.add("opacity-100");
+            }
+            if (photoOffline) {
+              photoOffline.classList.remove("opacity-100");
+              photoOffline.classList.add("opacity-0");
+            }
+          } else if (key === "offline") {
+            if (photoOffline) {
+              photoOffline.classList.remove("opacity-0");
+              photoOffline.classList.add("opacity-100");
+            }
+            if (photoOnline) {
+              photoOnline.classList.remove("opacity-100");
+              photoOnline.classList.add("opacity-0");
+            }
+          }
+        });
+      });
+
+      if (container) {
+        container.addEventListener("mouseleave", () => {
+          photoBox.classList.remove("opacity-100");
+          photoBox.classList.add(
+            "opacity-0",
+            "pointer-events-none",
+            "scale-95",
+          );
+          items.forEach((el) => {
+            el.classList.remove("bg-windsor-dark");
+            el.classList.add("bg-transparent");
+          });
+        });
+      }
+    }
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initJadwal);
+  } else {
+    initJadwal();
+  }
+</script>

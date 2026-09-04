@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  image: ImageMetadata;
+  alt?: string;
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  image,
+  alt = title,
+  class: className = "",
+} = Astro.props;
+---
+
+<div
+  class={`portfolio-output-card flex flex-col w-[280px] sm:w-[340px] md:w-[370px] lg:w-[405px] flex-shrink-0 group cursor-pointer ${className}`}
+>
+  <!-- Card Image -->
+  <div
+    class="relative w-full h-[440px] lg:h-[460px] group-hover:h-[520px] transition-all duration-300 ease-in-out rounded-[4px] overflow-hidden"
+  >
+    <Image
+      src={image}
+      alt={alt}
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-in-out pointer-events-none select-none"
+    />
+  </div>
+
+  <!-- Card Info -->
+  <div class="flex flex-col gap-1 mt-4">
+    <h3
+      class="font-jakarta font-semibold text-white text-[16px] lg:text-[18px] leading-[140%]"
+    >
+      {title}
+    </h3>
+    <p
+      class="font-jakarta font-normal text-white/80 text-[14px] leading-[140%]"
+    >
+      {subtitle}
+    </p>
+  </div>
+</div>

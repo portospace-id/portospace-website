@@ -1,0 +1,48 @@
+---
+// Images
+import heroImg from "@/assets/image/homepage/robotics.webp";
+
+// Layouts
+import Layout from "../layouts/Layout.astro";
+
+// Components
+import HeroSection from "../components/pages/makersAcademy/heroSection.astro";
+import ProgramPrivate from "../components/pages/makersAcademy/programPrivate.astro";
+import TargetSiswa from "../components/pages/makersAcademy/targetSiswa.astro";
+import FiturProgram from "../components/pages/makersAcademy/fiturProgram.astro";
+import TeaserSection from "../components/pages/makersAcademy/teaserSection.astro";
+import JadwalSection from "../components/pages/makersAcademy/jadwal.astro";
+import MentorshipScope from "../components/pages/makersAcademy/mentorshipScope.astro";
+import PortfolioOutput from "../components/pages/makersAcademy/portfolioOutput.astro";
+import WhatsappSection from "../components/pages/makersAcademy/whatsappSection.astro";
+import PaketSection from "../components/pages/makersAcademy/paketSection.astro";
+import FaqSection from "../components/pages/makersAcademy/faq.astro";
+import ProsesBimbinganSection from "../components/pages/makersAcademy/prosesBimbinganSection.astro";
+---
+
+<Layout
+  title="Makers Academy — PortoSpace"
+  description="Program mentorship berbasis proyek yang membimbing siswa mengembangkan ide menjadi portofolio, prestasi, dan inovasi nyata."
+>
+  <main>
+    <HeroSection
+      badge="Program Unggulan"
+      titleLine1="Membangun Potensi Menjadi"
+      titleLine2="Karya yang"
+      titleHighlight="Berdampak."
+      description="Program mentorship berbasis proyek yang membimbing siswa mengembangkan ide menjadi portofolio, prestasi, dan inovasi nyata melalui pendampingan mentor dari akademisi dan praktisi industri."
+      bgImage={heroImg}
+    />
+    <ProgramPrivate />
+    <TargetSiswa />
+    <FiturProgram />
+    <TeaserSection />
+    <JadwalSection />
+    <MentorshipScope />
+    <PortfolioOutput />
+    <WhatsappSection />
+    <PaketSection />
+    <FaqSection />
+    <ProsesBimbinganSection />
+  </main>
+</Layout>

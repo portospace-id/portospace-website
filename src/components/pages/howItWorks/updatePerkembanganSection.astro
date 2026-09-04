@@ -1,0 +1,184 @@
+---
+import CardPengalamanIndustri from "@/components/card/cardPengalamanIndustri.astro";
+
+import minatStemImg from "@/assets/image/homepage/minatStem.webp";
+import targetTopUniversityImg from "@/assets/image/homepage/targetTopUniversity.webp";
+import butuhStoryImg from "@/assets/image/homepage/butuhStory.webp";
+
+interface Props {
+  /** Additional CSS class */
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<section
+  id="update-perkembangan"
+  class:list={[
+    "relative w-full bg-violet-normal text-white py-[60px] lg:py-[100px] flex flex-col justify-center overflow-hidden",
+    className,
+  ]}
+  aria-label="Update Perkembangan Belajar Section"
+  data-navbar="violet"
+>
+  <!-- Main Content Container (Standard Responsive Pattern) -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px]"
+  >
+    <div
+      class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch w-full"
+    >
+      <!-- Left Column: Large Vertical Image Card with Text Overlay -->
+      <div class="lg:col-span-5 w-full flex">
+        <CardPengalamanIndustri
+          id="update-card-left"
+          variant="image"
+          image={minatStemImg}
+          alt="Apa yang Sudah Dipelajari"
+          class="w-full h-[650px] sm:h-[800px] lg:h-[1000px]"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex flex-col justify-end p-5 sm:p-6 lg:p-7 text-left"
+          >
+            <h3
+              class="font-momo font-bold text-white text-xl sm:text-2xl lg:text-[28px] leading-tight mb-2"
+            >
+              Apa yang Sudah Dipelajari
+            </h3>
+            <p
+              class="font-jakarta font-normal text-white/90 text-xs sm:text-sm lg:text-base leading-relaxed max-w-[360px]"
+            >
+              Lihat materi dan keterampilan baru yang telah dipelajari anak di
+              setiap tahap pembelajaran.
+            </p>
+          </div>
+        </CardPengalamanIndustri>
+      </div>
+
+      <!-- Right Column: Heading Description + 2 Side-by-Side Image Cards with Overlay -->
+      <div
+        class="lg:col-span-7 flex flex-col justify-between gap-6 lg:gap-8 w-full"
+      >
+        <!-- Top Paragraph Text -->
+        <h2
+          id="update-heading"
+          class="font-momo font-medium text-white text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] leading-[135%] tracking-tight text-left"
+        >
+          Orang tua dapat selalu mengetahui sejauh mana perkembangan anak, mulai
+          dari proses belajar hingga pencapaian yang mereka raih di setiap
+          tahapnya.
+        </h2>
+
+        <!-- Bottom 2 Side-by-Side Vertical Image Cards with Overlay -->
+        <div
+          id="update-img-right-grid"
+          class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 w-full"
+        >
+          <!-- Middle Card -->
+          <CardPengalamanIndustri
+            variant="image"
+            image={targetTopUniversityImg}
+            alt="Sejauh Mana Proyek Berkembang"
+            class="w-full h-[560px] sm:h-[620px] lg:h-[700px]"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex flex-col justify-end p-4 sm:p-5 lg:p-6 text-left"
+            >
+              <h3
+                class="font-momo font-bold text-white text-lg sm:text-xl lg:text-2xl leading-tight mb-2"
+              >
+                Sejauh Mana Proyek Berkembang
+              </h3>
+              <p
+                class="font-jakarta font-normal text-white/90 text-xs sm:text-sm leading-relaxed"
+              >
+                Ketahui perkembangan proyek yang sedang dikerjakan beserta
+                pencapaian yang telah diraih.
+              </p>
+            </div>
+          </CardPengalamanIndustri>
+
+          <!-- Right Card -->
+          <CardPengalamanIndustri
+            variant="image"
+            image={butuhStoryImg}
+            alt="Arahan dari Mentor"
+            class="w-full h-[560px] sm:h-[620px] lg:h-[700px]"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex flex-col justify-end p-4 sm:p-5 lg:p-6 text-left"
+            >
+              <h3
+                class="font-momo font-bold text-white text-lg sm:text-xl lg:text-2xl leading-tight mb-2"
+              >
+                Arahan dari Mentor
+              </h3>
+              <p
+                class="font-jakarta font-normal text-white/90 text-xs sm:text-sm leading-relaxed"
+              >
+                Dapatkan masukan dan saran dari mentor sebagai panduan untuk
+                mendukung perkembangan anak ke depannya.
+              </p>
+            </div>
+          </CardPengalamanIndustri>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Entrance Animation with GSAP -->
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initAnimation = () => {
+      const section = document.querySelector("#update-perkembangan");
+      if (!section) return;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      tl.from("#update-card-left", {
+        x: -30,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power2.out",
+      })
+        .from(
+          "#update-heading",
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.65,
+            ease: "power2.out",
+          },
+          "-=0.4",
+        )
+        .from(
+          "#update-img-right-grid > div",
+          {
+            y: 40,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: "power2.out",
+          },
+          "-=0.3",
+        );
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initAnimation);
+    } else {
+      initAnimation();
+    }
+  </script>
+</section>

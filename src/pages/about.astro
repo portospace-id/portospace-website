@@ -1,0 +1,28 @@
+---
+// Layouts
+import Layout from "../layouts/Layout.astro";
+
+// Sections
+import HeroSection from "../components/pages/about/heroSection.astro";
+import Cerita from "../components/pages/about/cerita.astro";
+import VisiMisi from "../components/pages/about/VisiMisi.astro";
+import AlasanDibangun from "../components/pages/about/alasanDibangun.astro";
+import ProjectMentorshipSection from "../components/pages/about/projectMentorshipSection.astro";
+import ProgramUnggulanSection from "../components/pages/about/ProgramUnggulanSection.astro";
+import FounderSection from "../components/pages/about/founderSection.astro";
+---
+
+<Layout
+  title="About Us — PortoSpace"
+  description="Setiap mimpi besar berawal dari seseorang yang percaya pada potensimu. Bersama mentor yang tepat, setiap ide mendapatkan arahan dan setiap tantangan menemukan solusi."
+>
+  <main>
+    <HeroSection />
+    <VisiMisi />
+    <Cerita />
+    <ProjectMentorshipSection />
+    <ProgramUnggulanSection />
+    <FounderSection />
+    <AlasanDibangun />
+  </main>
+</Layout>

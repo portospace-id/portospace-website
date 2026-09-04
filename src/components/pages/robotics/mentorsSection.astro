@@ -1,0 +1,297 @@
+---
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+
+const mentors = [
+  {
+    image: "/farhan.webp",
+    major: "Biotechnology",
+    name: "Farhan M.",
+    university: "Institut Teknologi Bandung",
+  },
+  {
+    image: "/farhan.webp",
+    major: "Biotechnology",
+    name: "Farhan M.",
+    university: "Institut Teknologi Bandung",
+  },
+  {
+    image: "/farhan.webp",
+    major: "Biotechnology",
+    name: "Farhan M.",
+    university: "Institut Teknologi Bandung",
+  },
+  {
+    image: "/farhan.webp",
+    major: "Biotechnology",
+    name: "Farhan M.",
+    university: "Institut Teknologi Bandung",
+  },
+  {
+    image: "/farhan.webp",
+    major: "Biotechnology",
+    name: "Farhan M.",
+    university: "Institut Teknologi Bandung",
+  },
+];
+---
+
+<section
+  id="mentors-section"
+  class="relative w-full overflow-hidden bg-white min-h-[100vh] flex flex-col justify-center"
+  aria-label="Our Mentors Robotics"
+  data-navbar="white"
+>
+  <!-- Decorative Pattern (top-right) -->
+  <div
+    class="absolute top-0 right-0 w-[180px] sm:w-[240px] md:w-[280px] lg:w-[340px] pointer-events-none select-none"
+    aria-hidden="true"
+  >
+    <img
+      src="/pattern_6.svg"
+      alt=""
+      class="w-full h-auto object-contain"
+    />
+  </div>
+
+  <!-- Content -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pt-16 md:pt-20 lg:pt-24"
+  >
+    <!-- Header: Badge + Heading (left) | Description (right) -->
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 lg:mb-14">
+      
+      <!-- Left: Badge + Heading -->
+      <div class="flex flex-col gap-4 max-w-[850px] xl:max-w-[900px]">
+        <div id="mentors-badge">
+          <SectionTitle
+            id="mentors-badge-inner"
+            variant="light"
+            title="Our Mentors"
+            showIcon={true}
+          />
+        </div>
+
+        <h2
+          id="mentors-heading"
+          class="font-momo font-semibold text-black leading-[110%] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px]"
+          style="letter-spacing: -0.02em;"
+        >
+          <span class="hidden md:inline">
+            Belajar Bersama Mentor yang<br />
+            Berpengalaman di{" "}
+          </span>
+          <span class="md:hidden">
+            Belajar Bersama<br />
+            Mentor yang<br />
+            Berpengalaman di<br />
+          </span>
+          <span
+            class="font-caveat font-bold italic text-black text-[44px] sm:text-[54px] md:text-[60px] lg:text-[64px] leading-[80%] align-baseline"
+            style="letter-spacing: -0.04em;"
+          >
+            Dunia Riset.
+          </span>
+        </h2>
+      </div>
+
+      <!-- Right: Description -->
+      <div class="lg:w-[400px] lg:flex-shrink-0 flex lg:justify-end">
+        <p
+          id="mentors-desc"
+          class="font-jakarta font-normal text-black text-[15px] sm:text-[16px] leading-[150%] lg:mb-2"
+        >
+          <span class="hidden md:inline">
+            Didampingi mentor dari berbagai universitas, institusi riset, dan
+            industri yang siap membimbing setiap proses penelitian.
+          </span>
+          <span class="md:hidden">
+            Didampingi mentor dari berbagai universitas,<br />
+            institusi riset, dan industri yang siap<br />
+            membimbing setiap proses penelitian.
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carousel (draggable, infinite) -->
+  <div
+    id="mentors-carousel-wrapper"
+    class="relative z-10 w-full overflow-x-auto pb-8 md:pb-12 lg:pb-16 cursor-grab select-none"
+    style="scrollbar-width: none; -ms-overflow-style: none;"
+  >
+    <div
+      id="mentors-carousel-track"
+      class="flex gap-4 md:gap-5 w-max"
+      style="padding-left: 32px; padding-right: 32px;"
+    >
+      {
+        [...mentors, ...mentors, ...mentors].map((mentor, idx) => (
+          <div class="mentor-card group flex-shrink-0 relative overflow-hidden bg-[#e0e0e0]" data-index={idx}>
+            <!-- Image -->
+            <img
+              src={mentor.image}
+              alt={mentor.name}
+              class="w-full h-full object-cover"
+              loading="lazy"
+              draggable="false"
+            />
+            
+            <!-- Info Box -->
+            <div class="absolute bottom-4 left-4 right-4 bg-white p-4 lg:p-5 flex flex-col gap-1">
+              <span class="font-jakarta font-normal text-[#161616] text-[16px] leading-[150%]">
+                {mentor.major}
+              </span>
+              <span class="font-momo font-semibold text-black text-[24px] sm:text-[28px] md:text-[32px] leading-[110%] tracking-[-0.02em]">
+                {mentor.name}
+              </span>
+              <span class="font-jakarta font-normal text-[#161616] text-[18px] sm:text-[20px] md:text-[24px] leading-[150%]">
+                {mentor.university}
+              </span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hide scrollbar */
+  #mentors-carousel-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Card size: ~3.5 cards visible per viewport */
+  .mentor-card {
+    --card-size: calc((100vw - 96px) / 3.5);
+    width: var(--card-size);
+    height: calc(var(--card-size) * 1.25); /* Portrait ratio */
+  }
+
+  @media (max-width: 768px) {
+    .mentor-card {
+      --card-size: calc((100vw - 64px) / 2);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .mentor-card {
+      --card-size: calc(100vw - 40px);
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Entrances
+  gsap.from(["#mentors-badge", "#mentors-heading"], {
+    y: 30,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.12,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: "#mentors-section",
+      start: "top 80%",
+      once: true,
+    },
+  });
+
+  gsap.from("#mentors-desc", {
+    y: 20,
+    opacity: 0,
+    duration: 0.6,
+    delay: 0.2,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#mentors-section",
+      start: "top 80%",
+      once: true,
+    },
+  });
+
+  // ---------- Infinite Drag to scroll ----------
+  const wrapper = document.getElementById("mentors-carousel-wrapper") as HTMLElement;
+  const track = document.getElementById("mentors-carousel-track") as HTMLElement;
+
+  if (wrapper && track) {
+    let setWidth = 0;
+
+    const setupInfiniteScroll = () => {
+      const cards = track.querySelectorAll('.mentor-card') as NodeListOf<HTMLElement>;
+      if (cards.length === 0) return;
+      
+      const numOriginals = cards.length / 3;
+      setWidth = cards[numOriginals].offsetLeft - cards[0].offsetLeft;
+      
+      if (wrapper.scrollLeft === 0) {
+        wrapper.scrollLeft = setWidth;
+      }
+    };
+
+    setTimeout(setupInfiniteScroll, 100);
+    window.addEventListener("resize", setupInfiniteScroll);
+
+    wrapper.addEventListener("scroll", () => {
+      if (!setWidth) return;
+      
+      if (wrapper.scrollLeft <= 5) {
+        wrapper.scrollLeft += setWidth;
+      } else if (wrapper.scrollLeft >= wrapper.scrollWidth - wrapper.clientWidth - 5) {
+        wrapper.scrollLeft -= setWidth;
+      }
+    });
+
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    wrapper.addEventListener("mousedown", (e) => {
+      isDown = true;
+      wrapper.classList.remove("cursor-grab");
+      wrapper.classList.add("cursor-grabbing");
+      startX = e.pageX - wrapper.offsetLeft;
+      scrollLeft = wrapper.scrollLeft;
+    });
+
+    wrapper.addEventListener("mouseleave", () => {
+      isDown = false;
+      wrapper.classList.add("cursor-grab");
+      wrapper.classList.remove("cursor-grabbing");
+    });
+
+    wrapper.addEventListener("mouseup", () => {
+      isDown = false;
+      wrapper.classList.add("cursor-grab");
+      wrapper.classList.remove("cursor-grabbing");
+    });
+
+    wrapper.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - wrapper.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      wrapper.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch support
+    let touchStartX = 0;
+    let touchScrollLeft = 0;
+
+    wrapper.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0].pageX;
+      touchScrollLeft = wrapper.scrollLeft;
+    });
+
+    wrapper.addEventListener("touchmove", (e) => {
+      const x = e.touches[0].pageX;
+      const walk = (x - touchStartX) * 1.2;
+      wrapper.scrollLeft = touchScrollLeft - walk;
+    });
+  }
+</script>

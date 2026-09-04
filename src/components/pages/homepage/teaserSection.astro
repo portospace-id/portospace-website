@@ -1,0 +1,206 @@
+---
+// Components
+import CardTeaser from "@/components/card/cardTeaser.astro";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import PatternLine from "@/components/ui/patternLine.astro";
+
+// Images
+import successStoryImg from "@/assets/image/homepage/successStory.webp";
+import butuhStoryImg from "@/assets/image/homepage/butuhStory.webp";
+import minatStemImg from "@/assets/image/homepage/minatStem.webp";
+
+const teaserCards = [
+  {
+    id: "teaser-card-left",
+    title: "Punya Target Top University",
+    description:
+      "Ivy League, kampus luar negeri, scholarship, atau SNBP kampus impian di Indonesia.",
+    image: successStoryImg,
+  },
+  {
+    id: "teaser-card-center",
+    title: 'Butuh "Story" yang Kuat',
+    description:
+      "Perlu mentor yang bantu bangun cerita, project nyata, dan portofolio yang berbicara sendiri.",
+    image: butuhStoryImg,
+  },
+  {
+    id: "teaser-card-right",
+    title: "Minat di STEM & Inovasi",
+    description:
+      "Suka riset, coding, startup, robotics, olimpiade sains — atau penasaran ingin mencoba.",
+    image: minatStemImg,
+  },
+];
+---
+
+<section
+  id="teaser"
+  class="relative w-full py-16 lg:py-0 lg:h-screen lg:min-h-screen bg-violet-normal overflow-hidden flex flex-col justify-center"
+  aria-label="Teaser Maker's Academy"
+  data-navbar="violet"
+>
+  <!-- Background Pattern - Top Right -->
+  <PatternLine
+    class="absolute z-0"
+    style="top: 0; right: -80px; width: 477px; height: 521px; display: block;"
+  />
+
+  <!-- Background Pattern - Bottom Left -->
+  <PatternLine
+    class="absolute z-0 rotate-180"
+    style="bottom: 0; left: -61px; width: 477px; height: 521px; display: block;"
+  />
+
+  <!-- Section Container -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-center lg:justify-center lg:absolute lg:inset-0 gap-10 lg:gap-0"
+  >
+    <!-- Heading -->
+    <div class="flex flex-col items-center justify-center gap-[16px] text-center w-full max-w-[1100px] z-0">
+      <SectionTitle title="Maker's Academy" />
+      <h2
+        id="teaser-heading"
+        class="font-momo font-semibold text-white text-center leading-[110%] tracking-[-1.08px] w-full text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px]"
+      >
+        Maker's Academy Cocok untuk Kamu yang<br class="hidden sm:block" />
+        Ingin Berkembang Lewat Project Nyata.
+      </h2>
+    </div>
+
+    <!-- Cards Container -->
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:flex lg:contents gap-6 items-stretch justify-center max-w-[380px] md:max-w-[768px] lg:max-w-none mx-auto z-10">
+      <!-- Card Left -->
+      <div
+        id="teaser-card-left"
+        class="w-full lg:w-auto lg:absolute z-10"
+      >
+        <CardTeaser
+          title={teaserCards[0].title}
+          description={teaserCards[0].description}
+          image={teaserCards[0].image}
+        />
+      </div>
+
+      <!-- Card Center -->
+      <div
+        id="teaser-card-center"
+        class="w-full lg:w-auto lg:absolute z-10"
+      >
+        <CardTeaser
+          title={teaserCards[1].title}
+          description={teaserCards[1].description}
+          image={teaserCards[1].image}
+        />
+      </div>
+
+      <!-- Card Right -->
+      <div
+        id="teaser-card-right"
+        class="w-full lg:w-auto lg:absolute z-10 md:col-span-2 md:w-[342px] md:mx-auto lg:w-auto lg:mx-0"
+      >
+        <CardTeaser
+          title={teaserCards[2].title}
+          description={teaserCards[2].description}
+          image={teaserCards[2].image}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initTeaser = () => {
+    const section = document.getElementById("teaser");
+    if (!section) return;
+
+    ScrollTrigger.matchMedia({
+      // Desktop: Pin & sequential entrance timeline animation
+      "(min-width: 1024px)": function () {
+        gsap.set("#teaser-card-left", { y: 700, left: "32px", top: "60px", right: "auto" });
+        gsap.set("#teaser-card-right", { y: 600, right: "32px", top: "30px", left: "auto" });
+        gsap.set("#teaser-card-center", { y: 900, left: "calc(50% - 171px)", top: "230px", right: "auto" });
+
+        // Heading fade
+        gsap.from("#teaser-heading", {
+          scrollTrigger: {
+            trigger: "#teaser",
+            start: "top 85%",
+            once: true,
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          clearProps: "transform,opacity",
+        });
+
+        const tl = gsap.timeline();
+        tl.to("#teaser-card-left", { y: 0, ease: "power2.out" }, 0)
+          .to("#teaser-card-right", { y: 0, ease: "power2.out" }, 0.25)
+          .to("#teaser-card-center", { y: 0, ease: "power2.out" }, 0.55);
+
+        const pinTrigger = ScrollTrigger.create({
+          trigger: "#teaser",
+          start: "top top",
+          end: "+=2200",
+          pin: true,
+          scrub: true,
+          animation: tl,
+          anticipatePin: 1,
+        });
+
+        return () => {
+          pinTrigger.kill();
+        };
+      },
+
+      // Mobile & Tablet: Standard stacked grid entrance
+      "(max-width: 1023px)": function () {
+        gsap.set("#teaser-card-left", { clearProps: "all" });
+        gsap.set("#teaser-card-right", { clearProps: "all" });
+        gsap.set("#teaser-card-center", { clearProps: "all" });
+
+        gsap.from("#teaser-heading", {
+          scrollTrigger: {
+            trigger: "#teaser",
+            start: "top 85%",
+            once: true,
+          },
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          clearProps: "transform,opacity",
+        });
+
+        gsap.from(".teaser-card-item", {
+          scrollTrigger: {
+            trigger: "#teaser",
+            start: "top 80%",
+            once: true,
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.12,
+          ease: "power2.out",
+          clearProps: "transform,opacity",
+        });
+      },
+    });
+
+    setTimeout(() => ScrollTrigger.refresh(), 100);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTeaser);
+  } else {
+    initTeaser();
+  }
+</script>

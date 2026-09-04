@@ -1,0 +1,120 @@
+---
+import CardRekomendasiPaket from "@/components/card/cardRekomendasiPaket.astro";
+
+interface Props {
+  /** Additional CSS class */
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+const recommendations = [
+  {
+    title: "Lite",
+    description:
+      "Cocok untuk kamu yang ingin mulai belajar dan membangun fondasi melalui proyek pertama.",
+  },
+  {
+    title: "Pro",
+    description:
+      "Ideal untuk kamu yang ingin mengembangkan kemampuan dan membangun portofolio yang lebih kuat.",
+  },
+  {
+    title: "Pro Max",
+    description:
+      "Pilihan terbaik untuk kamu yang menargetkan prestasi, kompetisi, dan portofolio terbaik.",
+  },
+];
+---
+
+<section
+  id="rekomendasi-paket"
+  class:list={[
+    "relative w-full bg-white py-[60px] lg:py-[100px] flex flex-col items-center overflow-hidden",
+    className,
+  ]}
+  aria-label="Rekomendasi Paket Section"
+  data-navbar="white"
+>
+  <!-- Standard Responsive Container -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-center"
+  >
+    <!-- Centered Header Area -->
+    <div class="flex flex-col items-center text-center gap-4 mb-12 lg:mb-16">
+      <h2
+        id="rekomendasi-heading"
+        class="font-momo font-bold text-[#111111] text-[32px] md:text-[44px] lg:text-[54px] leading-[110%] tracking-tight max-w-[980px]"
+      >
+        Temukan Paket yang Paling Sesuai<br class="hidden md:block" />
+        dengan Target dan Perjalanan{" "}
+        <span
+          class="font-caveat font-semibold italic text-[#111111] text-[40px] md:text-[54px] lg:text-[64px] leading-none inline-block"
+        >
+          Belajarmu.
+        </span>
+      </h2>
+    </div>
+
+    <!-- 3 Cards Grid -->
+    <div
+      id="rekomendasi-cards-grid"
+      class="w-full max-w-[1400px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch justify-center justify-items-center"
+    >
+      {
+        recommendations.map((item) => (
+          <CardRekomendasiPaket
+            title={item.title}
+            description={item.description}
+          />
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- GSAP Entrance Animation -->
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initAnimations = () => {
+      const section = document.querySelector("#rekomendasi-paket");
+      if (!section) return;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      tl.from("#rekomendasi-heading", {
+        y: 35,
+        opacity: 0,
+        duration: 0.75,
+        ease: "power3.out",
+        clearProps: "all",
+      }).from(
+        ".card-rekomendasi-paket",
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.65,
+          stagger: 0.12,
+          ease: "power2.out",
+          clearProps: "all",
+        },
+        "-=0.4"
+      );
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initAnimations);
+    } else {
+      initAnimations();
+    }
+  </script>
+</section>

@@ -1,0 +1,132 @@
+---
+import { Image } from "astro:assets";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import ceritaImg from "@/assets/image/about/cerita.png";
+
+interface Props {
+  /** Additional CSS class for section */
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+const descriptionText =
+  "Kami percaya setiap pelajar memiliki potensi untuk berkembang. PortoSpace dibangun untuk menghadirkan ruang belajar yang tidak hanya berfokus pada teori, tetapi juga memberikan pengalaman nyata, bimbingan mentor, dan kesempatan berkarya agar setiap peserta lebih siap menghadapi masa depan.";
+---
+
+<section
+  id="alasan-dibangun"
+  class:list={[
+    "relative w-full overflow-hidden bg-violet-normal text-white py-16 sm:py-20 md:py-24 lg:py-28",
+    className,
+  ]}
+  aria-label="Mengapa PortoSpace dibangun Section"
+  data-navbar="violet"
+>
+  <!-- Main Content Container -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px]"
+  >
+    <div
+      class="flex flex-col lg:flex-row items-stretch justify-between gap-10 lg:gap-[60px]"
+    >
+      <!-- Left Column: Pill, Heading, and Description -->
+      <div
+        id="alasan-left"
+        class="w-full flex-1 flex flex-col justify-between items-start gap-8 lg:gap-12"
+      >
+        <!-- Top Group: Section Title & Heading -->
+        <div class="flex flex-col items-start gap-3 w-full">
+          <!-- Heading -->
+          <h2
+            id="alasan-heading"
+            class="font-momo font-bold text-white text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.12] tracking-tight max-w-[780px]"
+          >
+            Berawal dari Keinginan Menghadirkan Tempat Belajar yang Lebih
+            Bermakna untuk Setiap
+            <span
+              class="font-caveat font-bold italic text-white text-[38px] sm:text-[52px] lg:text-[64px] leading-none inline mt-1 sm:mt-0"
+              >Pelajar.</span
+            >
+          </h2>
+        </div>
+
+        <!-- Bottom Group: Description Paragraph -->
+        <p
+          id="alasan-desc"
+          class="font-jakarta font-normal text-white/90 text-sm sm:text-base leading-relaxed max-w-[560px]"
+        >
+          {descriptionText}
+        </p>
+      </div>
+
+      <!-- Right Column: Workshop Image (678px x 800px, rounded-sm 4px) -->
+      <div
+        id="alasan-image-wrapper"
+        class="w-full lg:w-[678px] h-[400px] sm:h-[550px] md:h-[680px] lg:h-[800px] rounded-sm overflow-hidden flex-shrink-0"
+      >
+        <Image
+          src={ceritaImg}
+          alt="Suasana Ruang Belajar PortoSpace"
+          width={678}
+          height={800}
+          class="w-full h-full object-cover object-center rounded-sm select-none pointer-events-none"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initAnimations = () => {
+    const section = document.querySelector("#alasan-dibangun");
+    if (!section) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%",
+        once: true,
+      },
+    });
+
+    tl.from("#alasan-heading", {
+      y: 35,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    })
+      .from(
+        "#alasan-desc",
+        {
+          y: 25,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.4",
+      )
+      .from(
+        "#alasan-image-wrapper",
+        {
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        },
+        "-=0.5",
+      );
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAnimations);
+  } else {
+    initAnimations();
+  }
+</script>

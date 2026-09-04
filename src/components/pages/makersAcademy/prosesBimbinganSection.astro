@@ -1,0 +1,175 @@
+---
+import { Image } from "astro:assets";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import pattern4 from "@/assets/pattern/pattern_4.svg";
+
+export interface StepItemData {
+  number: number | string;
+  title: string;
+}
+
+interface Props {
+  /** Section badge text */
+  badgeText?: string;
+  /** Main heading line 1 */
+  titleLine1?: string;
+  /** Main heading line 2 prefix */
+  titleLine2?: string;
+  /** Main heading accent word */
+  titleHighlight?: string;
+  /** Subtitle description */
+  description?: string;
+  /** List of 6 steps */
+  steps?: StepItemData[];
+  /** Custom CSS classes */
+  class?: string;
+}
+
+const defaultSteps: StepItemData[] = [
+  { number: 1, title: "Temukan Tujuanmu" },
+  { number: 2, title: "Mentor Matching" },
+  { number: 3, title: "Learning & Foundation" },
+  { number: 4, title: "Project Development" },
+  { number: 5, title: "Portfolio Review" },
+  { number: 6, title: "Competition & Future Opportunities" },
+];
+
+const {
+  badgeText = "Proses Bimbingan",
+  titleLine1 = "Setiap Langkah Membimbingmu dari Ide",
+  titleLine2 = "hingga Menjadi ",
+  titleHighlight = "Karya",
+  description = "Pendampingan dilakukan secara bertahap bersama mentor untuk membantu setiap ide berkembang menjadi karya nyata.",
+  steps = defaultSteps,
+  class: className = "",
+} = Astro.props;
+---
+
+<section
+  id="proses-bimbingan-section"
+  class:list={[
+    "relative w-full bg-white py-16 md:py-20 lg:py-24 flex flex-col items-center overflow-hidden z-10",
+    className,
+  ]}
+  aria-label="Proses Bimbingan Maker's Academy"
+  data-navbar="white"
+>
+  <!-- Main Section Wrapper -->
+  <div
+    class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] relative z-10 flex flex-col items-center text-center"
+  >
+    <!-- Section Badge -->
+    <div id="proses-bimbingan-badge" class="mb-4 md:mb-5">
+      <SectionTitle variant="light" title={badgeText} />
+    </div>
+
+    <!-- Centered Heading (Strict 2 Lines) -->
+    <h2
+      id="proses-bimbingan-heading"
+      class="font-display font-bold text-[#161616] text-[30px] sm:text-[38px] md:text-[46px] lg:text-[50px] xl:text-[54px] leading-[1.15] tracking-tight max-w-[1140px] text-center"
+    >
+      {titleLine1 && <span class="block whitespace-normal lg:whitespace-nowrap">{titleLine1}</span>}
+      <span class="block mt-1">
+        {titleLine2 && titleLine2}
+        {
+          titleHighlight && (
+            <span class="font-handwriting font-medium italic text-[#161616] text-[40px] md:text-[54px] lg:text-[64px] leading-none align-baseline">
+              {titleHighlight}
+            </span>
+          )
+        }
+      </span>
+    </h2>
+
+    <!-- Subtitle / Description -->
+    {
+      description && (
+        <p
+          id="proses-bimbingan-desc"
+          class="font-sans font-normal text-[#161616]/70 text-sm md:text-base leading-relaxed max-w-[580px] mt-3 md:mt-4 text-center"
+        >
+          {description}
+        </p>
+      )
+    }
+
+    <!-- Steps Grid (2 Columns: 1-3 on left, 4-6 on right) -->
+    <div
+      id="proses-bimbingan-grid"
+      class="w-full max-w-[1040px] grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-20 gap-y-6 md:gap-y-8 lg:gap-y-10 mt-12 md:mt-16 lg:mt-20 text-left"
+    >
+      {
+        steps.map((step) => (
+          <div class="proses-step-item flex items-start gap-4 md:gap-5 group cursor-pointer">
+            <!-- Number Circle Badge -->
+            <div class="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 rounded-full bg-violet-normal text-white font-sans font-bold text-sm md:text-base flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
+              {step.number}
+            </div>
+
+            <!-- Step Title -->
+            <h3 class="font-display font-bold text-[#161616] text-[24px] sm:text-[28px] md:text-[30px] lg:text-[36px] leading-[1.2] tracking-tight group-hover:text-violet-normal transition-colors duration-200">
+              {step.title}
+            </h3>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Background Decorative Pattern SVG - Bottom Right -->
+  <Image
+    src={pattern4}
+    alt=""
+    class="absolute pointer-events-none select-none z-0"
+    style="width: 486.515px; height: 488px; position: absolute; right: -175.515px; bottom: -203px; display: block;"
+    aria-hidden="true"
+  />
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initProsesBimbingan = () => {
+    const section = document.querySelector("#proses-bimbingan-section");
+    if (!section) return;
+
+    const badge = document.querySelector("#proses-bimbingan-badge");
+    const heading = document.querySelector("#proses-bimbingan-heading");
+    const desc = document.querySelector("#proses-bimbingan-desc");
+
+    gsap.from([badge, heading, desc].filter(Boolean), {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.15,
+      ease: "power3.out",
+    });
+
+    gsap.from(".proses-step-item", {
+      scrollTrigger: {
+        trigger: "#proses-bimbingan-grid",
+        start: "top 85%",
+        once: true,
+      },
+      y: 25,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "power2.out",
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProsesBimbingan);
+  } else {
+    initProsesBimbingan();
+  }
+</script>

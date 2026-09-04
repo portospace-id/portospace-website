@@ -1,0 +1,247 @@
+---
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import ListMentorshipScope from "@/components/list/listMentorshipScope.astro";
+
+export interface MentorshipScopeItemData {
+  number: string;
+  title: string;
+  description: string;
+  isActive?: boolean;
+}
+
+interface Props {
+  /** Small section badge text (default: "Mentorship Scope") */
+  badgeText?: string;
+  /** Heading line 1 */
+  titleLine1?: string;
+  /** Heading line 2 prefix */
+  titleLine2?: string;
+  /** Heading accent in Caveat font */
+  titleHighlight?: string;
+  /** List of mentorship scope steps */
+  items?: MentorshipScopeItemData[];
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const defaultItems: MentorshipScopeItemData[] = [
+  {
+    number: "01",
+    title: "Goal Setting",
+    description:
+      "Menentukan tujuan belajar, minat, dan target yang ingin dicapai sebelum memulai perjalanan di Maker's Academy.",
+  },
+  {
+    number: "02",
+    title: "Personalized Learning Roadmap",
+    description:
+      "Menyusun roadmap pembelajaran yang disesuaikan dengan kemampuan, tujuan, dan perkembangan setiap siswa.",
+  },
+  {
+    number: "03",
+    title: "Expert Mentor Matching",
+    description:
+      "Dipasangkan dengan mentor yang memiliki keahlian dan pengalaman sesuai bidang yang dipilih untuk memberikan pendampingan yang tepat.",
+  },
+  {
+    number: "04",
+    title: "Project Development",
+    description:
+      "Mengembangkan ide menjadi proyek nyata melalui proses riset, eksperimen, implementasi, dan penyempurnaan bersama mentor.",
+  },
+  {
+    number: "05",
+    title: "Portfolio Building",
+    description:
+      "Menghasilkan karya yang terdokumentasi dengan baik sebagai portofolio untuk kompetisi, beasiswa, maupun universitas impian.",
+  },
+  {
+    number: "06",
+    title: "Competition & Publication Support",
+    description:
+      "Mempersiapkan proyek agar siap mengikuti kompetisi, publikasi ilmiah, maupun peluang akademik lainnya.",
+  },
+  {
+    number: "07",
+    title: "Progress Evaluation",
+    description:
+      "Mendapatkan evaluasi, review, dan feedback secara berkala untuk memastikan setiap perkembangan tetap terarah.",
+  },
+  {
+    number: "08",
+    title: "Graduation & Next Journey",
+    description:
+      "Menyelesaikan program dengan portofolio, pengalaman, dan arah yang lebih jelas untuk melanjutkan ke kompetisi, universitas, maupun jenjang berikutnya.",
+  },
+];
+
+const {
+  badgeText = "Mentorship Scope",
+  titleLine1 = "Dari Langkah Pertama hingga Siap",
+  titleLine2 = "Melangkah ",
+  titleHighlight = "Lebih Jauh",
+  items = defaultItems,
+  class: className = "",
+} = Astro.props;
+---
+
+<section
+  id="mentorship-scope"
+  class:list={[
+    "relative w-full bg-white py-16 md:py-20 lg:py-24 flex flex-col justify-center z-10 pb-32 lg:pb-48",
+    className,
+  ]}
+  aria-label="Mentorship Scope Maker's Academy"
+  data-navbar="white"
+>
+  <!-- Main Container Wrapper -->
+  <div
+    class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] relative z-10 flex flex-col gap-10 lg:gap-14"
+  >
+    <!-- Header Section: SectionTitle Badge (Left) + Heading (Right) -->
+    <div
+      class="w-full flex flex-col md:flex-row items-start justify-start gap-6 md:gap-[100px]"
+    >
+      <!-- Left: Badge -->
+      <div class="shrink-0">
+        {
+          badgeText && (
+            <SectionTitle
+              id="mentorship-scope-badge"
+              variant="light"
+              title={badgeText}
+            />
+          )
+        }
+      </div>
+
+      <!-- Right: Heading (2 Lines) -->
+      <div class="flex-1 w-full max-w-full">
+        <h2
+          id="mentorship-scope-heading"
+          class="font-display font-bold text-[#161616] text-[32px] md:text-[40px] lg:text-[54px] leading-[1.15] tracking-tight"
+        >
+          {titleLine1 && <span class="block md:whitespace-nowrap">{titleLine1}</span>}
+          <span class="block">
+            {titleLine2 && titleLine2}
+            {
+              titleHighlight && (
+                <span class="font-handwriting font-semibold italic text-[#161616] text-[38px] md:text-[48px] lg:text-[64px] leading-none align-baseline">
+                  {titleHighlight}
+                </span>
+              )
+            }
+          </span>
+        </h2>
+      </div>
+    </div>
+
+    <!-- Scope Items List Container (Stacking Cards Layout) -->
+    <div
+      id="mentorship-scope-items"
+      class="w-full flex flex-col border-t border-gray-200 relative pb-16 md:pb-24"
+    >
+      {
+        items.map((item) => (
+          <ListMentorshipScope
+            number={item.number}
+            title={item.title}
+            description={item.description}
+            isActive={item.isActive}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initMentorshipScope = () => {
+    const section = document.querySelector("#mentorship-scope");
+    if (!section) return;
+
+    const badge = document.querySelector("#mentorship-scope-badge");
+    const heading = document.querySelector("#mentorship-scope-heading");
+    const listItems = document.querySelectorAll<HTMLElement>(
+      ".list-mentorship-scope-item"
+    );
+
+    // Header Entrance Animation
+    gsap.from([badge, heading].filter(Boolean), {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.15,
+      ease: "power3.out",
+      clearProps: "transform,opacity",
+    });
+
+    function setItemPurple(targetItem: HTMLElement) {
+      listItems.forEach((el) => {
+        if (el === targetItem) {
+          el.classList.add(
+            "bg-violet-normal",
+            "text-white",
+            "border-transparent"
+          );
+          el.classList.remove("bg-white", "text-[#161616]");
+          const p = el.querySelector("p");
+          if (p) {
+            p.classList.add("text-white/90");
+            p.classList.remove("text-gray-600");
+          }
+        } else {
+          resetItemWhite(el);
+        }
+      });
+    }
+
+    function resetItemWhite(item: HTMLElement) {
+      item.classList.remove(
+        "bg-violet-normal",
+        "text-white",
+        "border-transparent"
+      );
+      item.classList.add("bg-white", "text-[#161616]");
+      const p = item.querySelector("p");
+      if (p) {
+        p.classList.remove("text-white/90");
+        p.classList.add("text-gray-600");
+      }
+    }
+
+    // Assign Stacking Z-Index (All list items remain FULL WHITE by default)
+    if (listItems.length > 0) {
+      listItems.forEach((item, index) => {
+        item.style.zIndex = `${index + 10}`;
+        resetItemWhite(item);
+
+        item.addEventListener("mouseenter", () => {
+          setItemPurple(item);
+        });
+
+        item.addEventListener("mouseleave", () => {
+          resetItemWhite(item);
+        });
+      });
+    }
+
+    setTimeout(() => ScrollTrigger.refresh(), 100);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMentorshipScope);
+  } else {
+    initMentorshipScope();
+  }
+</script>

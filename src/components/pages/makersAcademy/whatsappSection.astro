@@ -1,0 +1,171 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Button from "@/components/ui/button.astro";
+
+// Default trophy and awards background image matching Figma design
+import defaultCtaImg from "@/assets/image/makersAcademy/cta_trophies_awards.png";
+
+interface Props {
+  /** Background Image */
+  bgImage?: ImageMetadata | string;
+  /** Heading line 1 */
+  titleLine1?: string;
+  /** Heading line 2 prefix */
+  titleLine2?: string;
+  /** Accent text in Caveat font */
+  titleHighlight?: string;
+  /** Description subtext */
+  description?: string;
+  /** WhatsApp button text */
+  buttonText?: string;
+  /** WhatsApp link target */
+  whatsappUrl?: string;
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  bgImage = defaultCtaImg,
+  titleLine1 = "Saatnya Mengubah Potensi",
+  titleLine2 = "Menjadi ",
+  titleHighlight = "Prestasi.",
+  description = "Jangan biarkan ide berhenti sebagai impian. Bersama mentor terbaik, bangun portofolio, raih prestasi, dan persiapkan masa depanmu mulai hari ini.",
+  buttonText = "Konsultasi via WhatsApp",
+  whatsappUrl = "https://wa.me/6281234567890?text=Halo%20PortoSpace,%20saya%20ingin%20konsultasi%20program%20Maker's%20Academy",
+  class: className = "",
+} = Astro.props;
+
+const isStringImg = typeof bgImage === "string";
+---
+
+<section
+  id="whatsapp-cta-section"
+  class:list={[
+    "relative w-full min-h-screen h-screen flex flex-col justify-end overflow-hidden z-10",
+    className,
+  ]}
+  aria-label="Konsultasi WhatsApp PortoSpace"
+  data-navbar="dark"
+>
+  <!-- Background Image (100vh full height) -->
+  <div class="absolute inset-0 z-0 select-none pointer-events-none">
+    {
+      isStringImg ? (
+        <img
+          src={bgImage as string}
+          alt="Prestasi PortoSpace"
+          class="w-full h-full object-cover object-center"
+          loading="lazy"
+        />
+      ) : (
+        <Image
+          src={bgImage as ImageMetadata}
+          alt="Prestasi PortoSpace"
+          class="w-full h-full object-cover object-center"
+          loading="lazy"
+        />
+      )
+    }
+
+    <!-- Dark Gradient Overlay for Readability -->
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/30"
+    >
+    </div>
+  </div>
+
+  <!-- Content Container (Heading + Description on Left, WhatsApp Button on Right) -->
+  <div
+    class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] relative z-10 pb-16 md:pb-20 lg:pb-24 flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 lg:gap-10"
+  >
+    <!-- Left Column: Heading & Description -->
+    <div class="flex flex-col items-start gap-3 md:gap-4 max-w-[760px]">
+      <!-- Heading -->
+      <h2
+        id="whatsapp-cta-heading"
+        class="font-display font-bold text-white text-[32px] md:text-[44px] lg:text-[54px] leading-[1.12] tracking-tight"
+      >
+        {titleLine1 && <span class="block">{titleLine1}</span>}
+        <span class="block">
+          {titleLine2 && titleLine2}
+          {
+            titleHighlight && (
+              <span class="font-handwriting font-semibold italic text-white text-[42px] md:text-[54px] lg:text-[68px] leading-none align-baseline">
+                {titleHighlight}
+              </span>
+            )
+          }
+        </span>
+      </h2>
+
+      <!-- Description -->
+      {
+        description && (
+          <p
+            id="whatsapp-cta-desc"
+            class="font-sans font-normal text-white/90 text-sm md:text-base leading-relaxed max-w-[580px]"
+          >
+            {description}
+          </p>
+        )
+      }
+    </div>
+
+    <!-- Right Column: WhatsApp CTA Button (Same as komunitasWA.astro) -->
+    <Button
+      id="whatsapp-cta-btn"
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-full md:w-auto justify-center !bg-[#25D366] hover:!bg-[#20ba5a] active:!bg-[#1ca650] !text-[#0f172a] font-bold px-6 py-3.5 rounded-sm shadow-none hover:shadow-none hover:-translate-y-0.5 shrink-0"
+    >
+      <svg
+        class="w-5 h-5 flex-shrink-0 fill-current"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.99c-.002 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662a11.87 11.87 0 005.71 1.455h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        ></path>
+      </svg>
+      <span>{buttonText}</span>
+    </Button>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initWhatsappCta = () => {
+    const section = document.querySelector("#whatsapp-cta-section");
+    if (!section) return;
+
+    const heading = document.querySelector("#whatsapp-cta-heading");
+    const desc = document.querySelector("#whatsapp-cta-desc");
+    const btn = document.querySelector("#whatsapp-cta-btn");
+
+    gsap.from([heading, desc, btn].filter(Boolean), {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        once: true,
+      },
+      y: 35,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power3.out",
+      clearProps: "transform,opacity",
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initWhatsappCta);
+  } else {
+    initWhatsappCta();
+  }
+</script>

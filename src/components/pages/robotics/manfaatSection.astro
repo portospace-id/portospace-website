@@ -1,0 +1,182 @@
+---
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+
+const photos = [
+  { src: "/problem_solving.webp", alt: "Siswa berlatih problem solving", caption: "Problem Solving" },
+  { src: "/circuit_electronics.webp", alt: "Siswa merakit circuit dan elektronik", caption: "Circuit & Electronics" },
+  { src: "/programming.webp", alt: "Siswa belajar programming", caption: "Programming" },
+  { src: "/prototyping.webp", alt: "Siswa membuat prototyping", caption: "Prototyping" },
+  { src: "/project_portofolio.webp", alt: "Siswa membangun project portfolio", caption: "Project Portfolio" },
+];
+---
+
+<section
+  id="manfaat-section"
+  class="relative w-full bg-white overflow-hidden"
+  aria-label="Manfaat & Outcome Robotics"
+  data-navbar="white"
+>
+  <!-- Pattern Right (top-right) -->
+  <div
+    class="absolute top-0 right-0 w-[220px] sm:w-[280px] md:w-[340px] lg:w-[360px] pointer-events-none select-none"
+    aria-hidden="true"
+  >
+    <img src="/pattern_kanan.svg" alt="" class="w-full h-auto object-contain" />
+  </div>
+
+  <!-- Content -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pt-16 md:pt-20 lg:pt-24 pb-16 md:pb-20 lg:pb-24"
+  >
+    <!-- Header Row: Badge + Heading (left) | Description (right) -->
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-12 mb-12 md:mb-16">
+
+      <!-- Left: Badge + Heading -->
+      <div class="flex flex-col gap-3 max-w-[873px]">
+        <SectionTitle
+          id="manfaat-badge"
+          variant="light"
+          title="Manfaat & Ourcame"
+          showIcon={true}
+        />
+
+        <h2
+          id="manfaat-heading"
+          class="font-momo font-semibold text-black leading-[110%] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px]"
+          style="letter-spacing: -0.02em;"
+        >
+          Belajar Membangun, Menguji, dan<br />
+          Menyempurnakan{" "}
+          <span
+            class="font-caveat font-bold italic text-black text-[40px] sm:text-[50px] md:text-[58px] lg:text-[64px] leading-[80%] align-baseline"
+            style="letter-spacing: -0.04em;"
+          >
+            Solusi Nyata.
+          </span>
+        </h2>
+      </div>
+
+      <!-- Right: Description -->
+      <p
+        id="manfaat-desc"
+        class="font-jakarta font-normal text-black text-[14px] sm:text-[16px] leading-[150%] max-w-[367px]"
+      >
+        Kembangkan kemampuan teknis sekaligus cara berpikir problem-solving
+        melalui proyek yang dapat menjadi portofolio.
+      </p>
+    </div>
+
+    <!-- Photo Grid -->
+    <div class="w-full mt-4 lg:mt-8">
+      
+      <!-- MOBILE LAYOUT (Staggered rows, hidden on lg) -->
+      <div class="flex lg:hidden flex-col gap-6">
+        
+        <!-- Row 1: Problem Solving, Circuit -->
+        <div class="flex gap-4">
+          {
+            [0, 1].map((idx) => (
+              <div id={`manfaat-photo-${idx + 1}-mobile`} class="w-[45%] sm:w-[47%] shrink-0 flex flex-col gap-2">
+                <div class="w-full aspect-[4/3] overflow-hidden rounded-sm bg-gray-100">
+                  <img src={photos[idx].src} alt={photos[idx].alt} class="w-full h-full object-cover" />
+                </div>
+                <p class="font-jakarta font-normal text-black text-[14px] sm:text-[16px] leading-[130%]">
+                  {photos[idx].caption}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Row 2: Prototyping, Project Portfolio (Indented to the right) -->
+        <div class="flex gap-4 ml-[15%]">
+          {
+            [3, 4].map((idx) => (
+              <div id={`manfaat-photo-${idx + 1}-mobile`} class="w-[45%] sm:w-[47%] shrink-0 flex flex-col gap-2">
+                <div class="w-full aspect-[4/3] overflow-hidden rounded-sm bg-gray-100">
+                  <img src={photos[idx].src} alt={photos[idx].alt} class="w-full h-full object-cover" />
+                </div>
+                <p class="font-jakarta font-normal text-black text-[14px] sm:text-[16px] leading-[130%]">
+                  {photos[idx].caption}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Row 3: Programming -->
+        <div class="flex gap-4">
+          {
+            [2].map((idx) => (
+              <div id={`manfaat-photo-${idx + 1}-mobile`} class="w-[45%] sm:w-[47%] shrink-0 flex flex-col gap-2">
+                <div class="w-full aspect-[4/3] overflow-hidden rounded-sm bg-gray-100">
+                  <img src={photos[idx].src} alt={photos[idx].alt} class="w-full h-full object-cover" />
+                </div>
+                <p class="font-jakarta font-normal text-black text-[14px] sm:text-[16px] leading-[130%]">
+                  {photos[idx].caption}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- DESKTOP LAYOUT (4-col grid, hidden on mobile) -->
+      <div class="hidden lg:grid grid-cols-[1fr_1fr_1fr_1fr] gap-6">
+        {
+          [0, 1, null, null, 2, null, 3, 4].map((idx, i) => (
+            idx === null ? <div></div> : (
+              <div id={`manfaat-photo-${idx + 1}-desktop`} class="flex flex-col gap-3">
+                <div class="w-full aspect-[4/3] overflow-hidden rounded-sm bg-gray-100">
+                  <img src={photos[idx].src} alt={photos[idx].alt} class="w-full h-full object-cover" />
+                </div>
+                <p class="font-jakarta font-normal text-black text-[18px] lg:text-[20px] leading-[150%]">
+                  {photos[idx].caption}
+                </p>
+              </div>
+            )
+          ))
+        }
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Badge & Heading entrance
+  gsap.from(["#manfaat-badge", "#manfaat-heading", "#manfaat-desc"], {
+    y: 30,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.12,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: "#manfaat-section",
+      start: "top 80%",
+      once: true,
+    },
+  });
+
+  // Photo grid stagger entrance
+  gsap.from(
+    ["#manfaat-photo-1", "#manfaat-photo-2", "#manfaat-photo-3", "#manfaat-photo-4", "#manfaat-photo-5"],
+    {
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: "#manfaat-photo-1",
+        start: "top 85%",
+        once: true,
+      },
+    }
+  );
+</script>
