@@ -1,0 +1,176 @@
+---
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+
+const steps = [
+  { number: "01", label: "Ide" },
+  { number: "02", label: "Design" },
+  { number: "03", label: "Build" },
+  { number: "04", label: "Test" },
+];
+---
+
+<section
+  id="proses-prototype-section"
+  class="relative w-full overflow-hidden lg:min-h-[calc(100vh+20px)]"
+  style="background-color: #BFED45;"
+  aria-label="Proses Prototype Robotics"
+  data-navbar="light"
+>
+
+
+  <!-- Decorative Vector (bottom-left) -->
+  <div
+    class="absolute bottom-0 left-0 w-[260px] sm:w-[300px] md:w-[360px] lg:w-[380px] pointer-events-none select-none"
+    aria-hidden="true"
+  >
+    <img
+      src="/Vector1.svg"
+      alt=""
+      class="w-full h-auto object-contain"
+    />
+  </div>
+
+  <!-- Content -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pt-16 md:pt-20 lg:pt-24 pb-16 md:pb-20 lg:pb-24"
+  >
+    <div class="flex flex-col gap-8 lg:gap-10">
+
+      <!-- Row 1: Badge+Heading (left) | Description (right) — bottom aligned -->
+      <div class="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-16">
+
+        <!-- Left: Badge + Heading -->
+        <div class="flex flex-col gap-4 max-w-[573px] lg:w-[42%] lg:flex-shrink-0">
+          <!-- Custom Badge -->
+          <div
+            id="proses-badge"
+            class="inline-flex items-center gap-2 font-jakarta text-[16px] font-normal leading-[150%] text-black"
+          >
+            <img
+              src="/pattern_save_prototype.svg"
+              alt=""
+              width="22"
+              height="22"
+              class="flex-shrink-0 select-none pointer-events-none object-contain"
+              style="width: 22px; height: 22px;"
+              aria-hidden="true"
+            />
+            <span>Proses Prototype</span>
+          </div>
+
+          <h2
+            id="proses-heading"
+            class="font-momo font-semibold text-black leading-[110%] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px]"
+            style="letter-spacing: -0.02em;"
+          >
+            Dari Sketsa Pertama<br />
+            hingga Prototipe yang<br />
+            Siap{" "}
+            <span
+              class="font-caveat font-bold italic text-black text-[44px] sm:text-[54px] md:text-[60px] lg:text-[64px] leading-[80%] align-baseline"
+              style="letter-spacing: -0.04em;"
+            >
+              Diuji.
+            </span>
+          </h2>
+        </div>
+
+        <!-- Right: Description (bottom sejajar dengan heading) -->
+        <div class="lg:flex-1">
+          <p
+            id="proses-desc"
+            class="font-jakarta font-normal text-black text-[14px] sm:text-[16px] leading-[150%] max-w-[678px]"
+          >
+            Setiap proyek dikembangkan secara bertahap bersama mentor agar siswa
+            memahami prosesnya, bukan hanya hasil akhirnya.
+          </p>
+        </div>
+      </div>
+
+      <!-- Row 2: Spacer kiri kosong | Numbered Steps kanan saja -->
+      <div class="flex flex-col lg:flex-row lg:gap-16">
+
+        <!-- Spacer kiri (sama lebar dengan kolom heading) -->
+        <div class="hidden lg:block lg:w-[42%] lg:flex-shrink-0"></div>
+
+        <!-- Numbered Steps (kanan) -->
+        <div id="proses-steps" class="flex flex-col w-full lg:flex-1">
+          {
+            steps.map((step, index) => (
+              <div
+                class:list={[
+                  "proses-step flex items-center justify-between py-5 border-t border-black/20",
+                  index === steps.length - 1 && "border-b",
+                ]}
+              >
+                <span
+                  class="font-momo font-medium text-black text-[28px] sm:text-[34px] md:text-[40px] leading-[110%]"
+                  style="letter-spacing: -0.02em;"
+                >
+                  {step.number}
+                </span>
+                <span
+                  class="font-momo font-medium text-black text-[28px] sm:text-[34px] md:text-[40px] leading-[110%]"
+                  style="letter-spacing: -0.02em;"
+                >
+                  {step.label}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Badge & heading entrance
+  gsap.from(["#proses-badge", "#proses-heading"], {
+    y: 30,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.12,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: "#proses-prototype-section",
+      start: "top 80%",
+      once: true,
+    },
+  });
+
+  // Description entrance
+  gsap.from("#proses-desc", {
+    y: 20,
+    opacity: 0,
+    duration: 0.6,
+    ease: "power2.out",
+    delay: 0.2,
+    scrollTrigger: {
+      trigger: "#proses-prototype-section",
+      start: "top 80%",
+      once: true,
+    },
+  });
+
+  // Steps stagger entrance
+  gsap.from(".proses-step", {
+    y: 24,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#proses-steps",
+      start: "top 85%",
+      once: true,
+    },
+  });
+</script>

@@ -1,0 +1,121 @@
+---
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+
+const tools = [
+  { src: "/arduino.svg", alt: "Arduino", label: "Arduino" },
+  { src: "/espressif.svg", alt: "Espressif", label: "Espressif" },
+  { src: "/raspberry_pi.svg", alt: "Raspberry Pi", label: "Raspberry Pi" },
+  { src: "/autodesk.svg", alt: "Autodesk Tinkercad", label: "Autodesk Tinkercad" },
+];
+---
+
+<section
+  id="tools-technology-section"
+  class="relative w-full bg-white overflow-hidden lg:min-h-screen flex flex-col justify-center"
+  aria-label="Tools & Technology Robotics"
+  data-navbar="white"
+>
+  <!-- Pattern Top-Right -->
+  <div
+    class="absolute top-0 right-0 w-[200px] sm:w-[260px] md:w-[320px] lg:w-[380px] pointer-events-none select-none"
+    aria-hidden="true"
+  >
+    <img src="/pattern_5.svg" alt="" class="w-full h-auto object-contain" />
+  </div>
+
+  <!-- Pattern Bottom-Left -->
+  <div
+    class="absolute bottom-0 left-0 w-[140px] sm:w-[200px] md:w-[320px] lg:w-[380px] pointer-events-none select-none"
+    aria-hidden="true"
+  >
+    <img src="/pattern_2.svg" alt="" class="w-full h-auto object-contain" />
+  </div>
+
+  <!-- Content -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pt-20 md:pt-24 lg:pt-32 pb-20 md:pb-24 lg:pb-32"
+  >
+    <!-- Badge + Heading (center) -->
+    <div class="flex flex-col items-center gap-5 mb-16 md:mb-20">
+
+      <!-- Badge -->
+      <div id="tools-badge">
+        <SectionTitle
+          id="tools-badge-inner"
+          variant="light"
+          title="Tools & Technology"
+          showIcon={true}
+        />
+      </div>
+
+      <!-- Heading -->
+      <h2
+        id="tools-heading"
+        class="font-momo font-semibold text-black text-center leading-[110%] text-[28px] sm:text-[36px] md:text-[46px] lg:text-[54px] max-w-[852px]"
+        style="letter-spacing: -0.02em;"
+      >
+        Kenali Teknologi yang Digunakan<br class="hidden md:block" />
+        untuk Membangun{" "}
+        <span
+          class="font-caveat font-bold italic text-black text-[36px] sm:text-[46px] md:text-[56px] lg:text-[64px] leading-[80%] align-baseline"
+          style="letter-spacing: -0.04em;"
+        >
+          Prototype
+        </span>
+      </h2>
+    </div>
+
+    <!-- Tool Logos -->
+    <div
+      id="tools-logos"
+      class="flex flex-col md:flex-row flex-wrap items-center justify-center gap-12 md:gap-14 lg:gap-20"
+    >
+      {
+        tools.map((tool) => (
+          <div class="tool-logo flex flex-col items-center gap-3">
+            <img
+              src={tool.src}
+              alt={tool.alt}
+              class="h-[70px] md:h-[72px] lg:h-[80px] w-auto object-contain select-none"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Badge & heading entrance
+  gsap.from(["#tools-badge", "#tools-heading"], {
+    y: 30,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.12,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: "#tools-technology-section",
+      start: "top 80%",
+      once: true,
+    },
+  });
+
+  // Logo stagger entrance
+  gsap.from(".tool-logo", {
+    y: 24,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#tools-logos",
+      start: "top 85%",
+      once: true,
+    },
+  });
+</script>
