@@ -1,0 +1,203 @@
+---
+import { Image } from "astro:assets";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import pattern3 from "@/assets/pattern/pattern_3.svg";
+
+interface Props {
+  /** Additional CSS class for section */
+  class?: string;
+  id?: string;
+}
+
+const { class: className = "", id = "tools-technology" } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    "relative flex min-h-svh w-full flex-col justify-center overflow-hidden bg-white py-16 sm:py-20 md:py-24 lg:py-28",
+    className,
+  ]}
+  aria-label="Tools & Technology Section"
+>
+  <!-- Top Right Decorative Pattern 3 -->
+  <div
+    class="pointer-events-none absolute -top-[171.334px] -right-[218px] z-0 h-[501.88px] w-[500px] overflow-hidden select-none"
+  >
+    <Image
+      src={pattern3}
+      alt=""
+      width={500}
+      height={502}
+      class="pointer-events-none h-full w-full object-contain"
+      aria-hidden="true"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Bottom Left Decorative Pattern 3 -->
+  <div
+    class="pointer-events-none absolute -bottom-[230.546px] -left-[203px] z-0 h-[501.88px] w-[500px] overflow-hidden select-none"
+  >
+    <Image
+      src={pattern3}
+      alt=""
+      width={500}
+      height={502}
+      class="pointer-events-none h-full w-full object-contain"
+      aria-hidden="true"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Main Container -->
+  <div
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center text-center px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
+  >
+    <!-- Section Title Badge -->
+    <SectionTitle
+      id="tools-badge"
+      variant="light"
+      title="Tools & Technology"
+      showIcon={true}
+      class="mb-4 sm:mb-6"
+    />
+
+    <!-- Main Heading -->
+    <h2
+      id="tools-heading"
+      class="font-momo text-[28px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[54px] max-w-[840px]"
+    >
+      Kenali Teknologi yang Digunakan<br class="hidden sm:inline" />
+      untuk Membangun{" "}
+      <span
+        class="font-caveat ml-1 inline-block align-baseline text-[36px] leading-none font-semibold text-[#111111] italic sm:text-[46px] md:text-[56px] lg:text-[66px]"
+      >
+        Prototipe.
+      </span>
+    </h2>
+
+    <!-- Tool Logos Row -->
+    <div
+      id="tools-logos"
+      class="mt-12 sm:mt-16 md:mt-20 flex flex-nowrap items-center justify-center gap-4 sm:gap-10 md:gap-14 lg:gap-20 w-full max-w-[1200px] mx-auto px-2 overflow-x-auto sm:overflow-visible"
+    >
+      <!-- Canva Logo -->
+      <div class="tool-logo-item flex items-center justify-center transition-transform duration-300 hover:scale-105">
+        <svg width="150" height="50" viewBox="0 0 130 42" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-11 sm:h-14 md:h-16 lg:h-18 w-auto">
+          <defs>
+            <linearGradient id="canva-gradient-tools" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00C4CC" />
+              <stop offset="100%" stop-color="#7D2AE8" />
+            </linearGradient>
+          </defs>
+          <g fill="url(#canva-gradient-tools)">
+            <path d="M21.5 12.8C15.2 12.8 10.1 17.9 10.1 24.2C10.1 30.5 15.2 35.6 21.5 35.6C26.1 35.6 30 32.9 31.8 29.1L27.5 27.2C26.4 29.4 24.1 30.9 21.5 30.9C17.8 30.9 14.8 27.9 14.8 24.2C14.8 20.5 17.8 17.5 21.5 17.5C24.1 17.5 26.3 18.9 27.4 21.1L31.8 19.2C30 15.4 26.1 12.8 21.5 12.8Z"/>
+            <path d="M42.2 21.2C39.5 21.2 37.4 23.3 37.4 26C37.4 28.7 39.5 30.8 42.2 30.8C44.9 30.8 47 28.7 47 26C47 23.3 44.9 21.2 42.2 21.2ZM42.2 35.6C36.9 35.6 32.7 31.3 32.7 26C32.7 20.7 36.9 16.4 42.2 16.4C45.2 16.4 47.9 17.8 49.6 20V17.1H54.3V35H49.6V32.1C47.9 34.3 45.2 35.6 42.2 35.6Z"/>
+            <path d="M58.2 17.1H62.9V20C64.6 17.8 67.3 16.4 70.3 16.4C75.6 16.4 79.8 20.7 79.8 26V35H75.1V26C75.1 23.3 73 21.2 70.3 21.2C67.6 21.2 65.5 23.3 65.5 26V35H58.2V17.1Z"/>
+            <path d="M82.4 17.1H87.4L91.8 29.5L96.2 17.1H101.2L94.5 35H89.1L82.4 17.1Z"/>
+            <path d="M110.2 21.2C107.5 21.2 105.4 23.3 105.4 26C105.4 28.7 107.5 30.8 110.2 30.8C112.9 30.8 115 28.7 115 26C115 23.3 112.9 21.2 110.2 21.2ZM110.2 35.6C104.9 35.6 100.7 31.3 100.7 26C100.7 20.7 104.9 16.4 110.2 16.4C113.2 16.4 115.9 17.8 117.6 20V17.1H122.3V35H117.6V32.1C115.9 34.3 113.2 35.6 110.2 35.6Z"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Shopify Logo -->
+      <div class="tool-logo-item flex items-center justify-center transition-transform duration-300 hover:scale-105">
+        <svg width="170" height="50" viewBox="0 0 150 42" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-11 sm:h-14 md:h-16 lg:h-18 w-auto">
+          <g transform="translate(0, 4)">
+            <path d="M26.4 4.5c-.1 0-.3.1-.4.2l-2.9 2.9h-4.3l-1.3-3.6c-.2-.6-.8-1-1.4-1h-6.2c-.6 0-1.2.4-1.4 1l-1.3 3.6H2.9c-.8 0-1.5.7-1.5 1.5v22c0 .8.7 1.5 1.5 1.5h23.6c.8 0 1.5-.7 1.5-1.5V6c0-.8-.7-1.5-1.6-1.5z" fill="#95BF47"/>
+            <path d="M12 3h4l1 3.6h-6L12 3z" fill="#5E8E3E"/>
+            <path d="M19.5 14.8c0-2.8-2.2-4.5-5.2-4.5-3.3 0-5.4 2-5.4 4.8 0 4.1 5.4 4.5 5.4 6.8 0 .8-.7 1.3-1.7 1.3-1.4 0-2.8-.7-3.6-1.7l-1.5 1.8c1.3 1.5 3.3 2.5 5.3 2.5 3.3 0 5.4-2.1 5.4-5 0-4.3-5.4-4.6-5.4-6.8 0-.7.6-1.1 1.5-1.1 1.2 0 2.2.5 3 1.3l1.5-1.8z" fill="#FFFFFF"/>
+          </g>
+          <text x="36" y="27" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="24" font-weight="800" fill="#000000" letter-spacing="-0.5px">shopify</text>
+        </svg>
+      </div>
+
+      <!-- Google Analytics Logo -->
+      <div class="tool-logo-item flex items-center justify-center transition-transform duration-300 hover:scale-105">
+        <svg width="190" height="50" viewBox="0 0 170 42" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-11 sm:h-14 md:h-16 lg:h-18 w-auto">
+          <g transform="translate(0, 7)">
+            <rect x="0" y="16" width="6" height="12" rx="3" fill="#F9AB00"/>
+            <rect x="9" y="8" width="6" height="20" rx="3" fill="#E37400"/>
+            <rect x="18" y="0" width="6" height="28" rx="3" fill="#E37400"/>
+            <circle cx="21" cy="3" r="3" fill="#F9AB00"/>
+          </g>
+          <text x="32" y="20" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="16" font-weight="600" fill="#5F6368">Google</text>
+          <text x="32" y="34" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="16" font-weight="400" fill="#5F6368">Analytics</text>
+        </svg>
+      </div>
+
+      <!-- Notion Logo -->
+      <div class="tool-logo-item flex items-center justify-center transition-transform duration-300 hover:scale-105">
+        <svg width="160" height="50" viewBox="0 0 140 42" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-11 sm:h-14 md:h-16 lg:h-18 w-auto">
+          <g transform="translate(0, 6)">
+            <rect x="0" y="0" width="28" height="28" rx="4" fill="#000000"/>
+            <path d="M7 6.5h3.2l7.8 11.2V6.5h3.2v15H18L10.2 10.3v11.2H7V6.5z" fill="#FFFFFF"/>
+          </g>
+          <text x="36" y="27" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="24" font-weight="700" fill="#000000" letter-spacing="-0.5px">Notion</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initToolsAnimations() {
+    const section = document.querySelector("#tools-technology");
+    if (!section) return;
+
+    gsap.from("#tools-badge", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+
+    gsap.from("#tools-heading", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      delay: 0.1,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+
+    gsap.from(".tool-logo-item", {
+      scrollTrigger: {
+        trigger: "#tools-logos",
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initToolsAnimations);
+  } else {
+    initToolsAnimations();
+  }
+
+  document.addEventListener("astro:page-load", initToolsAnimations);
+</script>

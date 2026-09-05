@@ -5,7 +5,7 @@ import pattern2 from "@/assets/pattern/pattern_2.svg";
 
 <section
   id="mahasiswa"
-  class="relative w-full bg-white flex flex-col items-center overflow-hidden"
+  class="relative flex w-full flex-col items-center overflow-hidden bg-white"
   aria-label="Mahasiswa dari berbagai universitas"
   data-navbar="white"
 >
@@ -13,29 +13,25 @@ import pattern2 from "@/assets/pattern/pattern_2.svg";
   <Image
     src={pattern2}
     alt="Decorative abstract pattern"
-    class="absolute pointer-events-none z-0 select-none"
+    class="pointer-events-none absolute z-0 select-none"
     style="width: 600px; height: 596.587px; position: absolute; left: -128px; bottom: -259.587px;"
     aria-hidden="true"
   />
 
   <!-- Main Container (Matching Hero section width and padding for exact vertical alignment) -->
   <div
-    class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] py-[80px] flex flex-col items-start gap-[10px] z-10 relative"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-start gap-[10px] px-[20px] py-[80px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
-    <div
-      class="w-full flex flex-col lg:flex-row items-start justify-between gap-12"
-    >
+    <div class="flex w-full flex-col items-start justify-between gap-12 lg:flex-row">
       <!-- Left Column: Heading (54px Desktop) -->
-      <div
-        class="w-full lg:w-auto flex flex-col items-start text-left flex-shrink-0"
-      >
+      <div class="flex w-full flex-shrink-0 flex-col items-start text-left lg:w-auto">
         <h2
           id="mahasiswa-heading"
-          class="font-momo font-bold text-gray-900 text-[32px] md:text-[40px] lg:text-[54px] leading-[1.1] tracking-tight"
+          class="font-momo text-[32px] leading-[1.1] font-bold tracking-tight text-gray-900 md:text-[40px] lg:text-[54px]"
         >
           Mahasiswa dari<br />
           berbagai <span
-            class="font-caveat font-normal text-[38px] md:text-[48px] lg:text-[64px] text-gray-900 leading-none inline-block transform translate-y-1 ml-1"
+            class="font-caveat ml-1 inline-block translate-y-1 transform text-[38px] leading-none font-normal text-gray-900 md:text-[48px] lg:text-[64px]"
             >Universitas</span
           >
         </h2>
@@ -44,11 +40,11 @@ import pattern2 from "@/assets/pattern/pattern_2.svg";
       <!-- Right Column: University Logos Grid (Exact Figma Specs: 678px total width, 214px x 214px per logo container) -->
       <div
         id="mahasiswa-logos"
-        class="w-full lg:w-[678px] grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 mt-8 lg:mt-0"
+        class="mt-8 grid w-full grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:mt-0 lg:w-[678px]"
       >
         <!-- UGM Logo Container (214px x 214px) -->
         <div
-          class="university-logo w-full lg:w-[214px] h-[140px] sm:h-[180px] lg:h-[214px] flex items-center justify-center p-2 rounded-sm hover:scale-105 transition-transform duration-200 cursor-pointer"
+          class="university-logo flex h-[140px] w-full cursor-pointer items-center justify-center rounded-sm p-2 transition-transform duration-200 hover:scale-105 sm:h-[180px] lg:h-[214px] lg:w-[214px]"
         >
           <svg
             width="125"
@@ -58,14 +54,9 @@ import pattern2 from "@/assets/pattern/pattern_2.svg";
             xmlns="http://www.w3.org/2000/svg"
           >
             <g stroke="#1a4f8b" stroke-width="1.8" fill="none">
-              <circle cx="70" cy="38" r="24" stroke="#1a4f8b" stroke-width="1.5"
-              ></circle>
-              <path
-                d="M70 14 C80 20 90 30 70 62 C50 30 60 20 70 14Z"
-                fill="none"></path>
-              <path
-                d="M46 38 C52 28 62 18 94 38 C62 58 52 48 46 38Z"
-                fill="none"></path>
+              <circle cx="70" cy="38" r="24" stroke="#1a4f8b" stroke-width="1.5"></circle>
+              <path d="M70 14 C80 20 90 30 70 62 C50 30 60 20 70 14Z" fill="none"></path>
+              <path d="M46 38 C52 28 62 18 94 38 C62 58 52 48 46 38Z" fill="none"></path>
               <polygon
                 points="70,26 73,34 81,34 74,39 77,47 70,42 63,47 66,39 59,34 67,34"
                 fill="#1a4f8b"></polygon>
@@ -102,7 +93,7 @@ import pattern2 from "@/assets/pattern/pattern_2.svg";
 
         <!-- ITB Logo Container (214px x 214px) -->
         <div
-          class="university-logo w-full lg:w-[214px] h-[140px] sm:h-[180px] lg:h-[214px] flex items-center justify-center p-2 rounded-sm hover:scale-105 transition-transform duration-200 cursor-pointer"
+          class="university-logo flex h-[140px] w-full cursor-pointer items-center justify-center rounded-sm p-2 transition-transform duration-200 hover:scale-105 sm:h-[180px] lg:h-[214px] lg:w-[214px]"
         >
           <svg
             width="115"
@@ -111,22 +102,9 @@ import pattern2 from "@/assets/pattern/pattern_2.svg";
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <circle
-              cx="55"
-              cy="55"
-              r="48"
-              stroke="#005696"
-              stroke-width="2.5"
-              fill="none"></circle>
-            <circle
-              cx="55"
-              cy="55"
-              r="42"
-              stroke="#005696"
-              stroke-width="1"
-              fill="none"></circle>
-            <path id="itb-text-path" d="M 18,55 A 37,37 0 1,1 92,55" fill="none"
-            ></path>
+            <circle cx="55" cy="55" r="48" stroke="#005696" stroke-width="2.5" fill="none"></circle>
+            <circle cx="55" cy="55" r="42" stroke="#005696" stroke-width="1" fill="none"></circle>
+            <path id="itb-text-path" d="M 18,55 A 37,37 0 1,1 92,55" fill="none"></path>
             <text
               font-family="'Plus Jakarta Sans', sans-serif"
               font-weight="700"
@@ -134,10 +112,8 @@ import pattern2 from "@/assets/pattern/pattern_2.svg";
               fill="#005696"
               letter-spacing="1"
             >
-              <textPath
-                href="#itb-text-path"
-                startOffset="50%"
-                text-anchor="middle">INSTITUT TEKNOLOGI BANDUNG</textPath
+              <textPath href="#itb-text-path" startOffset="50%" text-anchor="middle"
+                >INSTITUT TEKNOLOGI BANDUNG</textPath
               >
             </text>
             <g
@@ -166,7 +142,7 @@ import pattern2 from "@/assets/pattern/pattern_2.svg";
 
         <!-- JAIST Logo Container (214px x 214px) -->
         <div
-          class="university-logo w-full lg:w-[214px] h-[140px] sm:h-[180px] lg:h-[214px] flex items-center justify-center p-2 rounded-sm hover:scale-105 transition-transform duration-200 cursor-pointer"
+          class="university-logo flex h-[140px] w-full cursor-pointer items-center justify-center rounded-sm p-2 transition-transform duration-200 hover:scale-105 sm:h-[180px] lg:h-[214px] lg:w-[214px]"
         >
           <svg
             width="150"
@@ -225,7 +201,7 @@ import pattern2 from "@/assets/pattern/pattern_2.svg";
 
         <!-- NTU Singapore Logo Container (214px x 214px) -->
         <div
-          class="university-logo w-full lg:w-[214px] h-[140px] sm:h-[180px] lg:h-[214px] flex items-center justify-center p-2 rounded-sm hover:scale-105 transition-transform duration-200 cursor-pointer"
+          class="university-logo flex h-[140px] w-full cursor-pointer items-center justify-center rounded-sm p-2 transition-transform duration-200 hover:scale-105 sm:h-[180px] lg:h-[214px] lg:w-[214px]"
         >
           <svg
             width="190"
@@ -236,10 +212,7 @@ import pattern2 from "@/assets/pattern/pattern_2.svg";
           >
             <g transform="translate(5, 10)">
               <rect width="36" height="46" rx="2" fill="#c8102e"></rect>
-              <path
-                d="M6 18 H30 M6 24 H30 M6 30 H30"
-                stroke="#f2a900"
-                stroke-width="2"></path>
+              <path d="M6 18 H30 M6 24 H30 M6 30 H30" stroke="#f2a900" stroke-width="2"></path>
               <path d="M18 8 L24 16 L12 16 Z" fill="#f2a900"></path>
               <rect x="6" y="4" width="6" height="4" fill="#ffffff"></rect>
               <rect x="24" y="4" width="6" height="4" fill="#ffffff"></rect>
@@ -285,7 +258,7 @@ import pattern2 from "@/assets/pattern/pattern_2.svg";
 
         <!-- The University of Tokyo Logo Container (214px x 214px) -->
         <div
-          class="university-logo w-full lg:w-[214px] h-[140px] sm:h-[180px] lg:h-[214px] flex items-center justify-center p-2 rounded-sm hover:scale-105 transition-transform duration-200 cursor-pointer"
+          class="university-logo flex h-[140px] w-full cursor-pointer items-center justify-center rounded-sm p-2 transition-transform duration-200 hover:scale-105 sm:h-[180px] lg:h-[214px] lg:w-[214px]"
         >
           <svg
             width="195"
@@ -295,12 +268,8 @@ import pattern2 from "@/assets/pattern/pattern_2.svg";
             xmlns="http://www.w3.org/2000/svg"
           >
             <g transform="translate(10, 12)">
-              <path
-                d="M22 42 C10 35 4 20 14 8 C24 18 28 30 22 42Z"
-                fill="#00a3e0"></path>
-              <path
-                d="M22 42 C34 35 40 20 30 8 C20 18 16 30 22 42Z"
-                fill="#ffb800"></path>
+              <path d="M22 42 C10 35 4 20 14 8 C24 18 28 30 22 42Z" fill="#00a3e0"></path>
+              <path d="M22 42 C34 35 40 20 30 8 C20 18 16 30 22 42Z" fill="#ffb800"></path>
               <path d="M22 42 L22 48" stroke="#00a3e0" stroke-width="2"></path>
             </g>
             <text

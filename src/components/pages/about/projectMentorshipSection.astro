@@ -19,42 +19,42 @@ const words = statementText.split(" ");
 <section
   id="project-mentorship"
   class:list={[
-    "relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-white py-20 sm:py-24 md:py-28 lg:py-36",
+    "relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-white py-20 sm:py-24 md:py-28 lg:py-36",
     className,
   ]}
   aria-label="Project-Based Mentorship Section"
 >
   <!-- Background Pattern 4 (Top Right) -->
   <div
-    class="absolute -top-[168px] -right-[163px] w-[500px] h-[501.526px] pointer-events-none z-0 select-none"
+    class="pointer-events-none absolute -top-[168px] -right-[163px] z-0 h-[501.526px] w-[500px] select-none"
   >
     <Image
       src={pattern4}
       alt=""
       width={500}
       height={502}
-      class="w-full h-full object-contain pointer-events-none"
+      class="pointer-events-none h-full w-full object-contain"
       aria-hidden="true"
     />
   </div>
 
   <!-- Background Pattern 4 (Bottom Left) -->
   <div
-    class="absolute -bottom-[245.526px] -left-[158px] w-[500px] h-[501.526px] pointer-events-none z-0 select-none"
+    class="pointer-events-none absolute -bottom-[245.526px] -left-[158px] z-0 h-[501.526px] w-[500px] select-none"
   >
     <Image
       src={pattern4}
       alt=""
       width={500}
       height={502}
-      class="w-full h-full object-contain pointer-events-none"
+      class="pointer-events-none h-full w-full object-contain"
       aria-hidden="true"
     />
   </div>
 
   <!-- Main Content Container -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-center justify-center text-center"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center px-[20px] text-center sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px]"
   >
     <!-- Section Title Badge -->
     <div id="mentorship-badge-wrapper" class="mb-8 sm:mb-10 md:mb-12">
@@ -69,11 +69,11 @@ const words = statementText.split(" ");
     <!-- Pinned Text Highlight Statement -->
     <h2
       id="mentorship-statement"
-      class="font-momo font-bold text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] leading-[1.3] tracking-tight max-w-[1280px] mx-auto text-center"
+      class="font-momo mx-auto max-w-[1280px] text-center text-[28px] leading-[1.3] font-bold tracking-tight sm:text-[36px] md:text-[42px] lg:text-[48px]"
     >
       {
         words.map((word) => (
-          <span class="mentorship-word text-[#A3A3A3] inline-block mr-[0.25em] select-none">
+          <span class="mentorship-word mr-[0.25em] inline-block text-[#A3A3A3] select-none">
             {word}
           </span>
         ))

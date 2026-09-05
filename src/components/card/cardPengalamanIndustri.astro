@@ -21,36 +21,40 @@ interface Props {
 const {
   variant = "image",
   image,
-  alt = title || "Pengalaman Industri",
+  alt,
   title,
   description,
   class: className = "",
   ...rest
 } = Astro.props;
+
+const altText: string = alt || title || "Pengalaman Industri";
+const isStringImage = typeof image === "string";
+const isContentVariant = variant === "content";
 ---
 
 {
-  variant === "content" ? (
+  isContentVariant ? (
     <div
       class:list={[
-        "flex flex-col gap-4 w-full rounded-[4px] overflow-hidden group select-none",
+        "group flex w-full flex-col gap-4 overflow-hidden rounded-[4px] select-none",
         className,
       ]}
       {...rest}
     >
       {image && (
-        <div class="relative w-full aspect-[4/3] rounded-[4px] overflow-hidden bg-black/20">
-          {typeof image === "string" ? (
+        <div class="relative aspect-[4/3] w-full overflow-hidden rounded-[4px] bg-black/20">
+          {isStringImage ? (
             <img
-              src={image}
-              alt={alt}
-              class="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none select-none"
+              src={image as string}
+              alt={altText}
+              class="pointer-events-none h-full w-full object-cover object-center transition-transform duration-500 ease-out select-none group-hover:scale-105"
             />
           ) : (
             <Image
-              src={image}
-              alt={alt}
-              class="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none select-none"
+              src={image as ImageMetadata}
+              alt={altText}
+              class="pointer-events-none h-full w-full object-cover object-center transition-transform duration-500 ease-out select-none group-hover:scale-105"
             />
           )}
         </div>
@@ -58,12 +62,12 @@ const {
       {(title || description) && (
         <div class="flex flex-col gap-2">
           {title && (
-            <h3 class="font-momo font-medium text-white text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] leading-[135%] tracking-tight text-left">
+            <h3 class="font-momo text-left text-[20px] leading-[135%] font-medium tracking-tight text-white sm:text-[24px] md:text-[28px] lg:text-[32px]">
               {title}
             </h3>
           )}
           {description && (
-            <p class="font-jakarta font-normal text-white/90 text-sm md:text-base leading-relaxed">
+            <p class="font-jakarta text-sm leading-relaxed font-normal text-white/90 md:text-base">
               {description}
             </p>
           )}
@@ -74,23 +78,23 @@ const {
   ) : (
     <div
       class:list={[
-        "relative w-full rounded-[4px] overflow-hidden bg-black/20 group select-none",
+        "group relative w-full overflow-hidden rounded-[4px] bg-black/20 select-none",
         className,
       ]}
       {...rest}
     >
       {image &&
-        (typeof image === "string" ? (
+        (isStringImage ? (
           <img
-            src={image}
-            alt={alt}
-            class="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none select-none"
+            src={image as string}
+            alt={altText}
+            class="pointer-events-none h-full w-full object-cover object-center transition-transform duration-500 ease-out select-none group-hover:scale-105"
           />
         ) : (
           <Image
-            src={image}
-            alt={alt}
-            class="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none select-none"
+            src={image as ImageMetadata}
+            alt={altText}
+            class="pointer-events-none h-full w-full object-cover object-center transition-transform duration-500 ease-out select-none group-hover:scale-105"
           />
         ))}
       <slot />

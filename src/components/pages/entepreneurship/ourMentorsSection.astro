@@ -1,0 +1,251 @@
+---
+import { Image } from "astro:assets";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import CardMentor from "@/components/card/cardMentor.astro";
+
+import pattern3 from "@/assets/pattern/pattern_3.svg";
+import testimonial4Img from "@/assets/image/homepage/testimonial-4.webp";
+import testimonial5Img from "@/assets/image/homepage/testimonial-5.webp";
+import testimonial3Img from "@/assets/image/homepage/testimonial-3.webp";
+
+const mentors = [
+  {
+    id: "mentor-1",
+    name: "Farhan M.",
+    field: "Biotechnology",
+    university: "Institut Teknologi Bandung",
+    image: testimonial4Img,
+  },
+  {
+    id: "mentor-2",
+    name: "Farhan M.",
+    field: "Biotechnology",
+    university: "Institut Teknologi Bandung",
+    image: testimonial4Img,
+  },
+  {
+    id: "mentor-3",
+    name: "Farhan M.",
+    field: "Biotechnology",
+    university: "Institut Teknologi Bandung",
+    image: testimonial4Img,
+  },
+  {
+    id: "mentor-4",
+    name: "Farhan M.",
+    field: "Biotechnology",
+    university: "Institut Teknologi Bandung",
+    image: testimonial4Img,
+  },
+  {
+    id: "mentor-5",
+    name: "Jasmine Shafa, M.Sc.",
+    field: "STEM Research",
+    university: "Universitas Indonesia",
+    image: testimonial5Img,
+  },
+  {
+    id: "mentor-6",
+    name: "Aris Putra, Ph.D.",
+    field: "Coding & AI",
+    university: "Nanyang Technological University",
+    image: testimonial3Img,
+  },
+];
+---
+
+<section
+  id="our-mentors"
+  class="relative flex w-full flex-col justify-center overflow-hidden bg-white py-[60px] text-black lg:py-[100px]"
+  aria-label="Our Mentors"
+  data-navbar="light"
+>
+  <!-- Decorative Pattern SVG - Top Right -->
+  <div
+    class="pointer-events-none absolute -top-[171.334px] -right-[218px] z-0 h-[501.88px] w-[500px] overflow-hidden select-none"
+  >
+    <Image
+      src={pattern3}
+      alt=""
+      width={500}
+      height={502}
+      class="pointer-events-none h-full w-full object-contain"
+      aria-hidden="true"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Main Container -->
+  <div
+    class="relative z-10 mx-auto mb-10 flex w-full max-w-[1440px] flex-col gap-8 px-[20px] sm:px-[24px] md:px-[28px] lg:mb-14 lg:gap-12 lg:px-[32px] xl:max-w-none xl:px-[32px]"
+  >
+    <!-- Top Header Row Container: Left (Badge & Heading), Right (Description) -->
+    <div
+      class="flex w-full flex-col items-start justify-between gap-6 lg:flex-row lg:items-end lg:gap-12"
+    >
+      <!-- Left Column: Badge & Heading -->
+      <div
+        id="our-mentors-header-col"
+        class="flex w-full shrink-0 flex-col items-start gap-4 sm:gap-5 lg:max-w-[760px] lg:gap-6 xl:max-w-[840px]"
+      >
+        <div id="our-mentors-badge">
+          <SectionTitle title="Our Mentors" variant="light" />
+        </div>
+
+        <h2
+          id="our-mentors-heading"
+          class="font-momo text-left text-[22px] leading-[1.18] font-bold tracking-tight text-[#111111] sm:text-[28px] md:text-[36px] lg:text-[42px] xl:text-[46px]"
+        >
+          <span class="block">Temukan Mentor yang Tepat untuk</span>
+          <span class="block mt-1 sm:mt-0">
+            Mendukung Perjalanan{" "}
+            <span
+              class="font-caveat ml-1 inline-block align-baseline text-[28px] leading-none font-semibold text-[#111111] italic sm:text-[36px] md:text-[46px] lg:text-[54px]"
+            >
+              Belajarmu.
+            </span>
+          </span>
+        </h2>
+      </div>
+
+      <!-- Right Column: Description Paragraph -->
+      <div class="w-full shrink-0 text-left sm:max-w-[420px] lg:mb-1 lg:max-w-[360px] xl:max-w-[400px]">
+        <p
+          id="our-mentors-desc"
+          class="font-jakarta text-sm leading-relaxed font-normal text-black/75 sm:text-base"
+        >
+          Jelajahi profil mentor dari berbagai bidang keahlian yang siap membimbingmu melalui
+          pendampingan personal.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cards Container / Horizontal Track -->
+  <div
+    id="our-mentors-cards-container"
+    class="no-scrollbar relative z-10 w-full cursor-grab overflow-x-auto pb-4 select-none active:cursor-grabbing"
+  >
+    <div
+      id="our-mentors-cards-track"
+      class="flex w-max items-center gap-5 px-[20px] will-change-transform sm:px-[24px] md:px-[28px] lg:px-[32px]"
+    >
+      {
+        mentors.map((m) => (
+          <CardMentor name={m.name} field={m.field} university={m.university} image={m.image} />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hide scrollbar for clean UI while maintaining native scrollability */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initMentorsAnimations = () => {
+    const section = document.getElementById("our-mentors");
+    if (!section) return;
+
+    gsap.from("#our-mentors-badge", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+    });
+
+    gsap.from("#our-mentors-heading", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      delay: 0.1,
+    });
+
+    gsap.from("#our-mentors-desc", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%",
+        once: true,
+      },
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      delay: 0.2,
+    });
+
+    gsap.from(".mentor-card", {
+      scrollTrigger: {
+        trigger: "#our-mentors-cards-container",
+        start: "top 90%",
+        once: true,
+      },
+      y: 40,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.1,
+      ease: "power3.out",
+      clearProps: "transform,opacity",
+    });
+
+    // Interactive Drag to Scroll for Desktop
+    const container = document.getElementById("our-mentors-cards-container");
+    if (container) {
+      let isDown = false;
+      let startX = 0;
+      let scrollLeft = 0;
+
+      container.addEventListener("mousedown", (e) => {
+        isDown = true;
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+      });
+
+      container.addEventListener("mouseleave", () => {
+        isDown = false;
+      });
+
+      container.addEventListener("mouseup", () => {
+        isDown = false;
+      });
+
+      container.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        container.scrollLeft = scrollLeft - walk;
+      });
+    }
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMentorsAnimations);
+  } else {
+    initMentorsAnimations();
+  }
+</script>

@@ -52,12 +52,7 @@ const sizeClasses: Record<string, string> = {
 
 const iconSize: Record<string, number> = { sm: 13, md: 15, lg: 16 };
 
-const classes = [
-  baseClasses,
-  variantClasses[variant],
-  sizeClasses[size],
-  className,
-]
+const classes = [baseClasses, variantClasses[variant], sizeClasses[size], className]
   .filter(Boolean)
   .join(" ");
 ---

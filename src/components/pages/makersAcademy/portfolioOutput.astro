@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import SectionTitle from "@/components/ui/sectionTitle.astro";
 import PatternLine from "@/components/ui/patternLine.astro";
-import CardPortfolio from "@/components/card/CardPortfolio.astro";
+import CardPortfolio from "@/components/card/cardPortfolio.astro";
 
 // Generated high quality assets matching Figma design screenshot
 import workshopGroupImg from "@/assets/image/makersAcademy/portfolio_workshop_group.png";
@@ -141,15 +141,12 @@ const {
         </h2>
       </div>
 
-      <!-- Child 3: Description (4 explicit lines) -->
+      <!-- Child 3: Description -->
       <p
         id="portfolio-output-desc"
-        class="font-sans font-normal text-white/90 text-sm md:text-base leading-relaxed w-full lg:w-auto shrink-0"
+        class="font-sans font-normal text-white text-sm md:text-base leading-relaxed w-full lg:max-w-[480px] shrink-0"
       >
-        <span class="block">Setiap ide punya kesempatan untuk menjadi sesuatu yang berarti. Melalui</span>
-        <span class="block">proses belajar, mencoba, dan berkarya bersama mentor, kamu akan</span>
-        <span class="block">menghasilkan karya nyata yang dapat menjadi bagian dari portofolio dan</span>
-        <span class="block">membuka peluang baru.</span>
+        {description}
       </p>
     </div>
 
@@ -185,16 +182,16 @@ const {
   gsap.registerPlugin(ScrollTrigger);
 
   const initPortfolioOutput = () => {
-    const section = document.querySelector("#portfolio-output-section");
-    const track = document.querySelector("#portfolio-output-cards-track");
-    const container = document.querySelector("#portfolio-output-cards-container");
+    const section = document.querySelector<HTMLElement>("#portfolio-output-section");
+    const track = document.querySelector<HTMLElement>("#portfolio-output-cards-track");
+    const container = document.querySelector<HTMLElement>("#portfolio-output-cards-container");
 
     if (!section || !track || !container) return;
 
     // Header Entrance Animation
-    const badge = document.querySelector("#portfolio-output-badge");
-    const heading = document.querySelector("#portfolio-output-heading");
-    const desc = document.querySelector("#portfolio-output-desc");
+    const badge = document.querySelector<HTMLElement>("#portfolio-output-badge");
+    const heading = document.querySelector<HTMLElement>("#portfolio-output-heading");
+    const desc = document.querySelector<HTMLElement>("#portfolio-output-desc");
 
     gsap.from([badge, heading, desc].filter(Boolean), {
       scrollTrigger: {

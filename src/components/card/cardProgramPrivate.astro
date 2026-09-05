@@ -39,10 +39,12 @@ const isKecil = size === "kecil" || size === "small";
 
 <div
   class:list={[
-    "program-private-card relative overflow-hidden rounded-[4px] shadow-sm group transition-all duration-300 hover:shadow-xl bg-zinc-900 flex-shrink-0",
-    isLarge && "w-full lg:w-[calc(41.5%-10px)] lg:flex-1 h-[340px] sm:h-[480px] lg:h-[700px]",
-    isSedang && "w-full sm:w-[calc(57.5%-10px)] lg:w-[calc(57.5%-10px)] h-[240px] sm:h-[280px] lg:h-[340px]",
-    isKecil && "w-full sm:w-[calc(42.5%-10px)] lg:w-[calc(42.5%-10px)] h-[240px] sm:h-[280px] lg:h-[340px]",
+    "program-private-card group relative flex-shrink-0 overflow-hidden rounded-[4px] bg-zinc-900 shadow-sm transition-all duration-300 hover:shadow-xl",
+    isLarge && "h-[340px] w-full sm:h-[480px] lg:h-[700px] lg:w-[calc(41.5%-10px)] lg:flex-1",
+    isSedang &&
+      "h-[240px] w-full sm:h-[280px] sm:w-[calc(57.5%-10px)] lg:h-[340px] lg:w-[calc(57.5%-10px)]",
+    isKecil &&
+      "h-[240px] w-full sm:h-[280px] sm:w-[calc(42.5%-10px)] lg:h-[340px] lg:w-[calc(42.5%-10px)]",
     className,
   ]}
   {...rest}
@@ -53,14 +55,14 @@ const isKecil = size === "kecil" || size === "small";
       <img
         src={image as string}
         alt={alt}
-        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-500 select-none group-hover:scale-105"
         loading="lazy"
       />
     ) : (
       <Image
         src={image as ImageMetadata}
         alt={alt}
-        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-500 select-none group-hover:scale-105"
         loading="lazy"
       />
     )
@@ -68,21 +70,21 @@ const isKecil = size === "kecil" || size === "small";
 
   <!-- Gradient Overlay -->
   <div
-    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none z-[1]"
+    class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-black/80 via-black/25 to-transparent"
   >
   </div>
 
   <!-- Card Content / Label with 24px padding -->
-  <div class="absolute bottom-0 left-0 right-0 p-[24px] z-10">
+  <div class="absolute right-0 bottom-0 left-0 z-10 p-[24px]">
     {
       href ? (
         <a href={href} class="block group-hover:underline">
-          <h3 class="font-momo font-semibold text-white text-xl md:text-[22px] lg:text-[24px] leading-[1.25] tracking-tight drop-shadow-sm">
+          <h3 class="font-momo text-xl leading-[1.25] font-semibold tracking-tight text-white drop-shadow-sm md:text-[22px] lg:text-[24px]">
             {title}
           </h3>
         </a>
       ) : (
-        <h3 class="font-momo font-semibold text-white text-xl md:text-[22px] lg:text-[24px] leading-[1.25] tracking-tight drop-shadow-sm">
+        <h3 class="font-momo text-xl leading-[1.25] font-semibold tracking-tight text-white drop-shadow-sm md:text-[22px] lg:text-[24px]">
           {title}
         </h3>
       )

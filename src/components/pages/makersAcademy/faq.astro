@@ -49,8 +49,7 @@ const faqItems = [
   {
     id: "faq-8",
     question: "Apakah ada batasan kelas atau usia untuk ikut program ini?",
-    answer:
-      "Program dirancang khusus untuk siswa usia sekolah dari jenjang SD, SMP, hingga SMA/K.",
+    answer: "Program dirancang khusus untuk siswa usia sekolah dari jenjang SD, SMP, hingga SMA/K.",
   },
   {
     id: "faq-9",
@@ -69,44 +68,41 @@ const faqItems = [
 
 <section
   id="faq"
-  class="relative w-full bg-violet-normal py-[60px] lg:py-[100px] flex flex-col items-center overflow-hidden z-10"
+  class="bg-violet-normal relative z-10 flex w-full flex-col items-center overflow-hidden py-[60px] lg:py-[100px]"
   aria-label="Frequently Asked Questions PortoSpace"
   data-navbar="violet"
 >
   <!-- Background Pattern SVG - Bottom Left -->
   <PatternLine
     color="#6F1DD1"
-    class="absolute bottom-0 left-[-60px] z-0 rotate-180 pointer-events-none select-none"
+    class="pointer-events-none absolute bottom-0 left-[-60px] z-0 rotate-180 select-none"
     style="width: 477px; height: 521px; display: block;"
   />
 
   <!-- Main Section Wrapper -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-20"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-start justify-between gap-12 px-[20px] sm:px-[24px] md:px-[28px] lg:flex-row lg:gap-20 lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Left Column: Header -->
-    <div
-      id="faq-header"
-      class="w-full lg:w-[420px] flex flex-col items-start gap-4"
-    >
+    <div id="faq-header" class="flex w-full flex-col items-start gap-4 lg:w-[420px]">
       <div id="faq-badge">
         <SectionTitle variant="dark" title="FAQ" />
       </div>
 
       <h2
         id="faq-heading"
-        class="font-display font-bold text-white text-[32px] md:text-[44px] lg:text-[54px] leading-[1.12] tracking-tight"
+        class="font-display text-[32px] leading-[1.12] font-bold tracking-tight text-white md:text-[44px] lg:text-[54px]"
       >
         Frequently<br />
         <span
-          class="font-handwriting font-medium italic text-white text-[42px] md:text-[54px] lg:text-[64px] leading-none align-baseline block mt-1"
+          class="font-handwriting mt-1 block align-baseline text-[42px] leading-none font-medium text-white italic md:text-[54px] lg:text-[64px]"
           >Asked Questions</span
         >
       </h2>
 
       <p
         id="faq-desc"
-        class="font-sans font-normal text-white/90 text-sm lg:text-base leading-relaxed max-w-[380px]"
+        class="max-w-[380px] font-sans text-sm leading-relaxed font-normal text-white/90 lg:text-base"
       >
         Masih penasaran? Semua yang perlu kamu tahu ada di sini.
       </p>

@@ -30,7 +30,7 @@ const recommendations = [
 <section
   id="rekomendasi-paket"
   class:list={[
-    "relative w-full bg-white py-[60px] lg:py-[100px] flex flex-col items-center overflow-hidden",
+    "relative flex w-full flex-col items-center overflow-hidden bg-white py-[60px] lg:py-[100px]",
     className,
   ]}
   aria-label="Rekomendasi Paket Section"
@@ -38,18 +38,18 @@ const recommendations = [
 >
   <!-- Standard Responsive Container -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-center"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Centered Header Area -->
-    <div class="flex flex-col items-center text-center gap-4 mb-12 lg:mb-16">
+    <div class="mb-12 flex flex-col items-center gap-4 text-center lg:mb-16">
       <h2
         id="rekomendasi-heading"
-        class="font-momo font-bold text-[#111111] text-[32px] md:text-[44px] lg:text-[54px] leading-[110%] tracking-tight max-w-[980px]"
+        class="font-momo max-w-[980px] text-[32px] leading-[110%] font-bold tracking-tight text-[#111111] md:text-[44px] lg:text-[54px]"
       >
         Temukan Paket yang Paling Sesuai<br class="hidden md:block" />
         dengan Target dan Perjalanan{" "}
         <span
-          class="font-caveat font-semibold italic text-[#111111] text-[40px] md:text-[54px] lg:text-[64px] leading-none inline-block"
+          class="font-caveat inline-block text-[40px] leading-none font-semibold text-[#111111] italic md:text-[54px] lg:text-[64px]"
         >
           Belajarmu.
         </span>
@@ -59,14 +59,11 @@ const recommendations = [
     <!-- 3 Cards Grid -->
     <div
       id="rekomendasi-cards-grid"
-      class="w-full max-w-[1400px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch justify-center justify-items-center"
+      class="grid w-full max-w-[1400px] grid-cols-1 items-stretch justify-center justify-items-center gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
     >
       {
         recommendations.map((item) => (
-          <CardRekomendasiPaket
-            title={item.title}
-            description={item.description}
-          />
+          <CardRekomendasiPaket title={item.title} description={item.description} />
         ))
       }
     </div>

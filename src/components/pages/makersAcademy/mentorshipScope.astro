@@ -88,7 +88,7 @@ const {
 <section
   id="mentorship-scope"
   class:list={[
-    "relative w-full bg-white py-16 md:py-20 lg:py-24 flex flex-col justify-center z-10 pb-32 lg:pb-48",
+    "relative z-10 flex w-full flex-col justify-center bg-white py-16 pb-32 md:py-20 lg:py-24 lg:pb-48",
     className,
   ]}
   aria-label="Mentorship Scope Maker's Academy"
@@ -96,37 +96,31 @@ const {
 >
   <!-- Main Container Wrapper -->
   <div
-    class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] relative z-10 flex flex-col gap-10 lg:gap-14"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-[20px] sm:px-[24px] md:px-[28px] lg:gap-14 lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Header Section: SectionTitle Badge (Left) + Heading (Right) -->
-    <div
-      class="w-full flex flex-col md:flex-row items-start justify-start gap-6 md:gap-[100px]"
-    >
+    <div class="flex w-full flex-col items-start justify-start gap-6 md:flex-row md:gap-[100px]">
       <!-- Left: Badge -->
       <div class="shrink-0">
         {
           badgeText && (
-            <SectionTitle
-              id="mentorship-scope-badge"
-              variant="light"
-              title={badgeText}
-            />
+            <SectionTitle id="mentorship-scope-badge" variant="light" title={badgeText} />
           )
         }
       </div>
 
       <!-- Right: Heading (2 Lines) -->
-      <div class="flex-1 w-full max-w-full">
+      <div class="w-full max-w-full flex-1">
         <h2
           id="mentorship-scope-heading"
-          class="font-display font-bold text-[#161616] text-[32px] md:text-[40px] lg:text-[54px] leading-[1.15] tracking-tight"
+          class="font-display text-[32px] leading-[1.15] font-bold tracking-tight text-[#161616] md:text-[40px] lg:text-[54px]"
         >
           {titleLine1 && <span class="block md:whitespace-nowrap">{titleLine1}</span>}
           <span class="block">
             {titleLine2 && titleLine2}
             {
               titleHighlight && (
-                <span class="font-handwriting font-semibold italic text-[#161616] text-[38px] md:text-[48px] lg:text-[64px] leading-none align-baseline">
+                <span class="font-handwriting align-baseline text-[38px] leading-none font-semibold text-[#161616] italic md:text-[48px] lg:text-[64px]">
                   {titleHighlight}
                 </span>
               )
@@ -139,7 +133,7 @@ const {
     <!-- Scope Items List Container (Stacking Cards Layout) -->
     <div
       id="mentorship-scope-items"
-      class="w-full flex flex-col border-t border-gray-200 relative pb-16 md:pb-24"
+      class="relative flex w-full flex-col border-t border-gray-200 pb-16 md:pb-24"
     >
       {
         items.map((item) => (
@@ -167,9 +161,7 @@ const {
 
     const badge = document.querySelector("#mentorship-scope-badge");
     const heading = document.querySelector("#mentorship-scope-heading");
-    const listItems = document.querySelectorAll<HTMLElement>(
-      ".list-mentorship-scope-item"
-    );
+    const listItems = document.querySelectorAll<HTMLElement>(".list-mentorship-scope-item");
 
     // Header Entrance Animation
     gsap.from([badge, heading].filter(Boolean), {
@@ -189,11 +181,7 @@ const {
     function setItemPurple(targetItem: HTMLElement) {
       listItems.forEach((el) => {
         if (el === targetItem) {
-          el.classList.add(
-            "bg-violet-normal",
-            "text-white",
-            "border-transparent"
-          );
+          el.classList.add("bg-violet-normal", "text-white", "border-transparent");
           el.classList.remove("bg-white", "text-[#161616]");
           const p = el.querySelector("p");
           if (p) {
@@ -207,11 +195,7 @@ const {
     }
 
     function resetItemWhite(item: HTMLElement) {
-      item.classList.remove(
-        "bg-violet-normal",
-        "text-white",
-        "border-transparent"
-      );
+      item.classList.remove("bg-violet-normal", "text-white", "border-transparent");
       item.classList.add("bg-white", "text-[#161616]");
       const p = item.querySelector("p");
       if (p) {

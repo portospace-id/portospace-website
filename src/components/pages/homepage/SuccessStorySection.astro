@@ -6,80 +6,63 @@ import successStoryImg from "@/assets/image/homepage/successStory.webp";
 
 <section
   id="success-story"
-  class="relative w-full bg-white flex flex-col items-center overflow-hidden"
+  class="relative flex w-full flex-col items-center overflow-hidden bg-white"
   aria-label="Kisah Sukses Siswa Maker's Academy"
   data-navbar="white"
 >
   <div
-    class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] py-[80px] flex flex-col items-start gap-10 z-10 relative"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-start gap-10 px-[20px] py-[80px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Content Wrapper -->
-    <div
-      class="w-full flex flex-col lg:flex-row justify-between items-stretch gap-8 lg:gap-12"
-    >
+    <div class="flex w-full flex-col items-stretch justify-between gap-8 lg:flex-row lg:gap-12">
       <!-- Left Column: Photo Card (500px x 600px, p-6, gap-2.5) -->
       <div
         id="story-photo-card"
-        class="w-full lg:w-[500px] flex-shrink-0 h-[600px] p-6 flex flex-col justify-end items-start gap-2.5 rounded-sm bg-[#1e1e24] relative overflow-hidden group shadow-md"
+        class="group relative flex h-[600px] w-full flex-shrink-0 flex-col items-start justify-end gap-2.5 overflow-hidden rounded-sm bg-[#1e1e24] p-6 shadow-md lg:w-[500px]"
       >
         <!-- Background Image -->
         <Image
           src={successStoryImg}
           alt="Jasmine Shafa"
-          class="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+          class="pointer-events-none absolute inset-0 h-full w-full object-cover select-none"
         />
 
         <!-- Subtle Gradient Overlay -->
         <div
-          class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none"
+          class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"
         >
         </div>
 
         <!-- Card Content Foto (gap 2px) -->
-        <div
-          class="relative z-10 flex flex-col justify-center items-start gap-0.5 text-white"
-        >
-          <h3
-            class="font-jakarta font-semibold text-white text-2xl leading-[150%]"
-          >
+        <div class="relative z-10 flex flex-col items-start justify-center gap-0.5 text-white">
+          <h3 class="font-jakarta text-2xl leading-[150%] font-semibold text-white">
             Jasmine Shafa
           </h3>
-          <p
-            class="font-jakarta font-normal text-white text-sm lg:text-base leading-[150%]"
-          >
+          <p class="font-jakarta text-sm leading-[150%] font-normal text-white lg:text-base">
             Zamzam Syifa Boarding School
           </p>
-          <p
-            class="font-jakarta font-normal text-white/80 text-xs lg:text-sm leading-[150%]"
-          >
+          <p class="font-jakarta text-xs leading-[150%] font-normal text-white/80 lg:text-sm">
             National Young Inventors Award (NYIA) 2019
           </p>
         </div>
       </div>
 
       <!-- Right Column: Testimonial & Achievement Details -->
-      <div
-        id="story-content"
-        class="flex-1 w-full flex flex-col justify-between gap-8 py-1"
-      >
+      <div id="story-content" class="flex w-full flex-1 flex-col justify-between gap-8 py-1">
         <!-- Top Section: Testimonial Quote & Author -->
         <div class="flex flex-col items-start gap-4">
           <blockquote
-            class="font-jakarta font-semibold text-gray-900 text-xl md:text-2xl lg:text-4xl leading-[150%]"
+            class="font-jakarta text-xl leading-[150%] font-semibold text-gray-900 md:text-2xl lg:text-4xl"
           >
-            "Bimbingan mentor membantu saya mengembangkan ide menjadi inovasi
-            yang siap dipresentasikan di tingkat nasional maupun internasional."
+            "Bimbingan mentor membantu saya mengembangkan ide menjadi inovasi yang siap
+            dipresentasikan di tingkat nasional maupun internasional."
           </blockquote>
 
-          <div class="flex flex-col items-start mt-2">
-            <p
-              class="font-jakarta font-semibold text-gray-900 text-base leading-[150%]"
-            >
+          <div class="mt-2 flex flex-col items-start">
+            <p class="font-jakarta text-base leading-[150%] font-semibold text-gray-900">
               — Jasmine Shafa
             </p>
-            <p
-              class="font-jakarta font-normal text-gray-600 text-base leading-[150%] mt-0.5"
-            >
+            <p class="font-jakarta mt-0.5 text-base leading-[150%] font-normal text-gray-600">
               Zamzam Syifa Boarding School
             </p>
           </div>
@@ -87,28 +70,20 @@ import successStoryImg from "@/assets/image/homepage/successStory.webp";
 
         <!-- Bottom Section: Project Title, Description & Awards -->
         <div class="flex flex-col items-start gap-3 pt-6">
-          <h4
-            class="font-jakarta font-semibold text-gray-900 text-xl md:text-2xl leading-[150%]"
-          >
+          <h4 class="font-jakarta text-xl leading-[150%] font-semibold text-gray-900 md:text-2xl">
             Autothermic Thermoelectric Solar
           </h4>
 
-          <p
-            class="font-jakarta font-normal text-gray-900 text-base leading-[150%] max-w-[620px]"
-          >
-            Inovasi energi ramah lingkungan yang memanfaatkan panas buang
-            sebagai sumber energi alternatif.
+          <p class="font-jakarta max-w-[620px] text-base leading-[150%] font-normal text-gray-900">
+            Inovasi energi ramah lingkungan yang memanfaatkan panas buang sebagai sumber energi
+            alternatif.
           </p>
 
-          <div class="flex flex-col gap-1 mt-2">
-            <p
-              class="font-jakarta font-semibold text-gray-900 text-xl md:text-2xl leading-[150%]"
-            >
+          <div class="mt-2 flex flex-col gap-1">
+            <p class="font-jakarta text-xl leading-[150%] font-semibold text-gray-900 md:text-2xl">
               Gold Award — IEYI
             </p>
-            <p
-              class="font-jakarta font-semibold text-gray-900 text-xl md:text-2xl leading-[150%]"
-            >
+            <p class="font-jakarta text-xl leading-[150%] font-semibold text-gray-900 md:text-2xl">
               2nd Winner — NYIA
             </p>
           </div>

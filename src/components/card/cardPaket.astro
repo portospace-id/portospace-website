@@ -33,42 +33,40 @@ const {
 
 <div
   class:list={[
-    "paket-card relative w-full lg:w-[445px] flex flex-col justify-between rounded-sm bg-violet-normal text-white transition-all duration-300",
+    "paket-card bg-violet-normal relative flex w-full flex-col justify-between rounded-sm text-white transition-all duration-300 lg:w-[445px]",
     featured
-      ? "lg:scale-105 lg:z-20 border-2 border-white/20 p-6 lg:p-8 h-full"
-      : "lg:z-10 p-6 lg:p-7 lg:self-center lg:h-[90%] h-auto",
+      ? "h-full border-2 border-white/20 p-6 lg:z-20 lg:scale-105 lg:p-8"
+      : "h-auto p-6 lg:z-10 lg:h-[90%] lg:self-center lg:p-7",
     className,
   ]}
   {...rest}
 >
   <!-- Card Header & Content -->
-  <div class="flex flex-col gap-6 w-full mb-8">
+  <div class="mb-8 flex w-full flex-col gap-6">
     <!-- Title & Description -->
     <div class="flex flex-col gap-2">
       <h3
         class:list={[
           "font-momo font-bold tracking-tight text-white uppercase",
           featured
-            ? "text-[32px] md:text-[36px] lg:text-[40px] leading-tight"
-            : "text-[28px] md:text-[32px] lg:text-[36px] leading-tight",
+            ? "text-[32px] leading-tight md:text-[36px] lg:text-[40px]"
+            : "text-[28px] leading-tight md:text-[32px] lg:text-[36px]",
         ]}
       >
         {title}
       </h3>
-      <p
-        class="font-jakarta font-normal text-white/90 text-xs lg:text-sm leading-relaxed"
-      >
+      <p class="font-jakarta text-xs leading-relaxed font-normal text-white/90 lg:text-sm">
         {description}
       </p>
     </div>
 
     <!-- Features List -->
-    <ul class="flex flex-col gap-3 w-full mt-2">
+    <ul class="mt-2 flex w-full flex-col gap-3">
       {
         features.map((item) => (
-          <li class="flex items-start gap-3 font-jakarta font-normal text-xs lg:text-sm text-white/95 leading-snug">
+          <li class="font-jakarta flex items-start gap-3 text-xs leading-snug font-normal text-white/95 lg:text-sm">
             <svg
-              class="w-5 h-5 flex-shrink-0 text-white mt-0.5"
+              class="mt-0.5 h-5 w-5 flex-shrink-0 text-white"
               viewBox="0 0 20 20"
               fill="none"
               stroke="currentColor"
@@ -92,12 +90,12 @@ const {
   </div>
 
   <!-- Bottom CTA Button -->
-  <div class="w-full mt-auto pt-4">
+  <div class="mt-auto w-full pt-4">
     <Button
       href={href}
       class:list={[
-        "w-full justify-center text-center !bg-white !text-[#7b20e8] hover:!bg-white/90 font-bold !shadow-none hover:!shadow-none hover:-translate-y-0.5",
-        featured ? "py-3.5 px-6 text-base" : "py-3 px-6 text-sm",
+        "w-full justify-center !bg-white text-center font-bold !text-[#7b20e8] !shadow-none hover:-translate-y-0.5 hover:!bg-white/90 hover:!shadow-none",
+        featured ? "px-6 py-3.5 text-base" : "px-6 py-3 text-sm",
       ]}
     >
       {buttonText}

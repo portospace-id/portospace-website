@@ -1,0 +1,203 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import PatternLine from "@/components/ui/patternLine.astro";
+import CardPortfolioOutput from "@/components/card/cardPortfolioOutput.astro";
+
+// Images from STEM research assets
+import verticalFarmingImg from "@/assets/image/stemResearch/environmental.png";
+import bioplasticImg from "@/assets/image/stemResearch/chemistry.png";
+import aiDetectionImg from "@/assets/image/stemResearch/computerScience.png";
+import herbalResearchImg from "@/assets/image/stemResearch/biology.png";
+import roboticsImg from "@/assets/image/stemResearch/robotics.png";
+
+export interface ProjectCardItem {
+  title: string;
+  image: ImageMetadata;
+  alt?: string;
+}
+
+interface Props {
+  /** Additional CSS class for section */
+  class?: string;
+  id?: string;
+}
+
+const { class: className = "", id = "project-section" } = Astro.props;
+
+const projects: ProjectCardItem[] = [
+  {
+    title: "Smart Vertical Farming",
+    image: verticalFarmingImg,
+    alt: "Smart Vertical Farming research project",
+  },
+  {
+    title: "Eco Bioplastic",
+    image: bioplasticImg,
+    alt: "Eco Bioplastic research project",
+  },
+  {
+    title: "AI Emotion Detection",
+    image: aiDetectionImg,
+    alt: "AI Emotion Detection research project",
+  },
+  {
+    title: "Herbal Research",
+    image: herbalResearchImg,
+    alt: "Herbal Research project",
+  },
+  {
+    title: "Robotics & IoT System",
+    image: roboticsImg,
+    alt: "Robotics and IoT System research project",
+  },
+];
+---
+
+<section
+  id={id}
+  class:list={[
+    "bg-spicy-normal relative z-10 flex min-h-svh w-full flex-col justify-center overflow-hidden py-12 md:py-16",
+    className,
+  ]}
+  aria-label="Project Section"
+  data-navbar="spicy"
+>
+  <!-- Background Decorative Wavy Pattern Top Right -->
+  <PatternLine
+    color="#38b6d4"
+    class="pointer-events-none absolute top-0 right-[-60px] z-0 block h-[521px] w-[477px] opacity-70 select-none"
+  />
+
+  <!-- Background Decorative Wavy Pattern Bottom Left -->
+  <PatternLine
+    color="#38b6d4"
+    class="pointer-events-none absolute bottom-0 left-[-60px] z-0 block h-[521px] w-[477px] rotate-180 opacity-70 select-none"
+  />
+
+  <!-- Main Section Wrapper -->
+  <div
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-[20px] sm:px-[24px] md:px-[28px] lg:gap-14 lg:px-[32px] xl:max-w-none xl:px-[32px]"
+  >
+    <!-- Top Header Row Container: Left Badge, Right Heading -->
+    <div
+      id="project-header"
+      class="flex w-full flex-col items-start justify-between gap-6 lg:flex-row lg:gap-12"
+    >
+      <!-- Left Column: Badge -->
+      <div class="shrink-0">
+        <SectionTitle id="project-badge" variant="light" title="Project" showIcon={true} />
+      </div>
+
+      <!-- Right Column: Heading (2 Lines) -->
+      <div class="w-full lg:max-w-[720px] xl:max-w-[800px]">
+        <h2
+          id="project-heading"
+          class="font-momo text-left text-[32px] leading-[1.12] font-bold tracking-tight text-[#111111] sm:text-[40px] md:text-[48px] lg:text-right lg:text-[52px]"
+        >
+          Lihat Berbagai Ide yang Berhasil<br />
+          Dikembangkan Menjadi{" "}
+          <span
+            class="font-caveat ml-1 inline-block align-baseline text-[38px] leading-none font-semibold text-[#111111] italic sm:text-[48px] md:text-[58px] lg:text-[66px]"
+          >
+            Proyek Riset.
+          </span>
+        </h2>
+      </div>
+    </div>
+
+    <!-- Cards Track Container (Fixed min-h so card hover does not move section height) -->
+    <div
+      id="project-cards-container"
+      class="relative z-10 flex min-h-[520px] w-full scrollbar-none items-start overflow-x-auto py-2 lg:min-h-[540px] lg:overflow-hidden"
+    >
+      <div
+        id="project-cards-track"
+        class="flex w-max items-start gap-[20px] will-change-transform sm:gap-[24px] md:gap-[28px]"
+      >
+        {
+          projects.map((proj) => (
+            <CardPortfolioOutput
+              image={proj.image}
+              alt={proj.alt || proj.title}
+              title={proj.title}
+              showSubtitle={false}
+              textColor="text-[#111111]"
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initProjectSectionAnimations() {
+    const section = document.querySelector<HTMLElement>("#project-section");
+    const track = document.querySelector<HTMLElement>("#project-cards-track");
+    const container = document.querySelector<HTMLElement>("#project-cards-container");
+
+    if (!section || !track || !container) return;
+
+    // Header Entrance Animation
+    const badge = document.querySelector<HTMLElement>("#project-badge");
+    const heading = document.querySelector<HTMLElement>("#project-heading");
+
+    gsap.from([badge, heading].filter(Boolean), {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.15,
+      ease: "power3.out",
+      clearProps: "transform,opacity",
+    });
+
+    // Horizontal Scroll Animation for Cards Track on Desktop
+    ScrollTrigger.matchMedia({
+      "(min-width: 768px)": function () {
+        const getScrollAmount = () => {
+          return Math.max(0, track.scrollWidth - container.clientWidth);
+        };
+
+        if (getScrollAmount() > 0) {
+          const horizontalTween = gsap.to(track, {
+            x: () => -getScrollAmount(),
+            ease: "none",
+          });
+
+          ScrollTrigger.create({
+            trigger: section,
+            start: "top top",
+            end: () => `+=${getScrollAmount()}`,
+            pin: true,
+            animation: horizontalTween,
+            scrub: 1,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+          });
+        }
+      },
+    });
+
+    setTimeout(() => ScrollTrigger.refresh(), 100);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProjectSectionAnimations);
+  } else {
+    initProjectSectionAnimations();
+  }
+
+  document.addEventListener("astro:page-load", initProjectSectionAnimations);
+</script>

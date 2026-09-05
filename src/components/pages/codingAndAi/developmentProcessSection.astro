@@ -1,0 +1,177 @@
+---
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+
+const steps = [
+  { number: "01", label: "Ide" },
+  { number: "02", label: "Design" },
+  { number: "03", label: "Code" },
+  { number: "04", label: "Launch" },
+];
+---
+
+<section
+  class="development-process-coding relative w-full overflow-hidden lg:min-h-[calc(100vh+20px)]"
+  style="background-color: #D9D9D9;"
+  aria-label="Proses Development Coding & AI"
+  data-navbar="light"
+>
+
+
+
+
+  <!-- Content -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pt-16 md:pt-20 lg:pt-24 pb-16 md:pb-20 lg:pb-24"
+  >
+    <div class="flex flex-col gap-8 lg:gap-10">
+
+      <!-- Row 1: Badge+Heading (left) | Description (right) — bottom aligned -->
+      <div class="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-16">
+
+        <!-- Left: Badge + Heading -->
+        <div class="flex flex-col gap-4 max-w-[573px] lg:w-[42%] lg:flex-shrink-0">
+          <!-- Custom Badge -->
+          <div
+            class="process-badge inline-flex items-center gap-2 font-jakarta text-[16px] font-normal leading-[150%] text-black"
+          >
+            <img
+              src="/pattern_save_prototype.svg"
+              alt=""
+              width="22"
+              height="22"
+              class="flex-shrink-0 select-none pointer-events-none object-contain"
+              style="width: 22px; height: 22px;"
+              aria-hidden="true"
+            />
+            <span>Building Proses</span>
+          </div>
+
+          <h2
+            class="process-heading font-momo font-semibold text-black leading-[110%] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px] lg:whitespace-nowrap"
+            style="letter-spacing: -0.02em;"
+          >
+            Dari Ide Pertama hingga<br />
+            Produk Siap{" "}
+            <span
+              class="font-caveat font-bold italic text-black text-[44px] sm:text-[54px] md:text-[60px] lg:text-[64px] leading-[80%] align-baseline whitespace-nowrap"
+              style="letter-spacing: -0.04em;"
+            >
+              Digunakan.
+            </span>
+          </h2>
+        </div>
+
+        <!-- Right: Description (bottom sejajar dengan heading) -->
+        <div class="lg:flex-1 lg:flex lg:justify-end">
+          <p
+            class="process-desc font-jakarta font-normal text-black text-[14px] sm:text-[16px] leading-[150%]"
+          >
+            Diskusikan ide dan kembangkan potensinya bersama mentor PortoSpace <br class="hidden lg:block" />
+            melalui pengalaman belajar STEM, teknologi, dan entrepreneurship berbasis <br class="hidden lg:block" />
+            proyek nyata.
+          </p>
+        </div>
+      </div>
+
+      <!-- Row 2: Spacer kiri kosong | Numbered Steps kanan saja -->
+      <div class="flex flex-col lg:flex-row lg:gap-16">
+
+        <!-- Spacer kiri (sama lebar dengan kolom heading) -->
+        <div class="hidden lg:block lg:w-[42%] lg:flex-shrink-0"></div>
+
+        <!-- Numbered Steps (kanan) -->
+        <div class="process-steps flex flex-col w-full lg:flex-1">
+          {
+            steps.map((step, index) => (
+              <div
+                class:list={[
+                  "coding-proses-step flex items-center justify-between py-5 border-t border-black/20",
+                  index === steps.length - 1 && "border-b",
+                ]}
+              >
+                <span
+                  class="font-momo font-medium text-black text-[28px] sm:text-[34px] md:text-[40px] leading-[110%]"
+                  style="letter-spacing: -0.02em;"
+                >
+                  {step.number}
+                </span>
+                <span
+                  class="font-momo font-medium text-black text-[28px] sm:text-[34px] md:text-[40px] leading-[110%]"
+                  style="letter-spacing: -0.02em;"
+                >
+                  {step.label}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const sections = document.querySelectorAll(".development-process-coding");
+  sections.forEach((section) => {
+    const badge = section.querySelector(".process-badge");
+    const heading = section.querySelector(".process-heading");
+    const desc = section.querySelector(".process-desc");
+    const stepsWrapper = section.querySelector(".process-steps");
+    const steps = section.querySelectorAll(".coding-proses-step");
+
+    // Badge & heading entrance
+    if (badge && heading) {
+      gsap.from([badge, heading], {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      });
+    }
+
+    // Description entrance
+    if (desc) {
+      gsap.from(desc, {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      });
+    }
+
+    // Steps stagger entrance
+    if (steps.length > 0 && stepsWrapper) {
+      gsap.from(steps, {
+        y: 24,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: stepsWrapper,
+          start: "top 85%",
+          once: true,
+        },
+      });
+    }
+  });
+</script>

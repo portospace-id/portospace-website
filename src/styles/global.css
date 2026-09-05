@@ -51,6 +51,7 @@
   --color-spicy-100: #edfbfe;
   --color-spicy-200: #e4f8fd;
   --color-spicy-300: #c8f1fb;
+  --color-spicy-500: #38b6d4;
   --color-spicy-normal: #4dd3f2;
   --color-spicy-normal-hover: #45beda;
   --color-spicy-normal-active: #3ea9c2;
@@ -106,9 +107,8 @@
   --font-momo: "Momo Trust Sans", "Plus Jakarta Sans", system-ui, sans-serif;
   --font-caveat: "Caveat", cursive;
 
-
   /* Footer Colors */
-  --color-portospace-purple: #A94EEB;
+  --color-portospace-purple: #a94eeb;
 
   /* ─────────────────────────────────────────
      Breakpoints

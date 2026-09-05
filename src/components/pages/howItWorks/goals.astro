@@ -40,52 +40,45 @@ const goalsData = [
 <section
   id="goals"
   class:list={[
-    "relative w-full min-h-svh flex flex-col justify-center overflow-hidden bg-white text-black py-16 sm:py-20 md:py-24 lg:py-32",
+    "relative flex min-h-svh w-full flex-col justify-center overflow-hidden bg-white py-16 text-black sm:py-20 md:py-24 lg:py-32",
     className,
   ]}
   aria-label="Goal Setting & Discovery Section"
 >
   <!-- Bottom-Left Decorative Background Pattern -->
   <div
-    class="absolute left-[-230px] bottom-[-225px] w-[680px] h-[682px] pointer-events-none z-0 select-none"
+    class="pointer-events-none absolute bottom-[-225px] left-[-230px] z-0 h-[682px] w-[680px] select-none"
   >
     <Image
       src={pattern4}
       alt=""
       width={680}
       height={682}
-      class="w-full h-full object-contain pointer-events-none"
+      class="pointer-events-none h-full w-full object-contain"
       aria-hidden="true"
     />
   </div>
 
   <!-- Main Content Container -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px]"
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
-    <div
-      class="flex flex-col lg:flex-row items-start gap-8 lg:gap-16 xl:gap-[400px]"
-    >
+    <div class="flex flex-col items-start gap-8 lg:flex-row lg:gap-16 xl:gap-[400px]">
       <!-- Left Column: Section Title Badge -->
       <div class="flex-shrink-0 lg:w-[260px]">
-        <SectionTitle
-          id="goals-badge"
-          variant="light"
-          title={badge}
-          showIcon={true}
-        />
+        <SectionTitle id="goals-badge" variant="light" title={badge} showIcon={true} />
       </div>
 
       <!-- Right Column: Heading & 3 Goal Items -->
-      <div class="flex-1 w-full flex flex-col gap-12 sm:gap-16 lg:gap-20">
+      <div class="flex w-full flex-1 flex-col gap-12 sm:gap-16 lg:gap-20">
         <!-- Main Section Title -->
         <h2
           id="goals-heading"
-          class="font-momo font-bold text-[#161616] text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px] leading-[1.15] tracking-tight"
+          class="font-momo text-[28px] leading-[1.15] font-bold tracking-tight text-[#161616] sm:text-[36px] md:text-[44px] lg:text-[54px]"
         >
           {titleLine}{" "}
           <span
-            class="font-caveat font-semibold italic text-[#161616] text-[36px] sm:text-[48px] md:text-[58px] lg:text-[68px] leading-none inline-block mt-1 sm:mt-2"
+            class="font-caveat mt-1 inline-block text-[36px] leading-none font-semibold text-[#161616] italic sm:mt-2 sm:text-[48px] md:text-[58px] lg:text-[68px]"
           >
             {titleHighlight}
           </span>
@@ -94,15 +87,15 @@ const goalsData = [
         <!-- 3 Goal Items Grid -->
         <div
           id="goals-items"
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12"
+          class="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-12"
         >
           {
             goalsData.map((item) => (
-              <div class="goals-card flex flex-col w-full items-start gap-3">
-                <div class="inline-flex items-center justify-start py-2 px-3 rounded-sm bg-violet-normal text-white font-momo text-base md:text-3xl font-medium w-3/4 select-none">
+              <div class="goals-card flex w-full flex-col items-start gap-3">
+                <div class="bg-violet-normal font-momo inline-flex w-3/4 items-center justify-start rounded-sm px-3 py-2 text-base font-medium text-white select-none md:text-3xl">
                   {item.tag}
                 </div>
-                <p class="font-jakarta font-normal text-[#333333] text-sm md:text-2xl leading-relaxed w-3/4">
+                <p class="font-jakarta w-3/4 text-sm leading-relaxed font-normal text-[#333333] md:text-2xl">
                   {item.description}
                 </p>
               </div>
@@ -145,7 +138,7 @@ const goalsData = [
             duration: 0.7,
             ease: "power3.out",
           },
-          "-=0.3",
+          "-=0.3"
         )
         .from(
           ".goals-card",
@@ -156,7 +149,7 @@ const goalsData = [
             stagger: 0.12,
             ease: "power2.out",
           },
-          "-=0.3",
+          "-=0.3"
         );
     };
 

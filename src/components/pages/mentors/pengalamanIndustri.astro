@@ -8,58 +8,50 @@ import butuhStoryImg from "@/assets/image/homepage/butuhStory.webp";
 
 <section
   id="pengalaman-industri"
-  class="relative w-full bg-violet-normal text-white py-[60px] lg:py-[100px] flex flex-col justify-center overflow-hidden"
+  class="bg-violet-normal relative flex w-full flex-col justify-center overflow-hidden py-[60px] text-white lg:py-[100px]"
   aria-label="Pengalaman Industri Mentors"
   data-navbar="violet"
 >
   <!-- Main Content Container (Standard Responsive Pattern) -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px]"
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
-    <div
-      class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch w-full"
-    >
+    <div class="grid w-full grid-cols-1 items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
       <!-- Left Column: Large Vertical Image Card -->
-      <div class="lg:col-span-5 w-full flex">
+      <div class="flex w-full lg:col-span-5">
         <CardPengalamanIndustri
           id="pengalaman-img-left"
           variant="image"
           image={minatStemImg}
           alt="Mentor PortoSpace dalam diskusi kerja tim dan proyek industri"
-          class="w-full h-full min-h-[360px] sm:min-h-[440px] lg:min-h-[540px]"
+          class="h-full min-h-[360px] w-full sm:min-h-[440px] lg:min-h-[540px]"
         />
       </div>
 
       <!-- Right Column: Heading Description + 2 Side-by-Side Image Cards -->
-      <div
-        class="lg:col-span-7 flex flex-col justify-between gap-6 lg:gap-8 w-full"
-      >
+      <div class="flex w-full flex-col justify-between gap-6 lg:col-span-7 lg:gap-8">
         <!-- Top Paragraph Text -->
         <h2
           id="pengalaman-heading"
-          class="font-momo font-medium text-white text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] leading-[135%] tracking-tight text-left"
+          class="font-momo text-left text-[20px] leading-[135%] font-medium tracking-tight text-white sm:text-[24px] md:text-[28px] lg:text-[32px]"
         >
-          Mentor PortoSpace membawa pengalaman dari berbagai perusahaan, institusi
-          riset, dan proyek nyata untuk menghadirkan pembelajaran yang lebih relevan
-          dengan tantangan di dunia nyata.
+          Mentor PortoSpace membawa pengalaman dari berbagai perusahaan, institusi riset, dan proyek
+          nyata untuk menghadirkan pembelajaran yang lebih relevan dengan tantangan di dunia nyata.
         </h2>
 
         <!-- Bottom 2 Side-by-Side Vertical Image Cards -->
-        <div
-          id="pengalaman-img-right-grid"
-          class="grid grid-cols-2 gap-4 sm:gap-6 w-full"
-        >
+        <div id="pengalaman-img-right-grid" class="grid w-full grid-cols-2 gap-4 sm:gap-6">
           <CardPengalamanIndustri
             variant="image"
             image={targetTopUniversityImg}
             alt="Mentor membimbing sesi pengerjaan papan tulis"
-            class="w-full aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4]"
+            class="aspect-[3/4] w-full sm:aspect-[4/5] lg:aspect-[3/4]"
           />
           <CardPengalamanIndustri
             variant="image"
             image={butuhStoryImg}
             alt="Presentasi dan pembekalan mentor di panggung riset"
-            class="w-full aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4]"
+            class="aspect-[3/4] w-full sm:aspect-[4/5] lg:aspect-[3/4]"
           />
         </div>
       </div>

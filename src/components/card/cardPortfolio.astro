@@ -40,27 +40,27 @@ const variantClasses = {
 
 <div
   class:list={[
-    "card-portfolio flex flex-col shrink-0 group cursor-pointer relative rounded-sm overflow-hidden",
+    "card-portfolio group relative flex shrink-0 cursor-pointer flex-col overflow-hidden rounded-sm",
     variantClasses[variant],
     className,
   ]}
   {...rest}
 >
   <!-- Card Image -->
-  <div class="relative w-full h-full rounded-sm overflow-hidden bg-black/10">
+  <div class="relative h-full w-full overflow-hidden rounded-sm bg-black/10">
     {
       isStringImg ? (
         <img
           src={image as string}
           alt={alt}
-          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out pointer-events-none select-none rounded-sm"
+          class="pointer-events-none h-full w-full rounded-sm object-cover transition-transform duration-500 ease-in-out select-none group-hover:scale-105"
           loading="lazy"
         />
       ) : (
         <Image
           src={image as ImageMetadata}
           alt={alt}
-          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out pointer-events-none select-none rounded-sm"
+          class="pointer-events-none h-full w-full rounded-sm object-cover transition-transform duration-500 ease-in-out select-none group-hover:scale-105"
           loading="lazy"
         />
       )
@@ -70,16 +70,14 @@ const variantClasses = {
   <!-- Card Info (Rendered ONLY if title/subtitle is provided) -->
   {
     (title || subtitle) && (
-      <div class="flex flex-col gap-1 mt-4">
+      <div class="mt-4 flex flex-col gap-1">
         {title && (
-          <h3 class="font-sans font-semibold text-white text-[16px] lg:text-[18px] leading-[140%]">
+          <h3 class="font-sans text-[16px] leading-[140%] font-semibold text-white lg:text-[18px]">
             {title}
           </h3>
         )}
         {subtitle && (
-          <p class="font-sans font-normal text-white/80 text-[14px] leading-[140%]">
-            {subtitle}
-          </p>
+          <p class="font-sans text-[14px] leading-[140%] font-normal text-white/80">{subtitle}</p>
         )}
       </div>
     )

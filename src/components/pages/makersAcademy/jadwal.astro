@@ -58,7 +58,7 @@ const isOfflineString = typeof offlineImage === "string";
 <section
   id="jadwal"
   class:list={[
-    "relative w-full bg-violet-normal py-16 md:py-20 lg:py-24 flex flex-col justify-center overflow-hidden z-10",
+    "bg-violet-normal relative z-10 flex w-full flex-col justify-center overflow-hidden py-16 md:py-20 lg:py-24",
     className,
   ]}
   aria-label="Jadwal Belajar Maker's Academy"
@@ -66,26 +66,22 @@ const isOfflineString = typeof offlineImage === "string";
 >
   <!-- Main Container -->
   <div
-    class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] relative z-10 flex flex-col gap-8 md:gap-10"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] sm:px-[24px] md:gap-10 md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Header Section: Badge + 2-Line Heading (Semantic h2 & em) -->
-    <div class="flex flex-col items-start gap-4 max-w-[1050px]">
-      {
-        badgeText && (
-          <SectionTitle id="jadwal-badge" variant="dark" title={badgeText} />
-        )
-      }
+    <div class="flex max-w-[1050px] flex-col items-start gap-4">
+      {badgeText && <SectionTitle id="jadwal-badge" variant="dark" title={badgeText} />}
 
       <h2
         id="jadwal-heading"
-        class="font-display font-bold text-white text-[32px] md:text-[40px] lg:text-[54px] leading-[1.15] tracking-tight"
+        class="font-display text-[32px] leading-[1.15] font-bold tracking-tight text-white md:text-[40px] lg:text-[54px]"
       >
         {titleLine1 && <span class="block">{titleLine1}</span>}
         <span class="block">
           {titleLine2 && titleLine2}
           {
             titleHighlight && (
-              <span class="font-handwriting font-semibold italic text-white text-[38px] md:text-[48px] lg:text-[64px] leading-none align-baseline">
+              <span class="font-handwriting align-baseline text-[38px] leading-none font-semibold text-white italic md:text-[48px] lg:text-[64px]">
                 {titleHighlight}
               </span>
             )
@@ -95,7 +91,7 @@ const isOfflineString = typeof offlineImage === "string";
     </div>
 
     <!-- Schedule Options Container -->
-    <div id="jadwal-list-container" class="relative w-full flex flex-col">
+    <div id="jadwal-list-container" class="relative flex w-full flex-col">
       <!-- Online Option Row -->
       <ListJadwal title="Online" items={onlineItems} dataKey="online" />
 
@@ -105,26 +101,26 @@ const isOfflineString = typeof offlineImage === "string";
       <!-- Floating Photo Container over Active Hover Row -->
       <div
         id="jadwal-hover-photo-container"
-        class="absolute left-1/2 -translate-x-1/2 z-30 w-[85%] sm:w-[380px] lg:w-[440px] h-[200px] sm:h-[240px] lg:h-[270px] rounded-sm overflow-hidden transition-all duration-300 opacity-0 pointer-events-none scale-95"
+        class="pointer-events-none absolute left-1/2 z-30 h-[200px] w-[85%] -translate-x-1/2 scale-95 overflow-hidden rounded-sm opacity-0 transition-all duration-300 sm:h-[240px] sm:w-[380px] lg:h-[270px] lg:w-[440px]"
         aria-hidden="true"
       >
         <!-- Online Image -->
         <div
           id="jadwal-hover-photo-online"
-          class="absolute inset-0 transition-opacity duration-300 opacity-0"
+          class="absolute inset-0 opacity-0 transition-opacity duration-300"
         >
           {
             isOnlineString ? (
               <img
                 src={onlineImage as string}
                 alt="Online"
-                class="w-full h-full object-cover pointer-events-none select-none rounded-sm"
+                class="pointer-events-none h-full w-full rounded-sm object-cover select-none"
               />
             ) : (
               <Image
                 src={onlineImage as ImageMetadata}
                 alt="Online"
-                class="w-full h-full object-cover pointer-events-none select-none rounded-sm"
+                class="pointer-events-none h-full w-full rounded-sm object-cover select-none"
               />
             )
           }
@@ -133,20 +129,20 @@ const isOfflineString = typeof offlineImage === "string";
         <!-- Offline Image -->
         <div
           id="jadwal-hover-photo-offline"
-          class="absolute inset-0 transition-opacity duration-300 opacity-0"
+          class="absolute inset-0 opacity-0 transition-opacity duration-300"
         >
           {
             isOfflineString ? (
               <img
                 src={offlineImage as string}
                 alt="Offline"
-                class="w-full h-full object-cover pointer-events-none select-none rounded-sm"
+                class="pointer-events-none h-full w-full rounded-sm object-cover select-none"
               />
             ) : (
               <Image
                 src={offlineImage as ImageMetadata}
                 alt="Offline"
-                class="w-full h-full object-cover pointer-events-none select-none rounded-sm"
+                class="pointer-events-none h-full w-full rounded-sm object-cover select-none"
               />
             )
           }
@@ -169,15 +165,9 @@ const isOfflineString = typeof offlineImage === "string";
     const badge = document.querySelector("#jadwal-badge");
     const heading = document.querySelector("#jadwal-heading");
     const container = document.querySelector("#jadwal-list-container");
-    const photoBox = document.querySelector(
-      "#jadwal-hover-photo-container",
-    ) as HTMLElement;
-    const photoOnline = document.querySelector(
-      "#jadwal-hover-photo-online",
-    ) as HTMLElement;
-    const photoOffline = document.querySelector(
-      "#jadwal-hover-photo-offline",
-    ) as HTMLElement;
+    const photoBox = document.querySelector("#jadwal-hover-photo-container") as HTMLElement;
+    const photoOnline = document.querySelector("#jadwal-hover-photo-online") as HTMLElement;
+    const photoOffline = document.querySelector("#jadwal-hover-photo-offline") as HTMLElement;
     const items = document.querySelectorAll<HTMLElement>(".list-jadwal-item");
 
     // Entrance Animation
@@ -223,11 +213,7 @@ const isOfflineString = typeof offlineImage === "string";
           const targetTop = itemTop + itemHeight / 2;
           photoBox.style.top = `${targetTop}px`;
           photoBox.style.transform = "translate(-50%, -50%) scale(1)";
-          photoBox.classList.remove(
-            "opacity-0",
-            "pointer-events-none",
-            "scale-95",
-          );
+          photoBox.classList.remove("opacity-0", "pointer-events-none", "scale-95");
           photoBox.classList.add("opacity-100");
 
           // Active row styling (no shadow)
@@ -267,11 +253,7 @@ const isOfflineString = typeof offlineImage === "string";
       if (container) {
         container.addEventListener("mouseleave", () => {
           photoBox.classList.remove("opacity-100");
-          photoBox.classList.add(
-            "opacity-0",
-            "pointer-events-none",
-            "scale-95",
-          );
+          photoBox.classList.add("opacity-0", "pointer-events-none", "scale-95");
           items.forEach((el) => {
             el.classList.remove("bg-windsor-dark");
             el.classList.add("bg-transparent");
