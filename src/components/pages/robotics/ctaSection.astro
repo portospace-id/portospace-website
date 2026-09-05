@@ -1,0 +1,74 @@
+---
+// src/components/pages/robotics/ctaSection.astro
+---
+
+<section
+  id="cta-section"
+  class="relative w-full min-h-[100vh] flex flex-col justify-center items-center overflow-hidden"
+  aria-label="Call to Action"
+  data-navbar="dark"
+>
+  <!-- Background Image with Dark Overlay -->
+  <div class="absolute inset-0 w-full h-full">
+    <img
+      src="/robotics.webp"
+      alt="Workshop background"
+      class="w-full h-full object-cover"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-black/50 sm:bg-black/60"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 flex flex-col items-center text-center px-6 max-w-[900px] mx-auto gap-6 sm:gap-8">
+    <h2
+      class="font-momo font-semibold text-white leading-[110%] text-[36px] sm:text-[48px] md:text-[56px] lg:text-[64px]"
+      style="letter-spacing: -0.02em;"
+    >
+      Punya Ide yang Ingin Kamu<br class="hidden sm:block" />
+      Wujudkan Menjadi{" "}
+      <span
+        class="font-caveat font-bold italic text-white text-[48px] sm:text-[60px] md:text-[72px] lg:text-[80px] leading-[80%] align-baseline"
+        style="letter-spacing: -0.04em;"
+      >
+        Prototipe?
+      </span>
+    </h2>
+
+    <p class="font-jakarta font-normal text-white/90 text-[16px] sm:text-[18px] md:text-[20px] leading-[150%] max-w-[600px]">
+      Diskusikan ide dan tujuan belajarmu bersama tim PortoSpace.
+    </p>
+
+    <a
+      href="https://wa.me/628123456789"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block mt-4 hover:scale-105 transition-transform duration-300"
+    >
+      <img src="/konsultasi.svg" alt="Konsultasi Sekarang!" class="w-[200px] sm:w-[240px] md:w-[280px] h-auto object-contain" />
+    </a>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const ctaContent = document.querySelector("#cta-section .relative.z-10");
+  if (ctaContent) {
+    gsap.from(ctaContent.children, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "#cta-section",
+        start: "top 75%",
+        once: true,
+      },
+    });
+  }
+</script>

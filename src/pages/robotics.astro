@@ -1,0 +1,31 @@
+---
+// Layouts
+import Layout from "../layouts/Layout.astro";
+
+// Components
+import HeroSection from "../components/pages/robotics/heroSection.astro";
+import ManfaatSection from "../components/pages/robotics/manfaatSection.astro";
+import ProsesPrototypeSection from "../components/pages/robotics/prosesPrototypeSection.astro";
+import ToolsTechnologySection from "../components/pages/robotics/toolsTechnologySection.astro";
+import ProjectSection from "../components/pages/robotics/projectSection.astro";
+import MentorsSection from "../components/pages/robotics/mentorsSection.astro";
+import KompetisiPublikasiSection from "../components/pages/robotics/kompetisiPublikasiSection.astro";
+import CtaSection from "../components/pages/robotics/ctaSection.astro";
+---
+
+<Layout
+  title="Robotics & IoT — PortoSpace"
+  description="Pelajari robotika dan IoT melalui proyek nyata, dari merancang sistem hingga menguji prototipe bersama mentor di PortoSpace."
+  showFooter={true}
+>
+  <main>
+    <HeroSection />
+    <ManfaatSection />
+    <ProsesPrototypeSection />
+    <ToolsTechnologySection />
+    <ProjectSection />
+    <MentorsSection />
+    <KompetisiPublikasiSection />
+    <CtaSection />
+  </main>
+</Layout>
