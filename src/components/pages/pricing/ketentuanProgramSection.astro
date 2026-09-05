@@ -1,0 +1,160 @@
+---
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import ListKetentuanProgram from "@/components/list/listKetentuanProgram.astro";
+
+interface Props {
+  /** Additional CSS class */
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+const items = [
+  {
+    number: "01",
+    title: "Jadwal Mentoring",
+    description:
+      "Jadwal sesi disepakati bersama mentor dan dapat disesuaikan dengan ketersediaan masing-masing.",
+  },
+  {
+    number: "02",
+    title: "Penjadwalan Ulang (Reschedule)",
+    description:
+      "Sesi dapat dijadwalkan ulang dengan pemberitahuan sesuai ketentuan yang berlaku.",
+  },
+  {
+    number: "03",
+    title: "Masa Berlaku Paket",
+    description:
+      "Setiap paket memiliki masa aktif yang perlu digunakan dalam periode yang telah ditentukan.",
+  },
+  {
+    number: "04",
+    title: "Pembayaran",
+    description:
+      "Pembayaran dilakukan sebelum program dimulai sesuai dengan paket yang dipilih.",
+  },
+  {
+    number: "05",
+    title: "Sertifikat Program",
+    description:
+      "Sertifikat diberikan kepada peserta yang telah menyelesaikan program sesuai ketentuan.",
+  },
+  {
+    number: "06",
+    title: "Ketentuan Lainnya",
+    description:
+      "Fasilitas dan layanan yang diterima mengikuti paket yang dipilih oleh peserta.",
+  },
+];
+---
+
+<section
+  id="ketentuan-program"
+  class:list={[
+    "relative w-full bg-violet-normal text-white py-[60px] lg:py-[100px] flex flex-col items-center overflow-hidden",
+    className,
+  ]}
+  aria-label="Ketentuan Program PortoSpace"
+  data-navbar="violet"
+>
+  <!-- Standard Responsive Container -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-start"
+  >
+    <!-- Top Header Area -->
+    <div class="flex flex-col items-start gap-4 sm:gap-6 mb-12 lg:mb-16 w-full">
+      <SectionTitle
+        id="ketentuan-badge"
+        variant="dark"
+        title="Ketentuan Programs"
+        showIcon={true}
+        class="flex-shrink-0"
+      />
+
+      <h2
+        id="ketentuan-heading"
+        class="font-momo font-bold text-white text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px] leading-[1.15] tracking-tight max-w-[1140px] mb-0 text-left w-full"
+      >
+        Pahami Ketentuan Program agar Pengalaman<br class="hidden sm:block" />
+        Belajarmu Berjalan Lebih Nyaman dan{" "}
+        <span
+          class="font-caveat font-semibold italic text-white text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px] leading-none inline-block mt-1 sm:mt-0"
+        >
+          Terarah.
+        </span>
+      </h2>
+    </div>
+
+    <!-- List Items Container with Top Border -->
+    <div id="ketentuan-list" class="w-full border-t border-violet-300">
+      {
+        items.map((item) => (
+          <ListKetentuanProgram
+            number={item.number}
+            title={item.title}
+            description={item.description}
+          />
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- GSAP Entrance Animation -->
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initAnimations = () => {
+      const section = document.querySelector("#ketentuan-program");
+      if (!section) return;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      tl.from("#ketentuan-badge", {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        clearProps: "all",
+      })
+        .from(
+          "#ketentuan-heading",
+          {
+            y: 35,
+            opacity: 0,
+            duration: 0.75,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          "-=0.3"
+        )
+        .from(
+          ".list-ketentuan-item",
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power2.out",
+            clearProps: "all",
+          },
+          "-=0.3"
+        );
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initAnimations);
+    } else {
+      initAnimations();
+    }
+  </script>
+</section>

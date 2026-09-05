@@ -1,0 +1,155 @@
+---
+interface Props {
+  /** Additional CSS class */
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+const monitoringItems = [
+  {
+    title: "Progress Evaluation",
+    description:
+      "Evaluasi rutin untuk mengukur perkembangan belajar dan kualitas proyek.",
+  },
+  {
+    title: "Progress Evaluation",
+    description:
+      "Evaluasi rutin untuk mengukur perkembangan belajar dan kualitas proyek.",
+  },
+  {
+    title: "Progress Evaluation",
+    description:
+      "Evaluasi rutin untuk mengukur perkembangan belajar dan kualitas proyek.",
+  },
+];
+---
+
+<section
+  id="progress-monitoring"
+  class:list={[
+    "relative w-full bg-violet-normal text-white py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden",
+    className,
+  ]}
+  aria-label="Pemantauan Perkembangan Section"
+  data-navbar="violet"
+>
+  <!-- Standard Responsive Container -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col gap-10 lg:gap-14"
+  >
+    <!-- Top Header Area: Title & Right Description -->
+    <div
+      class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end pb-8 lg:pb-12"
+    >
+      <!-- Left Column: Title -->
+      <div class="lg:col-span-7">
+        <h2
+          id="progress-monitoring-heading"
+          class="font-momo font-bold text-white text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px] leading-[1.15] tracking-tight max-w-[660px]"
+        >
+          Setiap Perkembangan Dipantau agar Tujuanmu Tetap di Jalur yang{" "}
+          <span
+            class="font-caveat font-semibold italic text-white text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px] leading-none inline-block mt-1 sm:mt-0"
+          >
+            Tepat.
+          </span>
+        </h2>
+      </div>
+
+      <!-- Right Column: Description -->
+      <div class="lg:col-span-5 flex lg:justify-end">
+        <p
+          id="progress-monitoring-desc"
+          class="font-jakarta font-normal text-white/90 text-sm sm:text-base leading-[160%] max-w-lg"
+        >
+          Setiap perkembangan dipantau melalui evaluasi dan feedback berkala agar proses belajar tetap terarah dan tujuan dapat tercapai.
+        </p>
+      </div>
+    </div>
+
+    <!-- Monitoring List Items -->
+    <div
+      id="progress-monitoring-list"
+      class="flex flex-col w-full border-t border-violet-300"
+    >
+      {
+        monitoringItems.map((item) => (
+          <div class="progress-monitoring-item group w-full py-[32px] flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8 border-b border-violet-300 transition-colors duration-300 hover:bg-white/5 rounded-sm px-2 sm:px-3 -mx-2 sm:-mx-3">
+            <!-- Left Column: Item Title -->
+            <div class="w-full md:w-1/2">
+              <h3 class="font-momo font-bold text-white text-[24px] sm:text-[32px] md:text-[36px] lg:text-[42px] leading-tight tracking-tight">
+                {item.title}
+              </h3>
+            </div>
+
+            <!-- Right Column: Item Description -->
+            <div class="w-full md:w-1/2 max-w-lg">
+              <p class="font-jakarta font-normal text-white/90 text-sm sm:text-base leading-[160%]">
+                {item.description}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- GSAP Entrance Animation -->
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initAnimations = () => {
+      const section = document.querySelector("#progress-monitoring");
+      if (!section) return;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      tl.from("#progress-monitoring-heading", {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+        clearProps: "all",
+      })
+        .from(
+          "#progress-monitoring-desc",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            clearProps: "all",
+          },
+          "-=0.4"
+        )
+        .from(
+          ".progress-monitoring-item",
+          {
+            y: 25,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.12,
+            ease: "power2.out",
+            clearProps: "all",
+          },
+          "-=0.3"
+        );
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initAnimations);
+    } else {
+      initAnimations();
+    }
+  </script>
+</section>

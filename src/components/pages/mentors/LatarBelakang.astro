@@ -1,0 +1,141 @@
+---
+import { Image } from "astro:assets";
+import pattern4 from "@/assets/pattern/pattern_4.svg";
+
+import testimonial4Img from "@/assets/image/homepage/testimonial-4.webp";
+import testimonial5Img from "@/assets/image/homepage/testimonial-5.webp";
+import testimonial3Img from "@/assets/image/homepage/testimonial-3.webp";
+import founderFarhanImg from "@/assets/image/about/founder_farhan.png";
+import ceritaImg from "@/assets/image/about/cerita.png";
+
+const mentorPhotos = [
+  {
+    id: "mentor-photo-1",
+    image: testimonial4Img,
+    alt: "Mentor 1",
+    style: "left: 8%; top: 120px;",
+  },
+  {
+    id: "mentor-photo-2",
+    image: testimonial5Img,
+    alt: "Mentor 2",
+    style: "right: 620px; top: 149px;",
+  },
+  {
+    id: "mentor-photo-3",
+    image: testimonial3Img,
+    alt: "Mentor 3",
+    style: "right: 8%; top: 100px;",
+  },
+  {
+    id: "mentor-photo-4",
+    image: founderFarhanImg,
+    alt: "Mentor 4",
+    style: "left: 22%; bottom: 80px;",
+  },
+  {
+    id: "mentor-photo-5",
+    image: ceritaImg,
+    alt: "Mentor 5",
+    style: "right: 22%; bottom: 70px;",
+  },
+];
+---
+
+<section
+  id="latar-belakang"
+  class="relative w-full h-screen min-h-[600px] lg:min-h-[700px] bg-white text-black flex flex-col justify-center items-center overflow-hidden"
+  aria-label="Latar Belakang Mentor"
+  data-navbar="light"
+>
+  <!-- Top-Right Pattern -->
+  <img
+    src={pattern4.src}
+    alt=""
+    class="absolute z-0 pointer-events-none select-none"
+    style="width: 500px; height: 501.526px; position: absolute; right: -163px; top: -168px;"
+    aria-hidden="true"
+  />
+
+  <!-- Bottom-Left Pattern -->
+  <img
+    src={pattern4.src}
+    alt=""
+    class="absolute z-0 pointer-events-none select-none"
+    style="width: 500px; height: 501.526px; position: absolute; left: -158px; bottom: -165.526px;"
+    aria-hidden="true"
+  />
+
+  <!-- Floating Mentor Photos Container -->
+  <div
+    id="mentor-photos-container"
+    class="absolute inset-0 z-10 pointer-events-none select-none w-full h-full max-w-[1440px] mx-auto overflow-hidden"
+  >
+    {
+      mentorPhotos.map((photo) => (
+        <div
+          class="mentor-floating-card absolute z-10 w-[182px] h-[182px] rounded-[4px] overflow-hidden bg-gray-100 opacity-0"
+          style={photo.style}
+        >
+          <Image
+            src={photo.image}
+            alt={photo.alt}
+            class="w-full h-full object-cover object-top"
+          />
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Center Content -->
+  <div
+    class="relative z-20 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col items-center text-center justify-center h-full"
+  >
+    <h2
+      id="latar-belakang-heading"
+      class="font-momo font-semibold text-black text-[24px] sm:text-[32px] md:text-[42px] lg:text-[50px] leading-[115%] tracking-tight max-w-[1100px] z-20 pointer-events-auto text-center"
+    >
+      <span class="block">Mentor dengan Latar Belakang Akademik dan</span>
+      <span class="block">Profesional dari Institusi Terkemuka.</span>
+    </h2>
+  </div>
+
+  <!-- GSAP ScrollTrigger Pinning Script -->
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    ScrollTrigger.matchMedia({
+      // Desktop & Tablet: Pinned animation where photos emerge into 100vh bounds
+      "(min-width: 768px)": function () {
+        const cards = document.querySelectorAll(".mentor-floating-card");
+        if (!cards.length) return;
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#latar-belakang",
+            start: "top top",
+            end: "+=130%",
+            pin: true,
+            scrub: 1,
+            anticipatePin: 1,
+          },
+        });
+
+        // Photos emerge upward into their precise 100vh positions (y: 140 -> y: 0)
+        tl.fromTo(
+          cards,
+          { y: 140, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.12,
+            ease: "none",
+          }
+        );
+      },
+    });
+  </script>
+</section>

@@ -1,0 +1,99 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  /** Variant of the card: "image" (photo only) or "content" (with heading & description) */
+  variant?: "image" | "content";
+  /** Image metadata asset or image URL string */
+  image?: ImageMetadata | string;
+  /** Image alt text */
+  alt?: string;
+  /** Card title / heading (for "content" variant) */
+  title?: string;
+  /** Card description text (for "content" variant) */
+  description?: string;
+  /** Extra CSS classes */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  variant = "image",
+  image,
+  alt = title || "Pengalaman Industri",
+  title,
+  description,
+  class: className = "",
+  ...rest
+} = Astro.props;
+---
+
+{
+  variant === "content" ? (
+    <div
+      class:list={[
+        "flex flex-col gap-4 w-full rounded-[4px] overflow-hidden group select-none",
+        className,
+      ]}
+      {...rest}
+    >
+      {image && (
+        <div class="relative w-full aspect-[4/3] rounded-[4px] overflow-hidden bg-black/20">
+          {typeof image === "string" ? (
+            <img
+              src={image}
+              alt={alt}
+              class="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none select-none"
+            />
+          ) : (
+            <Image
+              src={image}
+              alt={alt}
+              class="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none select-none"
+            />
+          )}
+        </div>
+      )}
+      {(title || description) && (
+        <div class="flex flex-col gap-2">
+          {title && (
+            <h3 class="font-momo font-medium text-white text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] leading-[135%] tracking-tight text-left">
+              {title}
+            </h3>
+          )}
+          {description && (
+            <p class="font-jakarta font-normal text-white/90 text-sm md:text-base leading-relaxed">
+              {description}
+            </p>
+          )}
+        </div>
+      )}
+      <slot />
+    </div>
+  ) : (
+    <div
+      class:list={[
+        "relative w-full rounded-[4px] overflow-hidden bg-black/20 group select-none",
+        className,
+      ]}
+      {...rest}
+    >
+      {image &&
+        (typeof image === "string" ? (
+          <img
+            src={image}
+            alt={alt}
+            class="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none select-none"
+          />
+        ) : (
+          <Image
+            src={image}
+            alt={alt}
+            class="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none select-none"
+          />
+        ))}
+      <slot />
+    </div>
+  )
+}

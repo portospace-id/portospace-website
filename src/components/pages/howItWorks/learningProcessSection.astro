@@ -1,0 +1,175 @@
+---
+import { Image } from "astro:assets";
+import ListLearningProcess from "@/components/list/listLearningProcess.astro";
+import learningProcessImg from "@/assets/image/howItWorks/learningProcess.png";
+
+interface Props {
+  /** Additional CSS class */
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+const learningSteps = [
+  {
+    number: "01",
+    title: "Learning Session",
+    description:
+      "Pelajari konsep, materi, dan keterampilan yang dibutuhkan sebagai fondasi dalam mengembangkan proyek.",
+  },
+  {
+    number: "02",
+    title: "Discussion & Ideation",
+    description:
+      "Pelajari konsep, materi, dan keterampilan yang dibutuhkan sebagai fondasi dalam mengembangkan proyek.",
+  },
+  {
+    number: "03",
+    title: "Project Development",
+    description:
+      "Pelajari konsep, materi, dan keterampilan yang dibutuhkan sebagai fondasi dalam mengembangkan proyek.",
+  },
+];
+---
+
+<section
+  id="learning-process"
+  class:list={[
+    "relative w-full bg-white text-[#161616] py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden",
+    className,
+  ]}
+  aria-label="Proses Belajar Section"
+>
+  <!-- Standard Responsive Container -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col gap-10 lg:gap-14"
+  >
+    <!-- Section Main Heading -->
+    <h2
+      id="learning-process-heading"
+      class="font-momo font-bold text-[#161616] text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px] leading-[1.15] tracking-tight max-w-[1100px]"
+    >
+      Belajar, Berkolaborasi, dan Mengembangkan Proyek Hingga Menjadi{" "}
+      <span
+        class="font-caveat font-semibold italic text-[#161616] text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px] leading-none inline-block mt-1 sm:mt-0"
+      >
+        Karya Nyata
+      </span>
+    </h2>
+
+    <!-- Main Content: Image & Process List -->
+    <div
+      class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-stretch w-full"
+    >
+      <!-- Left Column: Image (Stretches to match right column height on desktop) -->
+      <div
+        id="learning-process-image"
+        class="lg:col-span-5 w-full h-[360px] sm:h-[460px] lg:h-full min-h-[380px] rounded-sm overflow-hidden shrink-0"
+      >
+        <Image
+          src={learningProcessImg}
+          alt="Proses Belajar dan Kolaborasi"
+          width={800}
+          height={600}
+          class="w-full h-full object-cover rounded-sm"
+        />
+      </div>
+
+      <!-- Right Column: Description & Steps List -->
+      <div class="lg:col-span-7 flex flex-col justify-between w-full">
+        <!-- Top Description Text -->
+        <p
+          id="learning-process-desc"
+          class="font-jakarta font-normal text-gray-600 text-sm sm:text-base leading-[160%] mb-6 lg:mb-8 max-w-2xl"
+        >
+          Setiap sesi menggabungkan pembelajaran, praktik, dan pendampingan mentor agar setiap ide berkembang menjadi proyek yang bermakna.
+        </p>
+
+        <!-- List Items Container -->
+        <div
+          id="learning-process-list"
+          class="flex flex-col w-full border-t border-gray-200"
+        >
+          {
+            learningSteps.map((step) => (
+              <ListLearningProcess
+                number={step.number}
+                title={step.title}
+                description={step.description}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GSAP Entrance Animation -->
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initAnimations = () => {
+      const section = document.querySelector("#learning-process");
+      if (!section) return;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      tl.from("#learning-process-heading", {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+        clearProps: "all",
+      })
+        .from(
+          "#learning-process-image",
+          {
+            x: -30,
+            opacity: 0,
+            duration: 0.7,
+            ease: "power2.out",
+            clearProps: "all",
+          },
+          "-=0.4"
+        )
+        .from(
+          "#learning-process-desc",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            clearProps: "all",
+          },
+          "-=0.4"
+        )
+        .from(
+          ".list-learning-process-item",
+          {
+            y: 25,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.12,
+            ease: "power2.out",
+            clearProps: "all",
+          },
+          "-=0.3"
+        );
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initAnimations);
+    } else {
+      initAnimations();
+    }
+  </script>
+</section>

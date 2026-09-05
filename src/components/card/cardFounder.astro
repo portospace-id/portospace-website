@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  /** Founder's full name */
+  name: string;
+  /** Founder's role or title */
+  role: string;
+  /** Founder's portrait image asset */
+  image: ImageMetadata;
+  /** Extra CSS classes */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { name, role, image, class: className = "", ...rest } = Astro.props;
+---
+
+<div
+  class:list={["card-founder flex flex-col items-start w-[300px]", className]}
+  {...rest}
+>
+  <div
+    class="w-[300px] h-[300px] rounded-sm overflow-hidden bg-gray-100 shadow-sm"
+  >
+    <Image
+      src={image}
+      alt={name}
+      width={300}
+      height={300}
+      class="w-full h-full object-cover object-top rounded-sm select-none pointer-events-none"
+    />
+  </div>
+  <h3
+    class="font-momo font-bold text-[#161616] text-lg sm:text-xl mt-3 tracking-tight"
+  >
+    {name}
+  </h3>
+  <p
+    class="font-jakarta font-normal text-[#667085] text-sm sm:text-base mt-0.5"
+  >
+    {role}
+  </p>
+</div>

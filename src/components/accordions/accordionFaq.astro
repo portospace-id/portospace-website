@@ -1,0 +1,83 @@
+---
+import { ChevronDown } from "@lucide/astro";
+
+export interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  /** Array of FAQ items */
+  items: FaqItem[];
+  /** Color variant: "light" (for white background e.g. homepage) | "dark" (for violet background e.g. makers-academy) */
+  variant?: "light" | "dark";
+  /** Custom extra CSS classes */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { items, variant = "light", class: className = "", ...rest } = Astro.props;
+
+const isDark = variant === "dark";
+---
+
+<div id="faq-list" class:list={["w-full max-w-[840px] flex flex-col", className]} {...rest}>
+  {
+    items.map((item, index) => (
+      <div
+        class:list={[
+          "faq-accordion-item border-b flex flex-col transition-colors duration-200",
+          isDark ? "border-white/20" : "border-gray-200",
+          index === 0 ? "pb-4 lg:pb-5 pt-0" : "py-4 lg:py-5",
+        ]}
+        data-index={index}
+      >
+        <button
+          type="button"
+          class:list={[
+            "faq-trigger w-full flex items-center justify-between gap-4 text-left group cursor-pointer",
+            index === 0 ? "pb-1 pt-0" : "py-1",
+          ]}
+          aria-expanded={index === 0 ? "true" : "false"}
+          aria-controls={`faq-answer-${item.id}`}
+        >
+          <span
+            class:list={[
+              "font-sans font-semibold text-base lg:text-[18px] leading-[150%] transition-colors duration-200",
+              isDark
+                ? "text-white group-hover:text-white/80"
+                : "text-[#161616] group-hover:text-violet-normal",
+            ]}
+          >
+            {item.question}
+          </span>
+          <ChevronDown
+            class:list={[
+              "faq-chevron flex-shrink-0 w-5 h-5 transition-all duration-300",
+              isDark
+                ? "text-white group-hover:text-white/80"
+                : "text-[#161616] group-hover:text-violet-normal",
+              index === 0 ? "rotate-180" : "",
+            ]}
+          />
+        </button>
+
+        <div
+          id={`faq-answer-${item.id}`}
+          class="faq-content transition-all duration-300 overflow-hidden"
+          style={index === 0 ? "display: block;" : "display: none;"}
+        >
+          <p
+            class:list={[
+              "font-sans font-normal text-sm lg:text-base leading-[160%] pt-3 pb-2",
+              isDark ? "text-white/80" : "text-gray-600",
+            ]}
+          >
+            {item.answer}
+          </p>
+        </div>
+      </div>
+    ))
+  }
+</div>

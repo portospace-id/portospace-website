@@ -1,0 +1,248 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import PatternLine from "@/components/ui/patternLine.astro";
+import CardPortfolio from "@/components/card/CardPortfolio.astro";
+
+// Generated high quality assets matching Figma design screenshot
+import workshopGroupImg from "@/assets/image/makersAcademy/portfolio_workshop_group.png";
+import techDeskImg from "@/assets/image/makersAcademy/portfolio_tech_desk.png";
+import studioWorkspaceImg from "@/assets/image/makersAcademy/portfolio_studio_workspace.png";
+
+// Additional fallbacks from homepage assets
+import setmImg from "@/assets/image/homepage/setm.webp";
+import roboticsImg from "@/assets/image/homepage/robotics.webp";
+
+export interface PortfolioCardItemData {
+  image: ImageMetadata | string;
+  alt?: string;
+  variant?: "large" | "small";
+  title?: string;
+  subtitle?: string;
+}
+
+interface Props {
+  /** Small section badge text (default: "Portfolio Output") */
+  badgeText?: string;
+  /** Heading line 1 */
+  titleLine1?: string;
+  /** Heading line 2 */
+  titleLine2?: string;
+  /** Accent text in Caveat font */
+  titleHighlight?: string;
+  /** Right side description */
+  description?: string;
+  /** List of portfolio image cards */
+  cards?: PortfolioCardItemData[];
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const defaultCards: PortfolioCardItemData[] = [
+  {
+    image: workshopGroupImg,
+    alt: "Group workshop collaboration",
+    variant: "large", // width: 556px, height: 700px
+  },
+  {
+    image: techDeskImg,
+    alt: "Developer and hardware setup",
+    variant: "small", // width: 556px, height: 480px
+  },
+  {
+    image: studioWorkspaceImg,
+    alt: "Creative studio workspace",
+    variant: "large", // width: 556px, height: 700px
+  },
+  {
+    image: setmImg,
+    alt: "STEM Innovation Lab",
+    variant: "small", // width: 556px, height: 480px
+  },
+  {
+    image: roboticsImg,
+    alt: "Robotics experimentation",
+    variant: "large", // width: 556px, height: 700px
+  },
+];
+
+const {
+  badgeText = "Portfolio Output",
+  titleLine1 = "Dari Ide, Menjadi",
+  titleLine2 = "Karya yang Bisa Kamu",
+  titleHighlight = "Banggakan.",
+  description = "Setiap ide punya kesempatan untuk menjadi sesuatu yang berarti. Melalui proses belajar, mencoba, dan berkarya bersama mentor, kamu akan menghasilkan karya nyata yang dapat menjadi bagian dari portofolio dan membuka peluang baru.",
+  cards = defaultCards,
+  class: className = "",
+} = Astro.props;
+---
+
+<section
+  id="portfolio-output-section"
+  class:list={[
+    "relative w-full bg-violet-normal py-16 md:py-20 lg:py-24 flex flex-col justify-center overflow-hidden z-10",
+    className,
+  ]}
+  aria-label="Portfolio Output Maker's Academy"
+  data-navbar="violet"
+>
+  <!-- Background Decorative Wavy Pattern Top Right -->
+  <PatternLine
+    color="#6F1DD1"
+    class="absolute top-0 right-[-60px] z-0 pointer-events-none select-none"
+    style="width: 477px; height: 521px; display: block;"
+  />
+
+  <!-- Background Decorative Wavy Pattern Bottom Left -->
+  <PatternLine
+    color="#6F1DD1"
+    class="absolute bottom-0 left-[-60px] z-0 rotate-180 pointer-events-none select-none"
+    style="width: 477px; height: 521px; display: block;"
+  />
+
+  <!-- Main Section Wrapper -->
+  <div
+    class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] relative z-10 flex flex-col gap-10 lg:gap-14"
+  >
+    <!-- Header Section: 3 Direct Children (Badge, Heading, Description) with justify-between -->
+    <div
+      id="portfolio-output-header"
+      class="w-full flex flex-col lg:flex-row items-start justify-between gap-6 lg:gap-8"
+    >
+      <!-- Child 1: Badge -->
+      <div class="shrink-0">
+        {
+          badgeText && (
+            <SectionTitle
+              id="portfolio-output-badge"
+              variant="dark"
+              title={badgeText}
+            />
+          )
+        }
+      </div>
+
+      <!-- Child 2: Heading -->
+      <div class="w-full lg:max-w-[560px] xl:max-w-[620px]">
+        <h2
+          id="portfolio-output-heading"
+          class="font-display font-bold text-white text-[32px] md:text-[42px] lg:text-[54px] leading-[1.12] tracking-tight"
+        >
+          {titleLine1 && <span class="block">{titleLine1}</span>}
+          {titleLine2 && <span class="block">{titleLine2}</span>}
+          {
+            titleHighlight && (
+              <span class="font-handwriting font-semibold italic text-white text-[42px] md:text-[54px] lg:text-[68px] leading-none align-baseline block mt-1">
+                {titleHighlight}
+              </span>
+            )
+          }
+        </h2>
+      </div>
+
+      <!-- Child 3: Description (4 explicit lines) -->
+      <p
+        id="portfolio-output-desc"
+        class="font-sans font-normal text-white/90 text-sm md:text-base leading-relaxed w-full lg:w-auto shrink-0"
+      >
+        <span class="block">Setiap ide punya kesempatan untuk menjadi sesuatu yang berarti. Melalui</span>
+        <span class="block">proses belajar, mencoba, dan berkarya bersama mentor, kamu akan</span>
+        <span class="block">menghasilkan karya nyata yang dapat menjadi bagian dari portofolio dan</span>
+        <span class="block">membuka peluang baru.</span>
+      </p>
+    </div>
+
+    <!-- Cards Track Container (gap: 16px, items-start) -->
+    <div
+      id="portfolio-output-cards-container"
+      class="w-full overflow-hidden relative z-10 py-2 min-h-[500px] lg:min-h-[720px] flex items-start"
+    >
+      <div
+        id="portfolio-output-cards-track"
+        class="flex items-start gap-[16px] w-max will-change-transform"
+      >
+        {
+          cards.map((card) => (
+            <CardPortfolio
+              image={card.image}
+              alt={card.alt}
+              variant={card.variant || "large"}
+              title={card.title}
+              subtitle={card.subtitle}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initPortfolioOutput = () => {
+    const section = document.querySelector("#portfolio-output-section");
+    const track = document.querySelector("#portfolio-output-cards-track");
+    const container = document.querySelector("#portfolio-output-cards-container");
+
+    if (!section || !track || !container) return;
+
+    // Header Entrance Animation
+    const badge = document.querySelector("#portfolio-output-badge");
+    const heading = document.querySelector("#portfolio-output-heading");
+    const desc = document.querySelector("#portfolio-output-desc");
+
+    gsap.from([badge, heading, desc].filter(Boolean), {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.15,
+      ease: "power3.out",
+      clearProps: "transform,opacity",
+    });
+
+    // Horizontal Scrubbing for Cards Track on Desktop
+    ScrollTrigger.matchMedia({
+      "(min-width: 768px)": function () {
+        const getScrollAmount = () => {
+          return Math.max(0, track.scrollWidth - container.clientWidth);
+        };
+
+        if (getScrollAmount() > 0) {
+          const horizontalTween = gsap.to(track, {
+            x: () => -getScrollAmount(),
+            ease: "none",
+          });
+
+          ScrollTrigger.create({
+            trigger: section,
+            start: "top top",
+            end: () => `+=${getScrollAmount()}`,
+            pin: true,
+            animation: horizontalTween,
+            scrub: 1,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+          });
+        }
+      },
+    });
+
+    setTimeout(() => ScrollTrigger.refresh(), 100);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPortfolioOutput);
+  } else {
+    initPortfolioOutput();
+  }
+</script>

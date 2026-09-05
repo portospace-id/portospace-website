@@ -1,0 +1,186 @@
+---
+import { Image } from "astro:assets";
+import PatternLine from "@/components/ui/patternLine.astro";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import CardProgramUnggulan from "@/components/card/cardProgramUnggulan.astro";
+import imgStem from "@/assets/image/homepage/setm.webp";
+import imgRobotics from "@/assets/image/homepage/robotics.webp";
+import imgCoding from "@/assets/image/homepage/coding.webp";
+import imgEntrepreneurship from "@/assets/image/homepage/entepreneurship.webp";
+---
+
+<section
+  id="program-unggulan"
+  class="relative w-full bg-violet-normal flex flex-col items-center overflow-hidden"
+  aria-label="Program Unggulan PortoSpace"
+  data-navbar="violet"
+>
+  <!-- Background Decorative Pattern SVG - Top Right -->
+  <PatternLine
+    class="absolute z-0"
+    style="top: 0; right: -80px; width: 477px; height: 521px; display: block;"
+  />
+
+  <!-- Background Decorative Pattern SVG - Bottom Left -->
+  <PatternLine
+    class="absolute z-0 rotate-180"
+    style="bottom: 0; left: -61px; width: 477px; height: 521px; display: block;"
+  />
+
+  <!-- Main Section Wrapper -->
+  <div
+    class="w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] py-[80px] flex flex-col items-start gap-[40px] z-10 relative"
+  >
+    <!-- Top Content / Header -->
+    <div
+      class="w-full flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-8"
+    >
+      <!-- Left Column: Pill & Heading -->
+      <div class="w-full lg:max-w-[780px] flex flex-col items-start gap-2">
+        <!-- Section Title Badge -->
+        <SectionTitle title="portospace.id" />
+
+        <!-- Heading -->
+        <h2
+          id="program-heading"
+          class="font-momo font-semibold text-white text-[32px] md:text-[44px] lg:text-[54px] leading-[110%] tracking-[-1.08px]"
+        >
+          Tempat Belajar yang<br class="hidden sm:inline" />
+          Membantu Kamu <span
+            class="font-caveat font-bold text-[42px] md:text-[54px] lg:text-[64px] leading-[80%] tracking-[-2.56px] text-white"
+            >Bertumbuh.</span
+          >
+        </h2>
+      </div>
+
+      <!-- Right Column: Text Description -->
+      <div class="w-full lg:max-w-[420px] flex-shrink-0">
+        <p
+          id="program-desc"
+          class="font-jakarta font-normal text-white/80 text-sm md:text-base leading-relaxed"
+        >
+          PortoSpace hadir untuk membantu kamu belajar melalui proyek nyata,
+          bimbingan mentor, dan pengalaman yang mempersiapkan masa depan.
+        </p>
+      </div>
+    </div>
+
+    <!-- Grid Container -->
+    <div id="program-cards" class="w-full flex flex-col gap-5">
+      <!-- Container Row 1 -->
+      <div
+        class="w-full flex flex-col lg:flex-row justify-between items-stretch gap-5"
+      >
+        <!-- Card 1: Card Panjang (Belajar yang Relevan) -->
+        <CardProgramUnggulan
+          title="Belajar yang Relevan"
+          description="Materi disesuaikan dengan perkembangan teknologi dan kebutuhan dunia nyata untuk mendukung portofolio yang relevan."
+          type="wide"
+          showButton={false}
+          image={imgStem}
+        />
+
+        <!-- Card 2: Card Pendek (Belajar Melalui Proyek) -->
+        <CardProgramUnggulan
+          title="Belajar Melalui Proyek"
+          description="Setiap materi dilengkapi proyek nyata yang membuat kamu memahami konsep sekaligus membangun portofolio."
+          type="narrow"
+          showButton={false}
+          image={imgRobotics}
+        />
+      </div>
+
+      <!-- Container Row 2 -->
+      <div
+        class="w-full flex flex-col lg:flex-row justify-between items-stretch gap-5"
+      >
+        <!-- Card 3: Card Pendek (Dibimbing oleh Mentor) -->
+        <CardProgramUnggulan
+          title="Dibimbing oleh Mentor"
+          description="Dibimbing oleh praktisi industri berpengalaman untuk memastikan perkembangan belajarmu sesuai arah."
+          type="narrow"
+          showButton={false}
+          image={imgCoding}
+        />
+
+        <!-- Card 4: Card Panjang (Bertumbuh Bersama Komunitas) -->
+        <CardProgramUnggulan
+          title="Bertumbuh Bersama Komunitas"
+          description="Temukan teman berbagi ide, pengalaman, dan peluang di lingkungan belajar yang saling mendukung."
+          type="wide"
+          showButton={false}
+          image={imgEntrepreneurship}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initAnimations = () => {
+    const heading = document.querySelector("#program-heading");
+    if (heading) {
+      gsap.from(heading, {
+        scrollTrigger: {
+          trigger: "#program-unggulan",
+          start: "top 90%",
+          once: true,
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+    }
+
+    const desc = document.querySelector("#program-desc");
+    if (desc) {
+      gsap.from(desc, {
+        scrollTrigger: {
+          trigger: "#program-unggulan",
+          start: "top 90%",
+          once: true,
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.1,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+    }
+
+    const cards = document.querySelectorAll("#program-unggulan .program-card");
+    if (cards.length > 0) {
+      gsap.from(cards, {
+        scrollTrigger: {
+          trigger: "#program-cards",
+          start: "top 90%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+    }
+
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAnimations);
+  } else {
+    initAnimations();
+  }
+</script>

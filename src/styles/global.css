@@ -1,1 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+@theme {
+  /* ─────────────────────────────────────────
+     Vibrant Violet
+  ───────────────────────────────────────── */
+  --color-violet-100: #f2e9fd;
+  --color-violet-200: #ebdefc;
+  --color-violet-300: #d6baf8;
+  --color-violet-normal: #7b20e8;
+  --color-violet-normal-hover: #6f1dd1;
+  --color-violet-normal-active: #621aba;
+  --color-violet-dark: #5c18ae;
+  --color-violet-dark-hover: #4a138b;
+  --color-violet-dark-active: #370e68;
+  --color-violet-darker: #2b0b51;
+
+  /* ─────────────────────────────────────────
+     Windsor (Deep Violet)
+  ───────────────────────────────────────── */
+  --color-windsor-light: #ece7f1;
+  --color-windsor-light-hover: #e2dbea;
+  --color-windsor-light-active: #c3b5d4;
+  --color-windsor-normal: #3e1074;
+  --color-windsor-normal-hover: #380e68;
+  --color-windsor-normal-active: #320d5d;
+  --color-windsor-dark: #2f0c57;
+  --color-windsor-dark-hover: #250a46;
+  --color-windsor-dark-active: #1c0734;
+  --color-windsor-darker: #160629;
+
+  /* ─────────────────────────────────────────
+     Citrus Glow
+  ───────────────────────────────────────── */
+  --color-citrus-100: #f9fdec;
+  --color-citrus-200: #f5fce3;
+  --color-citrus-300: #ebf9c5;
+  --color-citrus-normal: #bfed45;
+  --color-citrus-normal-hover: #acd53e;
+  --color-citrus-normal-active: #99be37;
+  --color-citrus-dark: #8fb234;
+  --color-citrus-dark-hover: #738e29;
+  --color-citrus-dark-active: #566b1f;
+  --color-citrus-darker: #435318;
+
+  /* ─────────────────────────────────────────
+     Spicy Blue
+  ───────────────────────────────────────── */
+  --color-spicy-100: #edfbfe;
+  --color-spicy-200: #e4f8fd;
+  --color-spicy-300: #c8f1fb;
+  --color-spicy-normal: #4dd3f2;
+  --color-spicy-normal-hover: #45beda;
+  --color-spicy-normal-active: #3ea9c2;
+  --color-spicy-dark: #3a9eb6;
+  --color-spicy-dark-hover: #2e7f91;
+  --color-spicy-dark-active: #235f6d;
+  --color-spicy-darker: #1b4a55;
+
+  /* ─────────────────────────────────────────
+     Spectrum Orange
+  ───────────────────────────────────────── */
+  --color-orange-100: #fff5ea;
+  --color-orange-200: #fff0df;
+  --color-orange-300: #ffe0bd;
+  --color-orange-normal: #fe9b2a;
+  --color-orange-normal-hover: #e58c26;
+  --color-orange-normal-active: #cb7c22;
+  --color-orange-dark: #bf7420;
+  --color-orange-dark-hover: #985d19;
+  --color-orange-dark-active: #724613;
+  --color-orange-darker: #59360f;
+
+  /* ─────────────────────────────────────────
+     Black
+  ───────────────────────────────────────── */
+  --color-black-light: #e6e6e6;
+  --color-black-light-hover: #d9d9d9;
+  --color-black-light-active: #b0b0b0;
+  --color-black-normal: #000000;
+  --color-black-normal-hover: #000000;
+  --color-black-normal-active: #000000;
+  --color-black-dark: #000000;
+  --color-black-dark-hover: #000000;
+  --color-black-dark-active: #000000;
+  --color-black-darker: #000000;
+
+  /* ─────────────────────────────────────────
+     White
+  ───────────────────────────────────────── */
+  --color-white-light: #ffffff;
+  --color-white-light-hover: #ffffff;
+  --color-white-light-active: #ffffff;
+  --color-white-normal: #ffffff;
+  --color-white-normal-hover: #e6e6e6;
+  --color-white-normal-active: #cccccc;
+  --color-white-dark: #bfbfbf;
+  --color-white-dark-hover: #999999;
+  --color-white-dark-active: #737373;
+  --color-white-darker: #595959;
+
+  /* Typography */
+  --font-jakarta: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-momo: "Momo Trust Sans", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-caveat: "Caveat", cursive;
+
+
+  /* Footer Colors */
+  --color-portospace-purple: #A94EEB;
+
+  /* ─────────────────────────────────────────
+     Breakpoints
+  ───────────────────────────────────────── */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1440px;
+}
+
+/* ─────────────────────────────────────────
+   Lenis Smooth Scroll Utilities
+───────────────────────────────────────── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}

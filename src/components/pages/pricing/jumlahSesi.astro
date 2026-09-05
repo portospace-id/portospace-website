@@ -1,0 +1,155 @@
+---
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import CardJumlahSesi from "@/components/card/cardJumlahSesi.astro";
+
+interface Props {
+  /** Additional CSS class */
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+const sessionCards = [
+  {
+    package: "Lite",
+    duration: "2 bulan",
+    sessions: "8 Sesi",
+    description:
+      "Cocok untuk membangun fondasi, mengeksplorasi minat, dan memulai proyek pertamamu.",
+  },
+  {
+    package: "Pro",
+    duration: "4 bulan",
+    sessions: "16 Sesi",
+    description:
+      "Cocok untuk membangun fondasi, mengeksplorasi minat, dan memulai proyek pertamamu.",
+  },
+  {
+    package: "Pro Max",
+    duration: "6 bulan",
+    sessions: "24 Sesi",
+    description:
+      "Cocok untuk membangun fondasi, mengeksplorasi minat, dan memulai proyek pertamamu.",
+  },
+];
+---
+
+<section
+  id="jumlah-sesi"
+  class:list={[
+    "relative w-full bg-violet-normal text-white py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden",
+    className,
+  ]}
+  aria-label="Jumlah Sesi dan Durasi Section"
+  data-navbar="violet"
+>
+  <!-- Standard Responsive Container -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] flex flex-col gap-10 lg:gap-14"
+  >
+    <!-- Top Header Area: Title & Right Badge -->
+    <div
+      class="flex flex-col lg:flex-row items-start justify-between gap-6 lg:gap-12 w-full"
+    >
+      <!-- Left Column: Main Title -->
+      <div class="flex-1 max-w-[900px]">
+        <h2
+          id="jumlah-sesi-heading"
+          class="font-momo font-bold text-white text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px] leading-[1.15] tracking-tight"
+        >
+          Pilih Jumlah Sesi dan Durasi Pendampingan yang Paling Sesuai dengan Target{" "}
+          <span
+            class="font-caveat font-semibold italic text-white text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px] leading-none inline-block mt-1 sm:mt-0"
+          >
+            Belajarmu.
+          </span>
+        </h2>
+      </div>
+
+      <!-- Right Column: Badge Tag -->
+      <div class="shrink-0 lg:ml-auto">
+        <SectionTitle
+          id="jumlah-sesi-badge"
+          variant="dark"
+          title="Jumlah Sesi & Durasi"
+          showIcon={true}
+        />
+      </div>
+    </div>
+
+    <!-- Cards Grid (3 Cards) -->
+    <div
+      id="jumlah-sesi-cards-grid"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch w-full"
+    >
+      {
+        sessionCards.map((card) => (
+          <CardJumlahSesi
+            package={card.package}
+            duration={card.duration}
+            sessions={card.sessions}
+            description={card.description}
+          />
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- GSAP Entrance Animation -->
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initAnimations = () => {
+      const section = document.querySelector("#jumlah-sesi");
+      if (!section) return;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      tl.from("#jumlah-sesi-heading", {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+        clearProps: "all",
+      })
+        .from(
+          "#jumlah-sesi-badge",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            clearProps: "all",
+          },
+          "-=0.4"
+        )
+        .from(
+          ".card-jumlah-sesi",
+          {
+            y: 35,
+            opacity: 0,
+            duration: 0.65,
+            stagger: 0.12,
+            ease: "power2.out",
+            clearProps: "all",
+          },
+          "-=0.3"
+        );
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initAnimations);
+    } else {
+      initAnimations();
+    }
+  </script>
+</section>
