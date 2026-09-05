@@ -1,0 +1,192 @@
+---
+import CardProgramPrivate from "@/components/card/cardProgramPrivate.astro";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import PatternLine from "@/components/ui/patternLine.astro";
+
+// Image assets matching the reference UI
+import imgStudioWorkspace from "@/assets/image/makersAcademy/portfolio_studio_workspace.png";
+import imgTechDesk from "@/assets/image/makersAcademy/portfolio_tech_desk.png";
+import imgWorkshopGroup from "@/assets/image/makersAcademy/portfolio_workshop_group.png";
+import imgPortfolioProject from "@/assets/image/stemResearch/portfolioProject.png";
+import imgMentorMatching from "@/assets/image/homepage/testimonial-2.webp";
+import imgPengembanganKarya from "@/assets/image/homepage/setm.webp";
+
+interface Props {
+  /** Additional CSS class for section */
+  class?: string;
+  id?: string;
+}
+
+const { class: className = "", id = "kompetisi-publikasi" } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    "relative z-10 w-full overflow-hidden bg-[#FE9B2A] py-16 sm:py-20 md:py-24 lg:py-28",
+    className,
+  ]}
+  aria-label="Kompetisi & Publikasi Section"
+  data-navbar="transparent"
+>
+  <!-- Background Decorative Wavy Pattern Top Left -->
+  <PatternLine
+    color="#e58c26"
+    class="pointer-events-none absolute top-0 left-[-60px] z-0 block h-[521px] w-[477px] opacity-60 select-none"
+  />
+
+  <!-- Background Decorative Wavy Pattern Bottom Right -->
+  <PatternLine
+    color="#e58c26"
+    class="pointer-events-none absolute bottom-0 right-[-60px] z-0 block h-[521px] w-[477px] rotate-180 opacity-60 select-none"
+  />
+
+  <!-- Main Container Wrapper -->
+  <div
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
+  >
+    <!-- Centered Header Section: Badge, 2-Line Heading & Subtitle -->
+    <div class="flex w-full max-w-[960px] flex-col items-center text-center">
+      <!-- Section Title Badge -->
+      <SectionTitle
+        id="kompetisi-badge"
+        variant="light"
+        title="Kompetisi & Publikasi"
+        showIcon={true}
+        class="mb-4 sm:mb-6"
+      />
+
+      <!-- 2-Line Heading -->
+      <h2
+        id="kompetisi-heading"
+        class="font-momo text-center text-[28px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[54px]"
+      >
+        <span class="block">Kembangkan Prototipemu Menjadi</span>
+        <span class="block mt-1 sm:mt-0">
+          Karya yang Siap{" "}
+          <span
+            class="font-caveat ml-1 inline-block align-baseline text-[36px] leading-none font-semibold text-[#111111] italic sm:text-[46px] md:text-[56px] lg:text-[66px]"
+          >
+            Berkompetisi.
+          </span>
+        </span>
+      </h2>
+
+      <!-- Subtitle Description -->
+      <p
+        id="kompetisi-desc"
+        class="font-jakarta mt-4 max-w-[680px] text-center text-sm leading-relaxed font-normal text-[#111111] sm:text-base md:text-lg"
+      >
+        Proyek yang dikembangkan dapat diarahkan untuk mengikuti berbagai kompetisi teknologi dan
+        inovasi sesuai bidangnya.
+      </p>
+    </div>
+
+    <!-- Cards Grid Container (6 Cards in 2 Rows with 410px height on Desktop) -->
+    <div
+      id="kompetisi-cards"
+      class="mt-10 sm:mt-12 md:mt-16 flex w-full flex-col gap-5 lg:gap-6"
+    >
+      <!-- Row 1: 3 Equal-Width Cards -->
+      <div class="flex w-full flex-col items-stretch justify-between gap-5 md:flex-row lg:gap-6">
+        <CardProgramPrivate
+          title="Kompetisi Riset"
+          image={imgStudioWorkspace}
+          size="medium"
+          class="!h-[280px] sm:!h-[340px] lg:!h-[410px] !w-full flex-1"
+        />
+        <CardProgramPrivate
+          title="Publikasi Ilmiah"
+          image={imgTechDesk}
+          size="medium"
+          class="!h-[280px] sm:!h-[340px] lg:!h-[410px] !w-full flex-1"
+        />
+        <CardProgramPrivate
+          title="Presentasi Riset"
+          image={imgWorkshopGroup}
+          size="medium"
+          class="!h-[280px] sm:!h-[340px] lg:!h-[410px] !w-full flex-1"
+        />
+      </div>
+
+      <!-- Row 2: 3 Cards (Wider Research Portfolio + 2 Small Cards) -->
+      <div class="flex w-full flex-col items-stretch justify-between gap-5 md:flex-row lg:gap-6">
+        <CardProgramPrivate
+          title="Research Portfolio"
+          image={imgPortfolioProject}
+          size="medium"
+          class="!h-[280px] sm:!h-[340px] lg:!h-[410px] !w-full md:flex-[1.2]"
+        />
+        <CardProgramPrivate
+          title="Pendampingan Mentor"
+          image={imgMentorMatching}
+          size="small"
+          class="!h-[280px] sm:!h-[340px] lg:!h-[410px] !w-full md:flex-1"
+        />
+        <CardProgramPrivate
+          title="Pengembangan Karya"
+          image={imgPengembanganKarya}
+          size="small"
+          class="!h-[280px] sm:!h-[340px] lg:!h-[410px] !w-full md:flex-1"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initKompetisiSectionAnimations() {
+    const section = document.querySelector("#kompetisi-publikasi");
+    if (!section) return;
+
+    const badge = document.querySelector("#kompetisi-badge");
+    const heading = document.querySelector("#kompetisi-heading");
+    const desc = document.querySelector("#kompetisi-desc");
+    const cards = document.querySelectorAll("#kompetisi-cards .program-private-card");
+
+    if (heading) {
+      gsap.from([badge, heading, desc].filter(Boolean), {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.15,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+    }
+
+    if (cards.length > 0) {
+      gsap.from(cards, {
+        scrollTrigger: {
+          trigger: "#kompetisi-cards",
+          start: "top 85%",
+          once: true,
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.08,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initKompetisiSectionAnimations);
+  } else {
+    initKompetisiSectionAnimations();
+  }
+
+  document.addEventListener("astro:page-load", initKompetisiSectionAnimations);
+</script>
