@@ -1,0 +1,29 @@
+---
+// Layouts
+import Layout from "../layouts/Layout.astro";
+
+// Components
+import HeroSection from "../components/pages/codingAndAi/heroSection.astro";
+import BenefitsSection from "../components/pages/codingAndAi/benefitsSection.astro";
+import DevelopmentProcessSection from "../components/pages/codingAndAi/developmentProcessSection.astro";
+import ToolsTechnologySection from "../components/pages/codingAndAi/toolsTechnologySection.astro";
+import MentorsSection from "../components/pages/codingAndAi/mentorsSection.astro";
+import CompetitionPublicationSection from "../components/pages/codingAndAi/competitionPublicationSection.astro";
+import CtaSection from "../components/pages/codingAndAi/ctaSection.astro";
+---
+
+<Layout
+  title="Coding & AI — PortoSpace"
+  description="Belajar coding, AI, dan pengembangan produk melalui proyek nyata bersama mentor."
+  showFooter={true}
+>
+  <main>
+    <HeroSection />
+    <BenefitsSection />
+    <DevelopmentProcessSection />
+    <ToolsTechnologySection />
+    <MentorsSection />
+    <CompetitionPublicationSection />
+    <CtaSection />
+  </main>
+</Layout>

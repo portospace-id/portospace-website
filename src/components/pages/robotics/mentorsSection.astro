@@ -1,0 +1,291 @@
+---
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+
+import { mentors } from "@/data/mentors";
+---
+
+<section
+  id="mentors-section"
+  class="relative w-full overflow-hidden bg-white min-h-[100vh] flex flex-col justify-center"
+  aria-label="Our Mentors Robotics"
+  data-navbar="white"
+>
+  <!-- Decorative Pattern (top-right) -->
+  <div
+    class="absolute top-0 right-0 w-[180px] sm:w-[240px] md:w-[280px] lg:w-[340px] pointer-events-none select-none"
+    aria-hidden="true"
+  >
+    <img
+      src="/pattern_6.svg"
+      alt=""
+      class="w-full h-auto object-contain"
+    />
+  </div>
+
+  <!-- Content -->
+  <div
+    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pt-16 md:pt-20 lg:pt-24"
+  >
+    <!-- Header: Badge + Heading (left) | Description (right) -->
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 lg:mb-14">
+      
+      <!-- Left: Badge + Heading -->
+      <div class="flex flex-col gap-4 max-w-[850px] xl:max-w-[900px]">
+        <div id="mentors-badge">
+          <SectionTitle
+            id="mentors-badge-inner"
+            variant="light"
+            title="Our Mentors"
+            showIcon={true}
+          />
+        </div>
+
+        <h2
+          id="mentors-heading"
+          class="font-momo font-semibold text-black leading-[110%] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px]"
+          style="letter-spacing: -0.02em;"
+        >
+          <span class="hidden md:inline">
+            Belajar Bersama Mentor yang<br />
+            Berpengalaman di{" "}
+          </span>
+          <span class="md:hidden">
+            Belajar Bersama<br />
+            Mentor yang<br />
+            Berpengalaman di<br />
+          </span>
+          <span
+            class="font-caveat font-bold italic text-black text-[44px] sm:text-[54px] md:text-[60px] lg:text-[64px] leading-[80%] align-baseline"
+            style="letter-spacing: -0.04em;"
+          >
+            Dunia Riset.
+          </span>
+        </h2>
+      </div>
+
+      <!-- Right: Description -->
+      <div class="lg:w-[400px] lg:flex-shrink-0 flex lg:justify-end">
+        <p
+          id="mentors-desc"
+          class="font-jakarta font-normal text-black text-[15px] sm:text-[16px] leading-[150%] lg:mb-2"
+        >
+          <span class="hidden md:inline">
+            Didampingi mentor dari berbagai universitas, institusi riset, dan
+            industri yang siap membimbing setiap proses penelitian.
+          </span>
+          <span class="md:hidden">
+            Didampingi mentor dari berbagai universitas,<br />
+            institusi riset, dan industri yang siap<br />
+            membimbing setiap proses penelitian.
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carousel (draggable, infinite) -->
+  <mentor-carousel-robotics class="block">
+    <div
+      class="carousel-wrapper relative z-10 w-full overflow-x-auto pb-8 md:pb-12 lg:pb-16 cursor-grab select-none"
+      style="scrollbar-width: none; -ms-overflow-style: none;"
+    >
+      <div
+        class="carousel-track flex gap-4 md:gap-5 w-max"
+        style="padding-left: 32px; padding-right: 32px;"
+      >
+      {
+        [...mentors, ...mentors, ...mentors].map((mentor, idx) => (
+          <div class="mentor-card group flex-shrink-0 relative overflow-hidden bg-[#e0e0e0]" data-index={idx}>
+            <!-- Image -->
+            <img
+              src={mentor.image}
+              alt={mentor.name}
+              class="w-full h-full object-cover"
+              loading="lazy"
+              draggable="false"
+            />
+            
+            <!-- Info Box -->
+            <div class="absolute bottom-4 left-4 right-4 bg-white p-4 lg:p-5 flex flex-col gap-1">
+              <span class="font-jakarta font-normal text-[#161616] text-[16px] leading-[150%]">
+                {mentor.major}
+              </span>
+              <span class="font-momo font-semibold text-black text-[24px] sm:text-[28px] md:text-[32px] leading-[110%] tracking-[-0.02em]">
+                {mentor.name}
+              </span>
+              <span class="font-jakarta font-normal text-[#161616] text-[18px] sm:text-[20px] md:text-[24px] leading-[150%]">
+                {mentor.university}
+              </span>
+            </div>
+          </div>
+        ))
+      }
+      </div>
+    </div>
+  </mentor-carousel-robotics>
+</section>
+
+<style>
+  /* Hide scrollbar */
+  .carousel-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Card size: ~3.5 cards visible per viewport */
+  .mentor-card {
+    --card-size: calc((100vw - 96px) / 3.5);
+    width: var(--card-size);
+    height: calc(var(--card-size) * 1.25); /* Portrait ratio */
+  }
+
+  @media (max-width: 768px) {
+    .mentor-card {
+      --card-size: calc((100vw - 64px) / 2);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .mentor-card {
+      --card-size: calc(100vw - 40px);
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  class MentorCarouselRobotics extends HTMLElement {
+    setWidth = 0;
+    isDown = false;
+    startX = 0;
+    scrollLeft = 0;
+    touchStartX = 0;
+    touchScrollLeft = 0;
+
+    wrapper!: HTMLElement;
+    track!: HTMLElement;
+
+    constructor() {
+      super();
+      this.setupInfiniteScroll = this.setupInfiniteScroll.bind(this);
+    }
+
+    connectedCallback() {
+      // 1. Setup Animations
+      const badge = this.querySelector("#mentors-badge");
+      const heading = this.querySelector("#mentors-heading");
+      const desc = this.querySelector("#mentors-desc");
+      
+      if (badge && heading) {
+        gsap.from([badge, heading], {
+          y: 30,
+          opacity: 0,
+          duration: 0.7,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: this,
+            start: "top 80%",
+            once: true,
+          },
+        });
+      }
+
+      if (desc) {
+        gsap.from(desc, {
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          delay: 0.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: this,
+            start: "top 80%",
+            once: true,
+          },
+        });
+      }
+
+      // 2. Setup Infinite Scroll
+      this.wrapper = this.querySelector(".carousel-wrapper") as HTMLElement;
+      this.track = this.querySelector(".carousel-track") as HTMLElement;
+
+      if (!this.wrapper || !this.track) return;
+
+      setTimeout(this.setupInfiniteScroll, 100);
+      window.addEventListener("resize", this.setupInfiniteScroll);
+
+      this.wrapper.addEventListener("scroll", () => {
+        if (!this.setWidth) return;
+        
+        if (this.wrapper.scrollLeft <= 5) {
+          this.wrapper.scrollLeft += this.setWidth;
+        } else if (this.wrapper.scrollLeft >= this.wrapper.scrollWidth - this.wrapper.clientWidth - 5) {
+          this.wrapper.scrollLeft -= this.setWidth;
+        }
+      });
+
+      // Mouse events
+      this.wrapper.addEventListener("mousedown", (e) => {
+        this.isDown = true;
+        this.wrapper.classList.remove("cursor-grab");
+        this.wrapper.classList.add("cursor-grabbing");
+        this.startX = e.pageX - this.wrapper.offsetLeft;
+        this.scrollLeft = this.wrapper.scrollLeft;
+      });
+
+      this.wrapper.addEventListener("mouseleave", () => {
+        this.isDown = false;
+        this.wrapper.classList.add("cursor-grab");
+        this.wrapper.classList.remove("cursor-grabbing");
+      });
+
+      this.wrapper.addEventListener("mouseup", () => {
+        this.isDown = false;
+        this.wrapper.classList.add("cursor-grab");
+        this.wrapper.classList.remove("cursor-grabbing");
+      });
+
+      this.wrapper.addEventListener("mousemove", (e) => {
+        if (!this.isDown) return;
+        e.preventDefault();
+        const x = e.pageX - this.wrapper.offsetLeft;
+        const walk = (x - this.startX) * 1.5;
+        this.wrapper.scrollLeft = this.scrollLeft - walk;
+      });
+
+      // Touch events
+      this.wrapper.addEventListener("touchstart", (e) => {
+        this.touchStartX = e.touches[0].pageX;
+        this.touchScrollLeft = this.wrapper.scrollLeft;
+      });
+
+      this.wrapper.addEventListener("touchmove", (e) => {
+        const x = e.touches[0].pageX;
+        const walk = (x - this.touchStartX) * 1.2;
+        this.wrapper.scrollLeft = this.touchScrollLeft - walk;
+      });
+    }
+
+    disconnectedCallback() {
+      window.removeEventListener("resize", this.setupInfiniteScroll);
+    }
+
+    setupInfiniteScroll() {
+      const cards = this.track.querySelectorAll('.mentor-card') as NodeListOf<HTMLElement>;
+      if (cards.length === 0) return;
+      
+      const numOriginals = cards.length / 3;
+      this.setWidth = cards[numOriginals].offsetLeft - cards[0].offsetLeft;
+      
+      if (this.wrapper.scrollLeft === 0) {
+        this.wrapper.scrollLeft = this.setWidth;
+      }
+    }
+  }
+
+  customElements.define('mentor-carousel-robotics', MentorCarouselRobotics);
+</script>
