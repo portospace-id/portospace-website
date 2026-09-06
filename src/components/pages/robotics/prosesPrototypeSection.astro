@@ -1,129 +1,109 @@
 ---
 import SectionTitle from "@/components/ui/sectionTitle.astro";
 
+interface Props {
+  /** Additional CSS class for section */
+  class?: string;
+  id?: string;
+}
+
+const { class: className = "", id = "proses-prototype" } = Astro.props;
+
 const steps = [
-  { number: "01", label: "Ide" },
-  { number: "02", label: "Design" },
-  { number: "03", label: "Build" },
-  { number: "04", label: "Test" },
+  { number: "01", title: "Ide" },
+  { number: "02", title: "Design" },
+  { number: "03", title: "Build" },
+  { number: "04", title: "Test" },
 ];
 ---
 
 <section
-  id="proses-prototype-section"
-  class="relative w-full overflow-hidden lg:min-h-[calc(100vh+20px)]"
-  style="background-color: #BFED45;"
-  aria-label="Proses Prototype Robotics"
+  id={id}
+  class:list={[
+    "relative w-full overflow-hidden bg-[#BFED45] py-16 sm:py-20 md:py-24 lg:py-28",
+    className,
+  ]}
+  aria-label="Proses Prototype Robotics Section"
   data-navbar="light"
 >
-
-
   <!-- Decorative Vector (bottom-left) -->
   <div
-    class="absolute bottom-0 left-0 w-[260px] sm:w-[300px] md:w-[360px] lg:w-[380px] pointer-events-none select-none"
+    class="pointer-events-none absolute bottom-0 left-0 w-[260px] select-none sm:w-[300px] md:w-[360px] lg:w-[380px]"
     aria-hidden="true"
   >
-    <img
-      src="/Vector1.svg"
-      alt=""
-      class="w-full h-auto object-contain"
-    />
+    <img src="/Vector1.svg" alt="" class="h-auto w-full object-contain" />
   </div>
 
-  <!-- Content -->
+  <!-- Main Container -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pt-16 md:pt-20 lg:pt-24 pb-16 md:pb-20 lg:pb-24"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] sm:px-[24px] md:px-[28px] lg:gap-12 lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
-    <div class="flex flex-col gap-8 lg:gap-10">
+    <!-- Top Header Row Container: Left (Badge & Heading), Right (Description) -->
+    <div
+      class="flex w-full flex-col items-start justify-between gap-6 lg:flex-row lg:items-end lg:gap-12"
+    >
+      <!-- Left Column: Badge & Heading -->
+      <div
+        id="proses-prototype-header-col"
+        class="flex w-full shrink-0 flex-col items-start gap-4 sm:gap-5 lg:max-w-[560px] lg:gap-6 xl:max-w-[620px]"
+      >
+        <!-- Section Title Badge -->
+        <SectionTitle
+          id="proses-prototype-badge"
+          variant="light"
+          title="Proses Prototype"
+          showIcon={true}
+        />
 
-      <!-- Row 1: Badge+Heading (left) | Description (right) — bottom aligned -->
-      <div class="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-16">
-
-        <!-- Left: Badge + Heading -->
-        <div class="flex flex-col gap-4 max-w-[573px] lg:w-[42%] lg:flex-shrink-0">
-          <!-- Custom Badge -->
-          <div
-            id="proses-badge"
-            class="inline-flex items-center gap-2 font-jakarta text-[16px] font-normal leading-[150%] text-black"
+        <!-- Heading -->
+        <h2
+          id="proses-prototype-heading"
+          class="font-momo text-[30px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[38px] md:text-[46px] lg:text-[54px]"
+        >
+          Dari Sketsa Pertama<br />
+          hingga Prototipe yang<br />
+          Siap{" "}
+          <span
+            class="font-caveat ml-1 inline-block align-baseline text-[36px] leading-none font-semibold text-[#111111] italic sm:text-[46px] md:text-[56px] lg:text-[66px]"
           >
-            <img
-              src="/pattern_save_prototype.svg"
-              alt=""
-              width="22"
-              height="22"
-              class="flex-shrink-0 select-none pointer-events-none object-contain"
-              style="width: 22px; height: 22px;"
-              aria-hidden="true"
-            />
-            <span>Proses Prototype</span>
-          </div>
-
-          <h2
-            id="proses-heading"
-            class="font-momo font-semibold text-black leading-[110%] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px]"
-            style="letter-spacing: -0.02em;"
-          >
-            Dari Sketsa Pertama<br />
-            hingga Prototipe yang<br />
-            Siap{" "}
-            <span
-              class="font-caveat font-bold italic text-black text-[44px] sm:text-[54px] md:text-[60px] lg:text-[64px] leading-[80%] align-baseline"
-              style="letter-spacing: -0.04em;"
-            >
-              Diuji.
-            </span>
-          </h2>
-        </div>
-
-        <!-- Right: Description (bottom sejajar dengan heading) -->
-        <div class="lg:flex-1">
-          <p
-            id="proses-desc"
-            class="font-jakarta font-normal text-black text-[14px] sm:text-[16px] leading-[150%] max-w-[678px]"
-          >
-            Setiap proyek dikembangkan secara bertahap bersama mentor agar siswa
-            memahami prosesnya, bukan hanya hasil akhirnya.
-          </p>
-        </div>
+            Diuji.
+          </span>
+        </h2>
       </div>
 
-      <!-- Row 2: Spacer kiri kosong | Numbered Steps kanan saja -->
-      <div class="flex flex-col lg:flex-row lg:gap-16">
-
-        <!-- Spacer kiri (sama lebar dengan kolom heading) -->
-        <div class="hidden lg:block lg:w-[42%] lg:flex-shrink-0"></div>
-
-        <!-- Numbered Steps (kanan) -->
-        <div id="proses-steps" class="flex flex-col w-full lg:flex-1">
-          {
-            steps.map((step, index) => (
-              <div
-                class:list={[
-                  "proses-step flex items-center justify-between py-5 border-t border-black/20",
-                  index === steps.length - 1 && "border-b",
-                ]}
-              >
-                <span
-                  class="font-momo font-medium text-black text-[28px] sm:text-[34px] md:text-[40px] leading-[110%]"
-                  style="letter-spacing: -0.02em;"
-                >
-                  {step.number}
-                </span>
-                <span
-                  class="font-momo font-medium text-black text-[28px] sm:text-[34px] md:text-[40px] leading-[110%]"
-                  style="letter-spacing: -0.02em;"
-                >
-                  {step.label}
-                </span>
-              </div>
-            ))
-          }
-        </div>
+      <!-- Right Column: Description Paragraph -->
+      <div class="w-full shrink-0 text-left sm:max-w-[420px] lg:mb-1 lg:max-w-[460px]">
+        <p
+          id="proses-prototype-desc"
+          class="font-jakarta text-sm leading-relaxed font-normal text-[#111111] sm:text-base"
+        >
+          Setiap proyek dikembangkan secara bertahap bersama mentor agar siswa memahami
+          prosesnya, bukan hanya hasil akhirnya.
+        </p>
       </div>
+    </div>
 
+    <!-- Steps List Container (Right-Aligned) -->
+    <div id="proses-prototype-right-col" class="flex w-full flex-col items-end">
+      <div
+        id="proses-prototype-list"
+        class="flex w-full flex-col border-t border-black/20 lg:max-w-[580px] xl:max-w-[640px]"
+      >
+        {
+          steps.map((step) => (
+            <div class="prototype-step-item group flex cursor-pointer items-center justify-between gap-6 border-b border-black/20 px-1 py-5 transition-all duration-300 hover:bg-black/5 sm:px-2 sm:py-6 md:py-7">
+              <span class="font-momo text-2xl font-medium text-[#111111] transition-colors duration-200 sm:text-[28px] md:text-[32px]">
+                {step.number}
+              </span>
+              <h3 class="font-momo text-right text-xl font-bold tracking-tight text-[#111111] transition-colors duration-200 sm:text-2xl md:text-[28px] lg:text-[32px]">
+                {step.title}
+              </h3>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
-
 </section>
 
 <script>
@@ -132,45 +112,71 @@ const steps = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Badge & heading entrance
-  gsap.from(["#proses-badge", "#proses-heading"], {
-    y: 30,
-    opacity: 0,
-    duration: 0.7,
-    stagger: 0.12,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: "#proses-prototype-section",
-      start: "top 80%",
-      once: true,
-    },
-  });
+  function initProsesPrototypeAnimations() {
+    const section = document.querySelector("#proses-prototype");
+    if (!section) return;
 
-  // Description entrance
-  gsap.from("#proses-desc", {
-    y: 20,
-    opacity: 0,
-    duration: 0.6,
-    ease: "power2.out",
-    delay: 0.2,
-    scrollTrigger: {
-      trigger: "#proses-prototype-section",
-      start: "top 80%",
-      once: true,
-    },
-  });
+    gsap.from("#proses-prototype-badge", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
 
-  // Steps stagger entrance
-  gsap.from(".proses-step", {
-    y: 24,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.1,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#proses-steps",
-      start: "top 85%",
-      once: true,
-    },
-  });
+    gsap.from("#proses-prototype-heading", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      delay: 0.1,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+
+    gsap.from("#proses-prototype-desc", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      delay: 0.2,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+
+    gsap.from(".prototype-step-item", {
+      scrollTrigger: {
+        trigger: "#proses-prototype-list",
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProsesPrototypeAnimations);
+  } else {
+    initProsesPrototypeAnimations();
+  }
+
+  document.addEventListener("astro:page-load", initProsesPrototypeAnimations);
 </script>

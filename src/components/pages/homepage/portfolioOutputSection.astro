@@ -59,39 +59,37 @@ const portfolioOutputs = [
 
 <section
   id="portfolio-output"
-  class="bg-violet-normal relative flex min-h-screen w-full flex-col justify-center overflow-hidden py-[40px] lg:py-[60px]"
+  class="bg-violet-normal relative flex min-h-screen w-full flex-col justify-center overflow-hidden pt-[90px] pb-[30px] lg:pt-[100px] lg:pb-[40px]"
   aria-label="Portfolio Output"
   data-navbar="violet"
 >
   <!-- Background Decorative Pattern SVG - Top Right -->
   <PatternLine
-    class="absolute z-0"
-    style="top: 0; right: -80px; width: 477px; height: 521px; display: block;"
+    class="absolute z-0 top-0 -right-12 md:-right-[80px] w-[240px] h-[262.14px] md:w-[477px] md:h-[521px] block"
   />
 
   <!-- Background Decorative Pattern SVG - Bottom Left -->
   <PatternLine
-    class="absolute z-0 rotate-180"
-    style="bottom: 0; left: -61px; width: 477px; height: 521px; display: block;"
+    class="absolute z-0 rotate-180 bottom-0 -left-12 md:-left-[61px] w-[240px] h-[262.14px] md:w-[477px] md:h-[521px] block"
   />
 
   <!-- Header -->
   <div
-    class="relative z-10 mx-auto mb-[28px] w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[28px] lg:mb-[36px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
+    class="relative z-10 mx-auto mb-[20px] w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[28px] lg:mb-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <div
       id="portfolio-output-header"
-      class="flex w-full flex-col justify-between gap-6 lg:flex-row lg:items-end lg:gap-12"
+      class="flex w-full flex-col justify-between gap-4 lg:flex-row lg:items-end lg:gap-12"
     >
       <!-- Title & Heading -->
-      <div class="flex max-w-[720px] flex-col items-start gap-4">
+      <div class="flex max-w-[720px] flex-col items-start gap-3 lg:gap-4">
         <SectionTitle title="Portfolio Output" />
         <h2
-          class="font-momo text-[36px] leading-[110%] font-semibold tracking-[-1.5px] text-white md:text-[48px] lg:text-[54px]"
+          class="font-momo text-[32px] leading-[110%] font-semibold tracking-[-1.5px] text-white sm:text-[38px] md:text-[44px] lg:text-[48px]"
         >
           Dari Ide Sederhana Menjadi<br />
           Karya yang <span
-            class="font-caveat text-[48px] leading-[80%] font-bold tracking-[-2px] text-white md:text-[60px] lg:text-[68px]"
+            class="font-caveat text-[42px] leading-[80%] font-semibold not-italic tracking-[-2px] text-white sm:text-[50px] md:text-[56px] lg:text-[64px]"
             >Berdampak.</span
           >
         </h2>
@@ -110,11 +108,11 @@ const portfolioOutputs = [
   <!-- Cards Carousel Track (Fixed height prevents layout shift on card hover) -->
   <div
     id="portfolio-cards-container"
-    class="relative z-10 flex h-[600px] w-full items-start overflow-hidden lg:h-[620px]"
+    class="relative z-10 flex h-[530px] w-full items-start overflow-hidden sm:h-[550px] lg:h-[555px]"
   >
     <div
       id="portfolio-cards-track"
-      class="flex h-[600px] w-max items-start gap-[16px] px-[20px] will-change-transform sm:px-[24px] md:px-[28px] lg:h-[620px] lg:px-[32px]"
+      class="flex h-[530px] w-max items-start gap-[16px] px-[20px] will-change-transform sm:px-[24px] sm:h-[550px] md:px-[28px] lg:h-[555px] lg:px-[32px]"
     >
       {
         portfolioOutputs.map((item) => (

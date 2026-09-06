@@ -41,7 +41,7 @@ const isFeatured = variant === "featured";
   isFeatured ? (
     <div
       class:list={[
-        "group relative flex h-full min-h-[380px] w-full flex-col justify-end overflow-hidden rounded-[16px] border border-gray-100 p-6 shadow-sm sm:min-h-[460px] md:p-8 lg:h-[1074px] lg:min-h-[1074px] lg:p-10 xl:p-12",
+        "group relative flex h-full min-h-[480px] sm:min-h-[560px] lg:min-h-[760px] xl:min-h-[820px] w-full flex-col justify-end overflow-hidden rounded-[4px] border border-gray-100 p-6 shadow-sm md:p-8 lg:h-full lg:p-10 xl:p-12",
         className,
       ]}
       {...rest}
@@ -50,11 +50,11 @@ const isFeatured = variant === "featured";
       <Image
         src={image}
         alt={title}
-        class="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-500 select-none group-hover:scale-105"
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 select-none group-hover:scale-105"
       />
 
       {/* Dark Overlay Gradient */}
-      <div class="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/95 via-black/60 to-transparent" />
+      <div class="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/95 via-black/50 to-transparent" />
 
       {/* Content */}
       <div class="relative z-20 flex flex-col items-start gap-4 lg:gap-6">
@@ -81,7 +81,7 @@ const isFeatured = variant === "featured";
   ) : (
     <div
       class:list={[
-        "group relative flex min-h-[220px] w-full flex-col justify-end overflow-hidden rounded-[16px] border border-gray-100 p-6 shadow-sm lg:min-h-0 lg:flex-1 lg:p-7",
+        "group relative flex min-h-[260px] sm:min-h-[280px] lg:min-h-[320px] xl:min-h-[340px] w-full flex-col justify-end overflow-hidden rounded-[4px] border border-gray-100 p-6 shadow-sm lg:flex-1 lg:p-7.5",
         className,
       ]}
       {...rest}
@@ -90,11 +90,11 @@ const isFeatured = variant === "featured";
       <Image
         src={image}
         alt={title}
-        class="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-500 select-none group-hover:scale-105"
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 select-none group-hover:scale-105"
       />
 
       {/* Dark Overlay Gradient */}
-      <div class="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/95 via-black/75 to-black/30" />
+      <div class="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/95 via-black/65 to-black/20" />
 
       {/* Content */}
       <div class="relative z-20 flex flex-col gap-2 text-white">

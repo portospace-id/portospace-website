@@ -142,3 +142,7 @@ html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+.font-caveat {
+  font-style: normal !important;
+}

@@ -1,5 +1,16 @@
 ---
+import { Image } from "astro:assets";
 import SectionTitle from "@/components/ui/sectionTitle.astro";
+import pattern2 from "@/assets/pattern/pattern_2.svg";
+import pattern5 from "@/assets/pattern/pattern_5.svg";
+
+interface Props {
+  /** Additional CSS class for section */
+  class?: string;
+  id?: string;
+}
+
+const { class: className = "", id = "tools-technology-section" } = Astro.props;
 
 const tools = [
   { src: "/arduino.svg", alt: "Arduino", label: "Arduino" },
@@ -10,73 +21,83 @@ const tools = [
 ---
 
 <section
-  id="tools-technology-section"
-  class="relative w-full bg-white overflow-hidden lg:min-h-screen flex flex-col justify-center"
-  aria-label="Tools & Technology Robotics"
+  id={id}
+  class:list={[
+    "relative flex min-h-svh w-full flex-col justify-center overflow-hidden bg-white py-16 sm:py-20 md:py-24 lg:py-28",
+    className,
+  ]}
+  aria-label="Tools & Technology Robotics Section"
   data-navbar="white"
 >
   <!-- Pattern Top-Right -->
   <div
-    class="absolute top-0 right-0 w-[200px] sm:w-[260px] md:w-[320px] lg:w-[380px] pointer-events-none select-none"
-    aria-hidden="true"
+    class="pointer-events-none absolute -top-[171.334px] -right-[218px] z-0 h-[501.88px] w-[500px] overflow-hidden select-none"
   >
-    <img src="/pattern_5.svg" alt="" class="w-full h-auto object-contain" />
+    <Image
+      src={pattern5}
+      alt=""
+      width={500}
+      height={502}
+      class="pointer-events-none h-full w-full object-contain"
+      aria-hidden="true"
+      loading="lazy"
+    />
   </div>
 
   <!-- Pattern Bottom-Left -->
   <div
-    class="absolute bottom-0 left-0 w-[140px] sm:w-[200px] md:w-[320px] lg:w-[380px] pointer-events-none select-none"
-    aria-hidden="true"
+    class="pointer-events-none absolute -bottom-[151.668px] -left-[280px] z-0 h-[798px] w-[800px] overflow-hidden select-none"
   >
-    <img src="/pattern_2.svg" alt="" class="w-full h-auto object-contain" />
+    <Image
+      src={pattern2}
+      alt=""
+      width={800}
+      height={798}
+      class="pointer-events-none h-full w-full object-contain"
+      aria-hidden="true"
+      loading="lazy"
+    />
   </div>
 
-  <!-- Content -->
+  <!-- Main Container -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pt-20 md:pt-24 lg:pt-32 pb-20 md:pb-24 lg:pb-32"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] text-center sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
-    <!-- Badge + Heading (center) -->
-    <div class="flex flex-col items-center gap-5 mb-16 md:mb-20">
+    <!-- Section Title Badge -->
+    <SectionTitle
+      id="tools-badge"
+      variant="light"
+      title="Tools & Technology"
+      showIcon={true}
+      class="mb-4 sm:mb-6"
+    />
 
-      <!-- Badge -->
-      <div id="tools-badge">
-        <SectionTitle
-          id="tools-badge-inner"
-          variant="light"
-          title="Tools & Technology"
-          showIcon={true}
-        />
-      </div>
-
-      <!-- Heading -->
-      <h2
-        id="tools-heading"
-        class="font-momo font-semibold text-black text-center leading-[110%] text-[28px] sm:text-[36px] md:text-[46px] lg:text-[54px] max-w-[852px]"
-        style="letter-spacing: -0.02em;"
+    <!-- Main Heading -->
+    <h2
+      id="tools-heading"
+      class="font-momo max-w-[840px] text-[28px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[54px]"
+    >
+      Kenali Teknologi yang Digunakan<br class="hidden sm:inline" />
+      untuk Membangun{" "}
+      <span
+        class="font-caveat ml-1 inline-block align-baseline text-[36px] leading-none font-semibold text-[#111111] italic sm:text-[46px] md:text-[56px] lg:text-[66px]"
       >
-        Kenali Teknologi yang Digunakan<br class="hidden md:block" />
-        untuk Membangun{" "}
-        <span
-          class="font-caveat font-bold italic text-black text-[36px] sm:text-[46px] md:text-[56px] lg:text-[64px] leading-[80%] align-baseline"
-          style="letter-spacing: -0.04em;"
-        >
-          Prototype
-        </span>
-      </h2>
-    </div>
+        Prototipe.
+      </span>
+    </h2>
 
-    <!-- Tool Logos -->
+    <!-- Tool Logos Row -->
     <div
       id="tools-logos"
-      class="flex flex-col md:flex-row flex-wrap items-center justify-center gap-12 md:gap-14 lg:gap-20"
+      class="mx-auto mt-12 flex w-full max-w-[1200px] flex-nowrap items-center justify-center gap-4 overflow-x-auto px-2 sm:mt-16 sm:gap-10 sm:overflow-visible md:mt-20 md:gap-14 lg:gap-20"
     >
       {
         tools.map((tool) => (
-          <div class="tool-logo flex flex-col items-center gap-3">
+          <div class="tool-logo-item flex items-center justify-center transition-transform duration-300 hover:scale-105">
             <img
               src={tool.src}
               alt={tool.alt}
-              class="h-[70px] md:h-[72px] lg:h-[80px] w-auto object-contain select-none"
+              class="h-11 w-auto select-none object-contain sm:h-14 md:h-16 lg:h-18"
             />
           </div>
         ))
@@ -91,31 +112,57 @@ const tools = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Badge & heading entrance
-  gsap.from(["#tools-badge", "#tools-heading"], {
-    y: 30,
-    opacity: 0,
-    duration: 0.7,
-    stagger: 0.12,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: "#tools-technology-section",
-      start: "top 80%",
-      once: true,
-    },
-  });
+  function initToolsAnimations() {
+    const section = document.querySelector("#tools-technology-section");
+    if (!section) return;
 
-  // Logo stagger entrance
-  gsap.from(".tool-logo", {
-    y: 24,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.1,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#tools-logos",
-      start: "top 85%",
-      once: true,
-    },
-  });
+    gsap.from("#tools-badge", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+
+    gsap.from("#tools-heading", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      delay: 0.1,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+
+    gsap.from(".tool-logo-item", {
+      scrollTrigger: {
+        trigger: "#tools-logos",
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "power2.out",
+      clearProps: "transform,opacity",
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initToolsAnimations);
+  } else {
+    initToolsAnimations();
+  }
+
+  document.addEventListener("astro:page-load", initToolsAnimations);
 </script>

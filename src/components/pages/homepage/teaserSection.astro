@@ -42,14 +42,12 @@ const teaserCards = [
 >
   <!-- Background Pattern - Top Right -->
   <PatternLine
-    class="absolute z-0"
-    style="top: 0; right: -80px; width: 477px; height: 521px; display: block;"
+    class="absolute z-0 top-0 -right-12 md:-right-[80px] w-[240px] h-[262.14px] md:w-[477px] md:h-[521px] block"
   />
 
   <!-- Background Pattern - Bottom Left -->
   <PatternLine
-    class="absolute z-0 rotate-180"
-    style="bottom: 0; left: -61px; width: 477px; height: 521px; display: block;"
+    class="absolute z-0 rotate-180 bottom-0 -left-12 md:-left-[61px] w-[240px] h-[262.14px] md:w-[477px] md:h-[521px] block"
   />
 
   <!-- Section Container -->
@@ -75,7 +73,7 @@ const teaserCards = [
       class="z-10 mx-auto grid w-full max-w-[380px] grid-cols-1 items-stretch justify-center gap-6 md:max-w-[768px] md:grid-cols-2 lg:contents lg:flex lg:max-w-none"
     >
       <!-- Card Left -->
-      <div id="teaser-card-left" class="z-10 w-full lg:absolute lg:w-auto">
+      <div id="teaser-card-left" class="z-10 w-full lg:absolute lg:w-[342px]">
         <CardTeaser
           title={teaserCards[0].title}
           description={teaserCards[0].description}
@@ -84,7 +82,7 @@ const teaserCards = [
       </div>
 
       <!-- Card Center -->
-      <div id="teaser-card-center" class="z-10 w-full lg:absolute lg:w-auto">
+      <div id="teaser-card-center" class="z-10 w-full lg:absolute lg:w-[342px]">
         <CardTeaser
           title={teaserCards[1].title}
           description={teaserCards[1].description}
@@ -95,7 +93,7 @@ const teaserCards = [
       <!-- Card Right -->
       <div
         id="teaser-card-right"
-        class="z-10 w-full md:col-span-2 md:mx-auto md:w-[342px] lg:absolute lg:mx-0 lg:w-auto"
+        class="z-10 w-full md:col-span-2 md:mx-auto md:w-full md:max-w-[342px] lg:absolute lg:mx-0 lg:w-[342px]"
       >
         <CardTeaser
           title={teaserCards[2].title}

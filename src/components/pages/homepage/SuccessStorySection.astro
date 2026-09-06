@@ -18,13 +18,14 @@ import successStoryImg from "@/assets/image/homepage/successStory.webp";
       <!-- Left Column: Photo Card (500px x 600px, p-6, gap-2.5) -->
       <div
         id="story-photo-card"
-        class="group relative flex h-[600px] w-full flex-shrink-0 flex-col items-start justify-end gap-2.5 overflow-hidden rounded-sm bg-[#1e1e24] p-6 shadow-md lg:w-[500px]"
+        class="group relative flex h-[380px] w-full flex-shrink-0 flex-col items-start justify-end gap-2.5 overflow-hidden rounded-sm bg-[#1e1e24] p-6 shadow-md sm:h-[460px] md:h-[520px] lg:h-[600px] lg:w-[440px] xl:w-[500px]"
       >
         <!-- Background Image -->
         <Image
           src={successStoryImg}
           alt="Jasmine Shafa"
           class="pointer-events-none absolute inset-0 h-full w-full object-cover select-none"
+          loading="lazy"
         />
 
         <!-- Subtle Gradient Overlay -->

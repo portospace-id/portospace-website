@@ -1,134 +1,130 @@
 ---
+import type { ImageMetadata } from "astro";
 import SectionTitle from "@/components/ui/sectionTitle.astro";
+import PatternLine from "@/components/ui/patternLine.astro";
+import CardPortfolioOutput from "@/components/card/cardPortfolioOutput.astro";
 
-const projects = [
-  { src: "/smart_vertical_farming.webp", alt: "Smart Vertical Farming", caption: "Smart Vertical Farming" },
-  { src: "/autonomous_robot.webp", alt: "Autonomous Robot", caption: "Autonomous Robot" },
-  { src: "/smart_home.webp", alt: "Smart Home", caption: "Smart Home" },
-  { src: "/herbal_research.webp", alt: "Herbal Research", caption: "Herbal Research" },
-  { src: "/smart_tuning.webp", alt: "Smart Tuning", caption: "Smart Tuning" },
+// Images from assets
+import roboticsImg from "@/assets/image/homepage/robotics.webp";
+import setmImg from "@/assets/image/homepage/setm.webp";
+import studioWorkspaceImg from "@/assets/image/makersAcademy/portfolio_studio_workspace.png";
+import techDeskImg from "@/assets/image/makersAcademy/portfolio_tech_desk.png";
+import workshopGroupImg from "@/assets/image/makersAcademy/portfolio_workshop_group.png";
+
+export interface ProjectCardItem {
+  title: string;
+  image: ImageMetadata;
+  alt?: string;
+}
+
+interface Props {
+  /** Additional CSS class for section */
+  class?: string;
+  id?: string;
+}
+
+const { class: className = "", id = "project-section" } = Astro.props;
+
+const projects: ProjectCardItem[] = [
+  {
+    title: "Smart Vertical Farming",
+    image: roboticsImg,
+    alt: "Smart Vertical Farming project",
+  },
+  {
+    title: "Autonomous Robot",
+    image: setmImg,
+    alt: "Autonomous Robot project",
+  },
+  {
+    title: "Smart Home System",
+    image: studioWorkspaceImg,
+    alt: "Smart Home System project",
+  },
+  {
+    title: "Herbal Research Sensor",
+    image: techDeskImg,
+    alt: "Herbal Research Sensor project",
+  },
+  {
+    title: "Smart Tuning Tool",
+    image: workshopGroupImg,
+    alt: "Smart Tuning Tool project",
+  },
 ];
 ---
 
 <section
-  id="project-section"
-  class="relative w-full overflow-hidden"
-  style="background-color: #BFED45;"
-  aria-label="Project Robotics"
-  data-navbar="light"
+  id={id}
+  class:list={[
+    "bg-[#BFED45] relative z-10 flex min-h-svh w-full flex-col justify-center overflow-hidden py-12 md:py-16",
+    className,
+  ]}
+  aria-label="Project Robotics Section"
+  data-navbar="transparent"
 >
-  <!-- Content -->
+  <!-- Background Decorative Wavy Pattern Bottom Left -->
+  <PatternLine
+    color="#a6d834"
+    class="pointer-events-none absolute bottom-0 left-[-40px] md:left-[-60px] z-0 block w-[240px] h-[262.14px] md:w-[477px] md:h-[521px] rotate-180 opacity-70 select-none"
+  />
+  <!-- Main Section Wrapper -->
   <div
-    class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pt-16 md:pt-20 lg:pt-24"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-[20px] sm:px-[24px] md:px-[28px] lg:gap-14 lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
-    <!-- Header: Badge (left) + Heading (right) -->
-    <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-12 mb-12 lg:mb-14">
-
-      <!-- Left: Badge -->
-      <div id="project-badge" class="flex-shrink-0 inline-flex items-center gap-2 font-jakarta text-[16px] font-normal leading-[150%] text-black">
-        <img
-          src="/pattern_save_prototype.svg"
-          alt=""
-          width="22"
-          height="22"
-          class="flex-shrink-0 select-none pointer-events-none object-contain"
-          style="width: 22px; height: 22px;"
-          aria-hidden="true"
-        />
-        <span>Project</span>
+    <!-- Top Header Row Container: Left Badge, Right Heading -->
+    <div
+      id="project-header"
+      class="flex w-full flex-col items-start justify-between gap-6 lg:flex-row lg:gap-12"
+    >
+      <!-- Left Column: Badge -->
+      <div class="shrink-0">
+        <SectionTitle id="project-badge" variant="light" title="Project" showIcon={true} />
       </div>
 
-      <!-- Right: Heading -->
-      <h2
-        id="project-heading"
-        class="font-momo font-semibold text-black leading-[110%] text-[32px] sm:text-[36px] md:text-[46px] lg:text-[54px] max-w-[907px]"
-        style="letter-spacing: -0.02em;"
-      >
-        <span class="hidden md:inline">
-          Ide Sederhana yang Dikembangkan<br />
-          Menjadi Prototipe{" "}
-        </span>
-        <span class="md:hidden">
-          Ide Sederhana yang<br />
-          Dikembangkan<br />
-          Menjadi Prototipe<br />
-        </span>
-        <span
-          class="font-caveat font-bold italic text-black text-[40px] sm:text-[46px] md:text-[56px] lg:text-[64px] leading-[80%] align-baseline"
-          style="letter-spacing: -0.04em;"
+      <!-- Right Column: Heading (Strictly 2 Lines) -->
+      <div class="w-full lg:max-w-[920px]">
+        <h2
+          id="project-heading"
+          class="font-momo text-left text-[24px] leading-[1.18] font-bold tracking-tight text-[#111111] sm:text-[32px] md:text-[40px] lg:text-right lg:text-[44px] xl:text-[48px]"
         >
-          Nyata.
-        </span>
-      </h2>
+          <span class="block">Ide Sederhana yang Dikembangkan</span>
+          <span class="block mt-1 sm:mt-0">
+            Menjadi Prototipe{" "}
+            <span
+              class="font-caveat ml-1 inline-block align-baseline text-[30px] leading-none font-semibold text-[#111111] italic sm:text-[40px] md:text-[50px] lg:text-[56px]"
+            >
+              Nyata.
+            </span>
+          </span>
+        </h2>
+      </div>
     </div>
-  </div>
 
-  <!-- Carousel (draggable, no auto-scroll) -->
-  <div
-    id="carousel-wrapper"
-    class="relative z-10 w-full overflow-x-auto pb-16 md:pb-20 lg:pb-24 cursor-grab select-none"
-    style="scrollbar-width: none; -ms-overflow-style: none;"
-  >
+    <!-- Cards Track Container (Fixed min-h so card hover does not move section height) -->
     <div
-      id="carousel-track"
-      class="flex gap-4 md:gap-5 w-max items-end"
-      style="padding-left: 32px; padding-right: 32px;"
+      id="project-cards-container"
+      class="relative z-10 flex min-h-[520px] w-full scrollbar-none items-start overflow-x-auto py-2 lg:min-h-[540px] lg:overflow-hidden"
     >
-      {
-        [...projects, ...projects, ...projects].map((project, idx) => (
-          <div class="carousel-card group flex-shrink-0" data-index={idx}>
-            <!-- Image container: square default, expands on hover -->
-            <div class="card-img-wrap overflow-hidden">
-              <img
-                src={project.src}
-                alt={project.alt}
-                class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-                loading="lazy"
-                draggable="false"
-              />
-            </div>
-            <!-- Caption -->
-            <p class="mt-3 font-jakarta font-normal text-black text-[14px] sm:text-[16px] leading-[150%]">
-              {project.caption}
-            </p>
-          </div>
-        ))
-      }
+      <div
+        id="project-cards-track"
+        class="flex w-max items-start gap-[20px] will-change-transform sm:gap-[24px] md:gap-[28px]"
+      >
+        {
+          projects.map((proj) => (
+            <CardPortfolioOutput
+              image={proj.image}
+              alt={proj.alt || proj.title}
+              title={proj.title}
+              showSubtitle={false}
+              textColor="text-[#111111]"
+            />
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
-
-<style>
-  /* Hide scrollbar */
-  #carousel-wrapper::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Card size */
-  .carousel-card {
-    --card-size: calc((100vw - 40px) / 1.3); /* Mobile: ~1.3 cards visible */
-    width: var(--card-size);
-  }
-
-  @media (min-width: 768px) {
-    .carousel-card {
-      --card-size: calc((100vw - 96px) / 4.15); /* Desktop: 4 cards visible */
-    }
-  }
-
-  /* Default: square */
-  .card-img-wrap {
-    width: 100%;
-    height: var(--card-size);
-    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-  }
-
-  /* Hover: expand to portrait (1.5× height) */
-  .carousel-card:hover .card-img-wrap {
-    height: calc(var(--card-size) * 1.5);
-  }
-</style>
 
 <script>
   import { gsap } from "gsap";
@@ -136,104 +132,66 @@ const projects = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.from(["#project-badge", "#project-heading"], {
-    y: 30,
-    opacity: 0,
-    duration: 0.7,
-    stagger: 0.12,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: "#project-section",
-      start: "top 80%",
-      once: true,
-    },
-  });
+  function initProjectSectionAnimations() {
+    const section = document.querySelector<HTMLElement>("#project-section");
+    const track = document.querySelector<HTMLElement>("#project-cards-track");
+    const container = document.querySelector<HTMLElement>("#project-cards-container");
 
-  // ---------- Infinite Drag to scroll ----------
-  const wrapper = document.getElementById("carousel-wrapper") as HTMLElement;
-  const track = document.getElementById("carousel-track") as HTMLElement;
+    if (!section || !track || !container) return;
 
-  if (wrapper && track) {
-    let setWidth = 0;
+    // Header Entrance Animation
+    const badge = document.querySelector<HTMLElement>("#project-badge");
+    const heading = document.querySelector<HTMLElement>("#project-heading");
 
-    const setupInfiniteScroll = () => {
-      const cards = track.querySelectorAll('.carousel-card') as NodeListOf<HTMLElement>;
-      if (cards.length === 0) return;
-      
-      // Menghitung lebar 1 set (ada 3 set identik)
-      const numOriginals = cards.length / 3;
-      setWidth = cards[numOriginals].offsetLeft - cards[0].offsetLeft;
-      
-      // Mulai dari set ke-2 (di tengah) agar bisa scroll ke kiri dan kanan
-      if (wrapper.scrollLeft === 0) {
-        wrapper.scrollLeft = setWidth;
-      }
-    };
-
-    // Jalankan setelah layout selesai
-    setTimeout(setupInfiniteScroll, 100);
-    window.addEventListener("resize", () => {
-      setupInfiniteScroll();
+    gsap.from([badge, heading].filter(Boolean), {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        once: true,
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.15,
+      ease: "power3.out",
+      clearProps: "transform,opacity",
     });
 
-    // Reset posisi saat mentok
-    wrapper.addEventListener("scroll", () => {
-      if (!setWidth) return;
-      
-      if (wrapper.scrollLeft <= 5) {
-        // Jika mentok kiri, lompat ke set ke-2
-        wrapper.scrollLeft += setWidth;
-      } else if (wrapper.scrollLeft >= wrapper.scrollWidth - wrapper.clientWidth - 5) {
-        // Jika mentok kanan, mundur ke set ke-2
-        wrapper.scrollLeft -= setWidth;
-      }
+    // Horizontal Scroll Animation for Cards Track on Desktop
+    ScrollTrigger.matchMedia({
+      "(min-width: 768px)": function () {
+        const getScrollAmount = () => {
+          return Math.max(0, track.scrollWidth - container.clientWidth);
+        };
+
+        if (getScrollAmount() > 0) {
+          const horizontalTween = gsap.to(track, {
+            x: () => -getScrollAmount(),
+            ease: "none",
+          });
+
+          ScrollTrigger.create({
+            trigger: section,
+            start: "top top",
+            end: () => `+=${getScrollAmount()}`,
+            pin: true,
+            animation: horizontalTween,
+            scrub: 1,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+          });
+        }
+      },
     });
 
-    let isDown = false;
-    let startX = 0;
-    let scrollLeft = 0;
-
-    wrapper.addEventListener("mousedown", (e) => {
-      isDown = true;
-      wrapper.classList.remove("cursor-grab");
-      wrapper.classList.add("cursor-grabbing");
-      startX = e.pageX - wrapper.offsetLeft;
-      scrollLeft = wrapper.scrollLeft;
-    });
-
-    wrapper.addEventListener("mouseleave", () => {
-      isDown = false;
-      wrapper.classList.add("cursor-grab");
-      wrapper.classList.remove("cursor-grabbing");
-    });
-
-    wrapper.addEventListener("mouseup", () => {
-      isDown = false;
-      wrapper.classList.add("cursor-grab");
-      wrapper.classList.remove("cursor-grabbing");
-    });
-
-    wrapper.addEventListener("mousemove", (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - wrapper.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      wrapper.scrollLeft = scrollLeft - walk;
-    });
-
-    // Touch support
-    let touchStartX = 0;
-    let touchScrollLeft = 0;
-
-    wrapper.addEventListener("touchstart", (e) => {
-      touchStartX = e.touches[0].pageX;
-      touchScrollLeft = wrapper.scrollLeft;
-    });
-
-    wrapper.addEventListener("touchmove", (e) => {
-      const x = e.touches[0].pageX;
-      const walk = (x - touchStartX) * 1.2;
-      wrapper.scrollLeft = touchScrollLeft - walk;
-    });
+    setTimeout(() => ScrollTrigger.refresh(), 100);
   }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProjectSectionAnimations);
+  } else {
+    initProjectSectionAnimations();
+  }
+
+  document.addEventListener("astro:page-load", initProjectSectionAnimations);
 </script>

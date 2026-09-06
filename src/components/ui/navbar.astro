@@ -58,7 +58,7 @@ const isLinkActive = (href: string) => {
   <!-- Topbar -->
   <div
     id="hero-announcement"
-    class="bg-violet-normal font-jakarta w-full px-3 py-2.5 text-center text-[12px] leading-snug font-medium text-white sm:px-4 sm:py-3 sm:text-[13px] md:text-[14px]"
+    class="bg-violet-normal font-jakarta w-full px-[20px] py-2.5 text-center text-[12px] leading-snug font-medium text-white sm:px-[24px] sm:py-3 sm:text-[13px] md:text-[14px]"
   >
     Konsultasi Portfolio Gratis — Temukan Jalur STEM Terbaik untuk Masa Depanmu
     <a
@@ -73,18 +73,19 @@ const isLinkActive = (href: string) => {
   <!-- Navbar -->
   <nav
     id="navbar"
-    class="relative w-full border-b border-transparent transition-all duration-300"
+    class="relative z-30 w-full border-b border-transparent transition-all duration-300"
     aria-label="Main navigation"
     data-theme="transparent"
   >
     <div
-      class="relative mx-auto flex w-full max-w-[1440px] items-center justify-between px-3.5 py-2.5 sm:px-6 sm:py-3 md:px-8 xl:max-w-none"
+      id="navbar-inner"
+      class="relative mx-auto flex w-full max-w-[1440px] items-center justify-between px-[20px] py-3.5 sm:px-[24px] sm:py-4 md:px-[28px] md:py-5 lg:px-[32px] xl:max-w-none xl:px-[32px]"
     >
       <!-- Logo -->
       <a
         href="/"
         id="navbar-logo"
-        class="z-20 flex flex-shrink-0 items-center gap-2 py-1 sm:gap-2.5"
+        class="z-20 flex h-9 flex-shrink-0 items-center gap-2.5 sm:h-10 sm:gap-2.5"
         aria-label="PortoSpace home"
       >
         <svg
@@ -93,7 +94,7 @@ const isLinkActive = (href: string) => {
           viewBox="0 0 28 28"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          class="navbar-logo-svg h-7 w-7 flex-shrink-0 transition-colors duration-200 sm:h-8 sm:w-8 md:h-[34px] md:w-[34px]"
+          class="navbar-logo-svg h-[30px] w-[30px] flex-shrink-0 transition-colors duration-200 sm:h-8 sm:w-8 md:h-[34px] md:w-[34px]"
         >
           <g clip-path="url(#clip0_852_1924)">
             <path
@@ -115,7 +116,7 @@ const isLinkActive = (href: string) => {
         </svg>
         <span
           id="navbar-logo-text"
-          class="font-momo text-[18px] leading-none font-bold tracking-tight text-white transition-colors duration-200 sm:text-[20px] md:text-[22px]"
+          class="font-momo text-[19px] leading-none font-bold tracking-tight text-white transition-colors duration-200 sm:text-[20px] md:text-[22px]"
         >
           PortoSpace
         </span>
@@ -284,7 +285,7 @@ const isLinkActive = (href: string) => {
         <!-- Mobile Hamburger Button -->
         <button
           id="navbar-toggle"
-          class="bg-violet-normal hover:bg-violet-normal-hover flex h-9 w-9 flex-shrink-0 cursor-pointer items-center justify-center rounded-sm text-white transition-colors duration-200 lg:hidden"
+          class="bg-violet-normal hover:bg-violet-normal-hover flex h-9 w-9 flex-shrink-0 cursor-pointer items-center justify-center rounded-md text-white transition-colors duration-200 lg:hidden"
           aria-label="Toggle menu"
           aria-expanded="false"
           aria-controls="navbar-mobile-menu"
@@ -294,37 +295,43 @@ const isLinkActive = (href: string) => {
         </button>
       </div>
     </div>
+  </nav>
 
-    <!-- Mobile Fullscreen 100vh Menu Overlay -->
-    <div
-      id="navbar-mobile-menu"
-      class="fixed right-0 left-0 z-40 flex hidden flex-col justify-between overflow-y-auto bg-white px-6 py-6 shadow-2xl transition-all duration-300 lg:hidden"
-      aria-hidden="true"
-    >
-      <!-- Menu Links Container -->
-      <div class="flex w-full flex-col gap-3">
-        {
-          navLinks.map((link) => {
-            if (link.children) {
-              const isParentActive =
-                isLinkActive(link.href) || link.children.some((c) => isLinkActive(c.href));
-              return (
-                <div class="flex w-full flex-col">
-                  <button
-                    id="mobile-programs-toggle"
-                    class={`font-jakarta flex w-full cursor-pointer items-center justify-between rounded-sm px-4 py-3.5 text-[20px] font-semibold transition-colors ${
-                      isParentActive ? "bg-violet-normal text-white" : "bg-violet-normal text-white"
-                    }`}
-                  >
-                    <span>{link.label}</span>
-                    <ChevronDown
-                      id="mobile-programs-chevron"
-                      size={22}
-                      class="rotate-180 transition-transform duration-300"
-                    />
-                  </button>
+  <!-- Mobile Fullscreen 100vh Menu Overlay -->
+  <div
+    id="navbar-mobile-menu"
+    class="absolute top-full right-0 left-0 z-20 flex h-[calc(100dvh-100%)] flex-col justify-between overflow-y-auto bg-white px-[20px] pt-4 pb-6 shadow-2xl transition-all duration-300 ease-out sm:px-[24px] lg:hidden opacity-0 pointer-events-none invisible -translate-y-3"
+    aria-hidden="true"
+  >
+    <!-- Menu Links Container -->
+    <div class="flex w-full flex-col gap-3">
+      {
+        navLinks.map((link) => {
+          if (link.children) {
+            const isParentActive =
+              isLinkActive(link.href) || link.children.some((c) => isLinkActive(c.href));
+            return (
+              <div class="mobile-menu-item flex w-full flex-col">
+                <button
+                  id="mobile-programs-toggle"
+                  type="button"
+                  data-parent-active={isParentActive ? "true" : undefined}
+                  class={`font-jakarta flex w-full cursor-pointer items-center justify-between py-1 text-[20px] transition-colors ${
+                    isParentActive
+                      ? "text-violet-normal font-bold"
+                      : "hover:text-violet-normal font-semibold text-[#111111]"
+                  }`}
+                >
+                  <span>{link.label}</span>
+                  <ChevronDown
+                    id="mobile-programs-chevron"
+                    size={22}
+                    class="transition-transform duration-300"
+                  />
+                </button>
 
-                  <div id="mobile-programs-list" class="flex flex-col gap-3.5 pt-3.5 pb-2 pl-4">
+                <div id="mobile-programs-list" class="grid grid-rows-[0fr] opacity-0 transition-all duration-300 ease-out pl-4">
+                  <div class="overflow-hidden flex flex-col gap-3.5 pt-3.5 pb-2">
                     {link.children.map((child) => {
                       const isSubActive = isLinkActive(child.href);
                       return (
@@ -346,112 +353,112 @@ const isLinkActive = (href: string) => {
                     })}
                   </div>
                 </div>
-              );
-            }
-
-            const isActive = isLinkActive(link.href);
-            return (
-              <a
-                href={link.href}
-                class={`font-jakarta py-1 text-[20px] transition-colors ${
-                  isActive
-                    ? "text-violet-normal font-bold"
-                    : "hover:text-violet-normal font-semibold text-[#111111]"
-                }`}
-              >
-                {link.label}
-              </a>
+              </div>
             );
-          })
-        }
+          }
 
-        <!-- CTA Button Mobile Dropdown -->
-        <div class="w-full pt-2 pb-1">
-          <Button
-            href="#konsultasi"
-            variant="primary"
-            class="w-full justify-center rounded-md py-3 text-sm font-semibold !shadow-none"
-          >
-            Konsultasi Portfolio Gratis
-          </Button>
-        </div>
-      </div>
+          const isActive = isLinkActive(link.href);
+          return (
+            <a
+              href={link.href}
+              class={`mobile-menu-item font-jakarta py-1 text-[20px] transition-colors ${
+                isActive
+                  ? "text-violet-normal font-bold"
+                  : "hover:text-violet-normal font-semibold text-[#111111]"
+              }`}
+            >
+              {link.label}
+            </a>
+          );
+        })
+      }
 
-      <!-- Bottom Social Icons Bar -->
-      <div class="mx-auto flex w-full max-w-[340px] items-center justify-between pt-6 pb-2">
-        <a
-          href="https://threads.net"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Threads"
-          class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
+      <!-- CTA Button Mobile Dropdown -->
+      <div class="mobile-menu-item w-full pt-2 pb-1">
+        <Button
+          href="#konsultasi"
+          variant="primary"
+          class="w-full justify-center rounded-md py-3 text-sm font-semibold !shadow-none"
         >
-          <AtSign size={20} />
-        </a>
-        <a
-          href="https://instagram.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram"
-          class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
-        >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-          </svg>
-        </a>
-        <a
-          href="https://linkedin.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-          class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
-        >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-            ></path>
-            <rect width="4" height="12" x="2" y="9"></rect>
-            <circle cx="4" cy="4" r="2"></circle>
-          </svg>
-        </a>
-        <a
-          href="mailto:info@portospace.com"
-          aria-label="Email"
-          class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
-        >
-          <Mail size={20} />
-        </a>
-        <a
-          href="https://wa.me/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="WhatsApp"
-          class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
-        >
-          <MessageCircle size={20} />
-        </a>
+          Konsultasi Portfolio Gratis
+        </Button>
       </div>
     </div>
-  </nav>
+
+    <!-- Bottom Social Icons Bar -->
+    <div class="mobile-menu-social-bar mx-auto flex w-full max-w-[340px] items-center justify-between pt-6 pb-2">
+      <a
+        href="https://threads.net"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Threads"
+        class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
+      >
+        <AtSign size={20} />
+      </a>
+      <a
+        href="https://instagram.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram"
+        class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+        </svg>
+      </a>
+      <a
+        href="https://linkedin.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+          ></path>
+          <rect width="4" height="12" x="2" y="9"></rect>
+          <circle cx="4" cy="4" r="2"></circle>
+        </svg>
+      </a>
+      <a
+        href="mailto:info@portospace.com"
+        aria-label="Email"
+        class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
+      >
+        <Mail size={20} />
+      </a>
+      <a
+        href="https://wa.me/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+        class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
+      >
+        <MessageCircle size={20} />
+      </a>
+    </div>
+  </div>
 </header>
 
 <style>
@@ -492,7 +499,7 @@ const isLinkActive = (href: string) => {
     font-weight: 700 !important;
   }
 
-  /* White theme (100% Solid Opaque White — Zero Transparency & No Shadow) */
+  /* White theme (100% Solid Opaque White — Plain without shadow or border) */
   #navbar[data-theme="white"] {
     background-color: #ffffff !important;
     background: #ffffff !important;
@@ -567,42 +574,67 @@ const isLinkActive = (href: string) => {
   #navbar:has(.group\/dropdown.is-open) .navbar-link {
     color: rgba(17, 17, 17, 0.9) !important;
   }
-  #navbar:has(.group\/dropdown:hover) .navbar-link.is-active,
-  #navbar:has(.group\/dropdown.is-open) .navbar-link.is-active {
-    color: #7b20e8 !important;
+  /* Mobile Menu Container Smooth Slide-Down & Fade Animation */
+  #navbar-mobile-menu.is-open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+  }
+
+  /* Staggered Entrance Fade-Up Cascade for Mobile Menu Items */
+  .mobile-menu-item,
+  .mobile-menu-social-bar {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #navbar-mobile-menu.is-open .mobile-menu-item,
+  #navbar-mobile-menu.is-open .mobile-menu-social-bar {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger Delays for Menu Items */
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(1) { transition-delay: 50ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(2) { transition-delay: 90ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(3) { transition-delay: 130ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(4) { transition-delay: 170ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(5) { transition-delay: 210ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(6) { transition-delay: 250ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(7) { transition-delay: 290ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(8) { transition-delay: 330ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(9) { transition-delay: 370ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-social-bar { transition-delay: 410ms; }
+
+  /* Smooth Grid Accordion Expansion for Programs Sub-menu */
+  #mobile-programs-list.is-expanded {
+    grid-template-rows: 1fr !important;
+    opacity: 1 !important;
   }
 </style>
 
 <script>
-  // ─── Mobile Fullscreen 100vh Menu Handler ──────────────────────────────────
+  // ─── Mobile Fullscreen Menu Handler ──────────────────────────────────
   const toggle = document.getElementById("navbar-toggle");
   const menu = document.getElementById("navbar-mobile-menu") as HTMLElement;
   const iconMenu = document.getElementById("icon-menu");
   const iconClose = document.getElementById("icon-close");
-  const siteHeader = document.getElementById("site-header") as HTMLElement;
   let isOpen = false;
-
-  function updateMobileMenuBounds() {
-    if (siteHeader && menu) {
-      const headerBottom = siteHeader.getBoundingClientRect().bottom;
-      menu.style.top = `${Math.floor(headerBottom)}px`;
-      menu.style.height = `calc(100vh - ${Math.floor(headerBottom)}px)`;
-    }
-  }
 
   toggle?.addEventListener("click", () => {
     isOpen = !isOpen;
     toggle.setAttribute("aria-expanded", String(isOpen));
     if (isOpen) {
-      updateMobileMenuBounds();
-      menu?.classList.remove("hidden");
+      applyTheme("white");
+      menu?.classList.add("is-open");
       menu?.setAttribute("aria-hidden", "false");
       iconMenu?.classList.add("hidden");
       iconClose?.classList.remove("hidden");
-      document.body.style.overflow = "hidden"; // Lock page scroll when 100vh menu is open
-      applyTheme("white");
+      document.body.style.overflow = "hidden"; // Lock page scroll when menu is open
     } else {
-      menu?.classList.add("hidden");
+      menu?.classList.remove("is-open");
       menu?.setAttribute("aria-hidden", "true");
       iconMenu?.classList.remove("hidden");
       iconClose?.classList.add("hidden");
@@ -616,7 +648,7 @@ const isLinkActive = (href: string) => {
     link.addEventListener("click", () => {
       isOpen = false;
       toggle?.setAttribute("aria-expanded", "false");
-      menu?.classList.add("hidden");
+      menu?.classList.remove("is-open");
       menu?.setAttribute("aria-hidden", "true");
       iconMenu?.classList.remove("hidden");
       iconClose?.classList.add("hidden");
@@ -629,16 +661,22 @@ const isLinkActive = (href: string) => {
   const programsToggle = document.getElementById("mobile-programs-toggle");
   const programsList = document.getElementById("mobile-programs-list");
   const programsChevron = document.getElementById("mobile-programs-chevron");
-  let isProgramsOpen = true;
+  let isProgramsOpen = false;
 
   programsToggle?.addEventListener("click", () => {
     isProgramsOpen = !isProgramsOpen;
     if (isProgramsOpen) {
-      programsList?.classList.remove("hidden");
+      programsList?.classList.add("is-expanded");
       programsChevron?.classList.add("rotate-180");
+      programsToggle?.classList.add("text-violet-normal", "font-bold");
+      programsToggle?.classList.remove("text-[#111111]");
     } else {
-      programsList?.classList.add("hidden");
+      programsList?.classList.remove("is-expanded");
       programsChevron?.classList.remove("rotate-180");
+      if (!programsToggle?.dataset.parentActive) {
+        programsToggle?.classList.remove("text-violet-normal", "font-bold");
+        programsToggle?.classList.add("text-[#111111]");
+      }
     }
   });
 
@@ -663,19 +701,23 @@ const isLinkActive = (href: string) => {
 
   function detectTheme() {
     if (isDropdownClickedOpen || isOpen) return;
-    if (!navbar) return;
+    const currentNav = document.getElementById("navbar") as HTMLElement;
+    if (!currentNav) return;
 
-    const heroSection = document.getElementById("hero");
+    // Check for hero section on page
+    const heroSection = document.getElementById("hero") || document.querySelector('[data-navbar="transparent"]');
     if (heroSection) {
       const heroRect = heroSection.getBoundingClientRect();
-      const navBottom = navbar.getBoundingClientRect().bottom;
+      const navBottom = currentNav.getBoundingClientRect().bottom;
 
-      if (heroRect.top <= navBottom && heroRect.bottom > navBottom) {
+      // Inside Hero bounds -> Transparent theme
+      if (heroRect.top <= navBottom && heroRect.bottom > navBottom + 10) {
         applyTheme("transparent");
         return;
       }
     }
 
+    // Outside Hero section -> 100% Solid White theme with bottom border & elevation shadow
     applyTheme("white");
   }
 
@@ -716,9 +758,10 @@ const isLinkActive = (href: string) => {
     });
   });
 
-  // Initial call + listen scroll & resize
+  // Initial theme detection + event listeners
   updateMegaMenuPosition();
   detectTheme();
+
   window.addEventListener(
     "scroll",
     () => {
@@ -727,8 +770,19 @@ const isLinkActive = (href: string) => {
     },
     { passive: true }
   );
+
   window.addEventListener("resize", () => {
     updateMegaMenuPosition();
-    if (isOpen) updateMobileMenuBounds();
+  });
+
+  // Re-run theme detection on Astro ClientRouter page changes
+  document.addEventListener("astro:page-load", () => {
+    updateMegaMenuPosition();
+    detectTheme();
+  });
+
+  document.addEventListener("astro:after-swap", () => {
+    updateMegaMenuPosition();
+    detectTheme();
   });
 </script>
