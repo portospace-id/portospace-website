@@ -1,80 +1,74 @@
 ---
-import { Image } from "astro:assets";
 import SectionTitle from "@/components/ui/sectionTitle.astro";
 import CardMentor from "@/components/card/cardMentor.astro";
 
-import pattern3 from "@/assets/pattern/pattern_3.svg";
 import testimonial4Img from "@/assets/image/homepage/testimonial-4.webp";
 import testimonial5Img from "@/assets/image/homepage/testimonial-5.webp";
 import testimonial3Img from "@/assets/image/homepage/testimonial-3.webp";
 
+interface Props {
+  /** Additional CSS class for section */
+  class?: string;
+  id?: string;
+}
+
+const { class: className = "", id = "coding-mentors-section" } = Astro.props;
+
 const mentors = [
   {
     id: "mentor-1",
-    name: "Farhan M., M.B.A.",
-    field: "Startup & Business Strategy",
+    name: "Farhan M., M.Sc.",
+    field: "Software Engineering & AI",
     university: "Institut Teknologi Bandung",
     image: testimonial4Img,
   },
   {
     id: "mentor-2",
     name: "Jasmine Shafa, M.Sc.",
-    field: "Product Management",
+    field: "Fullstack Web Development",
     university: "Universitas Indonesia",
     image: testimonial5Img,
   },
   {
     id: "mentor-3",
     name: "Aris Putra, Ph.D.",
-    field: "Venture Capital & Pitching",
+    field: "Machine Learning & Data Science",
     university: "Nanyang Technological University",
     image: testimonial3Img,
   },
   {
     id: "mentor-4",
-    name: "Kevin Sanjaya, B.B.A.",
-    field: "Market Research & Growth",
-    university: "Universitas Gadjah Mada",
+    name: "Farhan M., M.Sc.",
+    field: "Mobile App Development",
+    university: "Institut Teknologi Bandung",
     image: testimonial4Img,
   },
   {
     id: "mentor-5",
-    name: "Nadia Utami, M.M.",
-    field: "Financial Modeling",
+    name: "Jasmine Shafa, M.Sc.",
+    field: "Cloud & DevOps Architecture",
     university: "Universitas Indonesia",
     image: testimonial5Img,
   },
   {
     id: "mentor-6",
-    name: "Rian Hidayat, M.Sc.",
-    field: "Digital Business & E-Commerce",
-    university: "Institut Teknologi Bandung",
+    name: "Aris Putra, Ph.D.",
+    field: "AI Product Engineering",
+    university: "Nanyang Technological University",
     image: testimonial3Img,
   },
 ];
 ---
 
 <section
-  id="our-mentors"
-  class="relative z-20 flex w-full flex-col justify-center overflow-hidden bg-white py-[60px] text-black lg:py-[100px]"
-  aria-label="Our Mentors"
+  id={id}
+  class:list={[
+    "relative z-20 flex w-full flex-col justify-center overflow-hidden bg-[#D9D9D9] py-[60px] text-black lg:py-[100px]",
+    className,
+  ]}
+  aria-label="Our Mentors Coding & AI"
   data-navbar="light"
 >
-  <!-- Decorative Pattern SVG - Top Right -->
-  <div
-    class="pointer-events-none absolute -top-[171.334px] -right-[218px] z-0 h-[501.88px] w-[500px] overflow-hidden select-none"
-  >
-    <Image
-      src={pattern3}
-      alt=""
-      width={500}
-      height={502}
-      class="pointer-events-none h-full w-full object-contain"
-      aria-hidden="true"
-      loading="lazy"
-    />
-  </div>
-
   <!-- Main Container -->
   <div
     class="relative z-10 mx-auto mb-10 flex w-full max-w-[1440px] flex-col gap-8 px-[20px] sm:px-[24px] md:px-[28px] lg:mb-14 lg:gap-12 lg:px-[32px] xl:max-w-none xl:px-[32px]"
@@ -85,24 +79,24 @@ const mentors = [
     >
       <!-- Left Column: Badge & Heading -->
       <div
-        id="our-mentors-header-col"
+        id="coding-mentors-header-col"
         class="flex w-full shrink-0 flex-col items-start gap-4 sm:gap-5 lg:max-w-[760px] lg:gap-6 xl:max-w-[840px]"
       >
-        <div id="our-mentors-badge">
+        <div id="coding-mentors-badge">
           <SectionTitle title="Our Mentors" variant="light" />
         </div>
 
         <h2
-          id="our-mentors-heading"
+          id="coding-mentors-heading"
           class="font-momo text-left text-[22px] leading-[1.18] font-bold tracking-tight text-[#111111] sm:text-[28px] md:text-[36px] lg:text-[42px] xl:text-[46px]"
         >
-          <span class="block">Temukan Mentor yang Tepat untuk</span>
+          <span class="block">Belajar Bersama Mentor yang</span>
           <span class="block mt-1 sm:mt-0">
-            Mendukung Perjalanan{" "}
+            Berpengalaman di Dunia{" "}
             <span
               class="font-caveat ml-1 inline-block align-baseline text-[28px] leading-none font-semibold text-[#111111] italic sm:text-[36px] md:text-[46px] lg:text-[54px]"
             >
-              Belajarmu.
+              Teknologi.
             </span>
           </span>
         </h2>
@@ -111,11 +105,10 @@ const mentors = [
       <!-- Right Column: Description Paragraph -->
       <div class="w-full shrink-0 text-left sm:max-w-[420px] lg:mb-1 lg:max-w-[360px] xl:max-w-[400px]">
         <p
-          id="our-mentors-desc"
+          id="coding-mentors-desc"
           class="font-jakarta text-sm leading-relaxed font-normal text-black/75 sm:text-base"
         >
-          Jelajahi profil mentor dari berbagai bidang keahlian yang siap membimbingmu melalui
-          pendampingan personal.
+          Dapatkan bimbingan dari mentor dengan pengalaman dalam software development, AI, dan pengembangan produk digital.
         </p>
       </div>
     </div>
@@ -123,11 +116,11 @@ const mentors = [
 
   <!-- Cards Container / Horizontal Track -->
   <div
-    id="our-mentors-cards-container"
+    id="coding-mentors-cards-container"
     class="no-scrollbar relative z-10 w-full cursor-grab overflow-x-auto pb-4 select-none active:cursor-grabbing"
   >
     <div
-      id="our-mentors-cards-track"
+      id="coding-mentors-cards-track"
       class="flex w-max items-center gap-5 px-[20px] will-change-transform sm:px-[24px] md:px-[28px] lg:px-[32px]"
     >
       {
@@ -157,13 +150,13 @@ const mentors = [
   gsap.registerPlugin(ScrollTrigger);
 
   const initMentorsAnimations = () => {
-    const section = document.getElementById("our-mentors");
+    const section = document.getElementById("coding-mentors-section");
     if (!section || section.hasAttribute("data-gsap-init")) return;
     section.setAttribute("data-gsap-init", "true");
 
-    const badge = section.querySelector("#our-mentors-badge");
-    const heading = section.querySelector("#our-mentors-heading");
-    const desc = section.querySelector("#our-mentors-desc");
+    const badge = section.querySelector("#coding-mentors-badge");
+    const heading = section.querySelector("#coding-mentors-heading");
+    const desc = section.querySelector("#coding-mentors-desc");
     const cards = section.querySelectorAll(".mentor-card");
 
     if (badge) {
@@ -216,7 +209,7 @@ const mentors = [
     if (cards.length > 0) {
       gsap.from(cards, {
         scrollTrigger: {
-          trigger: section.querySelector("#our-mentors-cards-container") || section,
+          trigger: section.querySelector("#coding-mentors-cards-container") || section,
           start: "top 90%",
           once: true,
         },
@@ -230,7 +223,7 @@ const mentors = [
     }
 
     // Interactive Drag to Scroll for Desktop
-    const container = section.querySelector("#our-mentors-cards-container") as HTMLElement;
+    const container = section.querySelector("#coding-mentors-cards-container") as HTMLElement;
     if (container) {
       let isDown = false;
       let startX = 0;

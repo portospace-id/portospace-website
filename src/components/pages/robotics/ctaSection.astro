@@ -85,46 +85,59 @@ const { class: className = "", id = "cta-section" } = Astro.props;
   gsap.registerPlugin(ScrollTrigger);
 
   const initKomunitasWaAnimations = () => {
-    const section = document.getElementById("cta-section");
+    const section = document.getElementById("cta-section") || document.querySelector("section[aria-label*='WhatsApp']");
     if (!section) return;
 
-    gsap.from("#komunitas-wa-heading", {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%",
-        once: true,
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out",
-    });
+    const heading = section.querySelector("#komunitas-wa-heading");
+    const desc = section.querySelector("#komunitas-wa-desc");
+    const buttons = section.querySelector("#komunitas-wa-buttons");
 
-    gsap.from("#komunitas-wa-desc", {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%",
-        once: true,
-      },
-      y: 20,
-      opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      delay: 0.15,
-    });
+    if (heading) {
+      gsap.from(heading, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+    }
 
-    gsap.from("#komunitas-wa-buttons", {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%",
-        once: true,
-      },
-      y: 20,
-      opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      delay: 0.25,
-    });
+    if (desc) {
+      gsap.from(desc, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: 0.15,
+        clearProps: "transform,opacity",
+      });
+    }
+
+    if (buttons) {
+      gsap.from(buttons, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: 0.25,
+        clearProps: "transform,opacity",
+      });
+    }
   };
 
   if (document.readyState === "loading") {

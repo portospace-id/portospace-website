@@ -7,23 +7,24 @@ interface Props {
   id?: string;
 }
 
-const { class: className = "", id = "proses-prototype" } = Astro.props;
+const { class: className = "", id = "development-process" } = Astro.props;
 
 const steps = [
   { number: "01", title: "Ide" },
   { number: "02", title: "Design" },
-  { number: "03", title: "Build" },
-  { number: "04", title: "Test" },
+  { number: "03", title: "Code" },
+  { number: "04", title: "Launch" },
 ];
 ---
 
 <section
   id={id}
   class:list={[
-    "relative w-full overflow-hidden bg-[#FE9B2A] py-16 sm:py-20 md:py-24 lg:py-28",
+    "relative w-full overflow-hidden bg-[#D9D9D9] py-16 sm:py-20 md:py-24 lg:py-28",
     className,
   ]}
-  aria-label="Proses Prototype Section"
+  aria-label="Proses Development Section"
+  data-navbar="light"
 >
   <!-- Main Container -->
   <div
@@ -35,29 +36,29 @@ const steps = [
     >
       <!-- Left Column: Badge & Heading -->
       <div
-        id="proses-prototype-header-col"
+        id="development-process-header-col"
         class="flex w-full shrink-0 flex-col items-start gap-4 sm:gap-5 lg:max-w-[560px] lg:gap-6 xl:max-w-[620px]"
       >
         <!-- Section Title Badge -->
         <SectionTitle
-          id="proses-prototype-badge"
+          id="development-process-badge"
           variant="light"
-          title="Proses Prototype"
+          title="Proses Development"
           showIcon={true}
         />
 
         <!-- Heading -->
         <h2
-          id="proses-prototype-heading"
+          id="development-process-heading"
           class="font-momo text-[30px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[38px] md:text-[46px] lg:text-[54px]"
         >
-          Dari Sketsa Pertama<br />
-          hingga Prototipe yang<br />
+          Dari Ide Pertama<br />
+          hingga Produk yang<br />
           Siap{" "}
           <span
             class="font-caveat ml-1 inline-block align-baseline text-[36px] leading-none font-semibold text-[#111111] italic sm:text-[46px] md:text-[56px] lg:text-[66px]"
           >
-            Diuji.
+            Digunakan.
           </span>
         </h2>
       </div>
@@ -65,7 +66,7 @@ const steps = [
       <!-- Right Column: Description Paragraph -->
       <div class="w-full shrink-0 text-left sm:max-w-[420px] lg:mb-1 lg:max-w-[460px]">
         <p
-          id="proses-prototype-desc"
+          id="development-process-desc"
           class="font-jakarta text-sm leading-relaxed font-normal text-[#111111] sm:text-base"
         >
           Setiap proyek dikembangkan secara bertahap bersama mentor agar siswa memahami
@@ -75,14 +76,14 @@ const steps = [
     </div>
 
     <!-- Steps List Container (Right-Aligned) -->
-    <div id="proses-prototype-right-col" class="flex w-full flex-col items-end">
+    <div id="development-process-right-col" class="flex w-full flex-col items-end">
       <div
-        id="proses-prototype-list"
+        id="development-process-list"
         class="flex w-full flex-col border-t border-black/20 lg:max-w-[580px] xl:max-w-[640px]"
       >
         {
           steps.map((step) => (
-            <div class="prototype-step-item group flex cursor-pointer items-center justify-between gap-6 border-b border-black/20 px-1 py-5 transition-all duration-300 hover:bg-black/5 sm:px-2 sm:py-6 md:py-7">
+            <div class="process-step-item group flex cursor-pointer items-center justify-between gap-6 border-b border-black/20 px-1 py-5 transition-all duration-300 hover:bg-black/5 sm:px-2 sm:py-6 md:py-7">
               <span class="font-momo text-2xl font-medium text-[#111111] transition-colors duration-200 sm:text-[28px] md:text-[32px]">
                 {step.number}
               </span>
@@ -103,15 +104,15 @@ const steps = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  function initProsesPrototypeAnimations() {
-    const section = document.querySelector("#proses-prototype");
+  function initDevelopmentProcessAnimations() {
+    const section = document.querySelector("#development-process");
     if (!section || section.hasAttribute("data-gsap-init")) return;
     section.setAttribute("data-gsap-init", "true");
 
-    const badge = section.querySelector("#proses-prototype-badge");
-    const heading = section.querySelector("#proses-prototype-heading");
-    const desc = section.querySelector("#proses-prototype-desc");
-    const steps = section.querySelectorAll(".prototype-step-item");
+    const badge = section.querySelector("#development-process-badge");
+    const heading = section.querySelector("#development-process-heading");
+    const desc = section.querySelector("#development-process-desc");
+    const steps = section.querySelectorAll(".process-step-item");
 
     if (badge) {
       gsap.from(badge, {
@@ -163,7 +164,7 @@ const steps = [
     if (steps.length > 0) {
       gsap.from(steps, {
         scrollTrigger: {
-          trigger: section.querySelector("#proses-prototype-list") || section,
+          trigger: section,
           start: "top 85%",
           once: true,
         },
@@ -177,5 +178,5 @@ const steps = [
     }
   }
 
-  document.addEventListener("astro:page-load", initProsesPrototypeAnimations);
+  document.addEventListener("astro:page-load", initDevelopmentProcessAnimations);
 </script>

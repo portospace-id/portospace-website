@@ -141,13 +141,14 @@ const { class: className = "", id = "kompetisi-publikasi" } = Astro.props;
   gsap.registerPlugin(ScrollTrigger);
 
   function initKompetisiSectionAnimations() {
-    const section = document.querySelector("#kompetisi-publikasi");
-    if (!section) return;
+    const section = document.querySelector("#kompetisi-publikasi") || document.querySelector("section[aria-label*='Kompetisi']");
+    if (!section || section.hasAttribute("data-gsap-init")) return;
+    section.setAttribute("data-gsap-init", "true");
 
-    const badge = document.querySelector("#kompetisi-badge");
-    const heading = document.querySelector("#kompetisi-heading");
-    const desc = document.querySelector("#kompetisi-desc");
-    const cards = document.querySelectorAll("#kompetisi-cards .program-private-card");
+    const badge = section.querySelector("#kompetisi-badge");
+    const heading = section.querySelector("#kompetisi-heading");
+    const desc = section.querySelector("#kompetisi-desc");
+    const cards = section.querySelectorAll(".program-private-card");
 
     if (heading) {
       gsap.from([badge, heading, desc].filter(Boolean), {
@@ -168,7 +169,7 @@ const { class: className = "", id = "kompetisi-publikasi" } = Astro.props;
     if (cards.length > 0) {
       gsap.from(cards, {
         scrollTrigger: {
-          trigger: "#kompetisi-cards",
+          trigger: section.querySelector("#kompetisi-cards") || section,
           start: "top 85%",
           once: true,
         },
@@ -180,12 +181,6 @@ const { class: className = "", id = "kompetisi-publikasi" } = Astro.props;
         clearProps: "transform,opacity",
       });
     }
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initKompetisiSectionAnimations);
-  } else {
-    initKompetisiSectionAnimations();
   }
 
   document.addEventListener("astro:page-load", initKompetisiSectionAnimations);

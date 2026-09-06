@@ -110,7 +110,7 @@ const projects: ProjectCardItem[] = [
     <!-- Cards Track Container (Fixed min-h so card hover does not move section height) -->
     <div
       id="project-cards-container"
-      class="relative z-10 flex min-h-[520px] w-full scrollbar-none items-start overflow-x-auto py-2 lg:min-h-[540px] lg:overflow-hidden"
+      class="relative z-10 flex min-h-[580px] w-full scrollbar-none items-start overflow-x-auto py-2 lg:min-h-[600px] lg:overflow-hidden"
     >
       <div
         id="project-cards-track"
@@ -140,28 +140,33 @@ const projects: ProjectCardItem[] = [
 
   function initProjectSectionAnimations() {
     const section = document.querySelector<HTMLElement>("#project-section");
-    const track = document.querySelector<HTMLElement>("#project-cards-track");
-    const container = document.querySelector<HTMLElement>("#project-cards-container");
+    if (!section || section.hasAttribute("data-gsap-init")) return;
+    section.setAttribute("data-gsap-init", "true");
 
-    if (!section || !track || !container) return;
+    const track = section.querySelector<HTMLElement>("#project-cards-track");
+    const container = section.querySelector<HTMLElement>("#project-cards-container");
+
+    if (!track || !container) return;
 
     // Header Entrance Animation
-    const badge = document.querySelector<HTMLElement>("#project-badge");
-    const heading = document.querySelector<HTMLElement>("#project-heading");
+    const badge = section.querySelector<HTMLElement>("#project-badge");
+    const heading = section.querySelector<HTMLElement>("#project-heading");
 
-    gsap.from([badge, heading].filter(Boolean), {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 85%",
-        once: true,
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.15,
-      ease: "power3.out",
-      clearProps: "transform,opacity",
-    });
+    if (heading || badge) {
+      gsap.from([badge, heading].filter(Boolean), {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.15,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+    }
 
     // Horizontal Scroll Animation for Cards Track on Desktop
     ScrollTrigger.matchMedia({
@@ -191,12 +196,6 @@ const projects: ProjectCardItem[] = [
     });
 
     setTimeout(() => ScrollTrigger.refresh(), 100);
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initProjectSectionAnimations);
-  } else {
-    initProjectSectionAnimations();
   }
 
   document.addEventListener("astro:page-load", initProjectSectionAnimations);

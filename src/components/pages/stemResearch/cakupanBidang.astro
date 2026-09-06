@@ -136,57 +136,70 @@ const fields = [
 
   function initCakupanHorizontalScroll() {
     const section = document.querySelector("#cakupan-bidang") as HTMLElement;
-    const cardsContainer = document.querySelector("#cakupan-bidang-cards-container") as HTMLElement;
-    const cardsTrack = document.querySelector("#cakupan-bidang-cards-track") as HTMLElement;
+    if (!section || section.hasAttribute("data-gsap-init")) return;
+    section.setAttribute("data-gsap-init", "true");
 
-    if (!section || !cardsContainer || !cardsTrack) return;
+    const cardsContainer = section.querySelector("#cakupan-bidang-cards-container") as HTMLElement;
+    const cardsTrack = section.querySelector("#cakupan-bidang-cards-track") as HTMLElement;
+
+    if (!cardsContainer || !cardsTrack) return;
 
     // Measure total scrollable distance for horizontal track
     const getScrollAmount = () => {
       return cardsTrack.scrollWidth - window.innerWidth;
     };
 
+    const badge = section.querySelector("#cakupan-bidang-badge");
+    const heading = section.querySelector("#cakupan-bidang-heading");
+    const cards = section.querySelectorAll(".card-cakupan");
+
     // Entrance animation for header elements
-    gsap.from("#cakupan-bidang-badge", {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 85%",
-        once: true,
-      },
-      y: 20,
-      opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      clearProps: "transform,opacity",
-    });
+    if (badge) {
+      gsap.from(badge, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      });
+    }
 
-    gsap.from("#cakupan-bidang-heading", {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 85%",
-        once: true,
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.7,
-      delay: 0.1,
-      ease: "power2.out",
-      clearProps: "transform,opacity",
-    });
+    if (heading) {
+      gsap.from(heading, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        delay: 0.1,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      });
+    }
 
-    gsap.from(".card-cakupan", {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 85%",
-        once: true,
-      },
-      y: 35,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.08,
-      ease: "power2.out",
-      clearProps: "transform,opacity",
-    });
+    if (cards.length > 0) {
+      gsap.from(cards, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      });
+    }
 
     // Pinned horizontal scroll animation on vertical scroll down
     if (getScrollAmount() > 0) {
@@ -203,12 +216,6 @@ const fields = [
         },
       });
     }
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initCakupanHorizontalScroll);
-  } else {
-    initCakupanHorizontalScroll();
   }
 
   document.addEventListener("astro:page-load", initCakupanHorizontalScroll);

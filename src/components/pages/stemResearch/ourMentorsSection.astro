@@ -158,62 +158,79 @@ const mentors = [
 
   const initMentorsAnimations = () => {
     const section = document.getElementById("our-mentors");
-    if (!section) return;
+    if (!section || section.hasAttribute("data-gsap-init")) return;
+    section.setAttribute("data-gsap-init", "true");
 
-    gsap.from("#our-mentors-badge", {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 85%",
-        once: true,
-      },
-      y: 20,
-      opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
-    });
+    const badge = section.querySelector("#our-mentors-badge");
+    const heading = section.querySelector("#our-mentors-heading");
+    const desc = section.querySelector("#our-mentors-desc");
+    const cards = section.querySelectorAll(".mentor-card");
 
-    gsap.from("#our-mentors-heading", {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%",
-        once: true,
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out",
-      delay: 0.1,
-    });
+    if (badge) {
+      gsap.from(badge, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      });
+    }
 
-    gsap.from("#our-mentors-desc", {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%",
-        once: true,
-      },
-      y: 20,
-      opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      delay: 0.2,
-    });
+    if (heading) {
+      gsap.from(heading, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 0.1,
+        clearProps: "transform,opacity",
+      });
+    }
 
-    gsap.from(".mentor-card", {
-      scrollTrigger: {
-        trigger: "#our-mentors-cards-container",
-        start: "top 90%",
-        once: true,
-      },
-      y: 40,
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.1,
-      ease: "power3.out",
-      clearProps: "transform,opacity",
-    });
+    if (desc) {
+      gsap.from(desc, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: 0.2,
+        clearProps: "transform,opacity",
+      });
+    }
+
+    if (cards.length > 0) {
+      gsap.from(cards, {
+        scrollTrigger: {
+          trigger: section.querySelector("#our-mentors-cards-container") || section,
+          start: "top 90%",
+          once: true,
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+    }
 
     // Interactive Drag to Scroll for Desktop
-    const container = document.getElementById("our-mentors-cards-container");
+    const container = section.querySelector("#our-mentors-cards-container") as HTMLElement;
     if (container) {
       let isDown = false;
       let startX = 0;
@@ -221,7 +238,7 @@ const mentors = [
 
       container.addEventListener("mousedown", (e) => {
         isDown = true;
-        startX = e.pageX - container.offsetLeft;
+        startX = (e as MouseEvent).pageX - container.offsetLeft;
         scrollLeft = container.scrollLeft;
       });
 
@@ -236,16 +253,12 @@ const mentors = [
       container.addEventListener("mousemove", (e) => {
         if (!isDown) return;
         e.preventDefault();
-        const x = e.pageX - container.offsetLeft;
+        const x = (e as MouseEvent).pageX - container.offsetLeft;
         const walk = (x - startX) * 1.5;
         container.scrollLeft = scrollLeft - walk;
       });
     }
   };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initMentorsAnimations);
-  } else {
-    initMentorsAnimations();
-  }
+  document.addEventListener("astro:page-load", initMentorsAnimations);
 </script>

@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import SectionTitle from "@/components/ui/sectionTitle.astro";
 import CardManfaatOutcame from "@/components/card/cardManfaatOutcame.astro";
-import pattern3 from "@/assets/pattern/pattern_3.svg";
+import pattern4 from "@/assets/pattern/pattern_4.svg";
 
 import criticalThinkingImg from "@/assets/image/stemResearch/criticalThinking.png";
 import researchProposalImg from "@/assets/image/stemResearch/researchProposal.png";
@@ -16,7 +16,7 @@ interface Props {
   id?: string;
 }
 
-const { class: className = "", id = "manfaat-outcome" } = Astro.props;
+const { class: className = "", id = "coding-benefits-section" } = Astro.props;
 ---
 
 <section
@@ -25,14 +25,15 @@ const { class: className = "", id = "manfaat-outcome" } = Astro.props;
     "relative w-full overflow-hidden bg-white py-16 sm:py-20 md:py-24 lg:py-28",
     className,
   ]}
-  aria-label="Manfaat & Outcome Section"
+  aria-label="Manfaat & Outcome Coding & AI Section"
+  data-navbar="white"
 >
-  <!-- Top Right Decorative Pattern 3 -->
+  <!-- Top Right Decorative Pattern 4 -->
   <div
     class="pointer-events-none absolute -top-[171px] -right-[218px] z-0 h-[501.88px] w-[500px] overflow-hidden select-none"
   >
     <Image
-      src={pattern3}
+      src={pattern4}
       alt=""
       width={500}
       height={502}
@@ -52,7 +53,7 @@ const { class: className = "", id = "manfaat-outcome" } = Astro.props;
     >
       <!-- Section Title Badge -->
       <SectionTitle
-        id="manfaat-outcome-badge"
+        id="coding-manfaat-outcome-badge"
         variant="light"
         title="Manfaat & Outcome"
         showIcon={true}
@@ -63,25 +64,24 @@ const { class: className = "", id = "manfaat-outcome" } = Astro.props;
         class="heading-desc-container flex w-full flex-col justify-between gap-6 lg:flex-row lg:items-end lg:gap-12"
       >
         <h2
-          id="manfaat-outcome-heading"
+          id="coding-manfaat-outcome-heading"
           class="font-momo max-w-[640px] text-[32px] leading-[1.12] font-bold tracking-tight text-[#111111] sm:text-[40px] md:text-[48px] lg:text-[52px]"
         >
-          Bangun Kemampuan Bisnis<br />
-          yang Siap Membuka Lebih<br />
-          Banyak{" "}
+          Belajar Coding dengan<br />
+          Membuat Sesuatu yang{" "}
           <span
             class="font-caveat ml-1 inline-block align-baseline text-[38px] leading-none font-semibold text-[#111111] italic sm:text-[48px] md:text-[58px] lg:text-[66px]"
           >
-            Peluang.
+            Nyata.
           </span>
         </h2>
 
         <div class="max-w-[380px]">
           <p
-            id="manfaat-outcome-desc"
+            id="coding-manfaat-outcome-desc"
             class="body-text font-jakarta text-base leading-relaxed font-normal text-black"
           >
-            Setiap proses pembelajaran dirancang untuk membantu siswa mengembangkan ideasi bisnis, validasi pasar, dan strategi produk hingga menghasilkan startup yang bernilai.
+            Kembangkan kemampuan teknis, problem solving, dan kreativitas melalui proyek digital yang dapat menjadi portofolio.
           </p>
         </div>
       </div>
@@ -89,46 +89,46 @@ const { class: className = "", id = "manfaat-outcome" } = Astro.props;
 
     <!-- 2. CONTAINER BAWAH: Semua Card Outcome (5 Card) -->
     <div class="flex w-full flex-col gap-10">
-      <!-- Row 1: Card 1 (Market Validation) & Card 2 (Business Model) di Kiri -->
+      <!-- Row 1: Card 1 (Problem Solving) & Card 2 (Programming) -->
       <div class="flex w-full flex-wrap items-start gap-3 sm:flex-nowrap">
-        <!-- Card 1: Market Validation -->
+        <!-- Card 1: Problem Solving -->
         <CardManfaatOutcame
-          title="Market Validation"
+          title="Problem Solving"
           image={criticalThinkingImg}
-          alt="Validasi ide bisnis dan riset pasar bersama calon pengguna"
+          alt="Siswa berlatih problem solving & logika komputasi"
         />
 
-        <!-- Card 2: Business Model Canvas -->
+        <!-- Card 2: Programming -->
         <CardManfaatOutcame
-          title="Business Model"
+          title="Programming"
           image={researchProposalImg}
-          alt="Penyusunan model bisnis dan strategi monetisasi"
+          alt="Siswa mempelajari bahasa pemrograman dan arsitektur kode"
         />
       </div>
 
-      <!-- Row 2: Card 3 (Financial Strategy) di Kiri, Card 4 & 5 di Pojok Kanan -->
+      <!-- Row 2: Card 3 (AI Development) di Kiri, Card 4 & 5 di Pojok Kanan -->
       <div class="flex w-full flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
-        <!-- Card 3: Financial Strategy -->
+        <!-- Card 3: AI Development -->
         <CardManfaatOutcame
-          title="Financial Strategy"
+          title="AI Development"
           image={dataAnalysisImg}
-          alt="Analisis proyeksi keuangan dan arus kas bisnis"
+          alt="Siswa mengintegrasikan model AI dan kecerdasan buatan"
         />
 
-        <!-- Sub-container Kanan: Card 4 & Card 5 (Rapat Pojok Kanan) -->
+        <!-- Sub-container Kanan: Card 4 & Card 5 -->
         <div class="ml-auto flex flex-wrap items-start justify-end gap-3 sm:flex-nowrap">
-          <!-- Card 4: Pitch Deck & Proposal -->
+          <!-- Card 4: Product Development -->
           <CardManfaatOutcame
-            title="Pitch Deck & Proposal"
+            title="Product Development"
             image={scientificWritingImg}
-            alt="Penyusunan deck presentasi bisnis dan proposal investor"
+            alt="Siswa merancang dan mengembangkan produk digital"
           />
 
-          <!-- Card 5: Startup Prototype -->
+          <!-- Card 5: Project Portfolio -->
           <CardManfaatOutcame
-            title="Startup Prototype"
+            title="Project Portfolio"
             image={portfolioProjectImg}
-            alt="Pengembangan prototipe produk dan validasi fitur awal"
+            alt="Siswa membangun portofolio proyek software"
           />
         </div>
       </div>
@@ -142,13 +142,13 @@ const { class: className = "", id = "manfaat-outcome" } = Astro.props;
     gsap.registerPlugin(ScrollTrigger);
 
     function initAnimations() {
-      const section = document.querySelector("#manfaat-outcome");
+      const section = document.querySelector("#coding-benefits-section");
       if (!section || section.hasAttribute("data-gsap-init")) return;
       section.setAttribute("data-gsap-init", "true");
 
-      const badge = section.querySelector("#manfaat-outcome-badge");
-      const heading = section.querySelector("#manfaat-outcome-heading");
-      const desc = section.querySelector("#manfaat-outcome-desc");
+      const badge = section.querySelector("#coding-manfaat-outcome-badge");
+      const heading = section.querySelector("#coding-manfaat-outcome-heading");
+      const desc = section.querySelector("#coding-manfaat-outcome-desc");
       const cards = section.querySelectorAll(".card-outcome");
 
       if (badge) {

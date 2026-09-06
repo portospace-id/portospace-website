@@ -21,4 +21,18 @@ gsap.ticker.add((time) => {
 // Smooth out lag spikes instead of hard jumping
 gsap.ticker.lagSmoothing(500, 33);
 
+// Handle Astro View Transitions cleanup & refresh
+if (typeof document !== "undefined") {
+  document.addEventListener("astro:before-swap", () => {
+    ScrollTrigger.getAll().forEach((t) => t.kill());
+  });
+
+  document.addEventListener("astro:page-load", () => {
+    lenis.scrollTo(0, { immediate: true });
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+  });
+}
+
 export default lenis;

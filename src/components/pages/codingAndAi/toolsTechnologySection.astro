@@ -1,8 +1,5 @@
 ---
-import { Image } from "astro:assets";
 import SectionTitle from "@/components/ui/sectionTitle.astro";
-import pattern2 from "@/assets/pattern/pattern_2.svg";
-import pattern5 from "@/assets/pattern/pattern_5.svg";
 
 interface Props {
   /** Additional CSS class for section */
@@ -10,13 +7,12 @@ interface Props {
   id?: string;
 }
 
-const { class: className = "", id = "tools-technology-section" } = Astro.props;
+const { class: className = "", id = "coding-tools-section" } = Astro.props;
 
 const tools = [
-  { src: "/arduino.svg", alt: "Arduino", label: "Arduino" },
-  { src: "/espressif.svg", alt: "Espressif", label: "Espressif" },
-  { src: "/raspberry_pi.svg", alt: "Raspberry Pi", label: "Raspberry Pi" },
-  { src: "/autodesk.svg", alt: "Autodesk Tinkercad", label: "Autodesk Tinkercad" },
+  { src: "/react.svg", alt: "React", label: "React" },
+  { src: "/python.svg", alt: "Python", label: "Python" },
+  { src: "/javascript.svg", alt: "JavaScript", label: "JavaScript" },
 ];
 ---
 
@@ -26,37 +22,23 @@ const tools = [
     "relative flex min-h-svh w-full flex-col justify-center overflow-hidden bg-white py-16 sm:py-20 md:py-24 lg:py-28",
     className,
   ]}
-  aria-label="Tools & Technology Robotics Section"
+  aria-label="Tools & Technology Coding & AI Section"
   data-navbar="white"
 >
-  <!-- Pattern Top-Right -->
+  <!-- Pattern Bottom-Right -->
   <div
-    class="pointer-events-none absolute -top-[171.334px] -right-[218px] z-0 h-[501.88px] w-[500px] overflow-hidden select-none"
+    class="pointer-events-none absolute bottom-0 right-0 w-[200px] select-none sm:w-[260px] md:w-[320px] lg:w-[380px]"
+    aria-hidden="true"
   >
-    <Image
-      src={pattern5}
-      alt=""
-      width={500}
-      height={502}
-      class="pointer-events-none h-full w-full object-contain"
-      aria-hidden="true"
-      loading="lazy"
-    />
+    <img src="/pattern_kanan_2.svg" alt="" class="h-auto w-full object-contain" />
   </div>
 
   <!-- Pattern Bottom-Left -->
   <div
-    class="pointer-events-none absolute -bottom-[151.668px] -left-[280px] z-0 h-[798px] w-[800px] overflow-hidden select-none"
+    class="pointer-events-none absolute bottom-0 left-0 w-[140px] select-none sm:w-[200px] md:w-[320px] lg:w-[380px]"
+    aria-hidden="true"
   >
-    <Image
-      src={pattern2}
-      alt=""
-      width={800}
-      height={798}
-      class="pointer-events-none h-full w-full object-contain"
-      aria-hidden="true"
-      loading="lazy"
-    />
+    <img src="/pattern_kiri_2.svg" alt="" class="h-auto w-full object-contain" />
   </div>
 
   <!-- Main Container -->
@@ -75,14 +57,14 @@ const tools = [
     <!-- Main Heading -->
     <h2
       id="tools-heading"
-      class="font-momo max-w-[840px] text-[28px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[54px]"
+      class="font-momo max-w-[852px] text-[28px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[54px]"
     >
       Kenali Teknologi yang Digunakan<br class="hidden sm:inline" />
-      untuk Membangun{" "}
+      untuk Membangun Produk{" "}
       <span
         class="font-caveat ml-1 inline-block align-baseline text-[36px] leading-none font-semibold text-[#111111] italic sm:text-[46px] md:text-[56px] lg:text-[66px]"
       >
-        Prototipe.
+        Digital.
       </span>
     </h2>
 
@@ -113,12 +95,13 @@ const tools = [
   gsap.registerPlugin(ScrollTrigger);
 
   function initToolsAnimations() {
-    const section = document.querySelector("#tools-technology-section");
+    const section = document.querySelector("#coding-tools-section");
     if (!section || section.hasAttribute("data-gsap-init")) return;
     section.setAttribute("data-gsap-init", "true");
 
     const badge = section.querySelector("#tools-badge");
     const heading = section.querySelector("#tools-heading");
+    const logosContainer = section.querySelector("#tools-logos");
     const items = section.querySelectorAll(".tool-logo-item");
 
     if (badge) {
@@ -155,7 +138,7 @@ const tools = [
     if (items.length > 0) {
       gsap.from(items, {
         scrollTrigger: {
-          trigger: section.querySelector("#tools-logos") || section,
+          trigger: logosContainer || section,
           start: "top 85%",
           once: true,
         },

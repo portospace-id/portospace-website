@@ -119,68 +119,76 @@ const steps = [
 
   function initAlurRisetAnimations() {
     const section = document.querySelector("#alur-riset");
-    if (!section) return;
+    if (!section || section.hasAttribute("data-gsap-init")) return;
+    section.setAttribute("data-gsap-init", "true");
 
-    gsap.from("#alur-riset-badge", {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 85%",
-        once: true,
-      },
-      y: 20,
-      opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      clearProps: "transform,opacity",
-    });
+    const badge = section.querySelector("#alur-riset-badge");
+    const heading = section.querySelector("#alur-riset-heading");
+    const desc = section.querySelector("#alur-riset-desc");
+    const steps = section.querySelectorAll(".alur-step-item");
 
-    gsap.from("#alur-riset-heading", {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 85%",
-        once: true,
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.7,
-      delay: 0.1,
-      ease: "power2.out",
-      clearProps: "transform,opacity",
-    });
+    if (badge) {
+      gsap.from(badge, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      });
+    }
 
-    gsap.from("#alur-riset-desc", {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 85%",
-        once: true,
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.7,
-      delay: 0.2,
-      ease: "power2.out",
-      clearProps: "transform,opacity",
-    });
+    if (heading) {
+      gsap.from(heading, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        delay: 0.1,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      });
+    }
 
-    gsap.from(".alur-step-item", {
-      scrollTrigger: {
-        trigger: "#alur-riset-list",
-        start: "top 85%",
-        once: true,
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.08,
-      ease: "power2.out",
-      clearProps: "transform,opacity",
-    });
-  }
+    if (desc) {
+      gsap.from(desc, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        delay: 0.2,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      });
+    }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initAlurRisetAnimations);
-  } else {
-    initAlurRisetAnimations();
+    if (steps.length > 0) {
+      gsap.from(steps, {
+        scrollTrigger: {
+          trigger: section.querySelector("#alur-riset-list") || section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      });
+    }
   }
 
   document.addEventListener("astro:page-load", initAlurRisetAnimations);

@@ -23,7 +23,7 @@ const { class: className = "", id = "kompetisi-publikasi" } = Astro.props;
 <section
   id={id}
   class:list={[
-    "relative z-10 w-full overflow-hidden bg-[#BFED45] py-16 sm:py-20 md:py-24 lg:py-28",
+    "relative z-10 w-full overflow-hidden bg-[#D9D9D9] py-16 sm:py-20 md:py-24 lg:py-28",
     className,
   ]}
   aria-label="Kompetisi & Publikasi Section"
@@ -31,13 +31,13 @@ const { class: className = "", id = "kompetisi-publikasi" } = Astro.props;
 >
   <!-- Background Decorative Wavy Pattern Top Left -->
   <PatternLine
-    color="#a6d834"
+    color="#bebebe"
     class="pointer-events-none absolute top-0 left-[-40px] md:left-[-60px] z-0 block w-[240px] h-[262.14px] md:w-[477px] md:h-[521px] opacity-60 select-none"
   />
 
   <!-- Background Decorative Wavy Pattern Bottom Right -->
   <PatternLine
-    color="#a6d834"
+    color="#bebebe"
     class="pointer-events-none absolute bottom-0 right-[-40px] md:right-[-60px] z-0 block w-[240px] h-[262.14px] md:w-[477px] md:h-[521px] rotate-180 opacity-60 select-none"
   />
 
@@ -61,9 +61,9 @@ const { class: className = "", id = "kompetisi-publikasi" } = Astro.props;
         id="kompetisi-heading"
         class="font-momo text-center text-[28px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[54px]"
       >
-        <span class="block">Kembangkan Prototipemu Menjadi</span>
+        <span class="block">Kembangkan Project Menjadi Portfolio</span>
         <span class="block mt-1 sm:mt-0">
-          Karya yang Siap{" "}
+          dan Karya yang Siap{" "}
           <span
             class="font-caveat ml-1 inline-block align-baseline text-[36px] leading-none font-semibold text-[#111111] italic sm:text-[46px] md:text-[56px] lg:text-[66px]"
           >
@@ -77,8 +77,7 @@ const { class: className = "", id = "kompetisi-publikasi" } = Astro.props;
         id="kompetisi-desc"
         class="font-jakarta mt-4 max-w-[680px] text-center text-sm leading-relaxed font-normal text-[#111111] sm:text-base md:text-lg"
       >
-        Proyek yang dikembangkan dapat diarahkan untuk mengikuti berbagai kompetisi teknologi dan
-        inovasi sesuai bidangnya.
+        Project yang kamu bangun dapat dikembangkan menjadi portfolio atau dipersiapkan untuk berbagai kompetisi teknologi.
       </p>
     </div>
 

@@ -139,68 +139,84 @@ const { class: className = "", id = "manfaat-section" } = Astro.props;
 
   <script>
     import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
 
     function initAnimations() {
-      gsap.from("#manfaat-outcome-badge", {
-        scrollTrigger: {
-          trigger: "#manfaat-section",
-          start: "top 85%",
-          once: true,
-        },
-        y: 20,
-        opacity: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        clearProps: "transform,opacity",
-      });
+      const section = document.querySelector("#manfaat-section");
+      if (!section || section.hasAttribute("data-gsap-init")) return;
+      section.setAttribute("data-gsap-init", "true");
 
-      gsap.from("#manfaat-outcome-heading", {
-        scrollTrigger: {
-          trigger: "#manfaat-section",
-          start: "top 85%",
-          once: true,
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.7,
-        delay: 0.1,
-        ease: "power2.out",
-        clearProps: "transform,opacity",
-      });
+      const badge = section.querySelector("#manfaat-outcome-badge");
+      const heading = section.querySelector("#manfaat-outcome-heading");
+      const desc = section.querySelector("#manfaat-outcome-desc");
+      const cards = section.querySelectorAll(".card-outcome");
 
-      gsap.from("#manfaat-outcome-desc", {
-        scrollTrigger: {
-          trigger: "#manfaat-section",
-          start: "top 85%",
-          once: true,
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.7,
-        delay: 0.2,
-        ease: "power2.out",
-        clearProps: "transform,opacity",
-      });
+      if (badge) {
+        gsap.from(badge, {
+          scrollTrigger: {
+            trigger: section,
+            start: "top 85%",
+            once: true,
+          },
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          clearProps: "transform,opacity",
+        });
+      }
 
-      gsap.from(".card-outcome", {
-        scrollTrigger: {
-          trigger: ".card-outcome",
-          start: "top 85%",
-          once: true,
-        },
-        y: 35,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power2.out",
-        clearProps: "transform,opacity",
-      });
+      if (heading) {
+        gsap.from(heading, {
+          scrollTrigger: {
+            trigger: section,
+            start: "top 85%",
+            once: true,
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.7,
+          delay: 0.1,
+          ease: "power2.out",
+          clearProps: "transform,opacity",
+        });
+      }
+
+      if (desc) {
+        gsap.from(desc, {
+          scrollTrigger: {
+            trigger: section,
+            start: "top 85%",
+            once: true,
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.7,
+          delay: 0.2,
+          ease: "power2.out",
+          clearProps: "transform,opacity",
+        });
+      }
+
+      if (cards.length > 0) {
+        gsap.from(cards, {
+          scrollTrigger: {
+            trigger: section,
+            start: "top 85%",
+            once: true,
+          },
+          y: 35,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
+          clearProps: "transform,opacity",
+        });
+      }
     }
 
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initAnimations);
-    } else {
-      initAnimations();
-    }
+    document.addEventListener("astro:page-load", initAnimations);
   </script>
 </section>

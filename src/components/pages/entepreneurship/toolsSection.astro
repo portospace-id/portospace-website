@@ -149,54 +149,59 @@ const { class: className = "", id = "tools-technology" } = Astro.props;
 
   function initToolsAnimations() {
     const section = document.querySelector("#tools-technology");
-    if (!section) return;
+    if (!section || section.hasAttribute("data-gsap-init")) return;
+    section.setAttribute("data-gsap-init", "true");
 
-    gsap.from("#tools-badge", {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 85%",
-        once: true,
-      },
-      y: 20,
-      opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      clearProps: "transform,opacity",
-    });
+    const badge = section.querySelector("#tools-badge");
+    const heading = section.querySelector("#tools-heading");
+    const items = section.querySelectorAll(".tool-logo-item");
 
-    gsap.from("#tools-heading", {
-      scrollTrigger: {
-        trigger: section,
-        start: "top 85%",
-        once: true,
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.7,
-      delay: 0.1,
-      ease: "power2.out",
-      clearProps: "transform,opacity",
-    });
+    if (badge) {
+      gsap.from(badge, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      });
+    }
 
-    gsap.from(".tool-logo-item", {
-      scrollTrigger: {
-        trigger: "#tools-logos",
-        start: "top 85%",
-        once: true,
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.1,
-      ease: "power2.out",
-      clearProps: "transform,opacity",
-    });
-  }
+    if (heading) {
+      gsap.from(heading, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        delay: 0.1,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      });
+    }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initToolsAnimations);
-  } else {
-    initToolsAnimations();
+    if (items.length > 0) {
+      gsap.from(items, {
+        scrollTrigger: {
+          trigger: section.querySelector("#tools-logos") || section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      });
+    }
   }
 
   document.addEventListener("astro:page-load", initToolsAnimations);

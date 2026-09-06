@@ -82,33 +82,58 @@ const {
   <script>
     import { gsap } from "gsap";
 
-    const tl = gsap.timeline({ delay: 0.2 });
+    function initHeroAnimations() {
+      const hero = document.querySelector("#hero") || document.querySelector("section[aria-label*='Hero']");
+      if (!hero || hero.hasAttribute("data-gsap-init")) return;
+      hero.setAttribute("data-gsap-init", "true");
 
-    tl.from("#contact-hero-badge", {
-      y: 20,
-      opacity: 0,
-      duration: 0.5,
-      ease: "power2.out",
-    })
-      .from(
-        "#contact-hero-heading",
-        {
-          y: 35,
-          opacity: 0,
-          duration: 0.75,
-          ease: "power3.out",
-        },
-        "-=0.3"
-      )
-      .from(
-        "#contact-hero-desc",
-        {
+      const badge = hero.querySelector("#contact-hero-badge");
+      const heading = hero.querySelector("#contact-hero-heading");
+      const desc = hero.querySelector("#contact-hero-desc");
+
+      if (!badge && !heading) return;
+
+      const tl = gsap.timeline({ delay: 0.2 });
+
+      if (badge) {
+        tl.from(badge, {
           y: 20,
           opacity: 0,
-          duration: 0.6,
+          duration: 0.5,
           ease: "power2.out",
-        },
-        "-=0.4"
-      );
+          clearProps: "transform,opacity",
+        });
+      }
+
+      if (heading) {
+        tl.from(
+          heading,
+          {
+            y: 35,
+            opacity: 0,
+            duration: 0.75,
+            ease: "power3.out",
+            clearProps: "transform,opacity",
+          },
+          "-=0.3"
+        );
+      }
+
+      if (desc) {
+        tl.from(
+          desc,
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            clearProps: "transform,opacity",
+          },
+          "-=0.4"
+        );
+      }
+    }
+
+    document.addEventListener("astro:page-load", initHeroAnimations);
   </script>
 </section>
