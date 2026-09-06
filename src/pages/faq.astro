@@ -1,0 +1,104 @@
+---
+// Layouts
+import Layout from "../layouts/Layout.astro";
+
+// Components
+import HeroSection from "../components/pages/faq/heroSection.astro";
+import ListFaq from "../components/pages/faq/listFaq.astro";
+---
+
+<Layout
+  title="FAQ — PortoSpace"
+  description="Temukan jawaban atas berbagai pertanyaan seputar program, mentor, paket, hingga proses belajar di PortoSpace."
+>
+  <main>
+    <HeroSection />
+
+    <section
+      id="faq-section"
+      class="relative w-full bg-white overflow-hidden"
+      aria-label="Frequently Asked Questions"
+    >
+      <!-- Pattern SVG (top-right) -->
+      <div
+        class="absolute top-0 right-0 w-[194px] sm:w-[260px] md:w-[300px] lg:w-[330px] pointer-events-none select-none"
+        aria-hidden="true"
+      >
+        <img src="/pattern_4.svg" alt="" class="w-full h-auto object-contain" />
+      </div>
+
+      <!-- Content -->
+      <div
+        class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pt-16 md:pt-20 lg:pt-24 pb-16 md:pb-20 lg:pb-24"
+      >
+        <!-- Section Heading (center) -->
+        <div class="flex flex-col items-center gap-3 mb-14 md:mb-16 lg:mb-20">
+          <h2
+            id="faq-section-heading"
+            class="font-momo font-semibold text-black text-center leading-[110%] text-[38px] sm:text-[46px] md:text-[54px]"
+            style="letter-spacing: -0.02em;"
+          >
+            Frequently<br />
+            Asked{" "}
+            <span
+              class="font-caveat font-bold italic text-black text-[52px] sm:text-[58px] md:text-[64px] leading-[80%] align-baseline"
+              style="letter-spacing: -0.04em;"
+            >
+              Questions
+            </span>
+          </h2>
+
+          <p
+            id="faq-section-sub"
+            class="font-jakarta font-normal text-black text-[14px] sm:text-[16px] leading-[150%] text-center"
+          >
+            Masih penasaran?<br class="sm:hidden" />Semua yang perlu kamu tahu ada di sini.
+          </p>
+        </div>
+
+        <!-- FAQ List Component -->
+        <ListFaq />
+      </div>
+
+      <script>
+        import { gsap } from "gsap";
+        import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+        gsap.from("#faq-section-heading", {
+          y: 30,
+          opacity: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#faq-section",
+            start: "top 80%",
+          },
+        });
+
+        gsap.from("#faq-section-sub", {
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          delay: 0.15,
+          scrollTrigger: {
+            trigger: "#faq-section",
+            start: "top 80%",
+          },
+        });
+
+        gsap.from("#faq-section .faq-item", {
+          y: 24,
+          opacity: 0,
+          duration: 0.55,
+          ease: "power2.out",
+          stagger: 0.08,
+          scrollTrigger: {
+            trigger: "#faq-section .faq-item",
+            start: "top 85%",
+          },
+        });
+      </script>
+    </section>
+  </main>
+</Layout>

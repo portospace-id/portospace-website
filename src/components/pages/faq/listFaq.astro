@@ -1,0 +1,92 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items?: FaqItem[];
+}
+
+const defaultItems: FaqItem[] = [
+  {
+    question: "Apa itu Maker's Academy?",
+    answer:
+      "Maker's Academy adalah program pendampingan 1-on-1 berbasis proyek dari PortoSpace yang membantu siswa mengembangkan keterampilan, membangun portofolio, dan mempersiapkan kompetisi maupun jenjang pendidikan berikutnya.",
+  },
+  {
+    question: "Apakah tersedia Trial Class?",
+    answer:
+      "Ya. Kamu dapat mengikuti sesi trial untuk mengenal metode pembelajaran, berdiskusi dengan mentor, dan memastikan program sesuai dengan kebutuhanmu sebelum bergabung.",
+  },
+  {
+    question: "Apa perbedaan paket Lite, Pro, dan Pro Max?",
+    answer:
+      "Perbedaannya terletak pada jumlah sesi, durasi pendampingan, target karya, serta fasilitas yang didapatkan. Kamu dapat memilih paket sesuai kebutuhan dan tujuan belajarmu.",
+  },
+  {
+    question: "Siapa saja mentor di PortoSpace?",
+    answer:
+      "Mentor PortoSpace berasal dari berbagai bidang keahlian dengan pengalaman di dunia akademik, riset, maupun industri, dan dipilih melalui proses seleksi untuk memastikan kualitas pendampingan.",
+  },
+  {
+    question: "Project seperti apa yang akan dikerjakan?",
+    answer:
+      "Jenis proyek disesuaikan dengan bidang yang dipilih dan tujuan belajar masing-masing siswa, mulai dari riset, teknologi, pemrograman, robotika, hingga kewirausahaan.",
+  },
+  {
+    question: "Apakah program dilakukan secara online atau offline?",
+    answer:
+      "Sebagian besar program dilaksanakan secara online sehingga dapat diikuti dari mana saja. Program offline atau hybrid akan diinformasikan jika tersedia.",
+  },
+  {
+    question:
+      "Apakah PortoSpace mendukung persiapan kompetisi atau aplikasi universitas?",
+    answer:
+      "Ya. Mentor akan membantu menyempurnakan proyek, membangun portofolio, serta memberikan pendampingan untuk kompetisi maupun persiapan aplikasi ke universitas sesuai kebutuhan siswa.",
+  },
+  {
+    question: "Siapa yang dapat mengikuti program ini?",
+    answer:
+      "Program PortoSpace dirancang untuk siswa Grade 9–12 yang ingin mengembangkan keterampilan, membangun portofolio, dan mempersiapkan masa depan melalui pembelajaran berbasis proyek.",
+  },
+  {
+    question: "Apakah orang tua akan mendapatkan laporan perkembangan?",
+    answer:
+      "Ya. Orang tua akan menerima update perkembangan secara berkala mengenai proses belajar, proyek yang sedang dikerjakan, dan perkembangan siswa selama mengikuti program.",
+  },
+  {
+    question: "Berapa lama waktu respons tim PortoSpace?",
+    answer:
+      "Tim PortoSpace berusaha merespons setiap pertanyaan secepat mungkin pada jam operasional. Untuk pertanyaan yang lebih kompleks, kami akan memberikan informasi lanjutan setelah melakukan koordinasi dengan tim terkait.",
+  },
+];
+
+const { items = defaultItems } = Astro.props;
+---
+
+<div class="w-full flex flex-col">
+  {
+    items.map((item, index) => (
+      <div
+        class:list={[
+          "faq-item grid grid-cols-1 gap-y-3 lg:grid-cols-[43%_1fr] lg:gap-x-[15%] lg:gap-y-0 py-6 lg:py-10 border-t border-black/10",
+          index === items.length - 1 && "border-b",
+        ]}
+      >
+        <!-- Question (kiri) -->
+        <p
+          class="font-momo font-medium text-black leading-[110%] text-[28px] sm:text-[34px] md:text-[40px] pr-4"
+          style="letter-spacing: -0.02em;"
+        >
+          {item.question}
+        </p>
+
+        <!-- Answer (kanan) -->
+        <p class="font-jakarta font-normal text-black text-[14px] sm:text-[16px] leading-[150%] self-start pt-1">
+          {item.answer}
+        </p>
+      </div>
+    ))
+  }
+</div>
