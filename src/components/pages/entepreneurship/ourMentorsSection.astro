@@ -11,44 +11,44 @@ import testimonial3Img from "@/assets/image/homepage/testimonial-3.webp";
 const mentors = [
   {
     id: "mentor-1",
-    name: "Farhan M.",
-    field: "Biotechnology",
+    name: "Farhan M., M.B.A.",
+    field: "Startup & Business Strategy",
     university: "Institut Teknologi Bandung",
     image: testimonial4Img,
   },
   {
     id: "mentor-2",
-    name: "Farhan M.",
-    field: "Biotechnology",
-    university: "Institut Teknologi Bandung",
-    image: testimonial4Img,
+    name: "Jasmine Shafa, M.Sc.",
+    field: "Product Management",
+    university: "Universitas Indonesia",
+    image: testimonial5Img,
   },
   {
     id: "mentor-3",
-    name: "Farhan M.",
-    field: "Biotechnology",
-    university: "Institut Teknologi Bandung",
-    image: testimonial4Img,
+    name: "Aris Putra, Ph.D.",
+    field: "Venture Capital & Pitching",
+    university: "Nanyang Technological University",
+    image: testimonial3Img,
   },
   {
     id: "mentor-4",
-    name: "Farhan M.",
-    field: "Biotechnology",
-    university: "Institut Teknologi Bandung",
+    name: "Kevin Sanjaya, B.B.A.",
+    field: "Market Research & Growth",
+    university: "Universitas Gadjah Mada",
     image: testimonial4Img,
   },
   {
     id: "mentor-5",
-    name: "Jasmine Shafa, M.Sc.",
-    field: "STEM Research",
+    name: "Nadia Utami, M.M.",
+    field: "Financial Modeling",
     university: "Universitas Indonesia",
     image: testimonial5Img,
   },
   {
     id: "mentor-6",
-    name: "Aris Putra, Ph.D.",
-    field: "Coding & AI",
-    university: "Nanyang Technological University",
+    name: "Rian Hidayat, M.Sc.",
+    field: "Digital Business & E-Commerce",
+    university: "Institut Teknologi Bandung",
     image: testimonial3Img,
   },
 ];
@@ -248,4 +248,6 @@ const mentors = [
   } else {
     initMentorsAnimations();
   }
+
+  document.addEventListener("astro:page-load", initMentorsAnimations);
 </script>

@@ -86,34 +86,47 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
   <script>
     import { gsap } from "gsap";
 
-    const tl = gsap.timeline({ delay: 0.2 });
+    function initHeroAnimations() {
+      const badge = document.querySelector("#entrepreneurship-hero-badge");
+      if (!badge) return;
 
-    tl.from("#entrepreneurship-hero-badge", {
-      y: 20,
-      opacity: 0,
-      duration: 0.5,
-      ease: "power2.out",
-    })
-      .from(
-        "#entrepreneurship-hero-heading",
-        {
-          y: 35,
-          opacity: 0,
-          duration: 0.75,
-          ease: "power3.out",
-        },
-        "-=0.3"
-      )
-      .from(
-        "#entrepreneurship-hero-desc",
-        {
-          y: 20,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power2.out",
-        },
-        "-=0.4"
-      );
+      const tl = gsap.timeline({ delay: 0.2 });
+
+      tl.from(badge, {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      })
+        .from(
+          "#entrepreneurship-hero-heading",
+          {
+            y: 35,
+            opacity: 0,
+            duration: 0.75,
+            ease: "power3.out",
+          },
+          "-=0.3"
+        )
+        .from(
+          "#entrepreneurship-hero-desc",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+          },
+          "-=0.4"
+        );
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initHeroAnimations);
+    } else {
+      initHeroAnimations();
+    }
+
+    document.addEventListener("astro:page-load", initHeroAnimations);
   </script>
 </section>
 
