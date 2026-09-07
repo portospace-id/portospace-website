@@ -1,0 +1,57 @@
+---
+interface Props {
+  id?: string;
+  name?: string;
+  label?: string;
+  placeholder?: string;
+  required?: boolean;
+  rows?: number;
+  value?: string;
+  class?: string;
+  textareaClass?: string;
+  showRequiredBadge?: boolean;
+  [key: string]: unknown;
+}
+
+const {
+  id,
+  name,
+  label,
+  placeholder,
+  required = false,
+  rows = 6,
+  value,
+  class: className = "",
+  textareaClass = "",
+  showRequiredBadge = false,
+  ...rest
+} = Astro.props;
+---
+
+<div class:list={["flex w-full flex-1 flex-col gap-2", className]}>
+  {
+    label && (
+      <label
+        for={id}
+        class="font-jakarta flex items-center justify-between text-sm font-medium text-gray-800 md:text-base"
+      >
+        <span>{label}</span>
+        {required && showRequiredBadge && (
+          <span class="text-violet-normal text-xs font-normal">* Wajib</span>
+        )}
+      </label>
+    )
+  }
+  <textarea
+    id={id}
+    name={name}
+    rows={rows}
+    placeholder={placeholder}
+    required={required}
+    class:list={[
+      "focus:ring-violet-normal font-jakarta h-full min-h-[240px] w-full flex-1 resize-none rounded-sm border-none bg-[#EAEAEA] px-4 py-3.5 text-sm text-gray-800 placeholder-[#999999] transition-all duration-200 focus:ring-2 focus:outline-none md:min-h-[280px] md:text-base",
+      textareaClass,
+    ]}
+    {...rest}>{value}</textarea
+  >
+</div>

@@ -1,0 +1,140 @@
+---
+// Pattern
+import PatternLine from "@/components/ui/patternLine.astro";
+
+// Components
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import CardBidangKeahlian from "@/components/card/cardBidangKeahlian.astro";
+
+// Images
+import stemImg from "@/assets/image/homepage/setm.webp";
+import roboticsImg from "@/assets/image/homepage/robotics.webp";
+import codingImg from "@/assets/image/homepage/coding.webp";
+import entrepreneurshipImg from "@/assets/image/homepage/entepreneurship.webp";
+
+const fields = [
+  {
+    title: "STEM Research",
+    image: stemImg,
+    alt: "STEM Research Bidang Keahlian",
+  },
+  {
+    title: "Robotics & IoT",
+    image: roboticsImg,
+    alt: "Robotics & IoT Bidang Keahlian",
+  },
+  {
+    title: "Coding & AI",
+    image: codingImg,
+    alt: "Coding & AI Bidang Keahlian",
+  },
+  {
+    title: "Entrepreneurship",
+    image: entrepreneurshipImg,
+    alt: "Entrepreneurship Bidang Keahlian",
+  },
+];
+---
+
+<section
+  id="bidang-keahlian"
+  class="bg-violet-normal relative flex w-full flex-col justify-center overflow-hidden py-[60px] text-white lg:py-[100px]"
+  aria-label="Bidang Keahlian Mentors"
+  data-navbar="violet"
+>
+  <!-- Decorative Pattern SVG - Top Right -->
+  <PatternLine
+    class="pointer-events-none absolute z-0 select-none top-0 -right-12 md:-right-[80px] w-[240px] h-[262.14px] md:w-[477px] md:h-[521px] block"
+    color="#6F1DD1"
+  />
+
+  <!-- Main Content Container -->
+  <div
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
+  >
+    <!-- Top Row: Badge (Left) & Heading (Right) -->
+    <div
+      class="mb-10 flex w-full flex-col items-start justify-between gap-6 lg:mb-14 lg:flex-row lg:gap-12"
+    >
+      <!-- Badge Label (Left) -->
+      <SectionTitle
+        id="bidang-keahlian-badge"
+        variant="dark"
+        title="Bidang Keahlian"
+        class="mb-2 flex-shrink-0 lg:mb-4"
+      />
+
+      <!-- Heading (Right / Main) -->
+      <div class="w-full max-w-[840px] flex-1 lg:ml-auto">
+        <h2
+          id="bidang-keahlian-heading"
+          class="font-momo mb-0 w-full text-left text-[28px] leading-[1.15] font-bold tracking-tight text-white sm:text-[36px] md:text-[44px] lg:text-[54px]"
+        >
+          Beragam Bidang Keahlian untuk<br class="hidden sm:block" />
+          Mendukung Setiap Minat dan Tujuan<br class="hidden sm:block" />
+          <span
+            class="font-caveat mt-1 inline-block align-baseline text-[38px] leading-none font-semibold text-white italic sm:mt-2 sm:text-[48px] md:text-[58px] lg:text-[68px]"
+          >
+            Belajar.
+          </span>
+        </h2>
+      </div>
+    </div>
+
+    <!-- Grid Cards (4 Columns Desktop, 2 Columns Mobile/Tablet) -->
+    <div
+      id="bidang-keahlian-grid"
+      class="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6"
+    >
+      {
+        fields.map((item) => (
+          <CardBidangKeahlian title={item.title} image={item.image} alt={item.alt} />
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Entrance Animation with GSAP -->
+  <script>
+    import { gsap } from "gsap";
+
+    const section = document.querySelector("#bidang-keahlian");
+    if (section) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      tl.from("#bidang-keahlian-badge", {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      })
+        .from(
+          "#bidang-keahlian-heading",
+          {
+            y: 35,
+            opacity: 0,
+            duration: 0.75,
+            ease: "power3.out",
+          },
+          "-=0.3"
+        )
+        .from(
+          "#bidang-keahlian-grid > div",
+          {
+            y: 40,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.12,
+            ease: "power2.out",
+          },
+          "-=0.4"
+        );
+    }
+  </script>
+</section>

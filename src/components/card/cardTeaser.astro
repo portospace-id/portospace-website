@@ -1,0 +1,64 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: ImageMetadata | string;
+  imageSrc?: string;
+  imageAlt?: string;
+  bgColor?: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  title,
+  description,
+  image,
+  imageSrc,
+  imageAlt = title,
+  bgColor = "bg-white",
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const cardImage = image || imageSrc;
+---
+
+<div
+  class:list={[
+    "teaser-card-item flex min-h-[360px] w-full max-w-[410px] flex-col items-start justify-between gap-[16px] rounded-[4px] p-[14px] sm:min-h-[380px] sm:p-[16px] lg:h-[400px] lg:w-[410px]",
+    bgColor,
+    className,
+  ]}
+  {...rest}
+>
+  <!-- Content: title + description -->
+  <div class="flex w-full flex-col items-start gap-2">
+    <h3
+      class="font-jakarta text-left text-[20px] leading-[130%] font-bold text-[#161616] sm:text-[22px]"
+    >
+      {title}
+    </h3>
+    <p
+      class="font-jakarta text-left text-[13px] leading-[140%] font-normal text-[#161616]/90 sm:text-[14px]"
+    >
+      {description}
+    </p>
+  </div>
+
+  <!-- Image / Foto -->
+  <div
+    class="h-[220px] w-full flex-shrink-0 overflow-hidden rounded-[4px] bg-black/10 sm:h-[235px]"
+  >
+    {
+      cardImage && typeof cardImage === "object" ? (
+        <Image src={cardImage} alt={imageAlt} class="h-full w-full object-cover" />
+      ) : cardImage && typeof cardImage === "string" ? (
+        <img src={cardImage} alt={imageAlt} class="h-full w-full object-cover" loading="lazy" />
+      ) : null
+    }
+  </div>
+</div>

@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  /** Title of the expertise field */
+  title: string;
+  /** Image metadata or URL */
+  image: ImageMetadata;
+  /** Image alt text */
+  alt?: string;
+  /** Additional CSS class */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { title, image, alt = title, class: className = "", ...rest } = Astro.props;
+---
+
+<div class:list={["group flex cursor-pointer flex-col", className]} {...rest}>
+  <!-- Image Container with 4px border radius per radius.md -->
+  <div class="relative aspect-[4/5] w-full overflow-hidden rounded-[4px] bg-black/20">
+    <Image
+      src={image}
+      alt={alt}
+      class="pointer-events-none h-full w-full object-cover object-center transition-transform duration-500 ease-out select-none group-hover:scale-105"
+    />
+  </div>
+  <!-- Card Title Label -->
+  <h3
+    class="font-jakarta group-hover:text-citrus-normal mt-3 text-base font-semibold text-white transition-colors md:text-lg"
+  >
+    {title}
+  </h3>
+</div>

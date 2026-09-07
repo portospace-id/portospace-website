@@ -1,0 +1,165 @@
+---
+import type { ImageMetadata } from "astro";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import defaultHeroBg from "@/assets/image/pricing/hero.png";
+
+interface Props {
+  /** Label tag badge on the left side (default: "Plans & Pricing") */
+  badge?: string;
+  /** Whether to show pattern icon next to badge text (default: false for text-only) */
+  showBadgeIcon?: boolean;
+  /** Main title text line */
+  titleLine?: string;
+  /** Highlight cursive text with Caveat font (default: "Belajarmu") */
+  titleHighlight?: string;
+  /** Optional title text after highlight */
+  titlePost?: string;
+  /** Description body text */
+  description?: string;
+  /** Hero background image (url string or ImageMetadata) */
+  bgImage?: string | ImageMetadata;
+  /** Alt description for background image */
+  bgAlt?: string;
+  /** Additional CSS class */
+  class?: string;
+}
+
+const {
+  badge = "Plans & Pricing",
+  showBadgeIcon = false,
+  titleLine = "Pilih Paket Pendampingan yang Sesuai dengan Tujuan dan Perjalanan",
+  titleHighlight = "Belajarmu",
+  titlePost = "",
+  description = "Setiap paket dirancang untuk memberikan pengalaman belajar yang berbeda sesuai kebutuhan, target, dan tingkat pendampingan yang kamu inginkan.",
+  bgImage = defaultHeroBg,
+  bgAlt = "PortoSpace Plans & Pricing Hero",
+  class: className = "",
+} = Astro.props;
+
+const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
+---
+
+<section
+  id="hero"
+  class:list={["relative flex min-h-svh w-full flex-col justify-end overflow-hidden", className]}
+  aria-label="Plans and Pricing Hero Section"
+  data-navbar="transparent"
+>
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src={bgUrl}
+      alt={bgAlt}
+      class="h-full w-full object-cover object-center"
+      fetchpriority="high"
+    />
+  </div>
+
+  <!-- Dark Overlay -->
+  <div class="pointer-events-none absolute inset-0 z-[1] bg-black/45" aria-hidden="true"></div>
+
+  <!-- Main Hero Content -->
+  <div
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] pb-8 sm:px-[24px] md:px-[28px] md:pb-12 lg:px-[32px] lg:pb-16 xl:max-w-none xl:px-[32px]"
+  >
+    <div class="flex w-full flex-col items-start justify-between gap-6 lg:flex-row lg:gap-12">
+      <!-- Badge Label (Left) -->
+      {
+        badge && (
+          <SectionTitle
+            id="hero-badge"
+            variant="dark"
+            title={badge}
+            showIcon={showBadgeIcon}
+            class="mb-2 flex-shrink-0 lg:mb-4"
+          />
+        )
+      }
+
+      <!-- Heading & Description (Unified Single Container) -->
+      <div
+        class="flex w-full max-w-[920px] flex-col items-start gap-3 text-left sm:gap-4 lg:ml-auto lg:w-auto"
+      >
+        <h1
+          id="hero-heading"
+          class="font-momo mb-0 w-full max-w-[1000px] text-left text-[28px] leading-[1.15] font-bold tracking-tight text-white sm:text-[36px] md:text-[44px] lg:text-[54px]"
+        >
+          Pilih Paket Pendampingan yang
+          <br class="hidden sm:block" />
+          Sesuai dengan Tujuan dan
+          <br class="hidden sm:block" />
+          <span class="inline-block whitespace-nowrap">
+            Perjalanan{" "}
+            {
+              titleHighlight && (
+                <span class="font-caveat align-baseline text-[38px] leading-none font-semibold text-white italic sm:text-[48px] md:text-[58px] lg:text-[68px]">
+                  {titleHighlight}
+                </span>
+              )
+            }
+          </span>
+          {titlePost && ` ${titlePost}`}
+        </h1>
+
+        {
+          description && (
+            <p
+              id="hero-desc"
+              class="font-jakarta max-w-[680px] text-left text-sm leading-relaxed font-normal text-white/90 md:text-base"
+            >
+              {description}
+            </p>
+          )
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- GSAP Entrance Animation -->
+  <script>
+    import { gsap } from "gsap";
+
+    const initHeroAnimation = () => {
+      const hero = document.querySelector("#hero");
+      if (!hero) return;
+
+      const tl = gsap.timeline({ delay: 0.2 });
+
+      tl.from("#hero-badge", {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        clearProps: "all",
+      })
+        .from(
+          "#hero-heading",
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.7,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          "-=0.3"
+        )
+        .from(
+          "#hero-desc",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            clearProps: "all",
+          },
+          "-=0.4"
+        );
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initHeroAnimation);
+    } else {
+      initHeroAnimation();
+    }
+  </script>
+</section>

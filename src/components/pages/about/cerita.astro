@@ -1,0 +1,126 @@
+---
+import { Image } from "astro:assets";
+import patternLine from "@/assets/pattern/pattern_line.svg";
+import ceritaImg from "@/assets/image/about/cerita.png";
+
+interface Props {
+  /** Additional CSS class for section */
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+const descriptionText =
+  "Kami melihat banyak pelajar yang memiliki semangat belajar tinggi, tetapi masih kesulitan menemukan tempat untuk mengembangkan kemampuan, mencoba proyek nyata, dan mendapatkan bimbingan yang tepat. Dari situlah PortoSpace lahir, sebagai ruang belajar yang menghubungkan ilmu, praktik, dan pengalaman agar setiap pelajar bisa berkembang sesuai potensinya.";
+---
+
+<section
+  id="cerita"
+  class:list={[
+    "bg-violet-normal relative w-full overflow-hidden py-16 text-white sm:py-20 md:py-24 lg:py-32",
+    className,
+  ]}
+  aria-label="Cerita PortoSpace Section"
+>
+  <!-- Background Pattern Line Overlay (Top Right) -->
+  <div
+    class="pointer-events-none absolute -top-[40px] -right-[40px] z-0 h-auto w-[380px] opacity-60 select-none sm:-top-[60px] sm:-right-[60px] sm:w-[460px] md:-top-[80px] md:-right-[80px] md:w-[540px] lg:w-[600px]"
+  >
+    <Image
+      src={patternLine}
+      alt=""
+      width={477}
+      height={521}
+      class="pointer-events-none h-auto w-full object-contain"
+      aria-hidden="true"
+    />
+  </div>
+
+  <!-- Main Content Container -->
+  <div
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
+  >
+    <!-- Section Title Heading -->
+    <h2
+      id="cerita-heading"
+      class="font-momo mb-10 max-w-[780px] text-[28px] leading-[1.15] font-bold tracking-tight text-white sm:text-[36px] md:mb-14 md:text-[44px] lg:text-[50px]"
+    >
+      Semua Berawal dari Keinginan Membuat Belajar Menjadi Lebih <span
+        class="font-caveat mt-1 block align-baseline text-[36px] leading-none font-semibold text-white italic sm:mt-0 sm:inline sm:text-[46px] md:text-[56px] lg:text-[64px]"
+        >Bermakna</span
+      >
+    </h2>
+
+    <!-- Content Container (Photo + Description with 136px gap) -->
+    <div class="flex flex-col items-end justify-between gap-8 lg:flex-row lg:gap-[136px]">
+      <!-- Left Column: Story Image (Width: 562px) -->
+      <div id="cerita-image" class="w-full flex-shrink-0 lg:w-[562px]">
+        <div
+          class="h-[400px] w-full overflow-hidden rounded-[4px] shadow-2xl sm:h-[520px] lg:h-[660px]"
+        >
+          <Image
+            src={ceritaImg}
+            alt="Kisah PortoSpace"
+            width={562}
+            height={660}
+            class="h-full w-full rounded-[4px] object-cover object-center"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+
+      <!-- Right Column: Story Description (Full Width) -->
+      <div id="cerita-desc" class="flex w-full flex-1 flex-col justify-end">
+        <p
+          class="font-jakarta w-full text-sm leading-relaxed font-normal text-white/95 sm:text-base md:text-lg"
+        >
+          {descriptionText}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const section = document.querySelector("#cerita");
+    if (section) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+        },
+      });
+
+      tl.from("#cerita-heading", {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+      })
+        .from(
+          "#cerita-image",
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+          },
+          "-=0.4"
+        )
+        .from(
+          "#cerita-desc",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+          },
+          "-=0.4"
+        );
+    }
+  </script>
+</section>

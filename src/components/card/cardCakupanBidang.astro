@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  /** Field title (e.g. Biology, Chemistry, Physics, Mathematics) */
+  title: string;
+  /** Image source (ImageMetadata or string path) */
+  image: ImageMetadata | string;
+  /** Image alt description */
+  alt?: string;
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const { title, image, alt = title, class: className = "" } = Astro.props;
+---
+
+<div
+  class:list={[
+    "card-cakupan group relative h-[460px] w-[400px] flex-shrink-0 cursor-pointer snap-start overflow-hidden rounded-sm border border-white/10 shadow-sm transition-all duration-300 hover:shadow-lg",
+    className,
+  ]}
+>
+  <!-- Background Image -->
+  {
+    typeof image === "string" ? (
+      <img
+        src={image}
+        alt={alt}
+        width={400}
+        height={460}
+        class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+        loading="lazy"
+      />
+    ) : (
+      <Image
+        src={image}
+        alt={alt}
+        width={400}
+        height={460}
+        class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+        loading="lazy"
+      />
+    )
+  }
+
+  <!-- Dark Gradient Overlay for Text Readability -->
+  <div
+    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300 group-hover:from-black/85"
+    aria-hidden="true"
+  >
+  </div>
+
+  <!-- Bottom Left Label -->
+  <div class="absolute bottom-0 left-0 z-10 p-6 sm:p-8">
+    <h3
+      class="font-jakarta text-xl leading-snug font-semibold tracking-tight text-white sm:text-[22px] md:text-2xl"
+    >
+      {title}
+    </h3>
+  </div>
+</div>

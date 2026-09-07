@@ -1,0 +1,182 @@
+---
+import type { ImageMetadata } from "astro";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+
+interface Props {
+  /** Label tag badge on the left side (default: "FAQ") */
+  badge?: string;
+  /** Whether to show pattern icon next to badge text (default: false for text-only) */
+  showBadgeIcon?: boolean;
+  /** Title first line prefix (default: "Punya Pertanyaan? Kami Sudah") */
+  titleLine1?: string;
+  /** Title second line prefix (default: "Menyiapkan Jawabannya") */
+  titleLine2?: string;
+  /** Highlight cursive text with Caveat font (default: "untukmu.") */
+  titleHighlight?: string;
+  /** Optional title text after highlight */
+  titlePost?: string;
+  /** Description body text */
+  description?: string;
+  /** Hero background image (url string or ImageMetadata) */
+  bgImage?: string | ImageMetadata;
+  /** Alt description for background image */
+  bgAlt?: string;
+  /** Additional CSS class */
+  class?: string;
+}
+
+const {
+  badge = "FAQ",
+  showBadgeIcon = false,
+  titleLine1 = "Punya Pertanyaan? Kami Sudah",
+  titleLine2 = "Menyiapkan Jawabannya",
+  titleHighlight = "untukmu.",
+  titlePost = "",
+  description = "Temukan jawaban atas berbagai pertanyaan seputar program, mentor, paket, hingga proses belajar di PortoSpace.",
+  bgImage = "/collage_student.webp",
+  bgAlt = "Students collaborating at PortoSpace",
+  class: className = "",
+} = Astro.props;
+
+const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
+---
+
+<section
+  id="hero"
+  class:list={["relative flex min-h-svh w-full flex-col justify-end overflow-hidden pt-28 pb-8 sm:pb-12 md:pb-16 lg:pb-20", className]}
+  aria-label="FAQ Hero Section"
+  data-navbar="transparent"
+>
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src={bgUrl}
+      alt={bgAlt}
+      class="h-full w-full object-cover object-center"
+      fetchpriority="high"
+    />
+  </div>
+
+  <!-- Dark Overlay -->
+  <div class="pointer-events-none absolute inset-0 z-[1] bg-black/45" aria-hidden="true"></div>
+
+  <!-- Main Hero Content -->
+  <div
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] pb-8 sm:px-[24px] md:px-[28px] md:pb-12 lg:px-[32px] lg:pb-16 xl:max-w-none xl:px-[32px]"
+  >
+    <div
+      class="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-start lg:gap-12"
+    >
+      <!-- Badge Label (Left) -->
+      {
+        badge && (
+          <SectionTitle
+            id="faq-hero-badge"
+            variant="dark"
+            title={badge}
+            showIcon={showBadgeIcon}
+            class="mb-2 flex-shrink-0 lg:mb-4"
+          />
+        )
+      }
+
+      <!-- Heading & Description (Right / Main) -->
+      <div class="flex max-w-[860px] flex-1 flex-col gap-[14px] lg:ml-auto">
+        <h1
+          id="faq-hero-heading"
+          class="font-momo mb-0 leading-[1.15] font-bold tracking-tight text-white"
+        >
+          {
+            titleLine1 && (
+              <span class="block text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] xl:text-[52px]">
+                {titleLine1}
+              </span>
+            )
+          }
+          <span class="block mt-1 sm:mt-0 text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] xl:text-[52px]">
+            {titleLine2 && `${titleLine2} `}
+            {
+              titleHighlight && (
+                <span class="font-caveat inline-block align-baseline text-[38px] leading-none font-semibold text-white italic sm:text-[48px] md:text-[58px] lg:text-[68px]">
+                  {titleHighlight}
+                </span>
+              )
+            }
+            {titlePost && ` ${titlePost}`}
+          </span>
+        </h1>
+
+        {
+          description && (
+            <p
+              id="faq-hero-desc"
+              class="font-jakarta max-w-[680px] text-sm leading-relaxed font-normal text-white/90 md:text-base"
+            >
+              {description}
+            </p>
+          )
+        }
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { gsap } from "gsap";
+
+    function initFaqHeroAnimations() {
+      const badge = document.querySelector("#faq-hero-badge");
+      const heading = document.querySelector("#faq-hero-heading");
+      const desc = document.querySelector("#faq-hero-desc");
+
+      if (!heading && !badge) return;
+
+      const tl = gsap.timeline({ delay: 0.1 });
+
+      if (badge) {
+        tl.from(badge, {
+          y: 20,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.out",
+          clearProps: "transform,opacity",
+        });
+      }
+
+      if (heading) {
+        tl.from(
+          heading,
+          {
+            y: 35,
+            opacity: 0,
+            duration: 0.75,
+            ease: "power3.out",
+            clearProps: "transform,opacity",
+          },
+          "-=0.3"
+        );
+      }
+
+      if (desc) {
+        tl.from(
+          desc,
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            clearProps: "transform,opacity",
+          },
+          "-=0.4"
+        );
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initFaqHeroAnimations);
+    } else {
+      initFaqHeroAnimations();
+    }
+
+    document.addEventListener("astro:page-load", initFaqHeroAnimations);
+  </script>
+</section>

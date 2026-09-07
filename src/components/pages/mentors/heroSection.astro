@@ -1,0 +1,147 @@
+---
+import type { ImageMetadata } from "astro";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import defaultHeroBg from "@/assets/image/mentors/hero.png";
+
+interface Props {
+  /** Label tag badge on the left side (default: "Mentors") */
+  badge?: string;
+  /** Whether to show pattern icon next to badge text (default: false for text-only) */
+  showBadgeIcon?: boolean;
+  /** Main title text line (default: "Setiap Mimpi Besar Berawal dari Seseorang yang Percaya pada") */
+  titleLine?: string;
+  /** Highlight cursive text with Caveat font (default: "Potensimu.") */
+  titleHighlight?: string;
+  /** Optional title text after highlight */
+  titlePost?: string;
+  /** Description body text */
+  description?: string;
+  /** Hero background image (url string or ImageMetadata) */
+  bgImage?: string | ImageMetadata;
+  /** Alt description for background image */
+  bgAlt?: string;
+  /** Additional CSS class */
+  class?: string;
+}
+
+const {
+  badge = "Mentors",
+  showBadgeIcon = false,
+  titleLine = "Setiap Mimpi Besar Berawal dari Seseorang yang Percaya pada",
+  titleHighlight = "Potensimu.",
+  titlePost = "",
+  description = "Bersama mentor yang tepat, setiap ide mendapatkan arahan, setiap tantangan menemukan solusi, dan setiap langkah menjadi lebih berarti.",
+  bgImage = defaultHeroBg,
+  bgAlt = "PortoSpace Mentors Hero",
+  class: className = "",
+} = Astro.props;
+
+const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
+---
+
+<section
+  id="hero"
+  class:list={["relative flex min-h-svh w-full flex-col justify-end overflow-hidden", className]}
+  aria-label="Mentors Hero Section"
+  data-navbar="transparent"
+>
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src={bgUrl}
+      alt={bgAlt}
+      class="h-full w-full object-cover object-center"
+      fetchpriority="high"
+    />
+  </div>
+
+  <!-- Dark Overlay -->
+  <div class="pointer-events-none absolute inset-0 z-[1] bg-black/40" aria-hidden="true"></div>
+
+  <!-- Main Hero Content -->
+  <div
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] pb-8 sm:px-[24px] md:px-[28px] md:pb-12 lg:px-[32px] lg:pb-16 xl:max-w-none xl:px-[32px]"
+  >
+    <div class="flex w-full flex-col items-start justify-between gap-6 lg:flex-row lg:gap-12">
+      <!-- Badge Label (Left) -->
+      {
+        badge && (
+          <SectionTitle
+            id="hero-badge"
+            variant="dark"
+            title={badge}
+            showIcon={showBadgeIcon}
+            class="mb-2 flex-shrink-0 lg:mb-4"
+          />
+        )
+      }
+
+      <!-- Heading & Description (Unified Single Container) -->
+      <div
+        class="flex w-full max-w-[800px] flex-1 flex-col items-start gap-[12px] text-left lg:ml-auto"
+      >
+        <h1
+          id="hero-heading"
+          class="font-momo mb-0 w-full text-left text-[28px] leading-[1.15] font-bold tracking-tight text-white sm:text-[36px] md:text-[44px] lg:text-[54px]"
+        >
+          {titleLine && `${titleLine} `}
+          {
+            titleHighlight && (
+              <span class="font-caveat mt-1 block align-baseline text-[38px] leading-none font-semibold text-white italic sm:mt-2 sm:text-[48px] md:text-[58px] lg:text-[68px]">
+                {titleHighlight}
+              </span>
+            )
+          }
+          {titlePost && ` ${titlePost}`}
+        </h1>
+
+        {
+          description && (
+            <p
+              id="hero-desc"
+              class="font-jakarta text-left text-sm leading-relaxed font-normal text-white md:text-base"
+            >
+              Bersama mentor yang tepat, setiap ide mendapatkan arahan,
+              <br class="hidden sm:block" />
+              setiap tantangan menemukan solusi, dan setiap langkah menjadi lebih berarti.
+            </p>
+          )
+        }
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { gsap } from "gsap";
+
+    // Hero entrance animation timeline
+    const tl = gsap.timeline({ delay: 0.2 });
+
+    tl.from("#hero-badge", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power2.out",
+    })
+      .from(
+        "#hero-heading",
+        {
+          y: 35,
+          opacity: 0,
+          duration: 0.75,
+          ease: "power3.out",
+        },
+        "-=0.3"
+      )
+      .from(
+        "#hero-desc",
+        {
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.4"
+      );
+  </script>
+</section>

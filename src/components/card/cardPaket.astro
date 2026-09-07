@@ -1,0 +1,104 @@
+---
+import Button from "@/components/ui/button.astro";
+
+interface Props {
+  /** Package name (e.g. "PRO", "PRO MAX", "LITE") */
+  title: string;
+  /** Short description of the package */
+  description: string;
+  /** List of package features */
+  features: string[];
+  /** Button label */
+  buttonText: string;
+  /** Button link URL */
+  href?: string;
+  /** Whether this package is highlighted / featured */
+  featured?: boolean;
+  /** Custom extra CSS classes */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  title,
+  description,
+  features,
+  buttonText,
+  href = "#",
+  featured = false,
+  class: className = "",
+  ...rest
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "paket-card bg-violet-normal relative flex w-full flex-col justify-between rounded-sm text-white transition-all duration-300",
+    featured
+      ? "h-full border-2 border-white/20 p-6 lg:z-20 lg:scale-[1.02] lg:p-8 xl:scale-105"
+      : "h-auto p-6 lg:z-10 lg:h-[90%] lg:self-center lg:p-7",
+    className,
+  ]}
+  {...rest}
+>
+  <!-- Card Header & Content -->
+  <div class="mb-8 flex w-full flex-col gap-6">
+    <!-- Title & Description -->
+    <div class="flex flex-col gap-2">
+      <h3
+        class:list={[
+          "font-momo font-bold tracking-tight text-white uppercase",
+          featured
+            ? "text-[32px] leading-tight md:text-[36px] lg:text-[40px]"
+            : "text-[28px] leading-tight md:text-[32px] lg:text-[36px]",
+        ]}
+      >
+        {title}
+      </h3>
+      <p class="font-jakarta text-xs leading-relaxed font-normal text-white/90 lg:text-sm">
+        {description}
+      </p>
+    </div>
+
+    <!-- Features List -->
+    <ul class="mt-2 flex w-full flex-col gap-3">
+      {
+        features.map((item) => (
+          <li class="font-jakarta flex items-start gap-3 text-xs leading-snug font-normal text-white/95 lg:text-sm">
+            <svg
+              class="mt-0.5 h-5 w-5 flex-shrink-0 text-white"
+              viewBox="0 0 20 20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5" />
+              <path
+                d="M6.5 10L9 12.5L13.5 7.5"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span>{item}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <!-- Bottom CTA Button -->
+  <div class="mt-auto w-full pt-4">
+    <Button
+      href={href}
+      class:list={[
+        "w-full justify-center !bg-white text-center font-bold !text-[#7b20e8] !shadow-none hover:-translate-y-0.5 hover:!bg-white/90 hover:!shadow-none",
+        featured ? "px-6 py-3.5 text-base" : "px-6 py-3 text-sm",
+      ]}
+    >
+      {buttonText}
+    </Button>
+  </div>
+</div>

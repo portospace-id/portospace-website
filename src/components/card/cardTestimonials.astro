@@ -1,0 +1,101 @@
+---
+import { Image } from "astro:assets";
+interface Props {
+  variant: "photo" | "quote";
+  name: string;
+  role: string;
+  quote?: string;
+  image?: ImageMetadata;
+  imageSrc?: string;
+  imageAlt?: string;
+  placeholderGradient?: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  variant,
+  name,
+  role,
+  quote = "",
+  image,
+  imageSrc = "",
+  imageAlt = "",
+  placeholderGradient = "linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%)",
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const isPhoto = variant === "photo";
+---
+
+{
+  isPhoto && (
+    <div
+      class:list={[
+        "testimonial-card relative flex-shrink-0 overflow-hidden rounded-sm",
+        "h-[290px] w-[240px] md:h-[320px] md:w-[280px] lg:h-[370px] lg:w-[330px]",
+        className,
+      ]}
+      {...rest}
+    >
+      <div
+        class="absolute inset-0"
+        style={`background: ${placeholderGradient};`}
+        aria-hidden="true"
+      />
+
+      {image ? (
+        <Image
+          src={image}
+          alt={imageAlt || name}
+          class="absolute inset-0 h-full w-full object-cover object-top"
+        />
+      ) : imageSrc ? (
+        <img
+          src={imageSrc}
+          alt={imageAlt || name}
+          class="absolute inset-0 h-full w-full object-cover object-top"
+          loading="lazy"
+        />
+      ) : null}
+
+      <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+
+      <div class="absolute right-0 bottom-0 left-0 flex flex-col items-start p-[20px]">
+        <p class="font-jakarta text-xl leading-[150%] font-semibold text-white">{name}</p>
+        <p class="font-jakarta text-sm leading-[150%] font-normal text-white/80">{role}</p>
+      </div>
+    </div>
+  )
+}
+
+{
+  !isPhoto && (
+    <div
+      class:list={[
+        "testimonial-card bg-violet-normal flex-shrink-0 rounded-sm",
+        "h-[290px] w-[240px] p-[14px] md:h-[320px] md:w-[280px] md:p-[16px] lg:h-[370px] lg:w-[330px] lg:p-[20px]",
+        "flex flex-col items-start justify-end gap-[10px]",
+        className,
+      ]}
+      {...rest}
+    >
+      {/* container-content */}
+      <div class="flex w-full flex-col items-start gap-[12px]">
+        {/* deskripsi */}
+        <div class="flex w-full flex-col items-start gap-[12px]">
+          <blockquote class="font-jakarta text-sm leading-[150%] font-normal text-white">
+            {quote}
+          </blockquote>
+        </div>
+
+        {/* name & role */}
+        <div class="flex w-full flex-col items-start">
+          <p class="font-jakarta text-base leading-[150%] font-semibold text-white">{name}</p>
+          <p class="font-jakarta text-sm leading-[150%] font-normal text-white/70">{role}</p>
+        </div>
+      </div>
+    </div>
+  )
+}

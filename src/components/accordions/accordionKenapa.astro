@@ -1,0 +1,55 @@
+---
+import { ChevronDown } from "@lucide/astro";
+
+export interface ProgramItem {
+  id: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  programs?: ProgramItem[];
+  id?: string;
+  title?: string;
+  description?: string;
+  index?: number;
+  isOpen?: boolean;
+}
+
+const { programs, id, title, description, index = 0, isOpen = false } = Astro.props;
+
+const items: ProgramItem[] =
+  programs || (id && title && description ? [{ id, title, description }] : []);
+---
+
+<div id="kenapa-accordion" class="flex w-full max-w-[480px] flex-col">
+  {
+    items.map((p, i) => (
+      <div
+        class="kenapa-accordion-item overflow-hidden border-b border-[#E0E0E0]"
+        data-index={programs ? i : index}
+      >
+        <button
+          class="kenapa-accordion-trigger group flex w-full cursor-pointer items-center justify-between gap-4 py-4 text-left"
+          aria-expanded={(programs ? i === 0 : isOpen) ? "true" : "false"}
+          aria-controls={`accordion-content-${p.id}`}
+          data-index={programs ? i : index}
+        >
+          <span class="font-jakarta group-hover:text-violet-normal text-base leading-[150%] font-semibold text-[#111] transition-colors duration-200">
+            {p.title}
+          </span>
+          <ChevronDown class="kenapa-accordion-icon h-4 w-4 flex-shrink-0 text-[#111] transition-transform duration-300" />
+        </button>
+        <div
+          id={`accordion-content-${p.id}`}
+          class="kenapa-accordion-content"
+          style={(programs ? i === 0 : isOpen) ? "" : "display: none;"}
+        >
+          <p class="font-jakarta pb-4 text-[16px] leading-[160%] font-normal text-[#666]">
+            {p.description}
+          </p>
+        </div>
+      </div>
+    ))
+  }
+</div>

@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  /** Mentor name */
+  name: string;
+  /** Field / Expertise */
+  field: string;
+  /** University / Institution */
+  university: string;
+  /** Mentor photo image */
+  image: ImageMetadata;
+  /** Image alt text */
+  alt?: string;
+  /** Extra CSS classes */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { name, field, university, image, alt = name, class: className = "", ...rest } = Astro.props;
+---
+
+<div
+  class:list={[
+    "mentor-card group relative h-[370px] w-[280px] flex-shrink-0 cursor-pointer overflow-hidden rounded-sm bg-[#dce3de] select-none sm:h-[420px] sm:w-[320px] md:h-[460px] md:w-[360px] lg:h-[500px] lg:w-[400px]",
+    className,
+  ]}
+  {...rest}
+>
+  <!-- Mentor Photo -->
+  <Image
+    src={image}
+    alt={alt}
+    class="pointer-events-none h-full w-full object-cover object-top transition-transform duration-500 ease-out select-none group-hover:scale-105"
+  />
+
+  <!-- Bottom Info Box (Solid White Badge Overlay) -->
+  <div
+    class="pointer-events-none absolute right-3 bottom-3 left-3 z-10 flex flex-col items-start justify-center gap-1 rounded-sm bg-white p-4 lg:p-5"
+  >
+    <span class="font-jakarta text-xs font-medium tracking-tight text-[#4B5563] lg:text-sm">
+      {field}
+    </span>
+    <h3
+      class="font-momo text-xl leading-tight font-bold tracking-tight text-[#111827] lg:text-[24px]"
+    >
+      {name}
+    </h3>
+    <p class="font-jakarta text-sm leading-snug font-normal text-[#374151] lg:text-base">
+      {university}
+    </p>
+  </div>
+</div>

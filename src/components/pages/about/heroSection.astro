@@ -1,0 +1,170 @@
+---
+import type { ImageMetadata } from "astro";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import defaultHeroBg from "@/assets/image/about/hero.png";
+
+interface Props {
+  /** Label tag badge on the left side (default: "About Us") */
+  badge?: string;
+  /** Whether to show pattern icon next to badge text (default: false for text-only) */
+  showBadgeIcon?: boolean;
+  /** Title first line prefix (default: "Tempat Belajar, Berkarya, dan") */
+  titleLine1?: string;
+  /** Title second line prefix (default: "Bertumbuh") */
+  titleLine2?: string;
+  /** Highlight cursive text with Caveat font (default: "Bersama.") */
+  titleHighlight?: string;
+  /** Optional title text after highlight */
+  titlePost?: string;
+  /** Description body text */
+  description?: string;
+  /** Hero background image (url string or ImageMetadata) */
+  bgImage?: string | ImageMetadata;
+  /** Alt description for background image */
+  bgAlt?: string;
+  /** Toggle side and bottom indicator bars */
+  showControls?: boolean;
+  /** Additional CSS class */
+  class?: string;
+}
+
+const {
+  badge = "About Us",
+  showBadgeIcon = false,
+  titleLine1 = "Tempat Belajar, Berkarya, dan",
+  titleLine2 = "Bertumbuh",
+  titleHighlight = "Bersama.",
+  titlePost = "",
+  description = "PortoSpace hadir untuk membantu pelajar mengembangkan keterampilan di bidang STEM dan Entrepreneurship melalui pembelajaran yang seru, mentor berpengalaman, serta proyek nyata yang bisa menjadi bagian dari portofolio.",
+  bgImage = defaultHeroBg,
+  bgAlt = "PortoSpace About Us Hero",
+  showControls = true,
+  class: className = "",
+} = Astro.props;
+
+const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
+---
+
+<section
+  id="hero"
+  class:list={["relative flex min-h-svh w-full flex-col justify-end overflow-hidden", className]}
+  aria-label="Hero Section"
+  data-navbar="transparent"
+>
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src={bgUrl}
+      alt={bgAlt}
+      class="h-full w-full object-cover object-center"
+      fetchpriority="high"
+    />
+  </div>
+
+  <!-- Dark Overlay -->
+  <div class="pointer-events-none absolute inset-0 z-[1] bg-black/40" aria-hidden="true"></div>
+
+  <!-- Main Hero Content -->
+  <div
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] pb-8 sm:px-[24px] md:px-[28px] md:pb-12 lg:px-[32px] lg:pb-16 xl:max-w-none xl:px-[32px]"
+  >
+    <div
+      class="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-start lg:gap-12"
+    >
+      <!-- Badge Label (Left) -->
+      {
+        badge && (
+          <SectionTitle
+            id="hero-badge"
+            variant="dark"
+            title={badge}
+            showIcon={showBadgeIcon}
+            class="mb-2 flex-shrink-0 lg:mb-4"
+          />
+        )
+      }
+
+      <!-- Heading & Description (Right / Main) -->
+      <div class="flex max-w-[780px] flex-1 flex-col gap-[12px] lg:ml-auto">
+        <h1
+          id="hero-heading"
+          class="font-momo mb-0 leading-[1.15] font-bold tracking-tight text-white"
+        >
+          {
+            titleLine1 && (
+              <span class="block text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px]">
+                {titleLine1}
+              </span>
+            )
+          }
+          <span class="block text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px]">
+            {titleLine2 && `${titleLine2} `}
+            {
+              titleHighlight && (
+                <span class="font-caveat align-baseline text-[38px] leading-none font-semibold text-white italic sm:text-[48px] md:text-[58px] lg:text-[68px]">
+                  {titleHighlight}
+                </span>
+              )
+            }
+            {titlePost && ` ${titlePost}`}
+          </span>
+        </h1>
+
+        {
+          description && (
+            <p
+              id="hero-desc"
+              class="font-jakarta max-w-[660px] text-sm leading-relaxed font-normal text-white/90 md:text-base"
+            >
+              {description}
+            </p>
+          )
+        }
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { gsap } from "gsap";
+
+    // Hero entrance animation timeline
+    const tl = gsap.timeline({ delay: 0.2 });
+
+    tl.from("#hero-badge", {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power2.out",
+    })
+      .from(
+        "#hero-heading",
+        {
+          y: 35,
+          opacity: 0,
+          duration: 0.75,
+          ease: "power3.out",
+        },
+        "-=0.3"
+      )
+      .from(
+        "#hero-desc",
+        {
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.4"
+      )
+      .from(
+        "#hero-indicator",
+        {
+          opacity: 0,
+          scaleX: 0.5,
+          duration: 0.5,
+          ease: "power2.out",
+        },
+        "-=0.3"
+      );
+  </script>
+</section>

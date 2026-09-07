@@ -1,0 +1,118 @@
+---
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import CardProsesBimbingan from "@/components/card/cardProsesBimbingan.astro";
+
+import setmImg from "@/assets/image/homepage/setm.webp";
+import entrepreneurshipImg from "@/assets/image/homepage/entepreneurship.webp";
+import testimonial2Img from "@/assets/image/homepage/testimonial-2.webp";
+import testimonial3Img from "@/assets/image/homepage/testimonial-3.webp";
+
+// Steps Data for Right Column Cards
+const bimbinganSteps = [
+  {
+    id: "step-1",
+    title: "Temukan Tujuan & Mentor yang Tepat",
+    description:
+      "Setiap perjalanan dimulai dengan memahami tujuanmu. Bersama mentor, kami menyusun roadmap belajar yang sesuai dengan minat, target, dan potensi terbaikmu.",
+    image: testimonial2Img,
+    features: [
+      "Bimbingan mentor dari akademisi & praktisi industri",
+      "Maker's Handbook (Digital)",
+      "Konsultasi melalui Chat",
+      "Laporan perkembangan bulanan untuk orang tua",
+    ],
+  },
+  {
+    id: "step-2",
+    title: "Rancang & Eksekusi Proyek Nyata",
+    description:
+      "Kembangkan ide menjadi proyek konkrit berbasis penelitian, teknologi, atau bisnis dengan pendampingan intensif dari mentor berpengalaman.",
+    image: setmImg,
+    features: [
+      "Bimbingan mentor dari akademisi & praktisi industri",
+      "Maker's Handbook (Digital)",
+      "Konsultasi melalui Chat",
+      "Laporan perkembangan bulanan untuk orang tua",
+    ],
+  },
+  {
+    id: "step-3",
+    title: "Raih Prestasi & Portofolio Unggulan",
+    description:
+      "Siapkan hasil karyamu untuk diikutsertakan dalam kompetisi nasional/internasional, publikasi jurnal, atau pendaftaran universitas impian.",
+    image: entrepreneurshipImg,
+    features: [
+      "Bimbingan mentor dari akademisi & praktisi industri",
+      "Maker's Handbook (Digital)",
+      "Konsultasi melalui Chat",
+      "Laporan perkembangan bulanan untuk orang tua",
+    ],
+  },
+];
+---
+
+<!-- Section Proses Bimbingan / Perjalanan Belajar -->
+<section
+  id="proses-bimbingan"
+  class="relative z-10 flex w-full flex-col items-center overflow-hidden bg-white py-[60px] lg:py-[100px]"
+  aria-label="Proses Bimbingan PortoSpace"
+  data-navbar="white"
+>
+  <div
+    class="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[40px] px-[20px] sm:px-[24px] md:px-[28px] lg:gap-[56px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
+  >
+    <!-- Header Section -->
+    <div class="flex max-w-[840px] flex-col items-center gap-4 text-center">
+      <!-- Section Title Badge (Light Variant for White Background) -->
+      <SectionTitle variant="light" title="Pilih Program Sesuai Kamu" />
+
+      <!-- Main Heading -->
+      <h2
+        class="font-momo text-[32px] leading-[110%] font-semibold tracking-[-1.08px] text-[#111111] md:text-[44px] lg:text-[54px]"
+      >
+        Perjalanan Belajarmu di <span
+          class="font-caveat text-[42px] leading-[80%] font-semibold not-italic tracking-[-2.56px] text-[#111111] md:text-[54px] lg:text-[64px]"
+          >PortoSpace</span
+        >
+      </h2>
+
+      <!-- Subtitle Description -->
+      <p
+        class="font-jakarta max-w-[620px] text-sm leading-[160%] font-normal text-gray-600 lg:text-base"
+      >
+        Kami mendampingi setiap langkahmu, mulai dari menemukan tujuan, membangun karya, hingga
+        meraih prestasi yang membuka lebih banyak peluang di masa depan.
+      </p>
+    </div>
+
+    <!-- Content Grid Container -->
+    <div class="grid w-full grid-cols-1 items-stretch gap-5 lg:grid-cols-12">
+      <!-- Left Column: Featured Large Card -->
+      <div class="flex lg:col-span-7 xl:col-span-8">
+        <CardProsesBimbingan
+          variant="featured"
+          title="Dari Belajar Menjadi Berkarya."
+          description="Dengan pendampingan mentor dan proyek nyata, kamu tidak hanya memperoleh pengetahuan, tetapi juga menghasilkan portofolio yang siap menjadi bekal untuk kompetisi, beasiswa, hingga jenjang pendidikan berikutnya."
+          image={testimonial3Img}
+          ctaText="Mulai Perjalananmu Sekarang!"
+          ctaHref="#konsultasi"
+        />
+      </div>
+
+      <!-- Right Column: 3 Stacked Cards -->
+      <div class="flex flex-col justify-between gap-5 lg:col-span-5 xl:col-span-4">
+        {
+          bimbinganSteps.map((step) => (
+            <CardProsesBimbingan
+              variant="step"
+              title={step.title}
+              description={step.description}
+              image={step.image}
+              features={step.features}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

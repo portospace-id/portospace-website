@@ -1,0 +1,187 @@
+---
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import ListMentorshipScope from "@/components/list/listMentorshipScope.astro";
+import pattern4 from "@/assets/pattern/pattern_4.svg";
+
+const programFeatures = [
+  {
+    number: "01",
+    title: "Kenali Tujuanmu",
+    description: "Memahami minat, bidang, dan target yang ingin dicapai.",
+  },
+  {
+    number: "02",
+    title: "Mentor yang Tepat",
+    description: "Memilih mentor berdasarkan keahlian dan pengalaman yang sesuai.",
+  },
+  {
+    number: "03",
+    title: "Mulai Pendampingan",
+    description: "Menjalani sesi mentoring 1-on-1 yang terarah dan personal.",
+  },
+  {
+    number: "04",
+    title: "Evaluasi Berkala",
+    description: "Memantau perkembangan untuk memastikan tujuan belajar tetap tercapai.",
+  },
+];
+---
+
+<section
+  id="fitur-programs"
+  class="relative z-10 flex w-full flex-col justify-center bg-white py-[60px] text-black lg:py-[80px]"
+  aria-label="Fitur Programs Section"
+  data-navbar="light"
+>
+  <!-- Decorative Pattern SVG - Top Right (Clipped horizontally) -->
+  <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+    <img
+      src={pattern4.src}
+      alt=""
+      class="absolute select-none"
+      style="width: 500px; height: 501.526px; position: absolute; right: -163px; top: -168px;"
+      aria-hidden="true"
+    />
+  </div>
+
+  <!-- Main Content Container -->
+  <div
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-[20px] sm:px-[24px] md:px-[28px] lg:gap-14 lg:px-[32px] xl:max-w-none xl:px-[32px]"
+  >
+    <!-- Header Content: Badge & Title (Left) + Description (Right) -->
+    <div class="flex w-full flex-col items-start justify-between gap-6 lg:flex-row lg:gap-12">
+      <!-- Left Column: Badge & Heading -->
+      <div class="flex w-full max-w-[720px] flex-1 flex-col items-start gap-4">
+        <SectionTitle
+          id="fitur-programs-badge"
+          variant="light"
+          title="Fitur Programs"
+          class="mb-2 flex-shrink-0 lg:mb-4"
+        />
+
+        <h2
+          id="fitur-programs-heading"
+          class="font-momo mb-0 w-full text-left text-[28px] leading-[1.15] font-bold tracking-tight text-black sm:text-[36px] md:text-[44px] lg:text-[54px]"
+        >
+          Karena Setiap Perjalanan<br class="hidden sm:block" />
+          Belajar Membutuhkan<br class="hidden sm:block" />
+          Mentor yang{" "}
+          <span
+            class="font-caveat inline-block align-baseline text-[38px] leading-none font-semibold text-black italic sm:text-[48px] md:text-[58px] lg:text-[68px]"
+          >
+            Tepat.
+          </span>
+        </h2>
+      </div>
+
+      <!-- Right Column: Description -->
+      <div class="w-full shrink-0 lg:ml-auto lg:w-[420px] lg:self-center">
+        <p
+          id="fitur-programs-desc"
+          class="font-jakarta text-sm leading-[160%] font-normal text-black/75 lg:text-base"
+        >
+          Kami mencocokkan setiap siswa dengan mentor yang sesuai berdasarkan bidang, tujuan, dan
+          kebutuhan belajarnya.
+        </p>
+      </div>
+    </div>
+
+    <!-- List Mentorship Scope Items (Stacking Cards Layout) -->
+    <div id="fitur-programs-list" class="relative flex w-full flex-col border-t border-gray-200">
+      {
+        programFeatures.map((item) => (
+          <ListMentorshipScope
+            number={item.number}
+            title={item.title}
+            description={item.description}
+          />
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Interactive & Animation Script -->
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initFiturPrograms = () => {
+      const section = document.querySelector("#fitur-programs");
+      if (!section) return;
+
+      const badge = document.querySelector("#fitur-programs-badge");
+      const heading = document.querySelector("#fitur-programs-heading");
+      const desc = document.querySelector("#fitur-programs-desc");
+      const listItems = document.querySelectorAll<HTMLElement>(
+        "#fitur-programs .list-mentorship-scope-item"
+      );
+
+      // Header Entrance Animation
+      gsap.from([badge, heading, desc].filter(Boolean), {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.15,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+
+      function setItemPurple(targetItem: HTMLElement) {
+        listItems.forEach((el) => {
+          if (el === targetItem) {
+            el.classList.add("bg-violet-normal", "text-white", "border-transparent");
+            el.classList.remove("bg-white", "text-[#161616]");
+            const p = el.querySelector("p");
+            if (p) {
+              p.classList.add("text-white/90");
+              p.classList.remove("text-gray-600");
+            }
+          } else {
+            resetItemWhite(el);
+          }
+        });
+      }
+
+      function resetItemWhite(item: HTMLElement) {
+        item.classList.remove("bg-violet-normal", "text-white", "border-transparent");
+        item.classList.add("bg-white", "text-[#161616]");
+        const p = item.querySelector("p");
+        if (p) {
+          p.classList.remove("text-white/90");
+          p.classList.add("text-gray-600");
+        }
+      }
+
+      // Assign Stacking Z-Index and Hover Effects
+      if (listItems.length > 0) {
+        listItems.forEach((item, index) => {
+          item.style.zIndex = `${index + 10}`;
+          resetItemWhite(item);
+
+          item.addEventListener("mouseenter", () => {
+            setItemPurple(item);
+          });
+
+          item.addEventListener("mouseleave", () => {
+            resetItemWhite(item);
+          });
+        });
+      }
+
+      setTimeout(() => ScrollTrigger.refresh(), 100);
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initFiturPrograms);
+    } else {
+      initFiturPrograms();
+    }
+  </script>
+</section>

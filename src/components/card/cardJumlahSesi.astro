@@ -1,0 +1,68 @@
+---
+import PatternLine from "@/components/ui/patternLine.astro";
+
+interface Props {
+  /** Package name (e.g. "Lite", "Pro", "Pro Max") */
+  package: string;
+  /** Duration (e.g. "2 bulan") */
+  duration: string;
+  /** Number of sessions (e.g. "8 Sesi") */
+  sessions: string;
+  /** Card description */
+  description: string;
+  /** Additional CSS class */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  package: packageName,
+  duration,
+  sessions,
+  description,
+  class: className = "",
+  ...rest
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "card-jumlah-sesi group relative flex h-[560px] w-full flex-col justify-between overflow-hidden rounded-sm bg-violet-100 p-6 text-[#111111] transition-all duration-300 select-none hover:-translate-y-1 sm:p-7 lg:p-8",
+    className,
+  ]}
+  {...rest}
+>
+  <!-- Background Decorative PatternLine SVG -->
+  <PatternLine
+    color="#ebdefc"
+    animate={false}
+    class="pointer-events-none absolute z-0 select-none"
+    style="position: absolute; width: 375px; height: 420px; right: -70px; top: -30px; display: block;"
+  />
+
+  <!-- Top Package Badge Title -->
+  <div class="relative z-10">
+    <span
+      class="font-momo text-lg font-semibold tracking-tight text-[#111111] sm:text-xl lg:text-2xl"
+    >
+      {packageName}
+    </span>
+  </div>
+
+  <!-- Bottom Details (Duration, Sessions, Description) -->
+  <div class="relative z-10 mt-auto flex flex-col items-start">
+    <span class="font-jakarta mb-1 text-sm font-medium text-gray-800 sm:text-base">
+      {duration}
+    </span>
+    <h3
+      class="font-momo mb-2 text-[32px] leading-tight font-bold tracking-tight text-[#111111] sm:text-[40px] lg:text-[48px]"
+    >
+      {sessions}
+    </h3>
+    <p
+      class="font-jakarta max-w-[320px] text-xs leading-relaxed font-normal text-gray-700 sm:text-sm"
+    >
+      {description}
+    </p>
+  </div>
+</div>

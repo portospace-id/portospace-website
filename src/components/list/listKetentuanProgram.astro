@@ -1,0 +1,50 @@
+---
+export interface Props {
+  /** Item number e.g. "01", "02" */
+  number: string;
+  /** Item title */
+  title: string;
+  /** Item description */
+  description: string;
+  /** Additional CSS classes */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { number, title, description, class: className = "", ...rest } = Astro.props;
+---
+
+<div
+  class:list={[
+    "list-ketentuan-item group flex w-full flex-col items-start justify-between gap-4 border-b border-violet-300 px-2 py-6 text-white transition-colors duration-300 select-none sm:px-4 sm:py-8 md:flex-row md:items-center md:gap-8 lg:gap-12 lg:py-9",
+    className,
+  ]}
+  {...rest}
+>
+  <!-- Column 1: Number (Left) -->
+  <div class="w-12 shrink-0 sm:w-16 md:w-20">
+    <span
+      class="font-momo text-[24px] leading-none font-bold text-white sm:text-[28px] md:text-[32px] lg:text-[36px]"
+    >
+      {number}
+    </span>
+  </div>
+
+  <!-- Column 2: Title (Center) -->
+  <div class="w-full px-0 text-left md:flex-1 md:px-4 md:text-center">
+    <h3
+      class="font-momo text-left text-[20px] leading-[120%] font-bold tracking-tight text-white sm:text-[24px] md:text-center md:text-[28px] lg:text-[32px]"
+    >
+      {title}
+    </h3>
+  </div>
+
+  <!-- Column 3: Description (Right) -->
+  <div class="w-full shrink-0 text-left md:w-[320px] lg:w-[420px]">
+    <p
+      class="font-jakarta m-0 text-xs leading-[160%] font-normal text-white/90 sm:text-sm md:text-base"
+    >
+      {description}
+    </p>
+  </div>
+</div>

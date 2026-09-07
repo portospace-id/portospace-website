@@ -1,0 +1,745 @@
+---
+import Button from "@/components/ui/button.astro";
+import { ArrowRight, AtSign, ChevronDown, Icon, Mail, Menu, MessageCircle, X } from "@lucide/astro";
+import type { IconNode } from "@lucide/astro";
+
+const instagramNode: IconNode = [
+  ["rect", { width: "20", height: "20", x: "2", y: "2", rx: "5", ry: "5" }],
+  ["path", { d: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" }],
+  ["line", { x1: "17.5", x2: "17.51", y1: "6.5", y2: "6.5" }],
+];
+
+const linkedinNode: IconNode = [
+  ["path", { d: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" }],
+  ["rect", { width: "4", height: "12", x: "2", y: "9" }],
+  ["circle", { cx: "4", cy: "4", r: "2" }],
+];
+
+interface NavChild {
+  label: string;
+  href: string;
+  color?: string;
+}
+
+interface NavLink {
+  label: string;
+  href: string;
+  children?: NavChild[];
+}
+
+const navLinks: NavLink[] = [
+  { label: "About Us", href: "/about" },
+  { label: "Maker's Academy", href: "/makers-academy" },
+  {
+    label: "Programs",
+    href: "/programs",
+    children: [
+      { label: "STEM Research", href: "/programs/stem-research", color: "#4dd3f2" },
+      { label: "Robotics & IOT", href: "/programs/robotics-iot", color: "#bfed45" },
+      { label: "Coding & AI", href: "/programs/coding-ai", color: "#000000" },
+      {
+        label: "Entrepreneurship / Business & Finance",
+        href: "/programs/entrepreneurship",
+        color: "#fe9b2a",
+      },
+    ],
+  },
+  { label: "How It Works", href: "/how-it-works" },
+  { label: "Plans & Pricing", href: "/pricing" },
+  { label: "Mentors", href: "/mentors" },
+  { label: "Faq", href: "/faq" },
+  { label: "Contact Us", href: "/contact" },
+];
+
+const pathname = Astro.url.pathname;
+const normalizedCurrent =
+  pathname.endsWith("/") && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
+
+const isLinkActive = (href: string) => {
+  const normalizedHref = href.endsWith("/") && href.length > 1 ? href.slice(0, -1) : href;
+
+  if (normalizedHref === "/") {
+    return normalizedCurrent === "/";
+  }
+
+  return normalizedCurrent === normalizedHref || normalizedCurrent.startsWith(normalizedHref + "/");
+};
+---
+
+<!-- Fixed Header Container -->
+<header id="site-header" class="fixed top-0 right-0 left-0 z-50 w-full">
+  <!-- Topbar -->
+  <a
+    id="hero-announcement"
+    href="#konsultasi"
+    class="group/topbar-link bg-violet-normal font-jakarta flex w-full items-center justify-center gap-1.5 px-[20px] py-2.5 text-center text-[12px] leading-snug font-medium text-white transition-colors duration-200 sm:px-[24px] sm:py-3 sm:text-[13px] md:text-[14px]"
+    aria-label="Daftar konsultasi portfolio gratis"
+  >
+    <span>Konsultasi Portfolio Gratis — Temukan Jalur STEM Terbaik untuk Masa Depanmu</span>
+    <ArrowRight size={15} class="inline-block flex-shrink-0 transition-transform duration-200 group-hover/topbar-link:translate-x-1" aria-hidden="true" />
+  </a>
+
+  <!-- Navbar -->
+  <nav
+    id="navbar"
+    class="relative z-30 w-full border-b border-transparent transition-all duration-300"
+    aria-label="Main navigation"
+    data-theme="transparent"
+  >
+    <div
+      id="navbar-inner"
+      class="relative mx-auto flex w-full max-w-[1440px] items-center justify-between px-[20px] py-3.5 sm:px-[24px] sm:py-4 md:px-[28px] md:py-5 lg:px-[32px] xl:max-w-none xl:px-[32px]"
+    >
+      <!-- Logo -->
+      <a
+        href="/"
+        id="navbar-logo"
+        class="z-20 flex h-9 flex-shrink-0 items-center gap-2.5 sm:h-10 sm:gap-2.5"
+        aria-label="PortoSpace home"
+      >
+        <svg
+          width="34"
+          height="34"
+          viewBox="0 0 28 28"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="navbar-logo-svg h-[30px] w-[30px] flex-shrink-0 transition-colors duration-200 sm:h-8 sm:w-8 md:h-[34px] md:w-[34px]"
+        >
+          <g clip-path="url(#clip0_852_1924)">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M13.9908 9.79102C16.3426 9.79102 18.2491 11.7029 18.2491 14.0613C18.2491 16.4197 16.3426 18.3316 13.9908 18.3316C11.6389 18.3316 9.73236 16.4197 9.73236 14.0613C9.73236 11.7029 11.6389 9.79102 13.9908 9.79102ZM13.9908 11.8245C12.7588 11.8245 11.7601 12.8259 11.7601 14.0613C11.7601 15.2966 12.7588 16.2981 13.9908 16.2981C15.2227 16.2981 16.2213 15.2966 16.2213 14.0613C16.2213 12.8259 15.2227 11.8245 13.9908 11.8245Z"
+              fill="currentColor"></path>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M13.8887 2.33696C18.7994 -0.401627 23.5492 -0.854519 26.0508 1.62545C28.571 4.12385 28.1485 8.94389 25.4201 13.9388C28.1982 18.9698 28.6436 23.8384 26.1064 26.3537C23.5955 28.8428 18.8199 28.3765 13.8899 25.6106C8.95961 28.3767 4.18363 28.8429 1.67261 26.3537C-0.864554 23.8384 -0.419286 18.9699 2.35877 13.939C-0.369584 8.94405 -0.791922 4.12365 1.72825 1.62525C4.22968 -0.854448 8.97863 -0.4011 13.8887 2.33696ZM24.6252 3.07151C23.5933 2.04859 21.5304 1.59984 18.4156 2.56572C17.6055 2.81697 16.7606 3.15602 15.8963 3.57929C16.0684 3.69652 16.2405 3.81633 16.4122 3.93889C16.9124 4.29598 16.9583 5.01691 16.5241 5.45228C16.1642 5.81308 15.5952 5.85019 15.1799 5.55534C14.7492 5.2496 14.3184 4.96314 13.8893 4.69589C12.1504 5.77898 10.3834 7.18063 8.70794 8.88017C7.08959 10.5218 5.74943 12.2459 4.70461 13.944C5.75738 15.6715 7.11633 17.428 8.76358 19.0989C8.87758 19.2146 8.99207 19.3288 9.10698 19.4417C9.5191 19.8464 9.53524 20.5127 9.12735 20.9217C8.74359 21.3065 8.12423 21.3206 7.73562 20.9407C7.59685 20.8051 7.45866 20.6678 7.32134 20.5285C5.87642 19.0628 4.62672 17.5215 3.5903 15.9693C3.13756 16.9034 2.78053 17.8157 2.52274 18.6869C1.59533 21.8212 2.06637 23.8846 3.09821 24.9076C4.13005 25.9305 6.19304 26.3792 9.30776 25.4134C10.1382 25.1558 11.0051 24.8058 11.892 24.3677C11.7822 24.2925 11.6722 24.2166 11.5625 24.1393C11.0582 23.7838 11.0102 23.0598 11.4461 22.6227C11.8044 22.2635 12.3704 22.2248 12.7857 22.5159C13.1541 22.7741 13.5224 23.0182 13.8895 23.2482C15.6105 22.17 17.358 20.7802 19.0157 19.0987C20.6629 17.4278 22.0215 15.6712 23.0743 13.9438C22.0294 12.2457 20.6894 10.5217 19.0711 8.88017C18.9944 8.80237 18.9175 8.72515 18.8404 8.64864C18.4319 8.24314 18.4176 7.5796 18.824 7.17201C19.2093 6.78566 19.8317 6.77293 20.2197 7.1565C20.3179 7.25362 20.4158 7.3517 20.5133 7.45058C21.9283 8.88588 23.1559 10.3938 24.1794 11.9133C24.6102 11.0128 24.9519 10.1334 25.2009 9.29222C26.1283 6.1579 25.657 4.09443 24.6252 3.07151ZM24.1887 15.9693C23.1524 17.5214 21.9027 19.0628 20.4577 20.5285C18.9918 22.0154 17.4461 23.302 15.8876 24.368C16.7742 24.8062 17.641 25.1557 18.4713 25.4132C21.586 26.379 23.649 25.9305 24.6809 24.9076C25.7127 23.8847 26.1839 21.8212 25.2565 18.6869C24.9987 17.8157 24.6415 16.9035 24.1887 15.9693ZM9.3634 2.56572C6.24868 1.59986 4.18569 2.04861 3.15385 3.07151C2.12207 4.09446 1.65084 6.15784 2.57819 9.29203C2.82711 10.1333 3.16881 11.0128 3.5996 11.9133C4.6232 10.3938 5.85093 8.88588 7.26589 7.45058C8.74637 5.94885 10.308 4.65129 11.8823 3.57909C11.0182 3.15585 10.1735 2.81693 9.3634 2.56572Z"
+              fill="currentColor"></path>
+          </g>
+          <defs>
+            <clipPath id="clip0_852_1924">
+              <rect width="27.8062" height="28" fill="currentColor"></rect>
+            </clipPath>
+          </defs>
+        </svg>
+        <span
+          id="navbar-logo-text"
+          class="font-momo text-[19px] leading-none font-bold tracking-tight text-white transition-colors duration-200 sm:text-[20px] md:text-[22px]"
+        >
+          PortoSpace
+        </span>
+      </a>
+
+      <!-- Right side: Nav links + CTA + Mobile controls -->
+      <div class="z-20 flex flex-shrink-0 items-center gap-1.5 sm:gap-2">
+        <!-- Desktop Nav Links -->
+        <ul id="navbar-links" class="mr-4 hidden items-center gap-1 lg:flex" role="list">
+          {
+            navLinks.map((link) => {
+              const isChildActive = link.children?.some((child) => isLinkActive(child.href));
+              const isActive = isLinkActive(link.href) || isChildActive;
+
+              return link.children ? (
+                <li class={`group/dropdown static ${isActive ? "is-active" : ""}`}>
+                  <button
+                    id="programs-dropdown-btn"
+                    class={`navbar-link font-jakarta flex cursor-pointer items-center gap-1 rounded-md px-3.5 py-2 text-[15px] font-semibold transition-all duration-200 ${isActive ? "is-active" : ""}`}
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    {link.label}
+                    <ChevronDown
+                      size={14}
+                      aria-hidden="true"
+                      class="lucide-chevron-down transition-transform duration-200 group-hover/dropdown:rotate-180"
+                    />
+                  </button>
+
+                  {/* Mega Dropdown Panel (Anchored directly to bottom of navbar with 0px gap) */}
+                  <div
+                    id="mega-menu"
+                    class="pointer-events-none invisible absolute top-full right-0 left-0 z-10 w-full -translate-y-2 bg-white text-gray-900 opacity-0 shadow-none transition-all duration-300 ease-out group-hover/dropdown:pointer-events-auto group-hover/dropdown:visible group-hover/dropdown:translate-y-0 group-hover/dropdown:opacity-100"
+                  >
+                    <div class="relative flex min-h-[220px] w-full items-end bg-white px-[20px] py-8 sm:px-[24px] md:px-[28px] lg:px-[32px]">
+                      {/* Left: Social Media Icons */}
+                      <div class="flex items-center gap-2.5">
+                        <a
+                          href="https://threads.net"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Threads"
+                          class="bg-violet-normal hover:bg-violet-normal-hover flex h-10 w-10 items-center justify-center rounded-full text-white transition-transform hover:-translate-y-0.5"
+                        >
+                          <AtSign size={18} />
+                        </a>
+                        <a
+                          href="https://instagram.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Instagram"
+                          class="bg-violet-normal hover:bg-violet-normal-hover flex h-10 w-10 items-center justify-center rounded-full text-white transition-transform hover:-translate-y-0.5"
+                        >
+                          <Icon iconNode={instagramNode} size={18} />
+                        </a>
+                        <a
+                          href="https://linkedin.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="LinkedIn"
+                          class="bg-violet-normal hover:bg-violet-normal-hover flex h-10 w-10 items-center justify-center rounded-full text-white transition-transform hover:-translate-y-0.5"
+                        >
+                          <Icon iconNode={linkedinNode} size={18} />
+                        </a>
+                        <a
+                          href="mailto:info@portospace.com"
+                          aria-label="Email"
+                          class="bg-violet-normal hover:bg-violet-normal-hover flex h-10 w-10 items-center justify-center rounded-full text-white transition-transform hover:-translate-y-0.5"
+                        >
+                          <Mail size={18} />
+                        </a>
+                        <a
+                          href="https://wa.me/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="WhatsApp"
+                          class="bg-violet-normal hover:bg-violet-normal-hover flex h-10 w-10 items-center justify-center rounded-full text-white transition-transform hover:-translate-y-0.5"
+                        >
+                          <MessageCircle size={18} />
+                        </a>
+                      </div>
+
+                      {/* Program items aligned directly under Programs menu button */}
+                      <div
+                        class="absolute top-8 flex flex-col gap-3.5 text-left"
+                        style="left: var(--programs-left, 50%);"
+                      >
+                        {link.children.map((child) => {
+                          const isSubActive = isLinkActive(child.href);
+                          return (
+                            <a
+                              href={child.href}
+                              class={`font-jakarta group/item flex items-center gap-3 text-[20px] leading-tight font-bold transition-colors lg:text-[22px] ${
+                                isSubActive
+                                  ? "text-violet-normal"
+                                  : "hover:text-violet-normal text-gray-900"
+                              }`}
+                            >
+                              <span
+                                class={`h-3.5 w-3.5 flex-shrink-0 rounded-full transition-transform group-hover/item:scale-125 ${
+                                  isSubActive ? "ring-violet-normal/30 scale-125 ring-2" : ""
+                                }`}
+                                style={`background-color: ${child.color || "#7b20e8"};`}
+                              />
+                              <span>{child.label}</span>
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ) : (
+                <li>
+                  <a
+                    href={link.href}
+                    class={`navbar-link font-jakarta block rounded-md px-3.5 py-2 text-[15px] font-semibold transition-all duration-200 ${isActive ? "is-active" : ""}`}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+
+        <!-- Desktop CTA -->
+        <div class="hidden lg:block">
+          <Button
+            href="#konsultasi"
+            id="navbar-cta"
+            variant="primary"
+            class="!shadow-none hover:!shadow-none"
+          >
+            Konsultasi Portfolio Gratis
+          </Button>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <button
+          id="navbar-toggle"
+          class="bg-violet-normal hover:bg-violet-normal-hover flex h-9 w-9 flex-shrink-0 cursor-pointer items-center justify-center rounded-md text-white transition-colors duration-200 lg:hidden"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="navbar-mobile-menu"
+        >
+          <Menu id="icon-menu" size={20} aria-hidden="true" class="text-white" />
+          <X id="icon-close" size={20} aria-hidden="true" class="hidden text-white" />
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Fullscreen 100vh Menu Overlay -->
+  <div
+    id="navbar-mobile-menu"
+    class="absolute top-full right-0 left-0 z-20 flex h-[calc(100dvh-100%)] flex-col justify-between overflow-y-auto bg-white px-[20px] pt-4 pb-6 shadow-2xl transition-all duration-300 ease-out sm:px-[24px] lg:hidden opacity-0 pointer-events-none invisible -translate-y-3"
+    aria-hidden="true"
+  >
+    <!-- Menu Links Container -->
+    <div class="flex w-full flex-col gap-3">
+      {
+        navLinks.map((link) => {
+          if (link.children) {
+            const isParentActive =
+              isLinkActive(link.href) || link.children.some((c) => isLinkActive(c.href));
+            return (
+              <div class="mobile-menu-item flex w-full flex-col">
+                <button
+                  id="mobile-programs-toggle"
+                  type="button"
+                  data-parent-active={isParentActive ? "true" : undefined}
+                  class={`font-jakarta flex w-full cursor-pointer items-center justify-between py-1 text-[20px] transition-colors ${
+                    isParentActive
+                      ? "text-violet-normal font-bold"
+                      : "hover:text-violet-normal font-semibold text-[#111111]"
+                  }`}
+                >
+                  <span>{link.label}</span>
+                  <ChevronDown
+                    id="mobile-programs-chevron"
+                    size={22}
+                    class="transition-transform duration-300"
+                  />
+                </button>
+
+                <div id="mobile-programs-list" class="grid grid-rows-[0fr] opacity-0 transition-all duration-300 ease-out pl-4">
+                  <div class="overflow-hidden flex flex-col gap-3.5 pt-3.5 pb-2">
+                    {link.children.map((child) => {
+                      const isSubActive = isLinkActive(child.href);
+                      return (
+                        <a
+                          href={child.href}
+                          class={`font-jakarta flex items-center gap-3 py-1 text-[17px] transition-colors ${
+                            isSubActive
+                              ? "text-violet-normal font-bold"
+                              : "hover:text-violet-normal font-semibold text-[#111111]"
+                          }`}
+                        >
+                          <span
+                            class={`h-3.5 w-3.5 flex-shrink-0 rounded-full ${isSubActive ? "ring-violet-normal/40 scale-110 ring-2" : ""}`}
+                            style={`background-color: ${child.color || "#7b20e8"};`}
+                          />
+                          <span>{child.label}</span>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            );
+          }
+
+          const isActive = isLinkActive(link.href);
+          return (
+            <a
+              href={link.href}
+              class={`mobile-menu-item font-jakarta py-1 text-[20px] transition-colors ${
+                isActive
+                  ? "text-violet-normal font-bold"
+                  : "hover:text-violet-normal font-semibold text-[#111111]"
+              }`}
+            >
+              {link.label}
+            </a>
+          );
+        })
+      }
+
+      <!-- CTA Button Mobile Dropdown -->
+      <div class="mobile-menu-item w-full pt-2 pb-1">
+        <Button
+          href="#konsultasi"
+          variant="primary"
+          class="w-full justify-center rounded-md py-3 text-sm font-semibold !shadow-none"
+        >
+          Konsultasi Portfolio Gratis
+        </Button>
+      </div>
+    </div>
+
+    <!-- Bottom Social Icons Bar -->
+    <div class="mobile-menu-social-bar mx-auto flex w-full max-w-[340px] items-center justify-between pt-6 pb-2">
+      <a
+        href="https://threads.net"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Threads"
+        class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
+      >
+        <AtSign size={20} />
+      </a>
+      <a
+        href="https://instagram.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram"
+        class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
+      >
+        <Icon iconNode={instagramNode} size={20} />
+      </a>
+      <a
+        href="https://linkedin.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
+      >
+        <Icon iconNode={linkedinNode} size={20} />
+      </a>
+      <a
+        href="mailto:info@portospace.com"
+        aria-label="Email"
+        class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
+      >
+        <Mail size={20} />
+      </a>
+      <a
+        href="https://wa.me/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+        class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
+      >
+        <MessageCircle size={20} />
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Remove shadow from navbar CTA buttons */
+  #navbar #navbar-cta,
+  #navbar #navbar-cta:hover,
+  #navbar #navbar-cta-mobile,
+  #navbar-mobile-menu a,
+  #navbar-mobile-menu button {
+    box-shadow: none !important;
+  }
+
+  /* Base link transitions */
+  .navbar-link {
+    transition:
+      opacity 0.2s ease,
+      color 0.2s ease !important;
+  }
+
+  /* Transparent theme (Hero / Image sections) */
+  #navbar[data-theme="transparent"] {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    backdrop-filter: none !important;
+  }
+  #navbar[data-theme="transparent"] #navbar-logo-text {
+    color: #ffffff !important;
+  }
+  #navbar[data-theme="transparent"] .navbar-logo-svg {
+    color: #ffffff !important;
+  }
+  #navbar[data-theme="transparent"] .navbar-link {
+    color: #ffffff !important;
+    opacity: 1;
+  }
+  #navbar[data-theme="transparent"] .navbar-link.is-active {
+    color: #d6baf8 !important;
+    font-weight: 700 !important;
+  }
+
+  /* White theme (100% Solid Opaque White — Plain without shadow or border) */
+  #navbar[data-theme="white"] {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    opacity: 1 !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+  #navbar[data-theme="white"] #navbar-logo-text {
+    color: #7b20e8 !important;
+  }
+  #navbar[data-theme="white"] .navbar-logo-svg {
+    color: #7b20e8 !important;
+  }
+  #navbar[data-theme="white"] .navbar-link {
+    color: rgba(17, 17, 17, 0.9) !important;
+    opacity: 1;
+  }
+  #navbar[data-theme="white"] .navbar-link.is-active {
+    color: #7b20e8 !important;
+    font-weight: 700 !important;
+  }
+  #navbar[data-theme="white"] #icon-menu,
+  #navbar[data-theme="white"] #icon-close {
+    color: #ffffff !important;
+  }
+
+  /* Focus Hover Effect: Dim other menu links to 70% opacity when hovering any menu link */
+  #navbar-links:hover .navbar-link {
+    opacity: 0.7 !important;
+  }
+  #navbar-links .navbar-link:hover {
+    opacity: 1 !important;
+  }
+  #navbar-links .navbar-link.is-active {
+    opacity: 1 !important;
+  }
+
+  /* When Dropdown is Open via Click / Active state */
+  .group\/dropdown.is-open #mega-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+  }
+  .group\/dropdown.is-open #programs-dropdown-btn .lucide-chevron-down {
+    transform: rotate(180deg) !important;
+  }
+
+  /* Mega Menu Panel: 100% Solid Opaque White Background (No transparency, no shadow) */
+  #mega-menu {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  /* Unified White Background when Mega Menu Dropdown is hovered or open */
+  #navbar:has(.group\/dropdown:hover),
+  #navbar:has(.group\/dropdown.is-open) {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+  #navbar:has(.group\/dropdown:hover) #navbar-logo-text,
+  #navbar:has(.group\/dropdown.is-open) #navbar-logo-text {
+    color: #7b20e8 !important;
+  }
+  #navbar:has(.group\/dropdown:hover) .navbar-logo-svg,
+  #navbar:has(.group\/dropdown.is-open) .navbar-logo-svg {
+    color: #7b20e8 !important;
+  }
+  #navbar:has(.group\/dropdown:hover) .navbar-link,
+  #navbar:has(.group\/dropdown.is-open) .navbar-link {
+    color: rgba(17, 17, 17, 0.9) !important;
+  }
+  /* Mobile Menu Container Smooth Slide-Down & Fade Animation */
+  #navbar-mobile-menu.is-open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+  }
+
+  /* Staggered Entrance Fade-Up Cascade for Mobile Menu Items */
+  .mobile-menu-item,
+  .mobile-menu-social-bar {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #navbar-mobile-menu.is-open .mobile-menu-item,
+  #navbar-mobile-menu.is-open .mobile-menu-social-bar {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger Delays for Menu Items */
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(1) { transition-delay: 50ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(2) { transition-delay: 90ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(3) { transition-delay: 130ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(4) { transition-delay: 170ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(5) { transition-delay: 210ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(6) { transition-delay: 250ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(7) { transition-delay: 290ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(8) { transition-delay: 330ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-item:nth-child(9) { transition-delay: 370ms; }
+  #navbar-mobile-menu.is-open .mobile-menu-social-bar { transition-delay: 410ms; }
+
+  /* Smooth Grid Accordion Expansion for Programs Sub-menu */
+  #mobile-programs-list.is-expanded {
+    grid-template-rows: 1fr !important;
+    opacity: 1 !important;
+  }
+</style>
+
+<script>
+  // ─── Mobile Fullscreen Menu Handler ──────────────────────────────────
+  const toggle = document.getElementById("navbar-toggle");
+  const menu = document.getElementById("navbar-mobile-menu") as HTMLElement;
+  const iconMenu = document.getElementById("icon-menu");
+  const iconClose = document.getElementById("icon-close");
+  let isOpen = false;
+
+  toggle?.addEventListener("click", () => {
+    isOpen = !isOpen;
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) {
+      applyTheme("white");
+      menu?.classList.add("is-open");
+      menu?.setAttribute("aria-hidden", "false");
+      iconMenu?.classList.add("hidden");
+      iconClose?.classList.remove("hidden");
+      document.body.style.overflow = "hidden"; // Lock page scroll when menu is open
+    } else {
+      menu?.classList.remove("is-open");
+      menu?.setAttribute("aria-hidden", "true");
+      iconMenu?.classList.remove("hidden");
+      iconClose?.classList.add("hidden");
+      document.body.style.overflow = "";
+      detectTheme();
+    }
+  });
+
+  // Close mobile menu when any link is clicked
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      isOpen = false;
+      toggle?.setAttribute("aria-expanded", "false");
+      menu?.classList.remove("is-open");
+      menu?.setAttribute("aria-hidden", "true");
+      iconMenu?.classList.remove("hidden");
+      iconClose?.classList.add("hidden");
+      document.body.style.overflow = "";
+      detectTheme();
+    });
+  });
+
+  // Mobile Programs Accordion toggle
+  const programsToggle = document.getElementById("mobile-programs-toggle");
+  const programsList = document.getElementById("mobile-programs-list");
+  const programsChevron = document.getElementById("mobile-programs-chevron");
+  let isProgramsOpen = false;
+
+  programsToggle?.addEventListener("click", () => {
+    isProgramsOpen = !isProgramsOpen;
+    if (isProgramsOpen) {
+      programsList?.classList.add("is-expanded");
+      programsChevron?.classList.add("rotate-180");
+      programsToggle?.classList.add("text-violet-normal", "font-bold");
+      programsToggle?.classList.remove("text-[#111111]");
+    } else {
+      programsList?.classList.remove("is-expanded");
+      programsChevron?.classList.remove("rotate-180");
+      if (!programsToggle?.dataset.parentActive) {
+        programsToggle?.classList.remove("text-violet-normal", "font-bold");
+        programsToggle?.classList.add("text-[#111111]");
+      }
+    }
+  });
+
+  // ─── Dynamic navbar theme & mega menu alignment ─────────────────────────────
+  const navbar = document.getElementById("navbar") as HTMLElement;
+  const dropdownGroup = document.querySelector<HTMLElement>(".group\\/dropdown");
+  const dropdownGroups = document.querySelectorAll<HTMLElement>(".group\\/dropdown");
+  const programsBtn = document.getElementById("programs-dropdown-btn");
+  let isDropdownClickedOpen = false;
+
+  function updateMegaMenuPosition() {
+    if (programsBtn) {
+      const btnRect = programsBtn.getBoundingClientRect();
+      document.documentElement.style.setProperty("--programs-left", `${btnRect.left}px`);
+    }
+  }
+
+  function applyTheme(theme: string) {
+    if (!navbar) return;
+    navbar.setAttribute("data-theme", theme);
+  }
+
+  function detectTheme() {
+    if (isDropdownClickedOpen || isOpen) return;
+    const currentNav = document.getElementById("navbar") as HTMLElement;
+    if (!currentNav) return;
+
+    // Check for hero section on page
+    const heroSection = document.getElementById("hero") || document.querySelector('[data-navbar="transparent"]');
+    if (heroSection) {
+      const heroRect = heroSection.getBoundingClientRect();
+      const navBottom = currentNav.getBoundingClientRect().bottom;
+
+      // Inside Hero bounds -> Transparent theme
+      if (heroRect.top <= navBottom && heroRect.bottom > navBottom + 10) {
+        applyTheme("transparent");
+        return;
+      }
+    }
+
+    // Outside Hero section -> 100% Solid White theme with bottom border & elevation shadow
+    applyTheme("white");
+  }
+
+  function setDropdownOpen(open: boolean) {
+    isDropdownClickedOpen = open;
+    if (open) {
+      dropdownGroup?.classList.add("is-open");
+      programsBtn?.setAttribute("aria-expanded", "true");
+      updateMegaMenuPosition();
+      applyTheme("white");
+    } else {
+      dropdownGroup?.classList.remove("is-open");
+      programsBtn?.setAttribute("aria-expanded", "false");
+      detectTheme();
+    }
+  }
+
+  programsBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    setDropdownOpen(!isDropdownClickedOpen);
+  });
+
+  document.addEventListener("click", (e) => {
+    if (isDropdownClickedOpen && dropdownGroup && !dropdownGroup.contains(e.target as Node)) {
+      setDropdownOpen(false);
+    }
+  });
+
+  dropdownGroups.forEach((group) => {
+    group.addEventListener("mouseenter", () => {
+      updateMegaMenuPosition();
+      applyTheme("white");
+    });
+    group.addEventListener("mouseleave", () => {
+      if (!isDropdownClickedOpen && !isOpen) {
+        detectTheme();
+      }
+    });
+  });
+
+  // Initial theme detection + event listeners
+  updateMegaMenuPosition();
+  detectTheme();
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      updateMegaMenuPosition();
+      detectTheme();
+    },
+    { passive: true }
+  );
+
+  window.addEventListener("resize", () => {
+    updateMegaMenuPosition();
+  });
+
+  // Re-run theme detection on Astro ClientRouter page changes
+  document.addEventListener("astro:page-load", () => {
+    updateMegaMenuPosition();
+    detectTheme();
+  });
+
+  document.addEventListener("astro:after-swap", () => {
+    updateMegaMenuPosition();
+    detectTheme();
+  });
+</script>

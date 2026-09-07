@@ -1,0 +1,50 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  /** Title of the card */
+  title: string;
+  /** Image source (imported ImageMetadata or image URL string) */
+  image: ImageMetadata | string;
+  /** Alt text for accessibility */
+  alt?: string;
+  /** Additional CSS classes for root element */
+  class?: string;
+}
+
+const { title, image, alt = title, class: className = "" } = Astro.props;
+---
+
+<div class:list={["card-outcome group flex w-[300px] shrink-0 cursor-pointer flex-col", className]}>
+  <div
+    class="h-[300px] w-[300px] overflow-hidden rounded-sm border border-gray-100/80 bg-gray-100 shadow-xs transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-md"
+  >
+    {
+      typeof image === "string" ? (
+        <img
+          src={image}
+          alt={alt}
+          width={300}
+          height={300}
+          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+      ) : (
+        <Image
+          src={image}
+          alt={alt}
+          width={300}
+          height={300}
+          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+      )
+    }
+  </div>
+  <h3
+    class="font-jakarta mt-3 text-[16px] leading-snug font-semibold tracking-tight text-[#111111] sm:text-[18px]"
+  >
+    {title}
+  </h3>
+</div>

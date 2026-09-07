@@ -1,0 +1,11 @@
+# Build & output directories
+dist/
+.astro/
+node_modules/
+public/
+bun.lock
+package-lock.json
+
+# Markdown & Documentation
+docs/
+*.md

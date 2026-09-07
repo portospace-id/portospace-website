@@ -1,0 +1,100 @@
+---
+import { ArrowRight } from "@lucide/astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  /** Title of the program card */
+  title: string;
+  /** Description text */
+  description: string;
+  /** Destination link URL */
+  href?: string;
+  /** CTA button text (default: "Pelajari Selengkapnya") */
+  buttonText?: string;
+  /** Whether to show CTA button (default: true) */
+  showButton?: boolean;
+  /** Card layout type: "wide" (Card Panjang) or "narrow" (Card Pendek) */
+  type?: "wide" | "narrow";
+  /** Optional custom background color class */
+  bgColor?: string;
+  /** Optional background image */
+  image?: ImageMetadata;
+  /** Extra CSS classes */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  title,
+  description,
+  href = "#",
+  buttonText = "Pelajari Selengkapnya",
+  showButton = true,
+  type = "wide",
+  bgColor,
+  image,
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const isWide = type === "wide";
+const defaultBgClass = isWide ? "bg-[#3B0E70]" : "bg-[#2E0B57]";
+const flexClass = isWide ? "lg:flex-[2]" : "lg:flex-1";
+const descMaxW = isWide ? "max-w-[780px]" : "";
+---
+
+<div
+  class:list={[
+    "program-card relative flex h-[340px] w-full flex-col items-start justify-end gap-2.5 overflow-hidden rounded-sm p-5 sm:h-[400px] sm:p-6 md:h-[440px] lg:h-[480px] lg:p-8 transition-all duration-300",
+    flexClass,
+    bgColor || defaultBgClass,
+    className,
+  ]}
+  {...rest}
+>
+  <!-- Background Image -->
+  {
+    image && (
+      <Image
+        src={image}
+        alt=""
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover select-none"
+        aria-hidden="true"
+      />
+    )
+  }
+
+  <!-- Gradient Overlay -->
+  <div
+    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"
+  >
+  </div>
+
+  <!-- Card Content -->
+  <div class="relative z-10 flex w-full flex-col items-start gap-2.5">
+    <h3
+      class="font-momo text-[28px] leading-[110%] font-medium tracking-[-0.64px] text-white md:text-[32px]"
+    >
+      {title}
+    </h3>
+    <p
+      class:list={[
+        "font-jakarta text-sm leading-[150%] font-normal text-white lg:text-[16px]",
+        descMaxW,
+      ]}
+    >
+      {description}
+    </p>
+    {
+      showButton && (
+        <a
+          href={href}
+          class="font-jakarta mt-1 inline-flex items-center gap-2 rounded-sm bg-[#BFED45] px-4 py-2.5 text-sm font-semibold text-[#161616] transition-all duration-200 group-hover:shadow-[0_0_18px_rgba(191,237,69,0.35)] hover:bg-[#acd53e]"
+        >
+          <span>{buttonText}</span>
+          <ArrowRight size={16} aria-hidden="true" />
+        </a>
+      )
+    }
+  </div>
+</div>

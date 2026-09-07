@@ -1,0 +1,55 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  image: ImageMetadata;
+  alt?: string;
+  class?: string;
+  textColor?: string;
+  showSubtitle?: boolean;
+}
+
+const {
+  title,
+  subtitle,
+  image,
+  alt = title,
+  class: className = "",
+  textColor = "text-white",
+  showSubtitle = true,
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "portfolio-output-card group flex w-[429px] flex-shrink-0 flex-col cursor-pointer",
+    className,
+  ]}
+>
+  <!-- Card Image -->
+  <div
+    class="relative h-[460px] w-[429px] overflow-hidden rounded-[4px] transition-[height] duration-300 ease-in-out group-hover:h-[510px]"
+  >
+    <Image
+      src={image}
+      alt={alt}
+      width={429}
+      height={510}
+      class="pointer-events-none h-full w-full object-cover transition-transform duration-300 ease-in-out select-none group-hover:scale-105"
+    />
+  </div>
+
+  <!-- Card Info -->
+  <div class="mt-4 flex flex-col gap-1">
+    <h3 class={`font-jakarta text-[16px] leading-[140%] font-semibold lg:text-[18px] ${textColor}`}>
+      {title}
+    </h3>
+    {
+      showSubtitle && subtitle && (
+        <p class="font-jakarta text-[14px] leading-[140%] font-normal text-white/80">{subtitle}</p>
+      )
+    }
+  </div>
+</div>

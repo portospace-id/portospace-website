@@ -1,0 +1,121 @@
+---
+import Button from "@/components/ui/button.astro";
+---
+
+<section
+  id="hero"
+  class="relative min-h-svh w-full overflow-hidden"
+  aria-label="Hero section"
+  data-navbar="transparent"
+>
+  <!-- Background image -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/hero-bg.png"
+      alt="Students doing STEM activities"
+      class="h-full w-full object-cover object-center"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+
+  <!-- Black overlay 30% -->
+  <div class="pointer-events-none absolute inset-0 z-[1] bg-black/30" aria-hidden="true"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 flex min-h-svh flex-col justify-end pb-12 lg:pb-16">
+    <div
+      class="mx-auto flex w-full max-w-[1440px] flex-col items-start justify-between gap-6 px-[20px] sm:px-[24px] md:px-[28px] lg:flex-row lg:items-end lg:gap-8 lg:px-[32px] xl:max-w-none xl:px-[32px]"
+    >
+      <!-- Heading & Description -->
+      <div id="hero-text" class="flex flex-col gap-[12px]">
+        <h1
+          id="hero-heading"
+          class="font-momo mb-0 leading-[1.1] font-semibold tracking-tight text-white"
+        >
+          <span class="block text-[24px] md:text-[36px] lg:text-[48px]">
+            Masuk Universitas Impian
+          </span>
+          <span class="block text-[24px] md:text-[36px] lg:text-[48px]">
+            Dengan Portfolio Nyata Kelas&nbsp;<span
+              class="font-caveat align-bottom text-[38px] leading-none font-semibold not-italic md:text-[48px] lg:text-[64px]"
+              >Dunia.</span
+            >
+          </span>
+        </h1>
+
+        <!-- Description -->
+        <p
+          id="hero-desc"
+          class="font-jakarta max-w-[480px] text-base leading-relaxed text-white md:max-w-[560px]"
+        >
+          Program mentorship riset, robotics, dan coding untuk siswa kelas 9–12. Dibimbing langsung
+          oleh PhD, Master, dan pakar industri lulusan global.
+        </p>
+      </div>
+
+      <!-- CTA -->
+      <div id="hero-actions" class="flex-shrink-0">
+        <Button href="#konsultasi" id="hero-cta-primary" variant="primary" arrow>
+          Konsultasi Portfolio Gratis
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+
+  // Announcement bar
+  gsap.from("#hero-announcement", {
+    y: -20,
+    opacity: 0,
+    duration: 0.5,
+    ease: "power2.out",
+    clearProps: "transform,opacity",
+  });
+
+  // Navbar
+  gsap.from("#navbar", {
+    y: -12,
+    opacity: 0,
+    duration: 0.6,
+    ease: "power2.out",
+    delay: 0.1,
+    clearProps: "transform,opacity",
+  });
+
+  // Hero content timeline
+  const tl = gsap.timeline({ delay: 0.25 });
+
+  tl.from("#hero-heading", {
+    y: 40,
+    opacity: 0,
+    duration: 0.75,
+    ease: "power3.out",
+    clearProps: "transform,opacity",
+  })
+    .from(
+      "#hero-desc",
+      {
+        y: 24,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      },
+      "-=0.45"
+    )
+    .from(
+      "#hero-actions",
+      {
+        y: 20,
+        opacity: 0,
+        duration: 0.55,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      },
+      "-=0.4"
+    );
+</script>
