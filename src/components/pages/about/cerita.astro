@@ -17,14 +17,14 @@ const descriptionText =
 <section
   id="cerita"
   class:list={[
-    "bg-violet-normal relative w-full overflow-hidden py-16 text-white sm:py-20 md:py-24 lg:py-32",
+    "bg-violet-normal relative w-full overflow-hidden py-14 text-white sm:py-20 md:py-24 lg:py-32",
     className,
   ]}
   aria-label="Cerita PortoSpace Section"
 >
   <!-- Background Pattern Line Overlay (Top Right) -->
   <div
-    class="pointer-events-none absolute -top-[40px] -right-[40px] z-0 h-auto w-[380px] opacity-60 select-none sm:-top-[60px] sm:-right-[60px] sm:w-[460px] md:-top-[80px] md:-right-[80px] md:w-[540px] lg:w-[600px]"
+    class="pointer-events-none absolute -top-[20px] -right-[20px] z-0 h-auto w-[240px] opacity-60 select-none sm:-top-[40px] sm:-right-[40px] sm:w-[380px] md:-top-[80px] md:-right-[80px] md:w-[540px] lg:w-[600px]"
   >
     <Image
       src={patternLine}
@@ -33,6 +33,7 @@ const descriptionText =
       height={521}
       class="pointer-events-none h-auto w-full object-contain"
       aria-hidden="true"
+      loading="lazy"
     />
   </div>
 
@@ -43,10 +44,10 @@ const descriptionText =
     <!-- Section Title Heading -->
     <h2
       id="cerita-heading"
-      class="font-momo mb-10 max-w-[780px] text-[28px] leading-[1.15] font-bold tracking-tight text-white sm:text-[36px] md:mb-14 md:text-[44px] lg:text-[50px]"
+      class="font-momo mb-8 max-w-[780px] text-[32px] leading-[1.15] font-bold tracking-tight text-white sm:mb-12 sm:text-[38px] md:mb-14 md:text-[44px] lg:text-[50px]"
     >
       Semua Berawal dari Keinginan Membuat Belajar Menjadi Lebih <span
-        class="font-caveat mt-1 block align-baseline text-[36px] leading-none font-semibold text-white italic sm:mt-0 sm:inline sm:text-[46px] md:text-[56px] lg:text-[64px]"
+        class="font-caveat mt-1 inline align-baseline text-[40px] leading-none font-semibold text-white italic sm:mt-0 sm:text-[48px] md:text-[56px] lg:text-[64px]"
         >Bermakna</span
       >
     </h2>
@@ -56,15 +57,15 @@ const descriptionText =
       <!-- Left Column: Story Image (Width: 562px) -->
       <div id="cerita-image" class="w-full flex-shrink-0 lg:w-[562px]">
         <div
-          class="h-[400px] w-full overflow-hidden rounded-[4px] shadow-2xl sm:h-[520px] lg:h-[660px]"
+          class="h-[280px] w-full overflow-hidden rounded-[4px] shadow-2xl sm:h-[380px] md:h-[500px] lg:h-[660px]"
         >
           <Image
             src={ceritaImg}
-            alt="Kisah PortoSpace"
+            alt="Tim dan siswa PortoSpace berdiskusi dalam kegiatan mentorship riset STEM"
             width={562}
             height={660}
             class="h-full w-full rounded-[4px] object-cover object-center"
-            fetchpriority="high"
+            loading="lazy"
           />
         </div>
       </div>
@@ -82,9 +83,6 @@ const descriptionText =
 
   <script>
     import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-    gsap.registerPlugin(ScrollTrigger);
 
     const section = document.querySelector("#cerita");
     if (section) {
@@ -92,6 +90,7 @@ const descriptionText =
         scrollTrigger: {
           trigger: section,
           start: "top 80%",
+          once: true,
         },
       });
 
@@ -100,6 +99,7 @@ const descriptionText =
         opacity: 0,
         duration: 0.7,
         ease: "power3.out",
+        clearProps: "transform,opacity",
       })
         .from(
           "#cerita-image",
@@ -108,6 +108,7 @@ const descriptionText =
             opacity: 0,
             duration: 0.6,
             ease: "power2.out",
+            clearProps: "transform,opacity",
           },
           "-=0.4"
         )
@@ -118,6 +119,7 @@ const descriptionText =
             opacity: 0,
             duration: 0.6,
             ease: "power2.out",
+            clearProps: "transform,opacity",
           },
           "-=0.4"
         );

@@ -13,16 +13,30 @@ import FounderSection from "../components/pages/about/founderSection.astro";
 ---
 
 <Layout
-  title="About Us — PortoSpace"
-  description="Setiap mimpi besar berawal dari seseorang yang percaya pada potensimu. Bersama mentor yang tepat, setiap ide mendapatkan arahan dan setiap tantangan menemukan solusi."
+  title="Tentang Kami — PortoSpace"
+  description="Mengenal PortoSpace: Misi kami mencetak inovator muda Indonesia melalui pembimbingan riset, inovasi teknologi, dan portofolio akademis."
 >
-  <main>
-    <HeroSection />
-    <VisiMisi />
-    <Cerita />
-    <ProjectMentorshipSection />
-    <ProgramUnggulanSection />
-    <FounderSection />
-    <AlasanDibangun />
-  </main>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "Tentang Kami — PortoSpace",
+      "description": "Mengenal PortoSpace: Misi kami mencetak inovator muda Indonesia melalui pembimbingan riset, inovasi teknologi, dan portofolio akademis.",
+      "url": "https://portospace.id/about",
+      "mainEntity": {
+        "@type": "EducationalOrganization",
+        "name": "PortoSpace",
+        "url": "https://portospace.id",
+        "logo": "https://portospace.id/favicon.svg",
+        "description": "Platform Mentorship Riset, Robotics, Coding, dan Entrepreneurship untuk Siswa."
+      }
+    }
+  </script>
+  <HeroSection />
+  <VisiMisi />
+  <Cerita />
+  <ProjectMentorshipSection />
+  <ProgramUnggulanSection />
+  <FounderSection />
+  <AlasanDibangun />
 </Layout>

@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import SectionTitle from "@/components/ui/sectionTitle.astro";
-import pattern5 from "@/assets/pattern/pattern_5.svg";
+import pattern2 from "@/assets/pattern/pattern_2.svg";
 
 interface Props {
   /** Additional CSS class for section */
@@ -24,22 +24,23 @@ const misiItems = [
 <section
   id="visi-misi"
   class:list={[
-    "relative w-full overflow-hidden bg-white py-16 sm:py-20 md:py-24 lg:py-32",
+    "relative w-full overflow-hidden bg-white py-14 sm:py-20 md:py-24 lg:py-32",
     className,
   ]}
   aria-label="Visi dan Misi Section"
 >
-  <!-- Background Pattern 5 -->
+  <!-- Background Pattern 2 -->
   <div
-    class="pointer-events-none absolute bottom-[-157px] left-[-280px] z-0 h-[798px] w-[800px] select-none"
+    class="pointer-events-none absolute -bottom-[78.375px] -left-[63px] z-0 h-[249.375px] w-[250px] select-none sm:-bottom-[140px] sm:-left-[260px] sm:h-[640px] sm:w-[640px] lg:-bottom-[157px] lg:-left-[280px] lg:h-[798px] lg:w-[800px]"
   >
     <Image
-      src={pattern5}
+      src={pattern2}
       alt=""
-      width={800}
-      height={798}
+      width={1156}
+      height={1155}
       class="pointer-events-none h-full w-full object-contain"
       aria-hidden="true"
+      loading="lazy"
     />
   </div>
 
@@ -58,11 +59,11 @@ const misiItems = [
         <!-- Main Section Title -->
         <h2
           id="visi-misi-heading"
-          class="font-momo mb-8 text-[28px] leading-[1.15] font-bold tracking-tight text-[#161616] sm:text-[36px] md:mb-10 md:text-[44px] lg:mb-12 lg:text-[50px]"
+          class="font-momo mb-6 text-[32px] leading-[1.15] font-bold tracking-tight text-[#161616] sm:mb-8 sm:text-[38px] md:mb-10 md:text-[44px] lg:mb-12 lg:text-[50px]"
         >
           Kami Berkomitmen Membangun Generasi Muda yang Siap Berkarya, Berinovasi, dan Memberikan
           Dampak Melalui Pembelajaran STEM dan <span
-            class="font-caveat align-baseline text-[36px] leading-none font-semibold text-[#161616] italic sm:text-[46px] md:text-[56px] lg:text-[62px]"
+            class="font-caveat align-baseline text-[40px] leading-none font-semibold text-[#161616] italic sm:text-[48px] md:text-[56px] lg:text-[62px]"
             >Entrepreneurship</span
           >
         </h2>
@@ -109,9 +110,6 @@ const misiItems = [
 
   <script>
     import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-    gsap.registerPlugin(ScrollTrigger);
 
     const section = document.querySelector("#visi-misi");
     if (section) {
@@ -119,6 +117,7 @@ const misiItems = [
         scrollTrigger: {
           trigger: section,
           start: "top 80%",
+          once: true,
         },
       });
 
@@ -127,6 +126,7 @@ const misiItems = [
         opacity: 0,
         duration: 0.5,
         ease: "power2.out",
+        clearProps: "transform,opacity",
       })
         .from(
           "#visi-misi-heading",
@@ -135,6 +135,7 @@ const misiItems = [
             opacity: 0,
             duration: 0.7,
             ease: "power3.out",
+            clearProps: "transform,opacity",
           },
           "-=0.3"
         )
@@ -145,6 +146,7 @@ const misiItems = [
             opacity: 0,
             duration: 0.5,
             ease: "power2.out",
+            clearProps: "transform,opacity",
           },
           "-=0.4"
         )
@@ -155,6 +157,7 @@ const misiItems = [
             opacity: 0,
             duration: 0.5,
             ease: "power2.out",
+            clearProps: "transform,opacity",
           },
           "-=0.3"
         );
