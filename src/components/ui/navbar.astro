@@ -1,6 +1,19 @@
 ---
 import Button from "@/components/ui/button.astro";
-import { AtSign, ChevronDown, Mail, Menu, MessageCircle, X } from "@lucide/astro";
+import { ArrowRight, AtSign, ChevronDown, Icon, Mail, Menu, MessageCircle, X } from "@lucide/astro";
+import type { IconNode } from "@lucide/astro";
+
+const instagramNode: IconNode = [
+  ["rect", { width: "20", height: "20", x: "2", y: "2", rx: "5", ry: "5" }],
+  ["path", { d: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" }],
+  ["line", { x1: "17.5", x2: "17.51", y1: "6.5", y2: "6.5" }],
+];
+
+const linkedinNode: IconNode = [
+  ["path", { d: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" }],
+  ["rect", { width: "4", height: "12", x: "2", y: "9" }],
+  ["circle", { cx: "4", cy: "4", r: "2" }],
+];
 
 interface NavChild {
   label: string;
@@ -56,19 +69,15 @@ const isLinkActive = (href: string) => {
 <!-- Fixed Header Container -->
 <header id="site-header" class="fixed top-0 right-0 left-0 z-50 w-full">
   <!-- Topbar -->
-  <div
+  <a
     id="hero-announcement"
-    class="bg-violet-normal font-jakarta w-full px-[20px] py-2.5 text-center text-[12px] leading-snug font-medium text-white sm:px-[24px] sm:py-3 sm:text-[13px] md:text-[14px]"
+    href="#konsultasi"
+    class="group/topbar-link bg-violet-normal font-jakarta flex w-full items-center justify-center gap-1.5 px-[20px] py-2.5 text-center text-[12px] leading-snug font-medium text-white transition-colors duration-200 sm:px-[24px] sm:py-3 sm:text-[13px] md:text-[14px]"
+    aria-label="Daftar konsultasi portfolio gratis"
   >
-    Konsultasi Portfolio Gratis — Temukan Jalur STEM Terbaik untuk Masa Depanmu
-    <a
-      href="#konsultasi"
-      class="hover:text-citrus-normal ml-1 inline-flex items-center gap-1 underline underline-offset-2 transition-colors duration-200"
-      aria-label="Daftar konsultasi gratis"
-    >
-      →
-    </a>
-  </div>
+    <span>Konsultasi Portfolio Gratis — Temukan Jalur STEM Terbaik untuk Masa Depanmu</span>
+    <ArrowRight size={15} class="inline-block flex-shrink-0 transition-transform duration-200 group-hover/topbar-link:translate-x-1" aria-hidden="true" />
+  </a>
 
   <!-- Navbar -->
   <nav
@@ -150,7 +159,7 @@ const isLinkActive = (href: string) => {
                   {/* Mega Dropdown Panel (Anchored directly to bottom of navbar with 0px gap) */}
                   <div
                     id="mega-menu"
-                    class="pointer-events-none invisible absolute top-full right-0 left-0 z-10 w-full -translate-y-2 bg-white text-gray-900 opacity-0 shadow-2xl transition-all duration-300 ease-out group-hover/dropdown:pointer-events-auto group-hover/dropdown:visible group-hover/dropdown:translate-y-0 group-hover/dropdown:opacity-100"
+                    class="pointer-events-none invisible absolute top-full right-0 left-0 z-10 w-full -translate-y-2 bg-white text-gray-900 opacity-0 shadow-none transition-all duration-300 ease-out group-hover/dropdown:pointer-events-auto group-hover/dropdown:visible group-hover/dropdown:translate-y-0 group-hover/dropdown:opacity-100"
                   >
                     <div class="relative flex min-h-[220px] w-full items-end bg-white px-[20px] py-8 sm:px-[24px] md:px-[28px] lg:px-[32px]">
                       {/* Left: Social Media Icons */}
@@ -171,20 +180,7 @@ const isLinkActive = (href: string) => {
                           aria-label="Instagram"
                           class="bg-violet-normal hover:bg-violet-normal-hover flex h-10 w-10 items-center justify-center rounded-full text-white transition-transform hover:-translate-y-0.5"
                         >
-                          <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          >
-                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                          </svg>
+                          <Icon iconNode={instagramNode} size={18} />
                         </a>
                         <a
                           href="https://linkedin.com"
@@ -193,20 +189,7 @@ const isLinkActive = (href: string) => {
                           aria-label="LinkedIn"
                           class="bg-violet-normal hover:bg-violet-normal-hover flex h-10 w-10 items-center justify-center rounded-full text-white transition-transform hover:-translate-y-0.5"
                         >
-                          <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          >
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                            <rect width="4" height="12" x="2" y="9" />
-                            <circle cx="4" cy="4" r="2" />
-                          </svg>
+                          <Icon iconNode={linkedinNode} size={18} />
                         </a>
                         <a
                           href="mailto:info@portospace.com"
@@ -403,20 +386,7 @@ const isLinkActive = (href: string) => {
         aria-label="Instagram"
         class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
       >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-        </svg>
+        <Icon iconNode={instagramNode} size={20} />
       </a>
       <a
         href="https://linkedin.com"
@@ -425,21 +395,7 @@ const isLinkActive = (href: string) => {
         aria-label="LinkedIn"
         class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
       >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-          ></path>
-          <rect width="4" height="12" x="2" y="9"></rect>
-          <circle cx="4" cy="4" r="2"></circle>
-        </svg>
+        <Icon iconNode={linkedinNode} size={20} />
       </a>
       <a
         href="mailto:info@portospace.com"
@@ -548,10 +504,11 @@ const isLinkActive = (href: string) => {
     transform: rotate(180deg) !important;
   }
 
-  /* Mega Menu Panel: 100% Solid Opaque White Background (No transparency) */
+  /* Mega Menu Panel: 100% Solid Opaque White Background (No transparency, no shadow) */
   #mega-menu {
     background-color: #ffffff !important;
     background: #ffffff !important;
+    box-shadow: none !important;
   }
 
   /* Unified White Background when Mega Menu Dropdown is hovered or open */
