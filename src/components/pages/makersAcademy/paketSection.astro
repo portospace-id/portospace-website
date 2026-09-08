@@ -62,7 +62,7 @@ const packages = [
 
 <section
   id="paket-programs"
-  class="relative flex w-full flex-col items-center overflow-hidden bg-white py-[60px] lg:py-[100px]"
+  class="relative flex w-full flex-col items-center overflow-hidden bg-white py-12 sm:py-16 md:py-20 lg:py-[100px]"
   aria-label="Paket Programs PortoSpace"
   data-navbar="white"
 >
@@ -118,6 +118,7 @@ const packages = [
             features={pkg.features}
             buttonText={pkg.buttonText}
             featured={pkg.featured}
+            class={pkg.id === "paket-lite" ? "md:col-span-2 md:max-w-[440px] lg:col-span-1 lg:max-w-none" : ""}
           />
         ))
       }
@@ -145,6 +146,7 @@ const packages = [
       opacity: 0,
       duration: 0.6,
       ease: "power2.out",
+      clearProps: "transform,opacity",
     });
 
     gsap.from("#paket-heading", {
@@ -158,6 +160,7 @@ const packages = [
       duration: 0.8,
       ease: "power3.out",
       delay: 0.1,
+      clearProps: "transform,opacity",
     });
 
     gsap.from("#paket-desc", {
@@ -171,6 +174,7 @@ const packages = [
       duration: 0.6,
       ease: "power2.out",
       delay: 0.2,
+      clearProps: "transform,opacity",
     });
 
     gsap.from(".paket-card", {

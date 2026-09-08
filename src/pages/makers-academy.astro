@@ -22,8 +22,19 @@ import ProsesBimbinganSection from "../components/pages/makersAcademy/prosesBimb
 
 <Layout
   title="Makers Academy — PortoSpace"
-  description="Program mentorship berbasis proyek yang membimbing siswa mengembangkan ide menjadi portofolio, prestasi, dan inovasi nyata."
+  description="Akademi riset dan teknologi terpadu di PortoSpace untuk mengasah kemampuan sains, teknik, dan pemrograman siswa."
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Makers Academy by PortoSpace",
+    "description": "Akademi riset dan teknologi terpadu di PortoSpace untuk mengasah kemampuan sains, teknik, dan pemrograman siswa.",
+    "provider": {
+      "@type": "EducationalOrganization",
+      "name": "PortoSpace",
+      "url": "https://portospace.id"
+    }
+  })} />
   <main>
     <HeroSection
       badge="Program Unggulan"

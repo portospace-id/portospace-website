@@ -48,7 +48,7 @@ const {
 <section
   id="proses-bimbingan-section"
   class:list={[
-    "relative z-10 flex w-full flex-col items-center overflow-hidden bg-white py-16 md:py-20 lg:py-24",
+    "relative z-10 flex w-full flex-col items-center overflow-hidden bg-white py-12 sm:py-16 md:py-20 lg:py-24",
     className,
   ]}
   aria-label="Proses Bimbingan Maker's Academy"
@@ -66,14 +66,14 @@ const {
     <!-- Centered Heading (Strict 2 Lines) -->
     <h2
       id="proses-bimbingan-heading"
-      class="font-display max-w-[1140px] text-center text-[30px] leading-[1.15] font-bold tracking-tight text-[#161616] sm:text-[38px] md:text-[46px] lg:text-[50px] xl:text-[54px]"
+      class="font-momo max-w-[1140px] text-center text-[30px] leading-[1.15] font-bold tracking-tight text-[#161616] sm:text-[38px] md:text-[46px] lg:text-[50px] xl:text-[54px]"
     >
       {titleLine1 && <span class="block whitespace-normal lg:whitespace-nowrap">{titleLine1}</span>}
       <span class="mt-1 block">
         {titleLine2 && titleLine2}
         {
           titleHighlight && (
-            <span class="font-handwriting align-baseline text-[40px] leading-none font-medium text-[#161616] italic md:text-[54px] lg:text-[64px]">
+            <span class="font-caveat align-baseline text-[40px] leading-none font-medium text-[#161616] italic md:text-[54px] lg:text-[64px]">
               {titleHighlight}
             </span>
           )
@@ -151,6 +151,7 @@ const {
       duration: 0.7,
       stagger: 0.15,
       ease: "power3.out",
+      clearProps: "transform,opacity",
     });
 
     gsap.from(".proses-step-item", {
@@ -164,6 +165,7 @@ const {
       duration: 0.6,
       stagger: 0.1,
       ease: "power2.out",
+      clearProps: "transform,opacity",
     });
   };
 
