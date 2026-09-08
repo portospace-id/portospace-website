@@ -70,8 +70,7 @@ const packages = [
   <Image
     src={pattern4}
     alt=""
-    class="pointer-events-none absolute z-0 select-none"
-    style="width: 486px; height: 488px; right: -218px; top: -170px; display: block;"
+    class="pointer-events-none absolute z-0 h-[250px] w-[250px] -right-[105px] -top-[91px] select-none lg:h-[488px] lg:w-[486px] lg:-right-[218px] lg:-top-[170px]"
     aria-hidden="true"
   />
 
@@ -87,11 +86,12 @@ const packages = [
 
       <h2
         id="paket-heading"
-        class="font-momo max-w-[980px] text-[32px] leading-[110%] font-semibold tracking-[-1.08px] text-[#111] md:text-[44px] lg:text-[54px]"
+        class="font-momo max-w-[980px] text-[28px] leading-[1.15] font-semibold tracking-tight text-[#111] sm:text-[36px] md:text-[44px] lg:text-[54px]"
       >
         Bandingkan Setiap Paket dan Temukan <br class="hidden md:block" />
-        yang Paling Sesuai <span
-          class="font-caveat text-[42px] leading-[80%] font-medium tracking-[-2.56px] text-[#111] italic md:text-[54px] lg:text-[64px]"
+        yang Paling Sesuai{" "}
+        <span
+          class="font-caveat inline-block text-[36px] leading-[80%] font-medium tracking-[-2.56px] text-[#111] italic sm:text-[44px] md:text-[54px] lg:text-[64px]"
           >Untukmu</span
         >
       </h2>
@@ -145,6 +145,7 @@ const packages = [
       opacity: 0,
       duration: 0.6,
       ease: "power2.out",
+      clearProps: "transform,opacity",
     });
 
     gsap.from("#paket-heading", {
@@ -158,6 +159,7 @@ const packages = [
       duration: 0.8,
       ease: "power3.out",
       delay: 0.1,
+      clearProps: "transform,opacity",
     });
 
     gsap.from("#paket-desc", {
@@ -171,6 +173,7 @@ const packages = [
       duration: 0.6,
       ease: "power2.out",
       delay: 0.2,
+      clearProps: "transform,opacity",
     });
 
     gsap.from(".paket-card", {

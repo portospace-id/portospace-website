@@ -24,14 +24,14 @@ const steps = [
 <section
   id={id}
   class:list={[
-    "relative w-full overflow-hidden bg-white py-16 sm:py-20 md:py-24 lg:py-28",
+    "relative w-full overflow-hidden bg-white py-[60px] lg:py-[100px]",
     className,
   ]}
   aria-label="Alur Riset Section"
 >
   <!-- Bottom Left Decorative Pattern 1 -->
   <div
-    class="pointer-events-none absolute -bottom-[250.674px] -left-[241px] z-0 h-[803px] w-[800px] overflow-hidden select-none"
+    class="pointer-events-none absolute -bottom-[131.504px] -left-[135px] z-0 h-[401.504px] w-[400px] overflow-hidden select-none lg:-bottom-[250.674px] lg:-left-[241px] lg:h-[803px] lg:w-[800px]"
   >
     <Image
       src={pattern1}
@@ -63,7 +63,7 @@ const steps = [
         <!-- Heading (3 Lines) -->
         <h2
           id="alur-riset-heading"
-          class="font-momo text-[28px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[48px]"
+          class="font-momo text-[26px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[34px] md:text-[44px] lg:text-[48px]"
         >
           Setiap Langkah Dirancang<br />
           agar Ide Dapat Berkembang<br />
@@ -96,11 +96,11 @@ const steps = [
       >
         {
           steps.map((step) => (
-            <div class="alur-step-item group hover:bg-spicy-100/50 flex cursor-pointer items-center justify-between gap-6 rounded-xs border-b border-purple-100/80 px-2 py-5 transition-all duration-300 sm:px-4 sm:py-6 md:py-7">
-              <span class="font-momo group-hover:text-spicy-dark shrink-0 text-2xl font-bold text-[#111111] transition-colors duration-200 sm:text-[28px] md:text-[32px]">
+            <div class="alur-step-item group hover:bg-spicy-100/50 flex cursor-pointer items-center justify-between gap-6 rounded-xs border-b border-purple-100/80 px-2 py-4 transition-all duration-300 sm:px-4 sm:py-5 md:py-6">
+              <span class="font-momo group-hover:text-spicy-dark shrink-0 text-xl font-bold text-[#111111] transition-colors duration-200 sm:text-[24px] md:text-[28px] lg:text-[32px]">
                 {step.number}
               </span>
-              <h3 class="font-momo group-hover:text-spicy-dark text-right text-xl font-bold tracking-tight text-[#111111] transition-colors duration-200 sm:text-2xl md:text-[28px] lg:text-[32px]">
+              <h3 class="font-momo group-hover:text-spicy-dark text-right text-lg font-bold tracking-tight text-[#111111] transition-colors duration-200 sm:text-xl md:text-2xl lg:text-[32px]">
                 {step.title}
               </h3>
             </div>

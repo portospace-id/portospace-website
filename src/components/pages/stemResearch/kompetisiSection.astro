@@ -23,7 +23,7 @@ const { class: className = "", id = "kompetisi-publikasi" } = Astro.props;
 <section
   id={id}
   class:list={[
-    "relative z-10 w-full overflow-hidden bg-[#4dd3f2] py-16 sm:py-20 md:py-24 lg:py-28",
+    "relative z-10 w-full overflow-hidden bg-[#4dd3f2] py-[60px] lg:py-[100px]",
     className,
   ]}
   aria-label="Kompetisi & Publikasi Section"
@@ -59,7 +59,7 @@ const { class: className = "", id = "kompetisi-publikasi" } = Astro.props;
       <!-- 2-Line Heading -->
       <h2
         id="kompetisi-heading"
-        class="font-momo text-center text-[28px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[54px]"
+        class="font-momo text-center text-[26px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[34px] md:text-[44px] lg:text-[54px]"
       >
         <span class="block">Persiapkan Karyamu untuk</span>
         <span class="block mt-1 sm:mt-0">
@@ -93,19 +93,19 @@ const { class: className = "", id = "kompetisi-publikasi" } = Astro.props;
           title="Kompetisi Riset"
           image={imgStudioWorkspace}
           size="medium"
-          class="!h-[280px] sm:!h-[340px] lg:!h-[410px] !w-full flex-1"
+          class="!h-[240px] sm:!h-[300px] lg:!h-[410px] !w-full flex-1"
         />
         <CardProgramPrivate
           title="Publikasi Ilmiah"
           image={imgTechDesk}
           size="medium"
-          class="!h-[280px] sm:!h-[340px] lg:!h-[410px] !w-full flex-1"
+          class="!h-[240px] sm:!h-[300px] lg:!h-[410px] !w-full flex-1"
         />
         <CardProgramPrivate
           title="Presentasi Riset"
           image={imgWorkshopGroup}
           size="medium"
-          class="!h-[280px] sm:!h-[340px] lg:!h-[410px] !w-full flex-1"
+          class="!h-[240px] sm:!h-[300px] lg:!h-[410px] !w-full flex-1"
         />
       </div>
 
@@ -115,19 +115,19 @@ const { class: className = "", id = "kompetisi-publikasi" } = Astro.props;
           title="Research Portfolio"
           image={imgPortfolioProject}
           size="medium"
-          class="!h-[280px] sm:!h-[340px] lg:!h-[410px] !w-full md:flex-[1.2]"
+          class="!h-[240px] sm:!h-[300px] lg:!h-[410px] !w-full md:flex-[1.2]"
         />
         <CardProgramPrivate
           title="Pendampingan Mentor"
           image={imgMentorMatching}
           size="small"
-          class="!h-[280px] sm:!h-[340px] lg:!h-[410px] !w-full md:flex-1"
+          class="!h-[240px] sm:!h-[300px] lg:!h-[410px] !w-full md:flex-1"
         />
         <CardProgramPrivate
           title="Pengembangan Karya"
           image={imgPengembanganKarya}
           size="small"
-          class="!h-[280px] sm:!h-[340px] lg:!h-[410px] !w-full md:flex-1"
+          class="!h-[240px] sm:!h-[300px] lg:!h-[410px] !w-full md:flex-1"
         />
       </div>
     </div>

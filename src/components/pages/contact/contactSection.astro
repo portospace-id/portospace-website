@@ -14,28 +14,80 @@ const { class: className = "" } = Astro.props;
 <section
   id="contact-info-form"
   class:list={[
-    "relative flex min-h-screen w-full flex-col justify-center overflow-hidden bg-white py-20 lg:py-28",
+    "relative flex w-full flex-col justify-center overflow-hidden bg-white py-[60px] text-black lg:py-[100px]",
     className,
   ]}
   aria-label="Informasi dan Form Kontak"
   data-navbar="white"
 >
   <div
-    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[48px] lg:px-[162px] xl:max-w-none xl:px-[162px]"
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
-    <div class="flex w-full flex-col items-stretch gap-12 lg:flex-row lg:gap-16">
-      <!-- Left Column: Contact Details (Equal Height, 24px gap) -->
+    <div class="flex w-full flex-col items-stretch gap-10 lg:flex-row lg:gap-16">
+      <!-- Form Column (Order-1 on Mobile/Tablet, Order-2 on Desktop) -->
+      <div id="contact-form-wrapper" class="order-1 flex w-full flex-1 flex-col justify-between lg:order-2">
+        <form id="contact-form" class="flex h-full w-full flex-1 flex-col justify-between gap-6">
+          <div class="flex flex-col gap-6 sm:flex-row">
+            <!-- Nama -->
+            <Input
+              id="nama"
+              name="nama"
+              type="text"
+              label="Nama"
+              placeholder="Nama Lengkap"
+              required={true}
+              class="flex-1"
+            />
+
+            <!-- Email -->
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              label="Email"
+              placeholder="Email Anda"
+              required={true}
+              class="flex-1"
+            />
+          </div>
+
+          <!-- Pesan (Taller Textarea) -->
+          <Textarea
+            id="pesan"
+            name="pesan"
+            label="Pesan"
+            placeholder="Pesan Anda"
+            required={true}
+            rows={7}
+            class="flex-1"
+          />
+
+          <!-- Submit Button -->
+          <div>
+            <Button
+              type="submit"
+              variant="primary"
+              size="lg"
+              class="w-full justify-center rounded-sm py-4 text-base font-semibold !shadow-none"
+            >
+              Kirim Pesan
+            </Button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Contact Details Column (Order-2 on Mobile/Tablet, Order-1 on Desktop) -->
       <div
         id="contact-info"
-        class="flex w-full shrink-0 flex-col justify-between text-gray-900 lg:w-[40%] xl:w-[35%]"
+        class="order-2 flex w-full shrink-0 flex-col justify-between text-gray-900 lg:order-1 lg:w-[40%] xl:w-[35%]"
       >
         <div>
           <h2
-            class="font-momo mb-10 flex items-baseline gap-2 text-[32px] leading-none font-bold text-[#1a1a1a] sm:text-[40px] md:mb-14 lg:text-[54px]"
+            class="font-momo mb-8 flex items-baseline gap-2 text-[28px] leading-none font-bold text-[#1a1a1a] sm:text-[36px] md:mb-12 md:text-[44px] lg:text-[54px]"
           >
             <span>Hubungi</span>
             <span
-              class="font-caveat text-[38px] leading-none font-semibold text-black sm:text-[48px] lg:text-[64px]"
+              class="font-caveat text-[36px] leading-none font-semibold text-black sm:text-[48px] md:text-[58px] lg:text-[68px]"
             >
               Kami
             </span>
@@ -43,7 +95,7 @@ const { class: className = "" } = Astro.props;
 
           <div class="font-jakarta flex flex-col gap-6">
             <!-- WhatsApp -->
-            <div class="flex flex-col gap-3">
+            <div class="flex flex-col gap-2.5">
               <p class="text-sm leading-none font-medium text-[#666666] md:text-base">WhatsApp</p>
               <a
                 href="https://wa.me/6285793057466"
@@ -56,7 +108,7 @@ const { class: className = "" } = Astro.props;
             </div>
 
             <!-- Email -->
-            <div class="flex flex-col gap-3">
+            <div class="flex flex-col gap-2.5">
               <p class="text-sm leading-none font-medium text-[#666666] md:text-base">Email</p>
               <a
                 href="mailto:admin@portospace.id"
@@ -67,7 +119,7 @@ const { class: className = "" } = Astro.props;
             </div>
 
             <!-- Lokasi -->
-            <div class="flex flex-col gap-3">
+            <div class="flex flex-col gap-2.5">
               <p class="text-sm leading-none font-medium text-[#666666] md:text-base">Lokasi</p>
               <p class="text-base leading-none font-normal text-[#333333] md:text-lg">
                 admin@portospace.id
@@ -75,7 +127,7 @@ const { class: className = "" } = Astro.props;
             </div>
 
             <!-- Jam Operasional -->
-            <div class="flex flex-col gap-3">
+            <div class="flex flex-col gap-2.5">
               <p class="text-sm leading-none font-medium text-[#666666] md:text-base">
                 Jam Operasional
               </p>
@@ -162,64 +214,14 @@ const { class: className = "" } = Astro.props;
           </a>
         </div>
       </div>
-
-      <!-- Right Column: Form (24px gap between elements) -->
-      <div id="contact-form-wrapper" class="flex w-full flex-1 flex-col justify-between">
-        <form id="contact-form" class="flex h-full w-full flex-1 flex-col justify-between gap-6">
-          <div class="flex flex-col gap-6 sm:flex-row">
-            <!-- Nama -->
-            <Input
-              id="nama"
-              name="nama"
-              type="text"
-              label="Nama"
-              placeholder="Nama Lengkap"
-              required={true}
-              class="flex-1"
-            />
-
-            <!-- Email -->
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              label="Email"
-              placeholder="Email Anda"
-              required={true}
-              class="flex-1"
-            />
-          </div>
-
-          <!-- Pesan (Taller Textarea) -->
-          <Textarea
-            id="pesan"
-            name="pesan"
-            label="Pesan"
-            placeholder="Nama Lengkap"
-            required={true}
-            rows={7}
-            class="flex-1"
-          />
-
-          <!-- Submit Button -->
-          <div>
-            <Button
-              type="submit"
-              variant="primary"
-              size="lg"
-              class="w-full justify-center rounded-sm py-4 text-base font-semibold !shadow-none"
-            >
-              Kirim Pesan
-            </Button>
-          </div>
-        </form>
-      </div>
     </div>
   </div>
 
   <script>
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
 
     const initContactSectionAnimations = () => {
       const section = document.getElementById("contact-info-form");
@@ -235,6 +237,7 @@ const { class: className = "" } = Astro.props;
         opacity: 0,
         duration: 0.7,
         ease: "power3.out",
+        clearProps: "transform,opacity",
       });
 
       gsap.from("#contact-form-wrapper", {
@@ -248,6 +251,7 @@ const { class: className = "" } = Astro.props;
         duration: 0.7,
         ease: "power3.out",
         delay: 0.15,
+        clearProps: "transform,opacity",
       });
     };
 

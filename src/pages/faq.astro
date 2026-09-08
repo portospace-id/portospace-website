@@ -1,48 +1,145 @@
 ---
-// Layouts
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-
-// Components
 import HeroSection from "../components/pages/faq/heroSection.astro";
 import ListFaq from "../components/pages/faq/listFaq.astro";
+import pattern4 from "@/assets/pattern/pattern_4.svg";
+
+const faqSchemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Apa itu Maker's Academy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Maker's Academy adalah program pendampingan 1-on-1 berbasis proyek dari PortoSpace yang membantu siswa mengembangkan keterampilan, membangun portofolio, dan mempersiapkan kompetisi maupun jenjang pendidikan berikutnya."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah tersedia Trial Class?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. Kamu dapat mengikuti sesi trial untuk mengenal metode pembelajaran, berdiskusi dengan mentor, dan memastikan program sesuai dengan kebutuhanmu sebelum bergabung."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apa perbedaan paket Lite, Pro, dan Pro Max?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Perbedaannya terletak pada jumlah sesi, durasi pendampingan, target karya, serta fasilitas yang didapatkan. Kamu dapat memilih paket sesuai kebutuhan dan tujuan belajarmu."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Siapa saja mentor di PortoSpace?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mentor PortoSpace berasal dari berbagai bidang keahlian dengan pengalaman di dunia akademik, riset, maupun industri, dan dipilih melalui proses seleksi untuk memastikan kualitas pendampingan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Project seperti apa yang akan dikerjakan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Jenis proyek disesuaikan dengan bidang yang dipilih dan tujuan belajar masing-masing siswa, mulai dari riset, teknologi, pemrograman, robotika, hingga kewirausahaan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah program dilakukan secara online atau offline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sebagian besar program dilaksanakan secara online sehingga dapat diikuti dari mana saja. Program offline atau hybrid akan diinformasikan jika tersedia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah PortoSpace mendukung persiapan kompetisi atau aplikasi universitas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. Mentor akan membantu menyempurnakan proyek, membangun portofolio, serta memberikan pendampingan untuk kompetisi maupun persiapan aplikasi ke universitas sesuai kebutuhan siswa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Siapa yang dapat mengikuti program ini?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Program PortoSpace dirancang untuk siswa Grade 9–12 yang ingin mengembangkan keterampilan, membangun portofolio, dan mempersiapkan masa depan melalui pembelajaran berbasis proyek."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah orang tua akan mendapatkan laporan perkembangan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. Orang tua akan menerima update perkembangan secara berkala mengenai proses belajar, proyek yang sedang dikerjakan, dan perkembangan siswa selama mengikuti program."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Berapa lama waktu respons tim PortoSpace?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tim PortoSpace berusaha merespons setiap pertanyaan secepat mungkin pada jam operasional. Untuk pertanyaan yang lebih kompleks, kami akan memberikan informasi lanjutan setelah melakukan koordinasi dengan tim terkait."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "EducationalOrganization",
+      "name": "PortoSpace",
+      "url": "https://portospace.id",
+      "logo": "https://portospace.id/favicon.svg",
+      "description": "Platform Mentorship Riset, Robotics, Coding, dan Entrepreneurship untuk Siswa."
+    }
+  ]
+};
 ---
 
 <Layout
-  title="FAQ — PortoSpace"
-  description="Temukan jawaban atas berbagai pertanyaan seputar program, mentor, paket, hingga proses belajar di PortoSpace."
+  title="FAQ — Pertanyaan Umum Mentorship & Program — PortoSpace"
+  description="Temukan jawaban atas berbagai pertanyaan seputar program mentorship private, mentor, paket biaya, trial class, hingga laporan perkembangan siswa di PortoSpace."
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchemaData)}></script>
   <main>
     <HeroSection />
 
     <section
       id="faq-section"
-      class="relative w-full bg-white overflow-hidden"
+      class="relative flex w-full flex-col justify-center overflow-hidden bg-white py-[60px] text-black lg:py-[100px]"
       aria-label="Frequently Asked Questions"
+      data-navbar="light"
     >
       <!-- Pattern SVG (top-right) -->
-      <div
-        class="absolute top-0 right-0 w-[194px] sm:w-[260px] md:w-[300px] lg:w-[330px] pointer-events-none select-none"
+      <Image
+        src={pattern4}
+        alt=""
+        class="pointer-events-none absolute z-0 h-[250px] w-[250px] -right-[105px] -top-[91px] select-none lg:h-[501px] lg:w-[500px] lg:-right-[163px] lg:-top-[168px]"
         aria-hidden="true"
-      >
-        <img src="/pattern_4.svg" alt="" class="w-full h-auto object-contain" />
-      </div>
+      />
 
-      <!-- Content -->
+      <!-- Content Container -->
       <div
-        class="relative z-10 w-full max-w-[1440px] mx-auto xl:max-w-none px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:px-[32px] pt-16 md:pt-20 lg:pt-24 pb-16 md:pb-20 lg:pb-24"
+        class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
       >
         <!-- Section Heading (center) -->
-        <div class="flex flex-col items-center gap-3 mb-14 md:mb-16 lg:mb-20">
+        <div class="mb-10 flex flex-col items-center gap-3 text-center sm:mb-12 lg:mb-16">
           <h2
             id="faq-section-heading"
-            class="font-momo font-semibold text-black text-center leading-[110%] text-[38px] sm:text-[46px] md:text-[54px]"
-            style="letter-spacing: -0.02em;"
+            class="font-momo text-center text-[28px] leading-[1.15] font-semibold tracking-tight text-black sm:text-[36px] md:text-[44px] lg:text-[54px]"
           >
             Frequently<br />
             Asked{" "}
             <span
-              class="font-caveat font-bold italic text-black text-[52px] sm:text-[58px] md:text-[64px] leading-[80%] align-baseline"
-              style="letter-spacing: -0.04em;"
+              class="font-caveat inline-block align-baseline text-[36px] leading-none font-semibold text-black italic sm:text-[48px] md:text-[58px] lg:text-[68px]"
             >
               Questions
             </span>
@@ -50,7 +147,7 @@ import ListFaq from "../components/pages/faq/listFaq.astro";
 
           <p
             id="faq-section-sub"
-            class="font-jakarta font-normal text-black text-[14px] sm:text-[16px] leading-[150%] text-center"
+            class="font-jakarta max-w-[680px] text-center text-sm leading-relaxed font-normal text-black/75 md:text-base"
           >
             Masih penasaran?<br class="sm:hidden" />Semua yang perlu kamu tahu ada di sini.
           </p>
@@ -64,40 +161,59 @@ import ListFaq from "../components/pages/faq/listFaq.astro";
         import { gsap } from "gsap";
         import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-        gsap.from("#faq-section-heading", {
-          y: 30,
-          opacity: 0,
-          duration: 0.7,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#faq-section",
-            start: "top 80%",
-          },
-        });
+        gsap.registerPlugin(ScrollTrigger);
 
-        gsap.from("#faq-section-sub", {
-          y: 20,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          delay: 0.15,
-          scrollTrigger: {
-            trigger: "#faq-section",
-            start: "top 80%",
-          },
-        });
+        const initFaqSection = () => {
+          const section = document.querySelector("#faq-section");
+          if (!section) return;
 
-        gsap.from("#faq-section .faq-item", {
-          y: 24,
-          opacity: 0,
-          duration: 0.55,
-          ease: "power2.out",
-          stagger: 0.08,
-          scrollTrigger: {
-            trigger: "#faq-section .faq-item",
-            start: "top 85%",
-          },
-        });
+          gsap.from("#faq-section-heading", {
+            y: 30,
+            opacity: 0,
+            duration: 0.7,
+            ease: "power2.out",
+            clearProps: "transform,opacity",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+              once: true,
+            },
+          });
+
+          gsap.from("#faq-section-sub", {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            delay: 0.15,
+            clearProps: "transform,opacity",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+              once: true,
+            },
+          });
+
+          gsap.from("#faq-section .faq-item", {
+            y: 24,
+            opacity: 0,
+            duration: 0.55,
+            ease: "power2.out",
+            stagger: 0.08,
+            clearProps: "transform,opacity",
+            scrollTrigger: {
+              trigger: "#faq-section .faq-item",
+              start: "top 85%",
+              once: true,
+            },
+          });
+        };
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initFaqSection);
+        } else {
+          initFaqSection();
+        }
       </script>
     </section>
   </main>

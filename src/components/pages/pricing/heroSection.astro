@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 import SectionTitle from "@/components/ui/sectionTitle.astro";
 import defaultHeroBg from "@/assets/image/pricing/hero.png";
 
@@ -36,6 +37,7 @@ const {
   class: className = "",
 } = Astro.props;
 
+const isObjBg = typeof bgImage === "object";
 const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
 ---
 
@@ -47,12 +49,25 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
 >
   <!-- Background Image -->
   <div class="absolute inset-0 z-0">
-    <img
-      src={bgUrl}
-      alt={bgAlt}
-      class="h-full w-full object-cover object-center"
-      fetchpriority="high"
-    />
+    {
+      isObjBg ? (
+        <Image
+          src={bgImage as ImageMetadata}
+          alt={bgAlt}
+          loading="eager"
+          fetchpriority="high"
+          class="h-full w-full object-cover object-center"
+        />
+      ) : (
+        <img
+          src={bgUrl}
+          alt={bgAlt}
+          loading="eager"
+          fetchpriority="high"
+          class="h-full w-full object-cover object-center"
+        />
+      )
+    }
   </div>
 
   <!-- Dark Overlay -->
@@ -60,7 +75,7 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
 
   <!-- Main Hero Content -->
   <div
-    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] pb-8 sm:px-[24px] md:px-[28px] md:pb-12 lg:px-[32px] lg:pb-16 xl:max-w-none xl:px-[32px]"
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] pt-28 pb-8 sm:px-[24px] sm:pt-32 sm:pb-10 md:px-[28px] md:pt-36 md:pb-12 lg:px-[32px] lg:pt-32 lg:pb-16 xl:max-w-none xl:px-[32px]"
   >
     <div class="flex w-full flex-col items-start justify-between gap-6 lg:flex-row lg:gap-12">
       <!-- Badge Label (Left) -->
@@ -130,7 +145,7 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
         opacity: 0,
         duration: 0.5,
         ease: "power2.out",
-        clearProps: "all",
+        clearProps: "transform,opacity",
       })
         .from(
           "#hero-heading",
@@ -139,7 +154,7 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
             opacity: 0,
             duration: 0.7,
             ease: "power3.out",
-            clearProps: "all",
+            clearProps: "transform,opacity",
           },
           "-=0.3"
         )
@@ -150,7 +165,7 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
             opacity: 0,
             duration: 0.6,
             ease: "power2.out",
-            clearProps: "all",
+            clearProps: "transform,opacity",
           },
           "-=0.4"
         );
