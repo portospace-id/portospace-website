@@ -68,7 +68,7 @@ const faqItems = [
 
 <section
   id="faq"
-  class="bg-violet-normal relative z-10 flex w-full flex-col items-center overflow-hidden py-[60px] lg:py-[100px]"
+  class="bg-violet-normal relative z-10 flex w-full flex-col items-center overflow-hidden py-12 sm:py-16 md:py-20 lg:py-[100px]"
   aria-label="Frequently Asked Questions PortoSpace"
   data-navbar="violet"
 >
@@ -90,11 +90,11 @@ const faqItems = [
 
       <h2
         id="faq-heading"
-        class="font-display text-[32px] leading-[1.12] font-bold tracking-tight text-white md:text-[44px] lg:text-[54px]"
+        class="font-momo text-[32px] leading-[1.12] font-bold tracking-tight text-white md:text-[44px] lg:text-[54px]"
       >
         Frequently<br />
         <span
-          class="font-handwriting mt-1 block align-baseline text-[42px] leading-none font-medium text-white italic md:text-[54px] lg:text-[64px]"
+          class="font-caveat mt-1 block align-baseline text-[42px] leading-none font-medium text-white italic md:text-[54px] lg:text-[64px]"
           >Asked Questions</span
         >
       </h2>
@@ -181,6 +181,7 @@ const faqItems = [
       opacity: 0,
       duration: 0.6,
       ease: "power2.out",
+      clearProps: "opacity",
     });
 
     gsap.from(".faq-accordion-item", {
@@ -193,6 +194,7 @@ const faqItems = [
       duration: 0.5,
       stagger: 0.05,
       ease: "power2.out",
+      clearProps: "opacity",
     });
   };
 

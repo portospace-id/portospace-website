@@ -2,6 +2,10 @@
 // Layouts
 import Layout from "@/layouts/Layout.astro";
 
+// SEO
+import SchemaOrg from "@/seo/SchemaOrg.astro";
+import { schemas } from "@/seo/schemas";
+
 // Components
 import HeroSection from "@/components/pages/codingAndAi/heroSection.astro";
 import BenefitsSection from "@/components/pages/codingAndAi/benefitsSection.astro";
@@ -15,15 +19,15 @@ import CtaSection from "@/components/pages/codingAndAi/ctaSection.astro";
 <Layout
   title="Coding & AI — PortoSpace"
   description="Belajar coding, AI, dan pengembangan produk melalui proyek nyata bersama mentor."
-  showFooter={false}
 >
-  <main>
-    <HeroSection />
-    <BenefitsSection />
-    <DevelopmentProcessSection />
-    <ToolsTechnologySection />
-    <MentorsSection />
-    <CompetitionPublicationSection />
-    <CtaSection />
-  </main>
+  <SchemaOrg schema={schemas.codingAi} />
+
+  <HeroSection />
+  <BenefitsSection />
+  <DevelopmentProcessSection />
+  <ToolsTechnologySection />
+  <MentorsSection />
+  <CompetitionPublicationSection />
+  <CtaSection />
 </Layout>
+

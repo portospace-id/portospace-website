@@ -81,7 +81,7 @@ const {
 <section
   id="portfolio-output-section"
   class:list={[
-    "relative w-full bg-violet-normal py-16 md:py-20 lg:py-24 flex flex-col justify-center overflow-hidden z-10",
+    "relative w-full bg-violet-normal py-12 sm:py-16 md:py-20 lg:py-24 flex flex-col justify-center overflow-hidden z-10",
     className,
   ]}
   aria-label="Portfolio Output Maker's Academy"
@@ -125,13 +125,13 @@ const {
       <div class="w-full lg:max-w-[560px] xl:max-w-[620px]">
         <h2
           id="portfolio-output-heading"
-          class="font-display font-bold text-white text-[32px] md:text-[42px] lg:text-[54px] leading-[1.12] tracking-tight"
+          class="font-momo font-bold text-white text-[32px] md:text-[42px] lg:text-[54px] leading-[1.12] tracking-tight"
         >
           {titleLine1 && <span class="block">{titleLine1}</span>}
           {titleLine2 && <span class="block">{titleLine2}</span>}
           {
             titleHighlight && (
-              <span class="font-handwriting font-semibold italic text-white text-[42px] md:text-[54px] lg:text-[68px] leading-none align-baseline block mt-1">
+              <span class="font-caveat font-semibold italic text-white text-[42px] md:text-[54px] lg:text-[68px] leading-none align-baseline block mt-1">
                 {titleHighlight}
               </span>
             )
@@ -151,7 +151,7 @@ const {
     <!-- Cards Track Container (gap: 16px, items-start) -->
     <div
       id="portfolio-output-cards-container"
-      class="w-full overflow-hidden relative z-10 py-2 min-h-[500px] lg:min-h-[720px] flex items-start"
+      class="w-full overflow-x-auto md:overflow-hidden snap-x snap-mandatory scrollbar-none relative z-10 py-2 min-h-[380px] sm:min-h-[500px] lg:min-h-[720px] flex items-start"
     >
       <div
         id="portfolio-output-cards-track"

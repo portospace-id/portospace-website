@@ -42,7 +42,7 @@ const isStringImg = typeof bgImage === "string";
 <section
   id="whatsapp-cta-section"
   class:list={[
-    "relative z-10 flex h-screen min-h-screen w-full flex-col justify-end overflow-hidden",
+    "relative z-10 flex min-h-svh py-16 sm:py-20 lg:py-0 lg:h-screen lg:min-h-screen w-full flex-col justify-end overflow-hidden",
     className,
   ]}
   aria-label="Konsultasi WhatsApp PortoSpace"
@@ -81,14 +81,14 @@ const isStringImg = typeof bgImage === "string";
       <!-- Heading -->
       <h2
         id="whatsapp-cta-heading"
-        class="font-display text-[32px] leading-[1.12] font-bold tracking-tight text-white md:text-[44px] lg:text-[54px]"
+        class="font-momo text-[32px] leading-[1.12] font-bold tracking-tight text-white md:text-[44px] lg:text-[54px]"
       >
         {titleLine1 && <span class="block">{titleLine1}</span>}
         <span class="block">
           {titleLine2 && titleLine2}
           {
             titleHighlight && (
-              <span class="font-handwriting align-baseline text-[42px] leading-none font-semibold text-white italic md:text-[54px] lg:text-[68px]">
+              <span class="font-caveat align-baseline text-[42px] leading-none font-semibold text-white italic md:text-[54px] lg:text-[68px]">
                 {titleHighlight}
               </span>
             )

@@ -55,6 +55,8 @@ const isKecil = size === "kecil" || size === "small";
       <img
         src={image as string}
         alt={alt}
+        width={600}
+        height={410}
         class="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-500 select-none group-hover:scale-105"
         loading="lazy"
       />
@@ -62,6 +64,8 @@ const isKecil = size === "kecil" || size === "small";
       <Image
         src={image as ImageMetadata}
         alt={alt}
+        width={600}
+        height={410}
         class="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-500 select-none group-hover:scale-105"
         loading="lazy"
       />

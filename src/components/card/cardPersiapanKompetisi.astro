@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  /** Card image source */
+  image: ImageMetadata;
+  /** Image alt text */
+  alt?: string;
+  /** Card title */
+  title: string;
+  /** Card description text */
+  description: string;
+  /** Custom CSS classes */
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { image, alt, title, description, class: className = "", ...rest } = Astro.props;
+---
+
+<div
+  class:list={["persiapan-card group flex w-full flex-col items-start gap-4 md:h-[580px]", className]}
+  {...rest}
+>
+  <!-- Card Image -->
+  <div
+    class="h-[240px] sm:h-[320px] md:h-[400px] group-hover:h-[300px] sm:group-hover:h-[380px] md:group-hover:h-[500px] w-full shrink-0 overflow-hidden rounded-sm bg-neutral-100 transition-all duration-500 ease-out"
+  >
+    <Image
+      src={image}
+      alt={alt || title}
+      width={800}
+      height={600}
+      loading="lazy"
+      class="h-full w-full rounded-sm object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+    />
+  </div>
+
+  <!-- Card Content -->
+  <div class="flex w-full flex-col items-start gap-2">
+    <h3 class="font-momo text-lg font-bold tracking-tight text-[#161616] sm:text-xl md:text-2xl lg:text-[26px]">
+      {title}
+    </h3>
+    <p class="font-jakarta text-xs leading-relaxed font-normal text-[#444444] sm:text-sm lg:text-base">
+      {description}
+    </p>
+  </div>
+</div>

@@ -30,7 +30,7 @@ const { class: className = "", id = "coding-benefits-section" } = Astro.props;
 >
   <!-- Top Right Decorative Pattern 4 -->
   <div
-    class="pointer-events-none absolute -top-[171px] -right-[218px] z-0 h-[501.88px] w-[500px] overflow-hidden select-none"
+    class="pointer-events-none absolute -top-[85px] -right-[105px] z-0 h-[250px] w-[250px] overflow-hidden select-none lg:-top-[171px] lg:-right-[218px] lg:h-[501.88px] lg:w-[500px]"
   >
     <Image
       src={pattern4}
@@ -65,14 +65,16 @@ const { class: className = "", id = "coding-benefits-section" } = Astro.props;
       >
         <h2
           id="coding-manfaat-outcome-heading"
-          class="font-momo max-w-[640px] text-[32px] leading-[1.12] font-bold tracking-tight text-[#111111] sm:text-[40px] md:text-[48px] lg:text-[52px]"
+          class="font-momo text-left text-[28px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[54px] lg:max-w-[840px] xl:max-w-[920px]"
         >
-          Belajar Coding dengan<br />
-          Membuat Sesuatu yang{" "}
-          <span
-            class="font-caveat ml-1 inline-block align-baseline text-[38px] leading-none font-semibold text-[#111111] italic sm:text-[48px] md:text-[58px] lg:text-[66px]"
-          >
-            Nyata.
+          <span class="block">Belajar Coding dengan Membuat</span>
+          <span class="block mt-1 sm:mt-0">
+            Sesuatu yang{" "}
+            <span
+              class="font-caveat ml-1 inline-block align-baseline text-[36px] leading-none font-semibold text-[#111111] italic sm:text-[46px] md:text-[56px] lg:text-[66px]"
+            >
+              Nyata.
+            </span>
           </span>
         </h2>
 
@@ -138,8 +140,6 @@ const { class: className = "", id = "coding-benefits-section" } = Astro.props;
   <script>
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-    gsap.registerPlugin(ScrollTrigger);
 
     function initAnimations() {
       const section = document.querySelector("#coding-benefits-section");

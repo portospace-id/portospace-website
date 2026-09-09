@@ -45,7 +45,7 @@ const descMaxW = isWide ? "max-w-[780px]" : "";
 
 <div
   class:list={[
-    "program-card relative flex h-[340px] w-full flex-col items-start justify-end gap-2.5 overflow-hidden rounded-sm p-5 sm:h-[400px] sm:p-6 md:h-[440px] lg:h-[480px] lg:p-8 transition-all duration-300",
+    "program-card group relative flex h-[340px] w-full cursor-pointer flex-col items-start justify-end gap-2.5 overflow-hidden rounded-sm p-5 sm:h-[400px] sm:p-6 md:h-[440px] lg:h-[480px] lg:p-8 transition-all duration-300 ease-out hover:-translate-y-1.5",
     flexClass,
     bgColor || defaultBgClass,
     className,
@@ -58,15 +58,18 @@ const descMaxW = isWide ? "max-w-[780px]" : "";
       <Image
         src={image}
         alt=""
-        class="pointer-events-none absolute inset-0 h-full w-full object-cover select-none"
+        width={800}
+        height={480}
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover select-none transition-transform duration-700 ease-out group-hover:scale-108"
         aria-hidden="true"
+        loading="lazy"
       />
     )
   }
 
   <!-- Gradient Overlay -->
   <div
-    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"
+    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 transition-all duration-300 group-hover:from-black/90 group-hover:via-black/50"
   >
   </div>
 

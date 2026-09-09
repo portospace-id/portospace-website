@@ -58,7 +58,7 @@ const isOfflineString = typeof offlineImage === "string";
 <section
   id="jadwal"
   class:list={[
-    "bg-violet-normal relative z-10 flex w-full flex-col justify-center overflow-hidden py-16 md:py-20 lg:py-24",
+    "bg-violet-normal relative z-10 flex w-full flex-col justify-center overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24",
     className,
   ]}
   aria-label="Jadwal Belajar Maker's Academy"
@@ -74,14 +74,14 @@ const isOfflineString = typeof offlineImage === "string";
 
       <h2
         id="jadwal-heading"
-        class="font-display text-[32px] leading-[1.15] font-bold tracking-tight text-white md:text-[40px] lg:text-[54px]"
+        class="font-momo text-[32px] leading-[1.15] font-bold tracking-tight text-white md:text-[40px] lg:text-[54px]"
       >
         {titleLine1 && <span class="block">{titleLine1}</span>}
         <span class="block">
           {titleLine2 && titleLine2}
           {
             titleHighlight && (
-              <span class="font-handwriting align-baseline text-[38px] leading-none font-semibold text-white italic md:text-[48px] lg:text-[64px]">
+              <span class="font-caveat align-baseline text-[38px] leading-none font-semibold text-white italic md:text-[48px] lg:text-[64px]">
                 {titleHighlight}
               </span>
             )

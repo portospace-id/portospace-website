@@ -35,40 +35,41 @@ const learningSteps = [
 <section
   id="learning-process"
   class:list={[
-    "relative w-full overflow-hidden bg-white py-16 text-[#161616] sm:py-20 md:py-24 lg:py-28",
+    "relative w-full overflow-hidden bg-white py-12 text-[#161616] sm:py-16 md:py-20 lg:py-28",
     className,
   ]}
   aria-label="Proses Belajar Section"
 >
   <!-- Standard Responsive Container -->
   <div
-    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-[20px] sm:px-[24px] md:px-[28px] lg:gap-14 lg:px-[32px] xl:max-w-none xl:px-[32px]"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] sm:px-[24px] md:px-[28px] lg:gap-14 lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Section Main Heading -->
     <h2
       id="learning-process-heading"
-      class="font-momo max-w-[1100px] text-[28px] leading-[1.15] font-bold tracking-tight text-[#161616] sm:text-[36px] md:text-[44px] lg:text-[54px]"
+      class="font-momo max-w-[1100px] text-[26px] leading-[1.15] font-bold tracking-tight text-[#161616] sm:text-[34px] md:text-[44px] lg:text-[54px]"
     >
       Belajar, Berkolaborasi, dan Mengembangkan Proyek Hingga Menjadi{" "}
       <span
-        class="font-caveat mt-1 inline-block text-[34px] leading-none font-semibold text-[#161616] italic sm:mt-0 sm:text-[44px] md:text-[54px] lg:text-[64px]"
+        class="font-caveat mt-1 inline-block text-[32px] leading-none font-semibold text-[#161616] italic sm:mt-0 sm:text-[42px] md:text-[54px] lg:text-[64px]"
       >
         Karya Nyata
       </span>
     </h2>
 
     <!-- Main Content: Image & Process List -->
-    <div class="grid w-full grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-12 xl:gap-16">
+    <div class="grid w-full grid-cols-1 items-stretch gap-6 sm:gap-8 lg:grid-cols-12 lg:gap-12 xl:gap-16">
       <!-- Left Column: Image (Stretches to match right column height on desktop) -->
       <div
         id="learning-process-image"
-        class="h-[360px] min-h-[380px] w-full shrink-0 overflow-hidden rounded-sm sm:h-[460px] lg:col-span-5 lg:h-full"
+        class="h-[240px] w-full shrink-0 overflow-hidden rounded-sm sm:h-[340px] md:h-[420px] lg:col-span-5 lg:h-full lg:min-h-0"
       >
         <Image
           src={learningProcessImg}
           alt="Proses Belajar dan Kolaborasi"
           width={800}
           height={600}
+          loading="lazy"
           class="h-full w-full rounded-sm object-cover"
         />
       </div>
@@ -124,7 +125,7 @@ const learningSteps = [
         opacity: 0,
         duration: 0.7,
         ease: "power3.out",
-        clearProps: "all",
+        clearProps: "transform,opacity",
       })
         .from(
           "#learning-process-image",
@@ -133,7 +134,7 @@ const learningSteps = [
             opacity: 0,
             duration: 0.7,
             ease: "power2.out",
-            clearProps: "all",
+            clearProps: "transform,opacity",
           },
           "-=0.4"
         )
@@ -144,7 +145,7 @@ const learningSteps = [
             opacity: 0,
             duration: 0.5,
             ease: "power2.out",
-            clearProps: "all",
+            clearProps: "transform,opacity",
           },
           "-=0.4"
         )
@@ -156,7 +157,7 @@ const learningSteps = [
             duration: 0.6,
             stagger: 0.12,
             ease: "power2.out",
-            clearProps: "all",
+            clearProps: "transform,opacity",
           },
           "-=0.3"
         );

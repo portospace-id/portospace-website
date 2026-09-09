@@ -2,6 +2,10 @@
 // Layouts
 import Layout from "@/layouts/Layout.astro";
 
+// SEO
+import SchemaOrg from "@/seo/SchemaOrg.astro";
+import { schemas } from "@/seo/schemas";
+
 // Components
 import HeroSection from "@/components/pages/robotics/heroSection.astro";
 import ManfaatSection from "@/components/pages/robotics/manfaatSection.astro";
@@ -17,14 +21,15 @@ import CtaSection from "@/components/pages/robotics/ctaSection.astro";
   title="Robotics & IoT — PortoSpace"
   description="Pelajari robotika dan IoT melalui proyek nyata, dari merancang sistem hingga menguji prototipe bersama mentor di PortoSpace."
 >
-  <main>
-    <HeroSection />
-    <ManfaatSection />
-    <ProsesPrototypeSection />
-    <ToolsTechnologySection />
-    <ProjectSection />
-    <MentorsSection />
-    <KompetisiPublikasiSection />
-    <CtaSection />
-  </main>
+  <SchemaOrg schema={schemas.roboticsIot} />
+
+  <HeroSection />
+  <ManfaatSection />
+  <ProsesPrototypeSection />
+  <ToolsTechnologySection />
+  <ProjectSection />
+  <MentorsSection />
+  <KompetisiPublikasiSection />
+  <CtaSection />
 </Layout>
+

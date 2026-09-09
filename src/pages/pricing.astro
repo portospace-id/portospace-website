@@ -1,5 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// SEO
+import SchemaOrg from "@/seo/SchemaOrg.astro";
+import { schemas } from "@/seo/schemas";
+
+// Sections
 import HeroSection from "@/components/pages/pricing/heroSection.astro";
 import PaketPrice from "@/components/pages/pricing/paketPrice.astro";
 import JumlahSesi from "@/components/pages/pricing/jumlahSesi.astro";
@@ -11,9 +17,11 @@ import KomunitasWA from "@/components/pages/homepage/komunitasWA.astro";
 ---
 
 <Layout
-  title="Plans & Pricing — PortoSpace"
-  description="Pilih paket pendampingan yang sesuai dengan tujuan dan perjalanan belajarmu. Setiap paket dirancang untuk memberikan pengalaman belajar yang berbeda sesuai kebutuhan, target, dan tingkat pendampingan."
+  title="Program & Biaya Mentorship — PortoSpace"
+  description="Informasi pilihan program mentorship private dan kelompok beserta paket biaya investasi masa depan akademis siswa."
 >
+  <SchemaOrg schema={schemas.pricing} />
+
   <HeroSection />
   <PaketPrice />
   <JumlahSesi />
@@ -23,3 +31,4 @@ import KomunitasWA from "@/components/pages/homepage/komunitasWA.astro";
   <RekomendasiPaketSection />
   <KomunitasWA />
 </Layout>
+

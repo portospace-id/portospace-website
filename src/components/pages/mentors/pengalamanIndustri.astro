@@ -16,7 +16,8 @@ import butuhStoryImg from "@/assets/image/homepage/butuhStory.webp";
   <div
     class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
-    <div class="grid w-full grid-cols-1 items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
+    <!-- Desktop Layout (hidden on mobile/tablet) -->
+    <div class="hidden w-full items-stretch gap-8 lg:grid lg:grid-cols-12">
       <!-- Left Column: Large Vertical Image Card -->
       <div class="flex w-full lg:col-span-5">
         <CardPengalamanIndustri
@@ -24,36 +25,75 @@ import butuhStoryImg from "@/assets/image/homepage/butuhStory.webp";
           variant="image"
           image={minatStemImg}
           alt="Mentor PortoSpace dalam diskusi kerja tim dan proyek industri"
-          class="h-full min-h-[360px] w-full sm:min-h-[440px] lg:min-h-[540px]"
+          class="h-full min-h-[540px] w-full"
         />
       </div>
 
       <!-- Right Column: Heading Description + 2 Side-by-Side Image Cards -->
-      <div class="flex w-full flex-col justify-between gap-6 lg:col-span-7 lg:gap-8">
+      <div class="flex w-full flex-col justify-between gap-8 lg:col-span-7">
         <!-- Top Paragraph Text -->
         <h2
           id="pengalaman-heading"
-          class="font-momo text-left text-[20px] leading-[135%] font-medium tracking-tight text-white sm:text-[24px] md:text-[28px] lg:text-[32px]"
+          class="font-momo text-left text-[32px] leading-[135%] font-medium tracking-tight text-white"
         >
           Mentor PortoSpace membawa pengalaman dari berbagai perusahaan, institusi riset, dan proyek
           nyata untuk menghadirkan pembelajaran yang lebih relevan dengan tantangan di dunia nyata.
         </h2>
 
         <!-- Bottom 2 Side-by-Side Vertical Image Cards -->
-        <div id="pengalaman-img-right-grid" class="grid w-full grid-cols-2 gap-4 sm:gap-6">
+        <div id="pengalaman-img-right-grid" class="grid w-full grid-cols-2 gap-6">
           <CardPengalamanIndustri
             variant="image"
             image={targetTopUniversityImg}
             alt="Mentor membimbing sesi pengerjaan papan tulis"
-            class="aspect-[3/4] w-full sm:aspect-[4/5] lg:aspect-[3/4]"
+            class="aspect-[3/4] w-full"
           />
           <CardPengalamanIndustri
             variant="image"
             image={butuhStoryImg}
             alt="Presentasi dan pembekalan mentor di panggung riset"
-            class="aspect-[3/4] w-full sm:aspect-[4/5] lg:aspect-[3/4]"
+            class="aspect-[3/4] w-full"
           />
         </div>
+      </div>
+    </div>
+
+    <!-- Mobile & Tablet Layout (hidden on desktop) -->
+    <div class="flex w-full flex-col gap-6 lg:hidden">
+      <!-- 1. Heading Text on Top -->
+      <h2
+        id="pengalaman-heading-mobile"
+        class="font-momo text-left text-[20px] leading-[135%] font-medium tracking-tight text-white sm:text-[24px] md:text-[28px]"
+      >
+        Mentor PortoSpace membawa pengalaman dari berbagai perusahaan, institusi riset, dan proyek
+        nyata untuk menghadirkan pembelajaran yang lebih relevan dengan tantangan di dunia nyata.
+      </h2>
+
+      <!-- 2. Large Image Card in Middle -->
+      <div class="flex w-full">
+        <CardPengalamanIndustri
+          id="pengalaman-img-left-mobile"
+          variant="image"
+          image={minatStemImg}
+          alt="Mentor PortoSpace dalam diskusi kerja tim dan proyek industri"
+          class="aspect-[4/3] w-full sm:aspect-[16/9]"
+        />
+      </div>
+
+      <!-- 3. 2 Side-by-Side Image Cards at Bottom -->
+      <div id="pengalaman-img-right-grid-mobile" class="grid w-full grid-cols-2 gap-4 sm:gap-6">
+        <CardPengalamanIndustri
+          variant="image"
+          image={targetTopUniversityImg}
+          alt="Mentor membimbing sesi pengerjaan papan tulis"
+          class="aspect-[3/4] w-full sm:aspect-[4/5]"
+        />
+        <CardPengalamanIndustri
+          variant="image"
+          image={butuhStoryImg}
+          alt="Presentasi dan pembekalan mentor di panggung riset"
+          class="aspect-[3/4] w-full sm:aspect-[4/5]"
+        />
       </div>
     </div>
   </div>
@@ -75,30 +115,33 @@ import butuhStoryImg from "@/assets/image/homepage/butuhStory.webp";
         },
       });
 
-      tl.from("#pengalaman-img-left", {
+      tl.from("#pengalaman-img-left, #pengalaman-img-left-mobile", {
         x: -30,
         opacity: 0,
         duration: 0.7,
         ease: "power2.out",
+        clearProps: "transform,opacity",
       })
         .from(
-          "#pengalaman-heading",
+          "#pengalaman-heading, #pengalaman-heading-mobile",
           {
             y: 30,
             opacity: 0,
             duration: 0.65,
             ease: "power2.out",
+            clearProps: "transform,opacity",
           },
           "-=0.4"
         )
         .from(
-          "#pengalaman-img-right-grid > div",
+          "#pengalaman-img-right-grid > div, #pengalaman-img-right-grid-mobile > div",
           {
             y: 40,
             opacity: 0,
             duration: 0.6,
             stagger: 0.15,
             ease: "power2.out",
+            clearProps: "transform,opacity",
           },
           "-=0.3"
         );

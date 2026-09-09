@@ -13,31 +13,31 @@ const mentorPhotos = [
     id: "mentor-photo-1",
     image: testimonial4Img,
     alt: "Mentor 1",
-    style: "left: 8%; top: 120px;",
+    class: "top-[16%] left-[3%] sm:top-[18%] sm:left-[6%] lg:top-[120px] lg:left-[8%]",
   },
   {
     id: "mentor-photo-2",
     image: testimonial5Img,
     alt: "Mentor 2",
-    style: "right: 620px; top: 149px;",
+    class: "top-[10%] left-[50%] -translate-x-1/2 sm:top-[12%] lg:top-[149px] lg:left-auto lg:right-[38%] lg:translate-x-0",
   },
   {
     id: "mentor-photo-3",
     image: testimonial3Img,
     alt: "Mentor 3",
-    style: "right: 8%; top: 100px;",
+    class: "top-[16%] right-[3%] sm:top-[18%] sm:right-[6%] lg:top-[100px] lg:right-[8%]",
   },
   {
     id: "mentor-photo-4",
     image: founderFarhanImg,
     alt: "Mentor 4",
-    style: "left: 22%; bottom: 80px;",
+    class: "bottom-[16%] left-[5%] sm:bottom-[18%] sm:left-[14%] lg:bottom-[80px] lg:left-[22%]",
   },
   {
     id: "mentor-photo-5",
     image: ceritaImg,
     alt: "Mentor 5",
-    style: "right: 22%; bottom: 70px;",
+    class: "bottom-[16%] right-[5%] sm:bottom-[18%] sm:right-[14%] lg:bottom-[70px] lg:right-[22%]",
   },
 ];
 ---
@@ -49,20 +49,18 @@ const mentorPhotos = [
   data-navbar="light"
 >
   <!-- Top-Right Pattern -->
-  <img
-    src={pattern4.src}
+  <Image
+    src={pattern4}
     alt=""
-    class="pointer-events-none absolute z-0 select-none"
-    style="width: 500px; height: 501.526px; position: absolute; right: -163px; top: -168px;"
+    class="pointer-events-none absolute z-0 h-[250px] w-[250px] -right-[105px] -top-[91px] select-none lg:h-[501px] lg:w-[500px] lg:-right-[163px] lg:-top-[168px]"
     aria-hidden="true"
   />
 
   <!-- Bottom-Left Pattern -->
-  <img
-    src={pattern4.src}
+  <Image
+    src={pattern4}
     alt=""
-    class="pointer-events-none absolute z-0 select-none"
-    style="width: 500px; height: 501.526px; position: absolute; left: -158px; bottom: -165.526px;"
+    class="pointer-events-none absolute z-0 h-[250px] w-[250px] -left-[105px] -bottom-[91px] select-none lg:h-[501px] lg:w-[500px] lg:-left-[158px] lg:-bottom-[165px]"
     aria-hidden="true"
   />
 
@@ -74,8 +72,10 @@ const mentorPhotos = [
     {
       mentorPhotos.map((photo) => (
         <div
-          class="mentor-floating-card absolute z-10 h-[182px] w-[182px] overflow-hidden rounded-[4px] bg-gray-100 opacity-0"
-          style={photo.style}
+          class:list={[
+            "mentor-floating-card absolute z-10 h-[80px] w-[80px] sm:h-[130px] sm:w-[130px] lg:h-[182px] lg:w-[182px] overflow-hidden rounded-[4px] bg-gray-100 opacity-0 shadow-md sm:shadow-lg lg:shadow-none transition-shadow",
+            photo.class,
+          ]}
         >
           <Image src={photo.image} alt={photo.alt} class="h-full w-full object-cover object-top" />
         </div>
@@ -104,7 +104,7 @@ const mentorPhotos = [
     gsap.registerPlugin(ScrollTrigger);
 
     ScrollTrigger.matchMedia({
-      // Desktop & Tablet: Pinned animation where photos emerge into 100vh bounds
+      // Desktop & Tablet (>= 768px): Pinned 100vh scrub animation
       "(min-width: 768px)": function () {
         const cards = document.querySelectorAll(".mentor-floating-card");
         if (!cards.length) return;
@@ -120,7 +120,6 @@ const mentorPhotos = [
           },
         });
 
-        // Photos emerge upward into their precise 100vh positions (y: 140 -> y: 0)
         tl.fromTo(
           cards,
           { y: 140, opacity: 0 },
@@ -129,6 +128,32 @@ const mentorPhotos = [
             opacity: 1,
             stagger: 0.12,
             ease: "none",
+          }
+        );
+      },
+
+      // Mobile (< 768px): Scroll scrub animation as photos emerge into view
+      "(max-width: 767px)": function () {
+        const cards = document.querySelectorAll(".mentor-floating-card");
+        if (!cards.length) return;
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#latar-belakang",
+            start: "top 70%",
+            end: "bottom 30%",
+            scrub: 1,
+          },
+        });
+
+        tl.fromTo(
+          cards,
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.1,
+            ease: "power2.out",
           }
         );
       },

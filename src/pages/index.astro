@@ -2,6 +2,10 @@
 // Layouts
 import Layout from "../layouts/Layout.astro";
 
+// SEO
+import SchemaOrg from "@/seo/SchemaOrg.astro";
+import { schemas } from "@/seo/schemas";
+
 // Sections
 import HeroSection from "../components/pages/homepage/heroSection.astro";
 import MahasiswaSection from "../components/pages/homepage/mahasiswaSection.astro";
@@ -19,19 +23,20 @@ import KomunitasWA from "../components/pages/homepage/komunitasWA.astro";
 ---
 
 <Layout>
-  <main>
-    <HeroSection />
-    <MahasiswaSection />
-    <ProgramUnggulanSection />
-    <SuccessStorySection />
-    <TestimonialsSection />
-    <TeaserSection />
-    <KenapaSection />
-    <PortfolioOutputSection />
-    <ProsesBimbinganSection />
-    <OurMentorsSection />
-    <PaketSection />
-    <KomunitasWA />
-    <FaqSection />
-  </main>
+  <SchemaOrg schema={schemas.homepage} />
+
+  <HeroSection />
+  <MahasiswaSection />
+  <ProgramUnggulanSection />
+  <SuccessStorySection />
+  <TestimonialsSection />
+  <TeaserSection />
+  <KenapaSection />
+  <PortfolioOutputSection />
+  <ProsesBimbinganSection />
+  <OurMentorsSection />
+  <PaketSection />
+  <KomunitasWA />
+  <FaqSection />
 </Layout>
+

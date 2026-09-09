@@ -16,7 +16,7 @@ const { class: className = "" } = Astro.props;
 <section
   id="update-perkembangan"
   class:list={[
-    "bg-violet-normal relative flex w-full flex-col justify-center overflow-hidden py-[60px] text-white lg:py-[100px]",
+    "bg-violet-normal relative flex w-full flex-col justify-center overflow-hidden py-12 text-white sm:py-16 md:py-20 lg:py-[100px]",
     className,
   ]}
   aria-label="Update Perkembangan Belajar Section"
@@ -34,7 +34,7 @@ const { class: className = "" } = Astro.props;
           variant="image"
           image={minatStemImg}
           alt="Apa yang Sudah Dipelajari"
-          class="h-[650px] w-full sm:h-[800px] lg:h-[1000px]"
+          class="h-[340px] w-full sm:h-[480px] md:h-[580px] lg:h-[900px] xl:h-[1000px]"
         >
           <div
             class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/35 to-transparent p-5 text-left sm:p-6 lg:p-7"
@@ -59,7 +59,7 @@ const { class: className = "" } = Astro.props;
         <!-- Top Paragraph Text -->
         <h2
           id="update-heading"
-          class="font-momo text-left text-[20px] leading-[135%] font-medium tracking-tight text-white sm:text-[24px] md:text-[28px] lg:text-[32px]"
+          class="font-momo text-left text-[18px] leading-[135%] font-medium tracking-tight text-white sm:text-[22px] md:text-[26px] lg:text-[32px]"
         >
           Orang tua dapat selalu mengetahui sejauh mana perkembangan anak, mulai dari proses belajar
           hingga pencapaian yang mereka raih di setiap tahapnya.
@@ -75,7 +75,7 @@ const { class: className = "" } = Astro.props;
             variant="image"
             image={targetTopUniversityImg}
             alt="Sejauh Mana Proyek Berkembang"
-            class="h-[560px] w-full sm:h-[620px] lg:h-[700px]"
+            class="h-[260px] w-full sm:h-[360px] md:h-[440px] lg:h-[620px] xl:h-[700px]"
           >
             <div
               class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/35 to-transparent p-4 text-left sm:p-5 lg:p-6"
@@ -97,7 +97,7 @@ const { class: className = "" } = Astro.props;
             variant="image"
             image={butuhStoryImg}
             alt="Arahan dari Mentor"
-            class="h-[560px] w-full sm:h-[620px] lg:h-[700px]"
+            class="h-[260px] w-full sm:h-[360px] md:h-[440px] lg:h-[620px] xl:h-[700px]"
           >
             <div
               class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/35 to-transparent p-4 text-left sm:p-5 lg:p-6"
@@ -142,6 +142,7 @@ const { class: className = "" } = Astro.props;
         opacity: 0,
         duration: 0.7,
         ease: "power2.out",
+        clearProps: "transform,opacity",
       })
         .from(
           "#update-heading",
@@ -150,6 +151,7 @@ const { class: className = "" } = Astro.props;
             opacity: 0,
             duration: 0.65,
             ease: "power2.out",
+            clearProps: "transform,opacity",
           },
           "-=0.4"
         )
@@ -161,6 +163,7 @@ const { class: className = "" } = Astro.props;
             duration: 0.6,
             stagger: 0.15,
             ease: "power2.out",
+            clearProps: "transform,opacity",
           },
           "-=0.3"
         );

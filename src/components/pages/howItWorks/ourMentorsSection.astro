@@ -56,23 +56,23 @@ const mentors = [
 
 <section
   id="our-mentors"
-  class="bg-violet-normal relative flex w-full flex-col justify-center overflow-hidden py-[60px] lg:py-[100px]"
+  class="bg-violet-normal relative flex w-full flex-col justify-center overflow-hidden py-12 sm:py-16 md:py-20 lg:py-[100px]"
   aria-label="Our Mentors"
   data-navbar="violet"
 >
   <!-- Decorative Pattern SVG - Top Right -->
   <PatternLine
-    class="absolute z-0 top-0 -right-12 md:-right-[80px] w-[240px] h-[262.14px] md:w-[477px] md:h-[521px] block"
+    class="absolute z-0 top-0 -right-12 sm:-right-16 md:-right-[80px] w-[200px] h-[218px] sm:w-[320px] sm:h-[350px] md:w-[477px] md:h-[521px] block"
   />
 
   <!-- Decorative Pattern SVG - Bottom Left -->
   <PatternLine
-    class="absolute z-0 rotate-180 bottom-0 -left-12 md:-left-[61px] w-[240px] h-[262.14px] md:w-[477px] md:h-[521px] block"
+    class="absolute z-0 rotate-180 bottom-0 -left-12 sm:-left-16 md:-left-[61px] w-[200px] h-[218px] sm:w-[320px] sm:h-[350px] md:w-[477px] md:h-[521px] block"
   />
 
   <!-- Header Content -->
   <div
-    class="relative z-10 mx-auto mb-10 flex w-full max-w-[1440px] flex-col items-center gap-4 px-[20px] text-center sm:px-[24px] md:px-[28px] lg:mb-14 lg:px-[32px] xl:max-w-none xl:px-[32px]"
+    class="relative z-10 mx-auto mb-8 flex w-full max-w-[1440px] flex-col items-center gap-4 px-[20px] text-center sm:mb-10 sm:px-[24px] md:px-[28px] lg:mb-14 lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <div id="our-mentors-badge">
       <SectionTitle title="Mentor Matching" />
@@ -80,11 +80,11 @@ const mentors = [
 
     <h2
       id="our-mentors-heading"
-      class="font-momo max-w-[980px] text-[32px] leading-[110%] font-bold tracking-tight text-white md:text-[44px] lg:text-[54px]"
+      class="font-momo max-w-[980px] text-[28px] leading-[110%] font-bold tracking-tight text-white sm:text-[34px] md:text-[44px] lg:text-[54px]"
     >
       Belajar Bersama<br />
       Mentor yang <span
-        class="font-caveat text-[40px] leading-none font-semibold text-white italic md:text-[52px] lg:text-[64px]"
+        class="font-caveat text-[36px] leading-none font-semibold text-white italic sm:text-[44px] md:text-[52px] lg:text-[64px]"
         >Tepat.</span
       >
     </h2>
@@ -100,11 +100,11 @@ const mentors = [
   <!-- Cards Container / Horizontal Track -->
   <div
     id="our-mentors-cards-container"
-    class="no-scrollbar relative z-10 w-full cursor-grab overflow-x-auto pb-4 select-none active:cursor-grabbing"
+    class="no-scrollbar relative z-10 w-full cursor-grab overflow-x-auto pb-4 select-none active:cursor-grabbing touch-pan-x"
   >
     <div
       id="our-mentors-cards-track"
-      class="flex w-max items-center gap-5 px-[20px] will-change-transform sm:px-[24px] md:px-[28px] lg:px-[32px]"
+      class="flex w-max items-center gap-4 px-[20px] will-change-transform sm:gap-5 sm:px-[24px] md:gap-6 md:px-[28px] lg:px-[32px]"
     >
       {
         mentors.map((m) => (
@@ -146,6 +146,7 @@ const mentors = [
       opacity: 0,
       duration: 0.6,
       ease: "power2.out",
+      clearProps: "transform,opacity",
     });
 
     gsap.from("#our-mentors-heading", {
@@ -159,6 +160,7 @@ const mentors = [
       duration: 0.8,
       ease: "power3.out",
       delay: 0.1,
+      clearProps: "transform,opacity",
     });
 
     gsap.from("#our-mentors-desc", {
@@ -172,6 +174,7 @@ const mentors = [
       duration: 0.6,
       ease: "power2.out",
       delay: 0.2,
+      clearProps: "transform,opacity",
     });
 
     gsap.from(".mentor-card", {

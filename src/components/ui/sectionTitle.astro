@@ -31,7 +31,7 @@ const isLight = variant === "light";
 <div
   id={id}
   class:list={[
-    "inline-flex items-center gap-2 font-sans text-[16px] leading-[150%] font-normal",
+    "inline-flex items-center gap-2 font-jakarta text-[16px] font-normal",
     isLight ? "text-[#161616]" : "text-white",
     className,
   ]}
@@ -50,7 +50,7 @@ const isLight = variant === "light";
       />
     )
   }
-  <span>
+  <span class="font-jakarta">
     {title ? title : <slot />}
   </span>
 </div>

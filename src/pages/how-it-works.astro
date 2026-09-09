@@ -1,5 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// SEO
+import SchemaOrg from "@/seo/SchemaOrg.astro";
+import { schemas } from "@/seo/schemas";
+
+// Sections
 import HeroSection from "../components/pages/howItWorks/heroSection.astro";
 import Goals from "../components/pages/howItWorks/goals.astro";
 import LearningProcessSection from "../components/pages/howItWorks/learningProcessSection.astro";
@@ -7,12 +13,15 @@ import OurMentorsSection from "../components/pages/howItWorks/ourMentorsSection.
 import SuccessManagerSection from "../components/pages/howItWorks/successManagerSection.astro";
 import UpdatePerkembanganSection from "../components/pages/howItWorks/updatePerkembanganSection.astro";
 import ProgressMonitoringSection from "../components/pages/howItWorks/progressMonitoringSection.astro";
+import PersiapanSection from "../components/pages/howItWorks/persiapanSection.astro";
 ---
 
 <Layout
-  title="How It Works — PortoSpace"
-  description="Setiap siswa memiliki tujuan dan perjalanan yang berbeda. Di PortoSpace, setiap tahap dirancang secara terstruktur melalui pendampingan personal untuk membantu mengembangkan ide, membangun portofolio, dan mencapai target akademik maupun kompetisi."
+  title="Cara Kerja Mentorship — PortoSpace"
+  description="Pelajari tahapan mentorship di PortoSpace dari ideasi, perancangan prototipe, pengujian, hingga publikasi dan kompetisi nasional/internasional."
 >
+  <SchemaOrg schema={schemas.howItWorks} />
+
   <HeroSection />
   <Goals />
   <OurMentorsSection />
@@ -20,4 +29,6 @@ import ProgressMonitoringSection from "../components/pages/howItWorks/progressMo
   <ProgressMonitoringSection />
   <SuccessManagerSection />
   <UpdatePerkembanganSection />
+  <PersiapanSection />
 </Layout>
+

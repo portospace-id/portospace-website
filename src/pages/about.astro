@@ -2,6 +2,10 @@
 // Layouts
 import Layout from "../layouts/Layout.astro";
 
+// SEO
+import SchemaOrg from "@/seo/SchemaOrg.astro";
+import { schemas } from "@/seo/schemas";
+
 // Sections
 import HeroSection from "../components/pages/about/heroSection.astro";
 import Cerita from "../components/pages/about/cerita.astro";
@@ -13,16 +17,17 @@ import FounderSection from "../components/pages/about/founderSection.astro";
 ---
 
 <Layout
-  title="About Us — PortoSpace"
-  description="Setiap mimpi besar berawal dari seseorang yang percaya pada potensimu. Bersama mentor yang tepat, setiap ide mendapatkan arahan dan setiap tantangan menemukan solusi."
+  title="Tentang Kami — PortoSpace"
+  description="Mengenal PortoSpace: Misi kami mencetak inovator muda Indonesia melalui pembimbingan riset, inovasi teknologi, dan portofolio akademis."
 >
-  <main>
-    <HeroSection />
-    <VisiMisi />
-    <Cerita />
-    <ProjectMentorshipSection />
-    <ProgramUnggulanSection />
-    <FounderSection />
-    <AlasanDibangun />
-  </main>
+  <SchemaOrg schema={schemas.aboutPage} />
+
+  <HeroSection />
+  <VisiMisi />
+  <Cerita />
+  <ProjectMentorshipSection />
+  <ProgramUnggulanSection />
+  <FounderSection />
+  <AlasanDibangun />
 </Layout>
+

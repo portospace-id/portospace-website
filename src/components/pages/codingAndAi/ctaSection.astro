@@ -25,6 +25,9 @@ const { class: className = "", id = "cta-section" } = Astro.props;
   <Image
     src={bgImage}
     alt="Coding & AI PortoSpace"
+    width={1920}
+    height={1080}
+    loading="lazy"
     class="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-center opacity-40 select-none"
   />
 
@@ -38,13 +41,13 @@ const { class: className = "", id = "cta-section" } = Astro.props;
     <!-- Heading -->
     <h2
       id="komunitas-wa-heading"
-      class="font-momo max-w-[960px] text-[32px] leading-[1.12] font-bold tracking-tight text-white md:text-[44px] lg:text-[54px]"
+      class="font-momo max-w-[960px] text-[28px] leading-[1.12] font-bold tracking-tight text-white sm:text-[36px] md:text-[44px] lg:text-[54px]"
     >
       <span class="block">Punya Ide yang Ingin Kamu</span>
       <span class="block mt-1 sm:mt-0">
         Wujudkan Menjadi{" "}
         <span
-          class="font-caveat ml-1 inline-block align-baseline text-[42px] leading-[80%] font-semibold text-white italic md:text-[54px] lg:text-[66px]"
+          class="font-caveat ml-1 inline-block align-baseline text-[36px] leading-[80%] font-semibold text-white italic sm:text-[46px] md:text-[56px] lg:text-[66px]"
         >
           Produk Digital?
         </span>
@@ -81,8 +84,6 @@ const { class: className = "", id = "cta-section" } = Astro.props;
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
 
   const initKomunitasWaAnimations = () => {
     const section = document.getElementById("cta-section") || document.querySelector("section[aria-label*='WhatsApp']");

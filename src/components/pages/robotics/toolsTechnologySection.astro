@@ -31,7 +31,7 @@ const tools = [
 >
   <!-- Pattern Top-Right -->
   <div
-    class="pointer-events-none absolute -top-[171.334px] -right-[218px] z-0 h-[501.88px] w-[500px] overflow-hidden select-none"
+    class="pointer-events-none absolute -top-[85px] -right-[105px] z-0 h-[250.94px] w-[250px] overflow-hidden select-none lg:-top-[171.334px] lg:-right-[218px] lg:h-[501.88px] lg:w-[500px]"
   >
     <Image
       src={pattern5}
@@ -46,7 +46,7 @@ const tools = [
 
   <!-- Pattern Bottom-Left -->
   <div
-    class="pointer-events-none absolute -bottom-[151.668px] -left-[280px] z-0 h-[798px] w-[800px] overflow-hidden select-none"
+    class="pointer-events-none absolute -bottom-[75px] -left-[140px] z-0 h-[399px] w-[400px] overflow-hidden select-none lg:-bottom-[151.668px] lg:-left-[280px] lg:h-[798px] lg:w-[800px]"
   >
     <Image
       src={pattern2}
@@ -89,7 +89,7 @@ const tools = [
     <!-- Tool Logos Row -->
     <div
       id="tools-logos"
-      class="mx-auto mt-12 flex w-full max-w-[1200px] flex-nowrap items-center justify-center gap-4 overflow-x-auto px-2 sm:mt-16 sm:gap-10 sm:overflow-visible md:mt-20 md:gap-14 lg:gap-20"
+      class="mx-auto mt-10 flex w-full max-w-[1200px] flex-wrap items-center justify-center gap-6 px-2 sm:mt-16 sm:flex-nowrap sm:gap-10 md:mt-20 md:gap-14 lg:gap-20"
     >
       {
         tools.map((tool) => (
@@ -109,8 +109,6 @@ const tools = [
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
 
   function initToolsAnimations() {
     const section = document.querySelector("#tools-technology-section");

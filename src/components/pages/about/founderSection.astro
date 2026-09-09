@@ -28,7 +28,7 @@ const founders: Founder[] = [
 >
   <!-- Background Decorative Pattern 4 SVG - Top Right -->
   <div
-    class="pointer-events-none absolute -top-[160px] -right-[160px] z-0 w-[500px] opacity-90 select-none sm:-top-[220px] sm:-right-[220px] sm:w-[700px] md:-top-[280px] md:-right-[280px] md:w-[900px]"
+    class="pointer-events-none absolute -top-[76px] -right-[94px] z-0 h-[250.763px] w-[250px] opacity-90 select-none sm:-top-[220px] sm:-right-[220px] sm:h-auto sm:w-[700px] md:-top-[280px] md:-right-[280px] md:w-[900px]"
   >
     <Image
       src={pattern4}
@@ -37,6 +37,7 @@ const founders: Founder[] = [
       height={1068}
       class="pointer-events-none h-auto w-full object-contain"
       aria-hidden="true"
+      loading="lazy"
     />
   </div>
 
@@ -71,19 +72,19 @@ const founders: Founder[] = [
       </p>
     </div>
 
-    <!-- Founders Container (2 Rows Layout with Row 2 justify-between) -->
-    <div id="founder-cards" class="flex w-full flex-col gap-10 sm:gap-12">
+    <!-- Founders Container (2 Rows Layout for Desktop/Laptop, Centered Stack for Mobile) -->
+    <div id="founder-cards" class="flex w-full flex-col gap-6 sm:gap-10 lg:gap-12">
       <!-- Row 1: Card 1, Card 2, Card 3 -->
-      <div class="flex w-full flex-wrap items-start gap-[12px]">
+      <div class="flex w-full flex-col items-center gap-6 sm:flex-row sm:flex-wrap sm:items-start sm:gap-[12px]">
         <CardFounder name={founders[0].name} role={founders[0].role} image={founders[0].image} />
         <CardFounder name={founders[1].name} role={founders[1].role} image={founders[1].image} />
         <CardFounder name={founders[2].name} role={founders[2].role} image={founders[2].image} />
       </div>
 
-      <!-- Row 2: Card 4 on left, Card 5 & Card 6 on right (justify-between) -->
-      <div class="flex w-full flex-col items-start justify-between gap-6 sm:flex-row sm:gap-0">
+      <!-- Row 2: Card 4 on left, Card 5 & Card 6 on right (justify-between on desktop/laptop) -->
+      <div class="flex w-full flex-col items-center gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-0">
         <CardFounder name={founders[3].name} role={founders[3].role} image={founders[3].image} />
-        <div class="flex flex-wrap items-start gap-[12px]">
+        <div class="flex w-full flex-col items-center gap-6 sm:w-auto sm:flex-row sm:flex-wrap sm:items-start sm:gap-[12px]">
           <CardFounder name={founders[4].name} role={founders[4].role} image={founders[4].image} />
           <CardFounder name={founders[5].name} role={founders[5].role} image={founders[5].image} />
         </div>
@@ -94,9 +95,6 @@ const founders: Founder[] = [
 
 <script>
   import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
 
   const initAnimations = () => {
     const section = document.querySelector("#founder-section");
@@ -115,6 +113,7 @@ const founders: Founder[] = [
       opacity: 0,
       duration: 0.8,
       ease: "power3.out",
+      clearProps: "transform,opacity",
     })
       .from(
         "#founder-desc",
@@ -123,6 +122,7 @@ const founders: Founder[] = [
           opacity: 0,
           duration: 0.6,
           ease: "power2.out",
+          clearProps: "transform,opacity",
         },
         "-=0.4"
       )
@@ -134,6 +134,7 @@ const founders: Founder[] = [
           duration: 0.7,
           stagger: 0.1,
           ease: "power3.out",
+          clearProps: "transform,opacity",
         },
         "-=0.3"
       );

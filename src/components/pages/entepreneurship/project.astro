@@ -93,13 +93,13 @@ const projects: ProjectCardItem[] = [
       <div class="w-full lg:max-w-[920px]">
         <h2
           id="project-heading"
-          class="font-momo text-left text-[24px] leading-[1.18] font-bold tracking-tight text-[#111111] sm:text-[32px] md:text-[40px] lg:text-right lg:text-[44px] xl:text-[48px]"
+          class="font-momo text-left text-[28px] leading-[1.18] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-right lg:text-[54px]"
         >
           <span class="block">Lihat Berbagai Ide yang Berhasil</span>
           <span class="block mt-1 sm:mt-0">
             Dikembangkan Menjadi{" "}
             <span
-              class="font-caveat ml-1 inline-block align-baseline text-[30px] leading-none font-semibold text-[#111111] italic sm:text-[40px] md:text-[50px] lg:text-[56px]"
+              class="font-caveat ml-1 inline-block align-baseline text-[36px] leading-none font-semibold text-[#111111] italic sm:text-[46px] md:text-[56px] lg:text-[66px]"
             >
               Proyek Bisnis.
             </span>
@@ -111,7 +111,7 @@ const projects: ProjectCardItem[] = [
     <!-- Cards Track Container (Fixed min-h so card hover does not move section height) -->
     <div
       id="project-cards-container"
-      class="relative z-10 flex min-h-[580px] w-full scrollbar-none items-start overflow-x-auto py-2 lg:min-h-[600px] lg:overflow-hidden"
+      class="relative z-10 flex min-h-[380px] sm:min-h-[460px] lg:min-h-[580px] w-full scrollbar-none items-start overflow-x-auto py-2 lg:overflow-hidden"
     >
       <div
         id="project-cards-track"
@@ -136,8 +136,6 @@ const projects: ProjectCardItem[] = [
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
 
   function initProjectSectionAnimations() {
     const section = document.querySelector<HTMLElement>("#project-section");

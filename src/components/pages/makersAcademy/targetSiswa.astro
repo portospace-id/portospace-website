@@ -55,7 +55,7 @@ const bgSrc = isStringBg ? (bgImage as string) : (bgImage as ImageMetadata).src;
 <section
   id="target-siswa"
   class:list={[
-    "relative z-10 flex min-h-svh w-full items-center overflow-hidden py-16 md:py-20 lg:py-24",
+    "relative z-10 flex min-h-svh w-full items-center overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24",
     className,
   ]}
 >
@@ -119,8 +119,8 @@ const bgSrc = isStringBg ? (bgImage as string) : (bgImage as ImageMetadata).src;
         </h2>
       </div>
 
-      <!-- Item 3: Description & List Container (width: 564px; flex-col; gap: 62px; flex-shrink: 0;) -->
-      <div class="flex w-full flex-shrink-0 flex-col items-start gap-[62px] lg:w-[564px]">
+      <!-- Item 3: Description & List Container (width: 564px; flex-col; flex-shrink: 0;) -->
+      <div class="flex w-full flex-col items-start gap-6 sm:gap-8 md:gap-10 lg:w-[564px] lg:flex-shrink-0 lg:gap-[62px]">
         {
           description && (
             <p

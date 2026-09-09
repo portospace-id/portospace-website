@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 import SectionTitle from "@/components/ui/sectionTitle.astro";
 import defaultBg from "@/assets/image/pricing/jumlahKarya.png";
 
@@ -21,6 +22,7 @@ const {
   class: className = "",
 } = Astro.props;
 
+const isObjBg = typeof bgImage === "object";
 const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
 
 const karyaStats = [
@@ -33,7 +35,7 @@ const karyaStats = [
 <section
   id="jumlah-karya"
   class:list={[
-    "relative flex min-h-svh w-full flex-col justify-between overflow-hidden py-16 sm:py-20 md:py-24 lg:py-28",
+    "relative flex min-h-[500px] w-full flex-col justify-between overflow-hidden py-16 sm:min-h-[600px] sm:py-20 md:py-24 lg:min-h-svh lg:py-28",
     className,
   ]}
   aria-label="Jumlah Karya Section"
@@ -41,12 +43,23 @@ const karyaStats = [
 >
   <!-- Background Image -->
   <div class="absolute inset-0 z-0">
-    <img
-      src={bgUrl}
-      alt={bgAlt}
-      class="h-full w-full object-cover object-center"
-      fetchpriority="high"
-    />
+    {
+      isObjBg ? (
+        <Image
+          src={bgImage as ImageMetadata}
+          alt={bgAlt}
+          loading="lazy"
+          class="h-full w-full object-cover object-center"
+        />
+      ) : (
+        <img
+          src={bgUrl}
+          alt={bgAlt}
+          loading="lazy"
+          class="h-full w-full object-cover object-center"
+        />
+      )
+    }
   </div>
 
   <!-- Dark Overlay -->
@@ -82,10 +95,10 @@ const karyaStats = [
     </div>
 
     <!-- Bottom Content: Karya Stats (Right Aligned Row) -->
-    <div class="mt-auto flex w-full justify-end pt-8">
+    <div class="mt-auto flex w-full justify-start sm:justify-end pt-8">
       <div
         id="jumlah-karya-stats"
-        class="flex flex-row flex-wrap items-end justify-end gap-8 sm:gap-12 lg:gap-16"
+        class="flex flex-row flex-wrap items-end justify-start gap-6 sm:justify-end sm:gap-12 lg:gap-16"
       >
         {
           karyaStats.map((stat) => (
@@ -127,7 +140,7 @@ const karyaStats = [
         opacity: 0,
         duration: 0.5,
         ease: "power2.out",
-        clearProps: "all",
+        clearProps: "transform,opacity",
       })
         .from(
           "#jumlah-karya-heading",
@@ -136,7 +149,7 @@ const karyaStats = [
             opacity: 0,
             duration: 0.75,
             ease: "power3.out",
-            clearProps: "all",
+            clearProps: "transform,opacity",
           },
           "-=0.3"
         )
@@ -148,7 +161,7 @@ const karyaStats = [
             duration: 0.6,
             stagger: 0.15,
             ease: "power2.out",
-            clearProps: "all",
+            clearProps: "transform,opacity",
           },
           "-=0.3"
         );

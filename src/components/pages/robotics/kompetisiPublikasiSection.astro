@@ -138,8 +138,6 @@ const { class: className = "", id = "kompetisi-publikasi" } = Astro.props;
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  gsap.registerPlugin(ScrollTrigger);
-
   function initKompetisiSectionAnimations() {
     const section = document.querySelector("#kompetisi-publikasi") || document.querySelector("section[aria-label*='Kompetisi']");
     if (!section || section.hasAttribute("data-gsap-init")) return;

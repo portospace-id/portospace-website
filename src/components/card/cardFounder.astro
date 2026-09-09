@@ -16,14 +16,15 @@ interface Props {
 const { name, role, image, class: className = "", ...rest } = Astro.props;
 ---
 
-<div class:list={["card-founder flex w-[300px] flex-col items-start", className]} {...rest}>
-  <div class="h-[300px] w-[300px] overflow-hidden rounded-sm bg-gray-100 shadow-sm">
+<div class:list={["card-founder flex w-full flex-col items-center text-center sm:items-start sm:text-left sm:max-w-[300px] lg:w-[300px]", className]} {...rest}>
+  <div class="aspect-square w-full overflow-hidden rounded-sm bg-gray-100 shadow-sm sm:h-[300px] sm:w-[300px]">
     <Image
       src={image}
       alt={name}
       width={300}
       height={300}
       class="pointer-events-none h-full w-full rounded-sm object-cover object-top select-none"
+      loading="lazy"
     />
   </div>
   <h3 class="font-momo mt-3 text-lg font-bold tracking-tight text-[#161616] sm:text-xl">

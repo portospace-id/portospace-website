@@ -1,0 +1,175 @@
+---
+import { Image } from "astro:assets";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
+import pattern1 from "@/assets/pattern/pattern_1.svg";
+import CardPersiapanKompetisi from "@/components/card/cardPersiapanKompetisi.astro";
+
+import portfolioTechDesk from "@/assets/image/makersAcademy/portfolio_tech_desk.png";
+import portfolioStudioWorkspace from "@/assets/image/makersAcademy/portfolio_studio_workspace.png";
+import portfolioWorkshopGroup from "@/assets/image/makersAcademy/portfolio_workshop_group.png";
+
+interface CardItem {
+  image: ImageMetadata;
+  alt: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  /** Section badge text */
+  badgeText?: string;
+  /** Main title main line */
+  titleLine?: string;
+  /** Main title highlight accent (Caveat font) */
+  titleHighlight?: string;
+  /** Card item data array */
+  cards?: CardItem[];
+  /** Custom CSS classes */
+  class?: string;
+}
+
+const defaultCards: CardItem[] = [
+  {
+    image: portfolioTechDesk,
+    alt: "Seleksi Kompetisi",
+    title: "Seleksi Kompetisi",
+    description:
+      "Kami membantu memilih kompetisi yang paling sesuai dengan bidang, tingkat kemampuan, dan hasil karya yang telah dikembangkan.",
+  },
+  {
+    image: portfolioStudioWorkspace,
+    alt: "Penyempurnaan Karya",
+    title: "Penyempurnaan Karya",
+    description:
+      "Mentor memberikan masukan untuk meningkatkan kualitas proyek agar lebih siap dipresentasikan maupun dilombakan.",
+  },
+  {
+    image: portfolioWorkshopGroup,
+    alt: "Presentasi & Pendampingan",
+    title: "Presentasi & Pendampingan",
+    description:
+      "Latihan presentasi, simulasi tanya jawab, hingga pendampingan selama proses kompetisi agar siswa tampil lebih percaya diri.",
+  },
+];
+
+const {
+  badgeText = "Persiapan & Pendampingan Kompetisi",
+  titleLine = "Wujudkan Karyamu Menjadi Prestasi Melalui Pendampingan hingga",
+  titleHighlight = "Siap Berkompetisi.",
+  cards = defaultCards,
+  class: className = "",
+} = Astro.props;
+---
+
+<section
+  id="persiapan-section"
+  class:list={[
+    "relative flex w-full flex-col justify-center overflow-hidden bg-white py-12 text-[#161616] sm:py-16 md:py-20 lg:py-28",
+    className,
+  ]}
+  aria-label="Persiapan dan Pendampingan Kompetisi"
+  data-navbar="white"
+>
+  <!-- Top-Right Decorative Pattern 1 SVG -->
+  <div
+    class="pointer-events-none absolute -top-[80px] -right-[120px] z-0 h-[280px] w-[280px] select-none sm:-top-[110px] sm:-right-[160px] sm:h-[380px] sm:w-[380px] md:-top-[144px] md:-right-[217px] md:h-[501.526px] md:w-[500px]"
+    aria-hidden="true"
+  >
+    <Image
+      src={pattern1}
+      alt=""
+      class="pointer-events-none h-full w-full object-contain select-none"
+    />
+  </div>
+
+  <!-- Standard Responsive Container -->
+  <div
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-[20px] sm:px-[24px] md:px-[28px] lg:gap-14 lg:px-[32px] xl:max-w-none xl:px-[32px]"
+  >
+    <!-- Header Section: Badge & Main Title -->
+    <div class="flex max-w-[980px] flex-col items-start gap-3 sm:gap-4">
+      <div id="persiapan-badge">
+        <SectionTitle variant="light" title={badgeText} showIcon={true} />
+      </div>
+
+      <h2
+        id="persiapan-heading"
+        class="font-momo text-[26px] leading-[1.15] font-bold tracking-tight text-[#161616] sm:text-[34px] md:text-[44px] lg:text-[54px]"
+      >
+        {titleLine}{" "}
+        <span
+          class="font-caveat mt-1 inline-block text-[34px] leading-none font-semibold text-[#161616] italic sm:mt-2 sm:text-[46px] md:text-[58px] lg:text-[68px]"
+        >
+          {titleHighlight}
+        </span>
+      </h2>
+    </div>
+
+    <!-- 3 Cards Grid -->
+    <div
+      id="persiapan-grid"
+      class="grid w-full grid-cols-1 items-start gap-8 sm:grid-cols-2 sm:gap-6 md:grid-cols-3 md:min-h-[580px] lg:gap-8"
+    >
+      {
+        cards.map((card) => (
+          <CardPersiapanKompetisi
+            image={card.image}
+            alt={card.alt}
+            title={card.title}
+            description={card.description}
+          />
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- GSAP ScrollTrigger Entrance Animations -->
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initPersiapanAnimations = () => {
+      const section = document.querySelector("#persiapan-section");
+      if (!section) return;
+
+      const badge = document.querySelector("#persiapan-badge");
+      const heading = document.querySelector("#persiapan-heading");
+
+      gsap.from([badge, heading].filter(Boolean), {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.15,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+
+      gsap.from(".persiapan-card", {
+        scrollTrigger: {
+          trigger: "#persiapan-grid",
+          start: "top 85%",
+          once: true,
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.12,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initPersiapanAnimations);
+    } else {
+      initPersiapanAnimations();
+    }
+  </script>
+</section>

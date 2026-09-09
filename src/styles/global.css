@@ -106,6 +106,8 @@
   --font-jakarta: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-momo: "Momo Trust Sans", "Plus Jakarta Sans", system-ui, sans-serif;
   --font-caveat: "Caveat", cursive;
+  --font-display: "Momo Trust Sans", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-handwriting: "Caveat", cursive;
 
   /* Footer Colors */
   --color-portospace-purple: #a94eeb;

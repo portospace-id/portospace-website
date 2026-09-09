@@ -61,11 +61,10 @@ const mentors = [
   data-navbar="light"
 >
   <!-- Decorative Pattern SVG - Top Right -->
-  <img
-    src={pattern4.src}
+  <Image
+    src={pattern4}
     alt=""
-    class="pointer-events-none absolute z-0 select-none"
-    style="width: 500px; height: 501.526px; position: absolute; right: -223px; top: -171px;"
+    class="pointer-events-none absolute z-0 h-[250px] w-[250px] -right-[105px] -top-[91px] select-none lg:h-[501px] lg:w-[500px] lg:-right-[223px] lg:-top-[171px]"
     aria-hidden="true"
   />
 
@@ -79,11 +78,11 @@ const mentors = [
 
     <h2
       id="our-mentors-heading"
-      class="font-momo max-w-[980px] text-[32px] leading-[110%] font-semibold tracking-[-1.08px] text-black md:text-[44px] lg:text-[54px]"
+      class="font-momo max-w-[980px] text-[28px] leading-[1.15] font-semibold tracking-tight text-black sm:text-[36px] md:text-[44px] lg:text-[54px]"
     >
       Temukan Mentor yang Tepat untuk<br class="hidden md:block" />
       Mendukung Perjalanan <span
-        class="font-caveat text-[42px] leading-[80%] font-medium tracking-[-2.56px] text-black italic md:text-[54px] lg:text-[64px]"
+        class="font-caveat inline-block text-[36px] leading-[80%] font-medium tracking-[-2.56px] text-black italic sm:text-[44px] md:text-[54px] lg:text-[64px]"
         >Belajarmu.</span
       >
     </h2>
@@ -146,6 +145,7 @@ const mentors = [
       opacity: 0,
       duration: 0.6,
       ease: "power2.out",
+      clearProps: "transform,opacity",
     });
 
     gsap.from("#our-mentors-heading", {
@@ -159,6 +159,7 @@ const mentors = [
       duration: 0.8,
       ease: "power3.out",
       delay: 0.1,
+      clearProps: "transform,opacity",
     });
 
     gsap.from("#our-mentors-desc", {
@@ -172,6 +173,7 @@ const mentors = [
       duration: 0.6,
       ease: "power2.out",
       delay: 0.2,
+      clearProps: "transform,opacity",
     });
 
     gsap.from(".mentor-card", {

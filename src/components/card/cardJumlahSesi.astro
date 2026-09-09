@@ -27,7 +27,7 @@ const {
 
 <div
   class:list={[
-    "card-jumlah-sesi group relative flex h-[560px] w-full flex-col justify-between overflow-hidden rounded-sm bg-violet-100 p-6 text-[#111111] transition-all duration-300 select-none hover:-translate-y-1 sm:p-7 lg:p-8",
+    "card-jumlah-sesi group relative flex h-auto min-h-[420px] w-full flex-col justify-between overflow-hidden rounded-sm bg-violet-100 p-6 text-[#111111] transition-all duration-300 select-none hover:-translate-y-1 sm:min-h-[480px] sm:p-7 md:h-[520px] lg:h-[560px] lg:p-8",
     className,
   ]}
   {...rest}
@@ -43,7 +43,7 @@ const {
   <!-- Top Package Badge Title -->
   <div class="relative z-10">
     <span
-      class="font-momo text-lg font-semibold tracking-tight text-[#111111] sm:text-xl lg:text-2xl"
+      class="font-momo text-[32px] leading-tight font-semibold tracking-tight text-[#111111] lg:text-[36px]"
     >
       {packageName}
     </span>
@@ -51,16 +51,16 @@ const {
 
   <!-- Bottom Details (Duration, Sessions, Description) -->
   <div class="relative z-10 mt-auto flex flex-col items-start">
-    <span class="font-jakarta mb-1 text-sm font-medium text-gray-800 sm:text-base">
+    <span class="font-jakarta mb-1 text-[26px] leading-tight font-medium text-gray-800">
       {duration}
     </span>
     <h3
-      class="font-momo mb-2 text-[32px] leading-tight font-bold tracking-tight text-[#111111] sm:text-[40px] lg:text-[48px]"
+      class="font-momo mb-2 text-[60px] leading-tight font-bold tracking-tight text-[#111111]"
     >
       {sessions}
     </h3>
     <p
-      class="font-jakarta max-w-[320px] text-xs leading-relaxed font-normal text-gray-700 sm:text-sm"
+      class="font-jakarta text-[16px] leading-relaxed font-normal text-gray-700"
     >
       {description}
     </p>

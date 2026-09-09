@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 import SectionTitle from "@/components/ui/sectionTitle.astro";
 import defaultHeroBg from "@/assets/image/mentors/hero.png";
 
@@ -36,6 +37,7 @@ const {
   class: className = "",
 } = Astro.props;
 
+const isObjBg = typeof bgImage === "object";
 const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
 ---
 
@@ -47,12 +49,25 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
 >
   <!-- Background Image -->
   <div class="absolute inset-0 z-0">
-    <img
-      src={bgUrl}
-      alt={bgAlt}
-      class="h-full w-full object-cover object-center"
-      fetchpriority="high"
-    />
+    {
+      isObjBg ? (
+        <Image
+          src={bgImage as ImageMetadata}
+          alt={bgAlt}
+          loading="eager"
+          fetchpriority="high"
+          class="h-full w-full object-cover object-center"
+        />
+      ) : (
+        <img
+          src={bgUrl}
+          alt={bgAlt}
+          loading="eager"
+          fetchpriority="high"
+          class="h-full w-full object-cover object-center"
+        />
+      )
+    }
   </div>
 
   <!-- Dark Overlay -->
@@ -60,7 +75,7 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
 
   <!-- Main Hero Content -->
   <div
-    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] pb-8 sm:px-[24px] md:px-[28px] md:pb-12 lg:px-[32px] lg:pb-16 xl:max-w-none xl:px-[32px]"
+    class="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] pt-28 pb-8 sm:px-[24px] sm:pt-32 sm:pb-10 md:px-[28px] md:pt-36 md:pb-12 lg:px-[32px] lg:pt-32 lg:pb-16 xl:max-w-none xl:px-[32px]"
   >
     <div class="flex w-full flex-col items-start justify-between gap-6 lg:flex-row lg:gap-12">
       <!-- Badge Label (Left) -->
@@ -82,12 +97,12 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
       >
         <h1
           id="hero-heading"
-          class="font-momo mb-0 w-full text-left text-[28px] leading-[1.15] font-bold tracking-tight text-white sm:text-[36px] md:text-[44px] lg:text-[54px]"
+          class="font-momo mb-0 w-full text-left text-[26px] leading-[1.15] font-bold tracking-tight text-white sm:text-[34px] md:text-[44px] lg:text-[54px]"
         >
           {titleLine && `${titleLine} `}
           {
             titleHighlight && (
-              <span class="font-caveat mt-1 block align-baseline text-[38px] leading-none font-semibold text-white italic sm:mt-2 sm:text-[48px] md:text-[58px] lg:text-[68px]">
+              <span class="font-caveat mt-1 block align-baseline text-[36px] leading-none font-semibold text-white italic sm:mt-2 sm:text-[48px] md:text-[58px] lg:text-[68px]">
                 {titleHighlight}
               </span>
             )
@@ -122,6 +137,7 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
       opacity: 0,
       duration: 0.5,
       ease: "power2.out",
+      clearProps: "transform,opacity",
     })
       .from(
         "#hero-heading",
@@ -130,6 +146,7 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
           opacity: 0,
           duration: 0.75,
           ease: "power3.out",
+          clearProps: "transform,opacity",
         },
         "-=0.3"
       )
@@ -140,6 +157,7 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
           opacity: 0,
           duration: 0.6,
           ease: "power2.out",
+          clearProps: "transform,opacity",
         },
         "-=0.4"
       );

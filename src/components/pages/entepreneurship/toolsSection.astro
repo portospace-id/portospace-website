@@ -22,7 +22,7 @@ const { class: className = "", id = "tools-technology" } = Astro.props;
 >
   <!-- Top Right Decorative Pattern 3 -->
   <div
-    class="pointer-events-none absolute -top-[171.334px] -right-[218px] z-0 h-[501.88px] w-[500px] overflow-hidden select-none"
+    class="pointer-events-none absolute -top-[85px] -right-[105px] z-0 h-[250px] w-[250px] overflow-hidden select-none lg:-top-[171.334px] lg:-right-[218px] lg:h-[501.88px] lg:w-[500px]"
   >
     <Image
       src={pattern3}
@@ -37,7 +37,7 @@ const { class: className = "", id = "tools-technology" } = Astro.props;
 
   <!-- Bottom Left Decorative Pattern 3 -->
   <div
-    class="pointer-events-none absolute -bottom-[230.546px] -left-[203px] z-0 h-[501.88px] w-[500px] overflow-hidden select-none"
+    class="pointer-events-none absolute -bottom-[115px] -left-[100px] z-0 h-[250px] w-[250px] overflow-hidden select-none lg:-bottom-[230.546px] lg:-left-[203px] lg:h-[501.88px] lg:w-[500px]"
   >
     <Image
       src={pattern3}
@@ -80,7 +80,7 @@ const { class: className = "", id = "tools-technology" } = Astro.props;
     <!-- Tool Logos Row -->
     <div
       id="tools-logos"
-      class="mt-12 sm:mt-16 md:mt-20 flex flex-nowrap items-center justify-center gap-4 sm:gap-10 md:gap-14 lg:gap-20 w-full max-w-[1200px] mx-auto px-2 overflow-x-auto sm:overflow-visible"
+      class="mt-10 sm:mt-16 md:mt-20 flex flex-wrap items-center justify-center gap-6 w-full max-w-[1200px] mx-auto px-2 sm:flex-nowrap sm:gap-10 md:gap-14 lg:gap-20"
     >
       <!-- Canva Logo -->
       <div class="tool-logo-item flex items-center justify-center transition-transform duration-300 hover:scale-105">
@@ -144,8 +144,6 @@ const { class: className = "", id = "tools-technology" } = Astro.props;
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
 
   function initToolsAnimations() {
     const section = document.querySelector("#tools-technology");

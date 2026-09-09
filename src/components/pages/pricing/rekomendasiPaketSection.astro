@@ -44,12 +44,12 @@ const recommendations = [
     <div class="mb-12 flex flex-col items-center gap-4 text-center lg:mb-16">
       <h2
         id="rekomendasi-heading"
-        class="font-momo max-w-[980px] text-[32px] leading-[110%] font-bold tracking-tight text-[#111111] md:text-[44px] lg:text-[54px]"
+        class="font-momo max-w-[980px] text-[28px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[54px]"
       >
         Temukan Paket yang Paling Sesuai<br class="hidden md:block" />
         dengan Target dan Perjalanan{" "}
         <span
-          class="font-caveat inline-block text-[40px] leading-none font-semibold text-[#111111] italic md:text-[54px] lg:text-[64px]"
+          class="font-caveat inline-block text-[36px] leading-none font-semibold text-[#111111] italic sm:text-[44px] md:text-[54px] lg:text-[64px]"
         >
           Belajarmu.
         </span>
@@ -93,7 +93,7 @@ const recommendations = [
         opacity: 0,
         duration: 0.75,
         ease: "power3.out",
-        clearProps: "all",
+        clearProps: "transform,opacity",
       }).from(
         ".card-rekomendasi-paket",
         {
@@ -102,7 +102,7 @@ const recommendations = [
           duration: 0.65,
           stagger: 0.12,
           ease: "power2.out",
-          clearProps: "all",
+          clearProps: "transform,opacity",
         },
         "-=0.4"
       );

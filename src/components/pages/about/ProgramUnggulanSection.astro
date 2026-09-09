@@ -27,7 +27,7 @@ import imgEntrepreneurship from "@/assets/image/homepage/entepreneurship.webp";
 
   <!-- Main Section Wrapper -->
   <div
-    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-start gap-[40px] px-[20px] py-[80px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
+    class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-start gap-[32px] px-[20px] py-[60px] sm:gap-[40px] sm:px-[24px] sm:py-[80px] md:px-[28px] md:py-[100px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <!-- Top Content / Header -->
     <div class="flex w-full flex-col justify-between gap-6 lg:flex-row lg:items-end lg:gap-8">
@@ -43,7 +43,7 @@ import imgEntrepreneurship from "@/assets/image/homepage/entepreneurship.webp";
         >
           Tempat Belajar yang<br class="hidden sm:inline" />
           Membantu Kamu <span
-            class="font-caveat text-[42px] leading-[80%] font-bold tracking-[-2.56px] text-white md:text-[54px] lg:text-[64px]"
+            class="font-caveat text-[40px] leading-[80%] font-bold tracking-[-2.56px] text-white sm:text-[48px] md:text-[54px] lg:text-[64px]"
             >Bertumbuh.</span
           >
         </h2>
@@ -110,9 +110,6 @@ import imgEntrepreneurship from "@/assets/image/homepage/entepreneurship.webp";
 
 <script>
   import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
 
   const initAnimations = () => {
     const heading = document.querySelector("#program-heading");

@@ -40,14 +40,14 @@ const goalsData = [
 <section
   id="goals"
   class:list={[
-    "relative flex min-h-svh w-full flex-col justify-center overflow-hidden bg-white py-16 text-black sm:py-20 md:py-24 lg:py-32",
+    "relative flex min-h-svh w-full flex-col justify-center overflow-hidden bg-white py-12 text-black sm:py-20 md:py-24 lg:py-32",
     className,
   ]}
   aria-label="Goal Setting & Discovery Section"
 >
   <!-- Bottom-Left Decorative Background Pattern -->
   <div
-    class="pointer-events-none absolute bottom-[-225px] left-[-230px] z-0 h-[682px] w-[680px] select-none"
+    class="pointer-events-none absolute -bottom-[120px] -left-[140px] z-0 h-[360px] w-[360px] select-none sm:-bottom-[180px] sm:-left-[180px] sm:h-[480px] sm:w-[480px] md:bottom-[-225px] md:left-[-230px] md:h-[682px] md:w-[680px]"
   >
     <Image
       src={pattern4}
@@ -92,10 +92,10 @@ const goalsData = [
           {
             goalsData.map((item) => (
               <div class="goals-card flex w-full flex-col items-start gap-3">
-                <div class="bg-violet-normal font-momo inline-flex w-3/4 items-center justify-start rounded-sm px-3 py-2 text-base font-medium text-white select-none md:text-3xl">
+                <div class="bg-violet-normal font-momo inline-flex w-3/4 items-center justify-start rounded-sm px-3.5 py-2 text-base font-medium text-white select-none sm:text-lg md:text-3xl">
                   {item.tag}
                 </div>
-                <p class="font-jakarta w-3/4 text-sm leading-relaxed font-normal text-[#333333] md:text-2xl">
+                <p class="font-jakarta w-3/4 text-sm leading-relaxed font-normal text-[#333333] sm:text-base md:text-2xl">
                   {item.description}
                 </p>
               </div>
@@ -129,6 +129,7 @@ const goalsData = [
         opacity: 0,
         duration: 0.5,
         ease: "power2.out",
+        clearProps: "transform,opacity",
       })
         .from(
           "#goals-heading",
@@ -137,6 +138,7 @@ const goalsData = [
             opacity: 0,
             duration: 0.7,
             ease: "power3.out",
+            clearProps: "transform,opacity",
           },
           "-=0.3"
         )
@@ -148,6 +150,7 @@ const goalsData = [
             duration: 0.6,
             stagger: 0.12,
             ease: "power2.out",
+            clearProps: "transform,opacity",
           },
           "-=0.3"
         );

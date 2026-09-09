@@ -1,5 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// SEO
+import SchemaOrg from "@/seo/SchemaOrg.astro";
+import { schemas } from "@/seo/schemas";
+
+// Sections
 import HeroSection from "../components/pages/mentors/heroSection.astro";
 import FiturPrograms from "../components/pages/mentors/fiturPrograms.astro";
 import OurMentorsSection from "../components/pages/mentors/ourMentorsSection.astro";
@@ -10,9 +16,11 @@ import Pencapaian from "../components/pages/mentors/pencapaian.astro";
 ---
 
 <Layout
-  title="Mentors — PortoSpace"
-  description="Bersama mentor yang tepat, setiap ide mendapatkan arahan, setiap tantangan menemukan solusi, dan setiap langkah menjadi lebih berarti."
+  title="Daftar Mentor Akademisi & Praktisi — PortoSpace"
+  description="Jelajahi profil mentor pembimbing dari ITB, UI, NTU, dan universitas ternama dunia yang siap mendampingi riset dan proyek teknologimu."
 >
+  <SchemaOrg schema={schemas.mentors} />
+
   <HeroSection />
   <OurMentorsSection />
   <BidangKeahlian />
@@ -21,3 +29,4 @@ import Pencapaian from "../components/pages/mentors/pencapaian.astro";
   <Pencapaian />
   <FiturPrograms />
 </Layout>
+
