@@ -27,7 +27,7 @@ const tools = [
 >
   <!-- Pattern Bottom-Right -->
   <div
-    class="pointer-events-none absolute bottom-0 right-0 w-[200px] select-none sm:w-[260px] md:w-[320px] lg:w-[380px]"
+    class="pointer-events-none absolute bottom-0 right-0 w-[180px] select-none sm:w-[240px] md:w-[320px] lg:w-[380px]"
     aria-hidden="true"
   >
     <img src="/pattern_kanan_2.svg" alt="" class="h-auto w-full object-contain" />
@@ -35,7 +35,7 @@ const tools = [
 
   <!-- Pattern Bottom-Left -->
   <div
-    class="pointer-events-none absolute bottom-0 left-0 w-[140px] select-none sm:w-[200px] md:w-[320px] lg:w-[380px]"
+    class="pointer-events-none absolute bottom-0 left-0 w-[180px] select-none sm:w-[240px] md:w-[320px] lg:w-[380px]"
     aria-hidden="true"
   >
     <img src="/pattern_kiri_2.svg" alt="" class="h-auto w-full object-contain" />
@@ -57,21 +57,23 @@ const tools = [
     <!-- Main Heading -->
     <h2
       id="tools-heading"
-      class="font-momo max-w-[852px] text-[28px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[54px]"
+      class="font-momo max-w-[852px] text-[24px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[54px]"
     >
-      Kenali Teknologi yang Digunakan<br class="hidden sm:inline" />
-      untuk Membangun Produk{" "}
-      <span
-        class="font-caveat ml-1 inline-block align-baseline text-[36px] leading-none font-semibold text-[#111111] italic sm:text-[46px] md:text-[56px] lg:text-[66px]"
-      >
-        Digital.
+      <span class="block">Kenali Teknologi untuk</span>
+      <span class="block mt-1 sm:mt-0">
+        Membangun Produk{" "}
+        <span
+          class="font-caveat ml-1 inline-block align-baseline text-[30px] leading-none font-semibold text-[#111111] italic sm:text-[46px] md:text-[56px] lg:text-[66px]"
+        >
+          Digital.
+        </span>
       </span>
     </h2>
 
     <!-- Tool Logos Row -->
     <div
       id="tools-logos"
-      class="mx-auto mt-12 flex w-full max-w-[1200px] flex-nowrap items-center justify-center gap-4 overflow-x-auto px-2 sm:mt-16 sm:gap-10 sm:overflow-visible md:mt-20 md:gap-14 lg:gap-20"
+      class="mx-auto mt-10 flex w-full max-w-[1200px] flex-wrap items-center justify-center gap-6 px-2 sm:mt-16 sm:flex-nowrap sm:gap-10 md:mt-20 md:gap-14 lg:gap-20"
     >
       {
         tools.map((tool) => (
@@ -91,8 +93,6 @@ const tools = [
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
 
   function initToolsAnimations() {
     const section = document.querySelector("#coding-tools-section");

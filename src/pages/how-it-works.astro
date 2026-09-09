@@ -1,5 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// SEO
+import SchemaOrg from "@/seo/SchemaOrg.astro";
+import { schemas } from "@/seo/schemas";
+
+// Sections
 import HeroSection from "../components/pages/howItWorks/heroSection.astro";
 import Goals from "../components/pages/howItWorks/goals.astro";
 import LearningProcessSection from "../components/pages/howItWorks/learningProcessSection.astro";
@@ -8,49 +14,13 @@ import SuccessManagerSection from "../components/pages/howItWorks/successManager
 import UpdatePerkembanganSection from "../components/pages/howItWorks/updatePerkembanganSection.astro";
 import ProgressMonitoringSection from "../components/pages/howItWorks/progressMonitoringSection.astro";
 import PersiapanSection from "../components/pages/howItWorks/persiapanSection.astro";
-
-// HowItWorks JSON-LD Schema (Schema.org)
-const howToSchema = {
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "Tahapan Mentorship Riset & Teknologi PortoSpace",
-  "description":
-    "Pelajari tahapan mentorship di PortoSpace dari ideasi, perancangan prototipe, pengujian, hingga publikasi dan kompetisi nasional/internasional.",
-  "step": [
-    {
-      "@type": "HowToStep",
-      "name": "Goal Setting & Discovery",
-      "text": "Mengenali potensi, menentukan target, dan menyusun rencana belajar yang terarah bersama mentor.",
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Mentor Matching",
-      "text": "Didampingi mentor berpengalaman dari ITB, UI, NTU, dan pakar industri lulusan global.",
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Learning & Foundation",
-      "text": "Pelajari konsep, materi, dan keterampilan mendasar sebagai fondasi proyek.",
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Progress Evaluation",
-      "text": "Evaluasi rutin dan pemantauan perkembangan berkala agar proses belajar tetap terarah.",
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Persiapan & Pendampingan Kompetisi",
-      "text": "Seleksi kompetisi, penyempurnaan karya, dan latihan presentasi hingga siap berkompetisi.",
-    },
-  ],
-};
 ---
 
 <Layout
   title="Cara Kerja Mentorship — PortoSpace"
   description="Pelajari tahapan mentorship di PortoSpace dari ideasi, perancangan prototipe, pengujian, hingga publikasi dan kompetisi nasional/internasional."
 >
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(howToSchema)} />
+  <SchemaOrg schema={schemas.howItWorks} />
 
   <HeroSection />
   <Goals />
@@ -61,3 +31,4 @@ const howToSchema = {
   <UpdatePerkembanganSection />
   <PersiapanSection />
 </Layout>
+

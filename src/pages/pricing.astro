@@ -1,5 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// SEO
+import SchemaOrg from "@/seo/SchemaOrg.astro";
+import { schemas } from "@/seo/schemas";
+
+// Sections
 import HeroSection from "@/components/pages/pricing/heroSection.astro";
 import PaketPrice from "@/components/pages/pricing/paketPrice.astro";
 import JumlahSesi from "@/components/pages/pricing/jumlahSesi.astro";
@@ -8,51 +14,13 @@ import FasilitasSection from "@/components/pages/pricing/fasilitasSection.astro"
 import KetentuanProgramSection from "@/components/pages/pricing/ketentuanProgramSection.astro";
 import RekomendasiPaketSection from "@/components/pages/pricing/rekomendasiPaketSection.astro";
 import KomunitasWA from "@/components/pages/homepage/komunitasWA.astro";
-// Pricing JSON-LD Schema (Schema.org)
-const pricingSchema = {
-  "@context": "https://schema.org",
-  "@type": "OfferCatalog",
-  "name": "Paket Mentorship PortoSpace",
-  "url": "https://portospace.id/pricing",
-  "description":
-    "Informasi pilihan program mentorship private dan kelompok beserta paket biaya investasi masa depan akademis siswa.",
-  "itemListElement": [
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Course",
-        "name": "Paket Mentorship Lite",
-        "description":
-          "Sudah punya dasar? Tingkatkan kemampuanmu dengan bimbingan mentor dan pengalaman belajar yang terarah.",
-      },
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Course",
-        "name": "Paket Mentorship Pro",
-        "description":
-          "Bangun portofolio yang lebih kuat dengan pendampingan intensif dan proyek yang siap dipublikasikan maupun dilombakan.",
-      },
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Course",
-        "name": "Paket Mentorship Pro Max",
-        "description":
-          "Program pendampingan paling lengkap untuk membangun portofolio, mempersiapkan kompetisi, hingga meraih peluang studi di universitas terbaik dunia.",
-      },
-    },
-  ],
-};
 ---
 
 <Layout
   title="Program & Biaya Mentorship — PortoSpace"
   description="Informasi pilihan program mentorship private dan kelompok beserta paket biaya investasi masa depan akademis siswa."
 >
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(pricingSchema)} />
+  <SchemaOrg schema={schemas.pricing} />
 
   <HeroSection />
   <PaketPrice />
@@ -63,3 +31,4 @@ const pricingSchema = {
   <RekomendasiPaketSection />
   <KomunitasWA />
 </Layout>
+

@@ -31,6 +31,9 @@ const { name, field, university, image, alt = name, class: className = "", ...re
   <Image
     src={image}
     alt={alt}
+    width={400}
+    height={500}
+    loading="lazy"
     class="pointer-events-none h-full w-full object-cover object-top transition-transform duration-500 ease-out select-none group-hover:scale-105"
   />
 

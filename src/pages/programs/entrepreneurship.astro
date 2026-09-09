@@ -2,6 +2,10 @@
 // Layouts
 import Layout from "@/layouts/Layout.astro";
 
+// SEO
+import SchemaOrg from "@/seo/SchemaOrg.astro";
+import { schemas } from "@/seo/schemas";
+
 // Sections
 import HeroSection from "@/components/pages/entepreneurship/heroSection.astro";
 import ManfaatOutcame from "@/components/pages/entepreneurship/manfaatOutcame.astro";
@@ -14,23 +18,19 @@ import KomunitasWA from "@/components/pages/entepreneurship/komunitasWA.astro";
 ---
 
 <Layout
-  title="Entrepreneurship — PortoSpace"
-  description="Program mentorship entrepreneurship dan bisnis untuk siswa. Belajar membangun startup dan ide bisnis dari nol hingga divalidasi dan dikompetisikan."
+  title="Entrepreneurship & Bisnis — PortoSpace"
+  description="Program mentorship bisnis dan startup untuk siswa. Ubah ide menjadi solusi bisnis nyata yang tervalidasi dan siap dikompetisikan."
 >
-  <main>
-    <HeroSection />
-    <ManfaatOutcame />
-    <ProsesPrototypeSection />
-    <ToolsSection />
-    <ProjectSection />
-    <OurMentorsSection />
-    <KompetisiSection />
-    <KomunitasWA />
-  </main>
+  <SchemaOrg schema={schemas.entrepreneurship} />
+
+  <HeroSection />
+  <ManfaatOutcame />
+  <ProsesPrototypeSection />
+  <ToolsSection />
+  <ProjectSection />
+  <OurMentorsSection />
+  <KompetisiSection />
+  <KomunitasWA />
 </Layout>
-
-
-
-
 
 

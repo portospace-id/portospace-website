@@ -1,50 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// SEO
+import SchemaOrg from "@/seo/SchemaOrg.astro";
+import { schemas } from "@/seo/schemas";
+
+// Sections
 import HeroSection from "@/components/pages/contact/heroSection.astro";
 import ContactSection from "@/components/pages/contact/contactSection.astro";
 import KomunitasWA from "@/components/pages/contact/komunitasWA.astro";
-const contactSchemaData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "ContactPage",
-      "name": "Hubungi Kami — PortoSpace",
-      "description": "Konsultasikan ide riset dan proyek teknologimu bersama tim PortoSpace via WhatsApp atau formulir kontak resmi.",
-      "url": "https://portospace.id/contact",
-      "mainEntity": {
-        "@type": "EducationalOrganization",
-        "name": "PortoSpace",
-        "url": "https://portospace.id",
-        "logo": "https://portospace.id/favicon.svg",
-        "email": "admin@portospace.id",
-        "telephone": "+6285793057466",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+6285793057466",
-          "contactType": "Customer Support",
-          "email": "admin@portospace.id",
-          "availableLanguage": ["Indonesian", "English"],
-          "hoursAvailable": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "09:00",
-            "closes": "18:00"
-          }
-        }
-      }
-    }
-  ]
-};
 ---
 
 <Layout
   title="Hubungi Kami — PortoSpace"
   description="Konsultasikan ide riset dan proyek teknologimu bersama tim PortoSpace via WhatsApp atau formulir kontak resmi."
 >
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(contactSchemaData)}></script>
-  <main>
-    <HeroSection />
-    <ContactSection />
-    <KomunitasWA />
-  </main>
+  <SchemaOrg schema={schemas.contact} />
+
+  <HeroSection />
+  <ContactSection />
+  <KomunitasWA />
 </Layout>
+

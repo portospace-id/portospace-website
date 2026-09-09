@@ -2,6 +2,10 @@
 // Layouts
 import Layout from "../layouts/Layout.astro";
 
+// SEO
+import SchemaOrg from "@/seo/SchemaOrg.astro";
+import { schemas } from "@/seo/schemas";
+
 // Sections
 import HeroSection from "../components/pages/about/heroSection.astro";
 import Cerita from "../components/pages/about/cerita.astro";
@@ -16,22 +20,8 @@ import FounderSection from "../components/pages/about/founderSection.astro";
   title="Tentang Kami — PortoSpace"
   description="Mengenal PortoSpace: Misi kami mencetak inovator muda Indonesia melalui pembimbingan riset, inovasi teknologi, dan portofolio akademis."
 >
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "AboutPage",
-      "name": "Tentang Kami — PortoSpace",
-      "description": "Mengenal PortoSpace: Misi kami mencetak inovator muda Indonesia melalui pembimbingan riset, inovasi teknologi, dan portofolio akademis.",
-      "url": "https://portospace.id/about",
-      "mainEntity": {
-        "@type": "EducationalOrganization",
-        "name": "PortoSpace",
-        "url": "https://portospace.id",
-        "logo": "https://portospace.id/favicon.svg",
-        "description": "Platform Mentorship Riset, Robotics, Coding, dan Entrepreneurship untuk Siswa."
-      }
-    }
-  </script>
+  <SchemaOrg schema={schemas.aboutPage} />
+
   <HeroSection />
   <VisiMisi />
   <Cerita />
@@ -40,3 +30,4 @@ import FounderSection from "../components/pages/about/founderSection.astro";
   <FounderSection />
   <AlasanDibangun />
 </Layout>
+

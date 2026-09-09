@@ -1,0 +1,37 @@
+---
+/**
+ * SchemaOrg.astro
+ * ───────────────
+ * Komponen reusable untuk menyisipkan JSON-LD Structured Data (Schema.org)
+ * ke dalam <head> melalui Astro slot="head".
+ *
+ * @usage
+ * ```astro
+ * <SchemaOrg schema={{
+ *   "@type": "Course",
+ *   "name": "STEM Research Mentorship",
+ *   ...
+ * }} />
+ * ```
+ */
+
+export interface Props {
+  /** Schema.org object — akan otomatis dibungkus dengan @context jika belum ada */
+  schema: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { schema } = Astro.props;
+
+// Normalize: pastikan @context selalu ada
+function addContext(obj: Record<string, unknown>): Record<string, unknown> {
+  if (!obj["@context"]) {
+    return { "@context": "https://schema.org", ...obj };
+  }
+  return obj;
+}
+
+const normalized = Array.isArray(schema) ? schema.map(addContext) : addContext(schema);
+const jsonString = JSON.stringify(normalized);
+---
+
+<script type="application/ld+json" slot="head" set:html={jsonString} />

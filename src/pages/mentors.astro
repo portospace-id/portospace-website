@@ -1,5 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// SEO
+import SchemaOrg from "@/seo/SchemaOrg.astro";
+import { schemas } from "@/seo/schemas";
+
+// Sections
 import HeroSection from "../components/pages/mentors/heroSection.astro";
 import FiturPrograms from "../components/pages/mentors/fiturPrograms.astro";
 import OurMentorsSection from "../components/pages/mentors/ourMentorsSection.astro";
@@ -7,63 +13,13 @@ import BidangKeahlian from "../components/pages/mentors/bidangKeahlian.astro";
 import LatarBelakang from "../components/pages/mentors/LatarBelakang.astro";
 import PengalamanIndustri from "../components/pages/mentors/pengalamanIndustri.astro";
 import Pencapaian from "../components/pages/mentors/pencapaian.astro";
-const schemaData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "ItemList",
-      "name": "Daftar Mentor PortoSpace",
-      "description": "Profil mentor pembimbing dari ITB, UI, NTU, dan universitas ternama dunia yang siap mendampingi riset dan proyek teknologimu.",
-      "url": "https://portospace.id/mentors",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "Person",
-            "name": "Farhan M.",
-            "jobTitle": "Biotechnology Mentor",
-            "alumniOf": "Institut Teknologi Bandung"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "Person",
-            "name": "Jasmine Shafa, M.Sc.",
-            "jobTitle": "STEM Research Mentor",
-            "alumniOf": "Universitas Indonesia"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "item": {
-            "@type": "Person",
-            "name": "Aris Putra, Ph.D.",
-            "jobTitle": "Coding & AI Mentor",
-            "alumniOf": "Nanyang Technological University"
-          }
-        }
-      ]
-    },
-    {
-      "@type": "EducationalOrganization",
-      "name": "PortoSpace",
-      "url": "https://portospace.id",
-      "logo": "https://portospace.id/favicon.svg",
-      "description": "Platform Mentorship Riset, Robotics, Coding, dan Entrepreneurship untuk Siswa."
-    }
-  ]
-};
 ---
 
 <Layout
   title="Daftar Mentor Akademisi & Praktisi — PortoSpace"
   description="Jelajahi profil mentor pembimbing dari ITB, UI, NTU, dan universitas ternama dunia yang siap mendampingi riset dan proyek teknologimu."
 >
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(schemaData)}></script>
+  <SchemaOrg schema={schemas.mentors} />
 
   <HeroSection />
   <OurMentorsSection />
@@ -73,3 +29,4 @@ const schemaData = {
   <Pencapaian />
   <FiturPrograms />
 </Layout>
+

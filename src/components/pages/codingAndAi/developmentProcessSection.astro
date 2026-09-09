@@ -37,7 +37,7 @@ const steps = [
       <!-- Left Column: Badge & Heading -->
       <div
         id="development-process-header-col"
-        class="flex w-full shrink-0 flex-col items-start gap-4 sm:gap-5 lg:max-w-[560px] lg:gap-6 xl:max-w-[620px]"
+        class="flex w-full shrink-0 flex-col items-start gap-4 sm:gap-5 lg:max-w-[720px] lg:gap-6 xl:max-w-[780px]"
       >
         <!-- Section Title Badge -->
         <SectionTitle
@@ -50,15 +50,16 @@ const steps = [
         <!-- Heading -->
         <h2
           id="development-process-heading"
-          class="font-momo text-[30px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[38px] md:text-[46px] lg:text-[54px]"
+          class="font-momo text-[28px] leading-[1.15] font-bold tracking-tight text-[#111111] sm:text-[36px] md:text-[44px] lg:text-[54px]"
         >
-          Dari Ide Pertama<br />
-          hingga Produk yang<br />
-          Siap{" "}
-          <span
-            class="font-caveat ml-1 inline-block align-baseline text-[36px] leading-none font-semibold text-[#111111] italic sm:text-[46px] md:text-[56px] lg:text-[66px]"
-          >
-            Digunakan.
+          <span class="block">Dari Ide Pertama hingga</span>
+          <span class="block mt-1 sm:mt-0">
+            Produk yang Siap{" "}
+            <span
+              class="font-caveat ml-1 inline-block align-baseline text-[36px] leading-none font-semibold text-[#111111] italic sm:text-[46px] md:text-[56px] lg:text-[66px]"
+            >
+              Digunakan.
+            </span>
           </span>
         </h2>
       </div>
@@ -101,8 +102,6 @@ const steps = [
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
 
   function initDevelopmentProcessAnimations() {
     const section = document.querySelector("#development-process");
