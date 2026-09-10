@@ -4,111 +4,15 @@ import Layout from "../layouts/Layout.astro";
 import HeroSection from "../components/pages/faq/heroSection.astro";
 import ListFaq from "../components/pages/faq/listFaq.astro";
 import pattern4 from "@/assets/pattern/pattern_4.svg";
-
-const faqSchemaData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Apa itu Maker's Academy?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Maker's Academy adalah program pendampingan 1-on-1 berbasis proyek dari PortoSpace yang membantu siswa mengembangkan keterampilan, membangun portofolio, dan mempersiapkan kompetisi maupun jenjang pendidikan berikutnya."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Apakah tersedia Trial Class?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ya. Kamu dapat mengikuti sesi trial untuk mengenal metode pembelajaran, berdiskusi dengan mentor, dan memastikan program sesuai dengan kebutuhanmu sebelum bergabung."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Apa perbedaan paket Lite, Pro, dan Pro Max?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Perbedaannya terletak pada jumlah sesi, durasi pendampingan, target karya, serta fasilitas yang didapatkan. Kamu dapat memilih paket sesuai kebutuhan dan tujuan belajarmu."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Siapa saja mentor di PortoSpace?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Mentor PortoSpace berasal dari berbagai bidang keahlian dengan pengalaman di dunia akademik, riset, maupun industri, dan dipilih melalui proses seleksi untuk memastikan kualitas pendampingan."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Project seperti apa yang akan dikerjakan?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Jenis proyek disesuaikan dengan bidang yang dipilih dan tujuan belajar masing-masing siswa, mulai dari riset, teknologi, pemrograman, robotika, hingga kewirausahaan."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Apakah program dilakukan secara online atau offline?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sebagian besar program dilaksanakan secara online sehingga dapat diikuti dari mana saja. Program offline atau hybrid akan diinformasikan jika tersedia."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Apakah PortoSpace mendukung persiapan kompetisi atau aplikasi universitas?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ya. Mentor akan membantu menyempurnakan proyek, membangun portofolio, serta memberikan pendampingan untuk kompetisi maupun persiapan aplikasi ke universitas sesuai kebutuhan siswa."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Siapa yang dapat mengikuti program ini?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Program PortoSpace dirancang untuk siswa Grade 9–12 yang ingin mengembangkan keterampilan, membangun portofolio, dan mempersiapkan masa depan melalui pembelajaran berbasis proyek."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Apakah orang tua akan mendapatkan laporan perkembangan?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ya. Orang tua akan menerima update perkembangan secara berkala mengenai proses belajar, proyek yang sedang dikerjakan, dan perkembangan siswa selama mengikuti program."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Berapa lama waktu respons tim PortoSpace?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Tim PortoSpace berusaha merespons setiap pertanyaan secepat mungkin pada jam operasional. Untuk pertanyaan yang lebih kompleks, kami akan memberikan informasi lanjutan setelah melakukan koordinasi dengan tim terkait."
-          }
-        }
-      ]
-    },
-    {
-      "@type": "EducationalOrganization",
-      "name": "PortoSpace",
-      "url": "https://portospace.id",
-      "logo": "https://portospace.id/favicon.svg",
-      "description": "Platform Mentorship Riset, Robotics, Coding, dan Entrepreneurship untuk Siswa."
-    }
-  ]
-};
+import { schemas } from "@/seo/schemas";
+import SchemaOrg from "@/seo/SchemaOrg.astro";
 ---
 
 <Layout
   title="FAQ — Pertanyaan Umum Mentorship & Program — PortoSpace"
   description="Temukan jawaban atas berbagai pertanyaan seputar program mentorship private, mentor, paket biaya, trial class, hingga laporan perkembangan siswa di PortoSpace."
 >
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchemaData)}></script>
+  <SchemaOrg schema={schemas.faqPage} />
   <main>
     <HeroSection />
 

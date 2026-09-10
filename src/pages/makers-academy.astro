@@ -18,23 +18,16 @@ import WhatsappSection from "../components/pages/makersAcademy/whatsappSection.a
 import PaketSection from "../components/pages/makersAcademy/paketSection.astro";
 import FaqSection from "../components/pages/makersAcademy/faq.astro";
 import ProsesBimbinganSection from "../components/pages/makersAcademy/prosesBimbinganSection.astro";
+// SEO
+import { schemas } from "@/seo/schemas";
+import SchemaOrg from "@/seo/SchemaOrg.astro";
 ---
 
 <Layout
   title="Makers Academy — PortoSpace"
   description="Akademi riset dan teknologi terpadu di PortoSpace untuk mengasah kemampuan sains, teknik, dan pemrograman siswa."
 >
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Makers Academy by PortoSpace",
-    "description": "Akademi riset dan teknologi terpadu di PortoSpace untuk mengasah kemampuan sains, teknik, dan pemrograman siswa.",
-    "provider": {
-      "@type": "EducationalOrganization",
-      "name": "PortoSpace",
-      "url": "https://portospace.id"
-    }
-  })} />
+  <SchemaOrg schema={schemas.makersAcademy} />
   <main>
     <HeroSection
       badge="Program Unggulan"

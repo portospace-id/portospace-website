@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
@@ -104,10 +103,8 @@
 
   /* Typography */
   --font-jakarta: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-momo: "Momo Trust Sans", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-momo: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-caveat: "Caveat", cursive;
-  --font-display: "Momo Trust Sans", "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-handwriting: "Caveat", cursive;
 
   /* Footer Colors */
   --color-portospace-purple: #a94eeb;
