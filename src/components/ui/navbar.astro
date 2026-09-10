@@ -573,92 +573,30 @@ const isLinkActive = (href: string) => {
 </style>
 
 <script>
-  // ─── Mobile Fullscreen Menu Handler ──────────────────────────────────
-  const toggle = document.getElementById("navbar-toggle");
-  const menu = document.getElementById("navbar-mobile-menu") as HTMLElement;
-  const iconMenu = document.getElementById("icon-menu");
-  const iconClose = document.getElementById("icon-close");
+  let isDropdownClickedOpen = false;
   let isOpen = false;
 
-  toggle?.addEventListener("click", () => {
-    isOpen = !isOpen;
-    toggle.setAttribute("aria-expanded", String(isOpen));
-    if (isOpen) {
-      applyTheme("white");
-      menu?.classList.add("is-open");
-      menu?.setAttribute("aria-hidden", "false");
-      iconMenu?.classList.add("hidden");
-      iconClose?.classList.remove("hidden");
-      document.body.style.overflow = "hidden"; // Lock page scroll when menu is open
-    } else {
-      menu?.classList.remove("is-open");
-      menu?.setAttribute("aria-hidden", "true");
-      iconMenu?.classList.remove("hidden");
-      iconClose?.classList.add("hidden");
-      document.body.style.overflow = "";
-      detectTheme();
-    }
-  });
-
-  // Close mobile menu when any link is clicked
-  menu?.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      isOpen = false;
-      toggle?.setAttribute("aria-expanded", "false");
-      menu?.classList.remove("is-open");
-      menu?.setAttribute("aria-hidden", "true");
-      iconMenu?.classList.remove("hidden");
-      iconClose?.classList.add("hidden");
-      document.body.style.overflow = "";
-      detectTheme();
-    });
-  });
-
-  // Mobile Programs Accordion toggle
-  const programsToggle = document.getElementById("mobile-programs-toggle");
-  const programsList = document.getElementById("mobile-programs-list");
-  const programsChevron = document.getElementById("mobile-programs-chevron");
-  let isProgramsOpen = false;
-
-  programsToggle?.addEventListener("click", () => {
-    isProgramsOpen = !isProgramsOpen;
-    if (isProgramsOpen) {
-      programsList?.classList.add("is-expanded");
-      programsChevron?.classList.add("rotate-180");
-      programsToggle?.classList.add("text-violet-normal", "font-bold");
-      programsToggle?.classList.remove("text-[#111111]");
-    } else {
-      programsList?.classList.remove("is-expanded");
-      programsChevron?.classList.remove("rotate-180");
-      if (!programsToggle?.dataset.parentActive) {
-        programsToggle?.classList.remove("text-violet-normal", "font-bold");
-        programsToggle?.classList.add("text-[#111111]");
-      }
-    }
-  });
-
-  // ─── Dynamic navbar theme & mega menu alignment ─────────────────────────────
-  const navbar = document.getElementById("navbar") as HTMLElement;
-  const dropdownGroup = document.querySelector<HTMLElement>(".group\\/dropdown");
-  const dropdownGroups = document.querySelectorAll<HTMLElement>(".group\\/dropdown");
-  const programsBtn = document.getElementById("programs-dropdown-btn");
-  let isDropdownClickedOpen = false;
-
   function updateMegaMenuPosition() {
-    if (programsBtn) {
-      const btnRect = programsBtn.getBoundingClientRect();
-      document.documentElement.style.setProperty("--programs-left", `${btnRect.left}px`);
+    const btn = document.getElementById("programs-dropdown-btn");
+    const inner = document.getElementById("navbar-inner");
+    if (btn && inner) {
+      const btnRect = btn.getBoundingClientRect();
+      const innerRect = inner.getBoundingClientRect();
+      // Calculate offset relative to the navbar-inner container to prevent misalignment
+      const leftOffset = btnRect.left - innerRect.left;
+      document.documentElement.style.setProperty("--programs-left", `${leftOffset}px`);
     }
   }
 
   function applyTheme(theme: string) {
+    const navbar = document.getElementById("navbar");
     if (!navbar) return;
     navbar.setAttribute("data-theme", theme);
   }
 
   function detectTheme() {
     if (isDropdownClickedOpen || isOpen) return;
-    const currentNav = document.getElementById("navbar") as HTMLElement;
+    const currentNav = document.getElementById("navbar");
     if (!currentNav) return;
 
     // Check for hero section on page
@@ -674,12 +612,15 @@ const isLinkActive = (href: string) => {
       }
     }
 
-    // Outside Hero section -> 100% Solid White theme with bottom border & elevation shadow
+    // Outside Hero section -> 100% Solid White theme
     applyTheme("white");
   }
 
   function setDropdownOpen(open: boolean) {
     isDropdownClickedOpen = open;
+    const dropdownGroup = document.querySelector(".group\\/dropdown");
+    const programsBtn = document.getElementById("programs-dropdown-btn");
+
     if (open) {
       dropdownGroup?.classList.add("is-open");
       programsBtn?.setAttribute("aria-expanded", "true");
@@ -692,54 +633,126 @@ const isLinkActive = (href: string) => {
     }
   }
 
-  programsBtn?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    setDropdownOpen(!isDropdownClickedOpen);
-  });
+  function initNavbar() {
+    // Reset state on new page load (ViewTransitions)
+    isDropdownClickedOpen = false;
+    isOpen = false;
 
-  document.addEventListener("click", (e) => {
-    if (isDropdownClickedOpen && dropdownGroup && !dropdownGroup.contains(e.target as Node)) {
-      setDropdownOpen(false);
-    }
-  });
+    // ─── Mobile Fullscreen Menu Handler ──────────────────────────────────
+    const toggle = document.getElementById("navbar-toggle");
+    const menu = document.getElementById("navbar-mobile-menu");
+    const iconMenu = document.getElementById("icon-menu");
+    const iconClose = document.getElementById("icon-close");
 
-  dropdownGroups.forEach((group) => {
-    group.addEventListener("mouseenter", () => {
-      updateMegaMenuPosition();
-      applyTheme("white");
-    });
-    group.addEventListener("mouseleave", () => {
-      if (!isDropdownClickedOpen && !isOpen) {
+    toggle?.addEventListener("click", () => {
+      isOpen = !isOpen;
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      if (isOpen) {
+        applyTheme("white");
+        menu?.classList.add("is-open");
+        menu?.setAttribute("aria-hidden", "false");
+        iconMenu?.classList.add("hidden");
+        iconClose?.classList.remove("hidden");
+        document.body.style.overflow = "hidden"; // Lock page scroll
+      } else {
+        menu?.classList.remove("is-open");
+        menu?.setAttribute("aria-hidden", "true");
+        iconMenu?.classList.remove("hidden");
+        iconClose?.classList.add("hidden");
+        document.body.style.overflow = "";
         detectTheme();
       }
     });
-  });
 
-  // Initial theme detection + event listeners
-  updateMegaMenuPosition();
-  detectTheme();
+    // Close mobile menu when any link is clicked
+    menu?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        isOpen = false;
+        toggle?.setAttribute("aria-expanded", "false");
+        menu?.classList.remove("is-open");
+        menu?.setAttribute("aria-hidden", "true");
+        iconMenu?.classList.remove("hidden");
+        iconClose?.classList.add("hidden");
+        document.body.style.overflow = "";
+        detectTheme();
+      });
+    });
 
-  window.addEventListener(
-    "scroll",
-    () => {
+    // Mobile Programs Accordion toggle
+    const programsToggle = document.getElementById("mobile-programs-toggle");
+    const programsList = document.getElementById("mobile-programs-list");
+    const programsChevron = document.getElementById("mobile-programs-chevron");
+    let isProgramsOpen = false;
+
+    programsToggle?.addEventListener("click", () => {
+      isProgramsOpen = !isProgramsOpen;
+      if (isProgramsOpen) {
+        programsList?.classList.add("is-expanded");
+        programsChevron?.classList.add("rotate-180");
+        programsToggle?.classList.add("text-violet-normal", "font-bold");
+        programsToggle?.classList.remove("text-[#111111]");
+      } else {
+        programsList?.classList.remove("is-expanded");
+        programsChevron?.classList.remove("rotate-180");
+        if (!programsToggle?.dataset.parentActive) {
+          programsToggle?.classList.remove("text-violet-normal", "font-bold");
+          programsToggle?.classList.add("text-[#111111]");
+        }
+      }
+    });
+
+    // Desktop Mega Menu toggle
+    const programsBtn = document.getElementById("programs-dropdown-btn");
+    programsBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setDropdownOpen(!isDropdownClickedOpen);
+    });
+
+    const dropdownGroups = document.querySelectorAll<HTMLElement>(".group\\/dropdown");
+    dropdownGroups.forEach((group) => {
+      group.addEventListener("mouseenter", () => {
+        updateMegaMenuPosition();
+        applyTheme("white");
+      });
+      group.addEventListener("mouseleave", () => {
+        if (!isDropdownClickedOpen && !isOpen) {
+          detectTheme();
+        }
+      });
+    });
+
+    // Initial positioning and theme
+    updateMegaMenuPosition();
+    detectTheme();
+  }
+
+  // Ensure global event listeners are only attached once across ViewTransitions
+  if (!(window as any)._navbarEventsAttached) {
+    (window as any)._navbarEventsAttached = true;
+
+    document.addEventListener("click", (e) => {
+      const dropdownGroup = document.querySelector(".group\\/dropdown");
+      if (isDropdownClickedOpen && dropdownGroup && !dropdownGroup.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    });
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        updateMegaMenuPosition();
+        detectTheme();
+      },
+      { passive: true }
+    );
+
+    window.addEventListener("resize", () => {
       updateMegaMenuPosition();
-      detectTheme();
-    },
-    { passive: true }
-  );
+    });
 
-  window.addEventListener("resize", () => {
-    updateMegaMenuPosition();
-  });
-
-  // Re-run theme detection on Astro ClientRouter page changes
-  document.addEventListener("astro:page-load", () => {
-    updateMegaMenuPosition();
-    detectTheme();
-  });
-
-  document.addEventListener("astro:after-swap", () => {
-    updateMegaMenuPosition();
-    detectTheme();
-  });
+    // Run init logic on every page load and view transition
+    document.addEventListener("astro:page-load", () => {
+      initNavbar();
+    });
+  }
 </script>

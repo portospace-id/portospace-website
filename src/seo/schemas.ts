@@ -256,6 +256,107 @@ const codingAi = {
   },
 };
 
+// ─── Makers Academy ──────────────────────────────────────────────────
+const makersAcademy = {
+  "@type": "Course" as const,
+  name: "Makers Academy by PortoSpace",
+  description:
+    "Akademi riset dan teknologi terpadu di PortoSpace untuk mengasah kemampuan sains, teknik, dan pemrograman siswa.",
+  provider: organization,
+};
+
+// ─── FAQ Page ────────────────────────────────────────────────────────
+const faqPage = {
+  "@graph": [
+    {
+      "@type": "FAQPage" as const,
+      mainEntity: [
+        {
+          "@type": "Question" as const,
+          name: "Apa itu Maker's Academy?",
+          acceptedAnswer: {
+            "@type": "Answer" as const,
+            text: "Maker's Academy adalah program pendampingan 1-on-1 berbasis proyek dari PortoSpace yang membantu siswa mengembangkan keterampilan, membangun portofolio, dan mempersiapkan kompetisi maupun jenjang pendidikan berikutnya.",
+          },
+        },
+        {
+          "@type": "Question" as const,
+          name: "Apakah tersedia Trial Class?",
+          acceptedAnswer: {
+            "@type": "Answer" as const,
+            text: "Ya. Kamu dapat mengikuti sesi trial untuk mengenal metode pembelajaran, berdiskusi dengan mentor, dan memastikan program sesuai dengan kebutuhanmu sebelum bergabung.",
+          },
+        },
+        {
+          "@type": "Question" as const,
+          name: "Apa perbedaan paket Lite, Pro, dan Pro Max?",
+          acceptedAnswer: {
+            "@type": "Answer" as const,
+            text: "Perbedaannya terletak pada jumlah sesi, durasi pendampingan, target karya, serta fasilitas yang didapatkan. Kamu dapat memilih paket sesuai kebutuhan dan tujuan belajarmu.",
+          },
+        },
+        {
+          "@type": "Question" as const,
+          name: "Siapa saja mentor di PortoSpace?",
+          acceptedAnswer: {
+            "@type": "Answer" as const,
+            text: "Mentor PortoSpace berasal dari berbagai bidang keahlian dengan pengalaman di dunia akademik, riset, maupun industri, dan dipilih melalui proses seleksi untuk memastikan kualitas pendampingan.",
+          },
+        },
+        {
+          "@type": "Question" as const,
+          name: "Project seperti apa yang akan dikerjakan?",
+          acceptedAnswer: {
+            "@type": "Answer" as const,
+            text: "Jenis proyek disesuaikan dengan bidang yang dipilih dan tujuan belajar masing-masing siswa, mulai dari riset, teknologi, pemrograman, robotika, hingga kewirausahaan.",
+          },
+        },
+        {
+          "@type": "Question" as const,
+          name: "Apakah program dilakukan secara online atau offline?",
+          acceptedAnswer: {
+            "@type": "Answer" as const,
+            text: "Sebagian besar program dilaksanakan secara online sehingga dapat diikuti dari mana saja. Program offline atau hybrid akan diinformasikan jika tersedia.",
+          },
+        },
+        {
+          "@type": "Question" as const,
+          name: "Apakah PortoSpace mendukung persiapan kompetisi atau aplikasi universitas?",
+          acceptedAnswer: {
+            "@type": "Answer" as const,
+            text: "Ya. Mentor akan membantu menyempurnakan proyek, membangun portofolio, serta memberikan pendampingan untuk kompetisi maupun persiapan aplikasi ke universitas sesuai kebutuhan siswa.",
+          },
+        },
+        {
+          "@type": "Question" as const,
+          name: "Siapa yang dapat mengikuti program ini?",
+          acceptedAnswer: {
+            "@type": "Answer" as const,
+            text: "Program PortoSpace dirancang untuk siswa Grade 9–12 yang ingin mengembangkan keterampilan, membangun portofolio, dan mempersiapkan masa depan melalui pembelajaran berbasis proyek.",
+          },
+        },
+        {
+          "@type": "Question" as const,
+          name: "Apakah orang tua akan mendapatkan laporan perkembangan?",
+          acceptedAnswer: {
+            "@type": "Answer" as const,
+            text: "Ya. Orang tua akan menerima update perkembangan secara berkala mengenai proses belajar, proyek yang sedang dikerjakan, dan perkembangan siswa selama mengikuti program.",
+          },
+        },
+        {
+          "@type": "Question" as const,
+          name: "Berapa lama waktu respons tim PortoSpace?",
+          acceptedAnswer: {
+            "@type": "Answer" as const,
+            text: "Tim PortoSpace berusaha merespons setiap pertanyaan secepat mungkin pada jam operasional. Untuk pertanyaan yang lebih kompleks, kami akan memberikan informasi lanjutan setelah melakukan koordinasi dengan tim terkait.",
+          },
+        },
+      ],
+    },
+    organization,
+  ],
+};
+
 // ─── Export ──────────────────────────────────────────────────────────
 export const schemas = {
   organization,
@@ -269,4 +370,6 @@ export const schemas = {
   roboticsIot,
   entrepreneurship,
   codingAi,
+  makersAcademy,
+  faqPage,
 } as const;
