@@ -2,6 +2,7 @@
 // SuccessStorySection.astro
 import { Image } from "astro:assets";
 import successStoryImg from "@/assets/image/homepage/successStory.webp";
+import SectionTitle from "@/components/ui/sectionTitle.astro";
 ---
 
 <section
@@ -52,40 +53,35 @@ import successStoryImg from "@/assets/image/homepage/successStory.webp";
       <div id="story-content" class="flex w-full flex-1 flex-col justify-between gap-8 py-1">
         <!-- Top Section: Testimonial Quote & Author -->
         <div class="flex flex-col items-start gap-4">
-          <blockquote
-            class="font-jakarta text-xl leading-[150%] font-semibold text-gray-900 md:text-2xl lg:text-4xl"
+          <SectionTitle variant="light">Success Story</SectionTitle>
+          <h2
+            class="font-jakarta text-xl leading-[150%] font-semibold text-gray-900 md:text-2xl lg:text-5xl"
           >
-            "Bimbingan mentor membantu saya mengembangkan ide menjadi inovasi yang siap
-            dipresentasikan di tingkat nasional maupun internasional."
-          </blockquote>
+            Dari eksperimen menjadi project yang bisa dipresentasikan
+        </h2>
 
           <div class="mt-2 flex flex-col items-start">
             <p class="font-jakarta text-base leading-[150%] font-semibold text-gray-900">
               — Jasmine Shafa
-            </p>
-            <p class="font-jakarta mt-0.5 text-base leading-[150%] font-normal text-gray-600">
-              Zamzam Syifa Boarding School
             </p>
           </div>
         </div>
 
         <!-- Bottom Section: Project Title, Description & Awards -->
         <div class="flex flex-col items-start gap-3 pt-6">
-          <h4 class="font-jakarta text-xl leading-[150%] font-semibold text-gray-900 md:text-2xl">
-            Autothermic Thermoelectric Solar
-          </h4>
-
           <p class="font-jakarta max-w-[620px] text-base leading-[150%] font-normal text-gray-900">
-            Inovasi energi ramah lingkungan yang memanfaatkan panas buang sebagai sumber energi
-            alternatif.
+           Jasmine mengembangkan inovasi thermoelectric solar bersama pendampingan mentor PortoSpace, lalu membawanya ke kompetisi nasional dan internasional.
           </p>
 
           <div class="mt-2 flex flex-col gap-1">
             <p class="font-jakarta text-xl leading-[150%] font-semibold text-gray-900 md:text-2xl">
-              Gold Award — IEYI
+              Project: Autothermic Thermoelectric Solar
             </p>
             <p class="font-jakarta text-xl leading-[150%] font-semibold text-gray-900 md:text-2xl">
-              2nd Winner — NYIA
+              Dokumentasi outcome: IEYI Golden Awardee dan NYIA 2nd Winner
+            </p>
+            <p class="font-jakarta text-xl leading-[150%] font-semibold text-gray-900 md:text-2xl">
+             Catatan: hasil setiap siswa bergantung pada kesiapan, proses, dan kualitas karya
             </p>
           </div>
         </div>

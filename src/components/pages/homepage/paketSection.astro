@@ -7,54 +7,41 @@ import pattern4 from "@/assets/pattern/pattern_4.svg";
 const packages = [
   {
     id: "paket-pro",
-    title: "PRO",
+    title: "Pro",
     description:
-      "Bangun portofolio yang lebih kuat dengan pendampingan intensif dan proyek yang siap dipublikasikan maupun dilombakan.",
+      "Program 12 bulan untuk membangun satu project utama bersama satu mentor.",
+    price: "Rp 8.999.000",
+    originalPrice: "Harga normal Rp 9.999.000",
     features: [
-      "1 proyek unggulan untuk portofolio atau kompetisi",
-      "Bimbingan mentor dari akademisi & praktisi industri",
-      "Maker's Handbook (Digital)",
-      "Konsultasi melalui Chat",
-      "Laporan perkembangan bulanan untuk orang tua",
-      "Reminder kompetisi & lomba",
-      "Personal Success Manager",
+      "20 sesi online dan offline, masing-masing 1 jam",
+      "Satu primary expert mentor",
+      "Satu project utama",
+      "Target preparation 2-3 kompetisi",
+      "Konsultasi mentor melalui chat",
+      "Monthly parent report",
+      "Success Manager dan competition reminder",
     ],
-    buttonText: "Mulai Bersama Pro",
+    buttonText: "Konsultasi Gratis",
     featured: false,
   },
   {
     id: "paket-promax",
-    title: "PRO MAX",
+    title: "Pro Max",
     description:
-      "Program pendampingan paling lengkap untuk membangun portofolio, mempersiapkan kompetisi, hingga meraih peluang studi di universitas terbaik dunia.",
+      "Program 18 bulan untuk project yang membutuhkan waktu, disiplin, atau mentor lebih dari satu.",
+    price: "Rp 13.999.000",
+    originalPrice: "Harga normal Rp 15.999.000",
     features: [
-      "3 proyek unggulan untuk portofolio & kompetisi",
-      "Hingga 3 mentor dari akademisi & praktisi industri",
-      "Maker's Handbook (Digital)",
-      "Konsultasi melalui Chat",
-      "Laporan perkembangan bulanan untuk orang tua",
-      "Reminder kompetisi & lomba",
-      "Personal Success Manager",
-      "Pendampingan riset & proyek",
-      "5 sesi pendampingan offline",
-      "Website portofolio pribadi",
-      "Pendampingan publikasi SCOPUS",
+      "32 sesi online dan offline, masing-masing 1 jam",
+      "1-3 expert mentor sesuai kebutuhan project",
+      "Target preparation 3-5 kompetisi",
+      "Seluruh support pada paket Pro",
+      "Project research budgeting",
+      "3 sesi additional offline assistance",
+      "Personal portfolio website",
+      "Manuscript assistance tanpa jaminan publikasi",
     ],
-    buttonText: "Mulai dengan Pro Max",
-    featured: true,
-  },
-  {
-    id: "paket-lite",
-    title: "LITE",
-    description:
-      "Sudah punya dasar? Tingkatkan kemampuanmu dengan bimbingan mentor dan pengalaman belajar yang terarah.",
-    features: [
-      "Bimbingan mentor dari akademisi & praktisi industri",
-      "Maker's Handbook (Digital)",
-      "Konsultasi melalui Chat",
-      "Laporan perkembangan bulanan untuk orang tua",
-    ],
-    buttonText: "Mulai Belajar",
+    buttonText: "Konsultasi Gratis",
     featured: false,
   },
 ];
@@ -117,13 +104,15 @@ const packages = [
     <!-- Cards Grid -->
     <div
       id="paket-cards-grid"
-      class="grid w-full max-w-[1400px] grid-cols-1 items-stretch justify-center justify-items-center gap-6 md:grid-cols-2 lg:grid-cols-3 lg:items-center"
+      class="grid w-full max-w-[960px] grid-cols-1 items-stretch justify-center justify-items-center gap-6 md:grid-cols-2 lg:items-stretch"
     >
       {
         packages.map((pkg) => (
           <CardPaket
             title={pkg.title}
             description={pkg.description}
+            price={pkg.price}
+            originalPrice={pkg.originalPrice}
             features={pkg.features}
             buttonText={pkg.buttonText}
             featured={pkg.featured}

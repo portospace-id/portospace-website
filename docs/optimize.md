@@ -1,3 +1,4 @@
+
 # Optimization Guide — PortoSpace Frontend
 
 Panduan optimasi performa untuk proyek Astro + Tailwind CSS v4 + GSAP + Lenis.

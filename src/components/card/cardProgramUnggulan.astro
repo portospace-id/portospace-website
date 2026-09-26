@@ -92,10 +92,10 @@ const descMaxW = isWide ? "max-w-[780px]" : "";
       showButton && (
         <a
           href={href}
-          class="font-jakarta mt-1 inline-flex items-center gap-2 rounded-sm bg-[#BFED45] px-4 py-2.5 text-sm font-semibold text-[#161616] transition-all duration-200 group-hover:shadow-[0_0_18px_rgba(191,237,69,0.35)] hover:bg-[#acd53e]"
+          class="font-jakarta mt-1 inline-flex items-center gap-2 rounded-sm bg-[#BFED45] px-4 py-2.5 text-sm font-semibold text-[#161616] transition-all duration-200 hover:bg-[#acd53e]"
         >
           <span>{buttonText}</span>
-          <ArrowRight size={16} aria-hidden="true" />
+          <ArrowRight size={16} class="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
         </a>
       )
     }

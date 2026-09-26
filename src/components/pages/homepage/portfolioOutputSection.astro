@@ -14,44 +14,44 @@ import PatternLine from "@/components/ui/patternLine.astro";
 const portfolioOutputs = [
   {
     id: "output-1",
-    title: "Deteksi Emosi untuk Pembelajaran Inklusif",
-    subtitle: "GEMASTIK Finalist",
+    title: "PlantVoice: sensor kebutuhan air tanaman",
+    description: "Prototype IoT yang membantu tanaman memberi sinyal ketika membutuhkan penyiraman.",
     image: setmImg,
   },
   {
     id: "output-2",
-    title: "Sistem Monitoring Kualitas Udara Berbasis IoT",
-    subtitle: "NYIA Gold Winner",
+    title: "Pemodelan kehilangan air pada saluran irigasi",
+    description: "Applied mathematics dan eksperimen untuk membandingkan saluran berlapis dan tanpa lapisan.",
     image: roboticsImg,
   },
   {
     id: "output-3",
-    title: "Platform AI Diagnosis Dini Penyakit Tanaman",
-    subtitle: "IEYI International Award",
+    title: "Eksperimen laboratorium berbasis riset",
+    description: "Tampilkan tujuan, metode, progres, dan kendala tanpa menambahkan outcome yang belum terjadi.",
     image: codingImg,
   },
   {
     id: "output-4",
-    title: "Startup EdTech Berbasis Komunitas Belajar",
-    subtitle: "Young Entrepreneurship Champion",
+    title: "Aplikasi penyelamatan makanan berlebih",
+    description: "Konsep produk digital untuk membantu makanan layak konsumsi mendapat kesempatan kedua.",
     image: entrepreneurshipImg,
   },
   {
     id: "output-5",
-    title: "Inovasi Sel Surya Thermoelectric Ramah Lingkungan",
-    subtitle: "National Science Project Winner",
+    title: "Aplikasi penyelamatan makanan berlebih",
+    description: "National Science Project Winner",
     image: successStoryImg,
   },
   {
     id: "output-6",
     title: "Robot Navigasi Otonom untuk Penyelamatan Bencana",
-    subtitle: "Robotics Olympiad Winner",
+    description: "Robotics Olympiad Winner",
     image: roboticsImg,
   },
   {
     id: "output-7",
     title: "Algoritma Pemrosesan Bahasa Alami Bahasa Daerah",
-    subtitle: "Research Paper Publication",
+    description: "Research Paper Publication",
     image: setmImg,
   },
 ];
@@ -83,14 +83,14 @@ const portfolioOutputs = [
     >
       <!-- Title & Heading -->
       <div class="flex max-w-[720px] flex-col items-start gap-3 lg:gap-4">
-        <SectionTitle title="Portfolio Output" />
+        <SectionTitle title="Project Gallery" />
         <h2
           class="font-momo text-[32px] leading-[110%] font-semibold tracking-[-1.5px] text-white sm:text-[38px] md:text-[44px] lg:text-[48px]"
         >
-          Dari Ide Sederhana Menjadi<br />
-          Karya yang <span
+          Lihat proses nyata,<br />
+          bukan hanya badge<span
             class="font-caveat text-[42px] leading-[80%] font-semibold not-italic tracking-[-2px] text-white sm:text-[50px] md:text-[56px] lg:text-[64px]"
-            >Berdampak.</span
+            >kemenangan</span
           >
         </h2>
       </div>
@@ -99,8 +99,7 @@ const portfolioOutputs = [
       <p
         class="font-jakarta max-w-[420px] text-sm leading-[160%] font-normal text-white/90 lg:text-base"
       >
-        Kami mendampingi setiap langkahmu, mulai dari menemukan tujuan, membangun karya, hingga
-        meraih prestasi yang membuka lebih banyak peluang di masa depan.
+        Contoh di bawah mengikuti galeri ongoing pada deck. Tampilkan foto asli, status yang jujur, dan apa yang sedang diuji.
       </p>
     </div>
   </div>
@@ -118,7 +117,7 @@ const portfolioOutputs = [
         portfolioOutputs.map((item) => (
           <CardPortfolioOutput
             title={item.title}
-            subtitle={item.subtitle}
+            subtitle={item.description}
             image={item.image}
             alt={item.title}
           />

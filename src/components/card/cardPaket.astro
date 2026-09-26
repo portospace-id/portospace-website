@@ -2,10 +2,14 @@
 import Button from "@/components/ui/button.astro";
 
 interface Props {
-  /** Package name (e.g. "PRO", "PRO MAX", "LITE") */
+  /** Package name (e.g. "PRO", "PRO MAX") */
   title: string;
   /** Short description of the package */
   description: string;
+  /** Current package price (e.g. "Rp 8.999.000") */
+  price?: string;
+  /** Original/normal price (e.g. "Harga normal Rp 9.999.000") */
+  originalPrice?: string;
   /** List of package features */
   features: string[];
   /** Button label */
@@ -22,6 +26,8 @@ interface Props {
 const {
   title,
   description,
+  price,
+  originalPrice,
   features,
   buttonText,
   href = "#",
@@ -33,10 +39,7 @@ const {
 
 <div
   class:list={[
-    "paket-card bg-violet-normal relative flex w-full flex-col justify-between rounded-sm text-white transition-all duration-300",
-    featured
-      ? "h-full border-2 border-white/20 p-6 lg:z-20 lg:scale-[1.02] lg:p-8 xl:scale-105"
-      : "h-auto p-6 lg:z-10 lg:h-[90%] lg:self-center lg:p-7",
+    "paket-card bg-violet-normal relative flex w-full flex-col justify-between rounded-sm text-white transition-all duration-300 p-6 lg:p-8 h-full",
     className,
   ]}
   {...rest}
@@ -45,20 +48,37 @@ const {
   <div class="mb-8 flex w-full flex-col gap-6">
     <!-- Title & Description -->
     <div class="flex flex-col gap-2">
-      <h3
-        class:list={[
-          "font-momo font-bold tracking-tight text-white uppercase",
-          featured
-            ? "text-[32px] leading-tight md:text-[36px] lg:text-[40px]"
-            : "text-[28px] leading-tight md:text-[32px] lg:text-[36px]",
-        ]}
-      >
+      <h3 class="font-momo font-bold tracking-tight text-white uppercase text-[28px] leading-tight md:text-[32px] lg:text-[36px]">
         {title}
       </h3>
-      <p class="font-jakarta text-xs leading-relaxed font-normal text-white/90 lg:text-sm">
+      <p class="font-jakarta text-xs leading-relaxed font-normal text-white/90 lg:text-sm min-h-[40px]">
         {description}
       </p>
     </div>
+
+    <!-- Price Section -->
+    {
+      (price || originalPrice) && (
+        <div class="flex flex-col gap-1">
+          {price && (
+            <div class="font-momo text-2xl font-extrabold tracking-tight text-white md:text-3xl lg:text-4xl">
+              {price}
+            </div>
+          )}
+          {originalPrice && (
+            <div class="font-jakarta text-xs font-medium text-white/80 lg:text-sm">
+              {originalPrice.includes("Harga normal") ? (
+                <>
+                  Harga normal <span class="line-through text-white/60">{originalPrice.replace("Harga normal ", "")}</span>
+                </>
+              ) : (
+                <span class="line-through text-white/60">{originalPrice}</span>
+              )}
+            </div>
+          )}
+        </div>
+      )
+    }
 
     <!-- Features List -->
     <ul class="mt-2 flex w-full flex-col gap-3">
@@ -93,10 +113,7 @@ const {
   <div class="mt-auto w-full pt-4">
     <Button
       href={href}
-      class:list={[
-        "w-full justify-center !bg-white text-center font-bold !text-[#7b20e8] !shadow-none hover:-translate-y-0.5 hover:!bg-white/90 hover:!shadow-none",
-        featured ? "px-6 py-3.5 text-base" : "px-6 py-3 text-sm",
-      ]}
+      class="w-full justify-center !bg-white text-center font-bold !text-[#7b20e8] !shadow-none hover:-translate-y-0.5 hover:!bg-white/90 hover:!shadow-none px-6 py-3.5 text-base"
     >
       {buttonText}
     </Button>

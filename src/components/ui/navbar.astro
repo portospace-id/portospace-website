@@ -1,19 +1,8 @@
 ---
 import Button from "@/components/ui/button.astro";
-import { ArrowRight, AtSign, ChevronDown, Icon, Mail, Menu, MessageCircle, X } from "@lucide/astro";
-import type { IconNode } from "@lucide/astro";
-
-const instagramNode: IconNode = [
-  ["rect", { width: "20", height: "20", x: "2", y: "2", rx: "5", ry: "5" }],
-  ["path", { d: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" }],
-  ["line", { x1: "17.5", x2: "17.51", y1: "6.5", y2: "6.5" }],
-];
-
-const linkedinNode: IconNode = [
-  ["path", { d: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" }],
-  ["rect", { width: "4", height: "12", x: "2", y: "9" }],
-  ["circle", { cx: "4", cy: "4", r: "2" }],
-];
+import Instagram from "@/components/icons/Instagram.astro";
+import Linkedin from "@/components/icons/Linkedin.astro";
+import { ArrowRight, AtSign, ChevronDown, Mail, Menu, MessageCircle, X } from "@lucide/astro";
 
 interface NavChild {
   label: string;
@@ -28,10 +17,10 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { label: "About Us", href: "/about" },
+  { label: "Tentang", href: "/about" },
   { label: "Maker's Academy", href: "/makers-academy" },
   {
-    label: "Programs",
+    label: "Program",
     href: "/programs",
     children: [
       { label: "STEM Research", href: "/programs/stem-research", color: "#4dd3f2" },
@@ -44,9 +33,9 @@ const navLinks: NavLink[] = [
       },
     ],
   },
-  { label: "How It Works", href: "/how-it-works" },
-  { label: "Plans & Pricing", href: "/pricing" },
-  { label: "Mentors", href: "/mentors" },
+  { label: "Cara Kerja", href: "/how-it-works" },
+  { label: "Paket", href: "/pricing" },
+  { label: "Mentor", href: "/mentors" },
   { label: "Faq", href: "/faq" },
   { label: "Contact Us", href: "/contact" },
 ];
@@ -75,7 +64,7 @@ const isLinkActive = (href: string) => {
     class="group/topbar-link bg-violet-normal font-jakarta flex w-full items-center justify-center gap-1.5 px-[20px] py-2.5 text-center text-[12px] leading-snug font-medium text-white transition-colors duration-200 sm:px-[24px] sm:py-3 sm:text-[13px] md:text-[14px]"
     aria-label="Daftar konsultasi portfolio gratis"
   >
-    <span>Konsultasi Portfolio Gratis — Temukan Jalur STEM Terbaik untuk Masa Depanmu</span>
+    <span>Promo Pro dan Pro Max sampai 30 September 2026. Cek kecocokan project sebelum memilih paket.</span>
     <ArrowRight size={15} class="inline-block flex-shrink-0 transition-transform duration-200 group-hover/topbar-link:translate-x-1" aria-hidden="true" />
   </a>
 
@@ -180,7 +169,7 @@ const isLinkActive = (href: string) => {
                           aria-label="Instagram"
                           class="bg-violet-normal hover:bg-violet-normal-hover flex h-10 w-10 items-center justify-center rounded-full text-white transition-transform hover:-translate-y-0.5"
                         >
-                          <Icon iconNode={instagramNode} size={18} />
+                          <Instagram size={18} />
                         </a>
                         <a
                           href="https://linkedin.com"
@@ -189,7 +178,7 @@ const isLinkActive = (href: string) => {
                           aria-label="LinkedIn"
                           class="bg-violet-normal hover:bg-violet-normal-hover flex h-10 w-10 items-center justify-center rounded-full text-white transition-transform hover:-translate-y-0.5"
                         >
-                          <Icon iconNode={linkedinNode} size={18} />
+                          <Linkedin size={18} />
                         </a>
                         <a
                           href="mailto:info@portospace.com"
@@ -386,7 +375,7 @@ const isLinkActive = (href: string) => {
         aria-label="Instagram"
         class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
       >
-        <Icon iconNode={instagramNode} size={20} />
+        <Instagram size={20} />
       </a>
       <a
         href="https://linkedin.com"
@@ -395,7 +384,7 @@ const isLinkActive = (href: string) => {
         aria-label="LinkedIn"
         class="bg-violet-normal hover:bg-violet-normal-hover flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform hover:scale-105"
       >
-        <Icon iconNode={linkedinNode} size={20} />
+        <Linkedin size={20} />
       </a>
       <a
         href="mailto:info@portospace.com"
