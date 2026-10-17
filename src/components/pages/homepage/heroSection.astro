@@ -1,4 +1,9 @@
 ---
+// Assets
+import { Image } from "astro:assets";
+import heroBg from "@/assets/image/homepage/hero-bg.webp";
+
+// Components
 import Button from "@/components/ui/button.astro";
 ---
 
@@ -10,8 +15,8 @@ import Button from "@/components/ui/button.astro";
 >
   <!-- Background image -->
   <div class="absolute inset-0 z-0">
-    <img
-      src="/hero-bg.png"
+    <Image
+      src={heroBg}
       alt="Students doing STEM activities"
       class="h-full w-full object-cover object-center"
       loading="eager"
@@ -20,7 +25,7 @@ import Button from "@/components/ui/button.astro";
   </div>
 
   <!-- Black overlay 30% -->
-  <div class="pointer-events-none absolute inset-0 z-[1] bg-black/30" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute inset-0 z-[1] bg-black/40" aria-hidden="true"></div>
 
   <!-- Content -->
   <div class="relative z-10 flex min-h-svh flex-col justify-end pb-12 lg:pb-16">
@@ -34,12 +39,12 @@ import Button from "@/components/ui/button.astro";
           class="font-momo mb-0 leading-[1.1] font-semibold tracking-tight text-white"
         >
           <span class="block text-[24px] md:text-[36px] lg:text-[48px]">
-            Bangun Satu Project Nyata
+            Bantu anak kembangkan portofolio karya
           </span>
           <span class="block text-[24px] md:text-[36px] lg:text-[48px]">
-            yang Jadi Portfolio&nbsp;<span
+            lewat proyek riset, teknologi, atau&nbsp;<span
               class="font-caveat align-bottom text-[38px] leading-none font-semibold not-italic md:text-[48px] lg:text-[64px]"
-              >Ananda</span
+              >bisnis.</span
             >
           </span>
         </h1>
@@ -49,13 +54,13 @@ import Button from "@/components/ui/button.astro";
           id="hero-desc"
           class="font-jakarta max-w-[480px] text-base leading-relaxed text-white md:max-w-[560px]"
         >
-          Mentorship private kelas 9-12, dari goal setting dan mentor matching hingga project siap dipresentasikan.
+          Dengan pendampingan mentor PortoSpace, anak belajar merancang, menguji, dan mendokumentasikan karya yang bisa digunakan untuk studi lanjut atau memuaskan rasa ingin tahunya.
         </p>
       </div>
 
       <!-- CTA -->
       <div id="hero-actions" class="flex-shrink-0">
-        <Button href="#konsultasi" id="hero-cta-primary" variant="primary" arrow>
+        <Button href="https://wa.me/6281511666179" target="_blank" rel="noopener noreferrer" id="hero-cta-primary" variant="primary" arrow>
           Konsultasi Portfolio Gratis
         </Button>
       </div>

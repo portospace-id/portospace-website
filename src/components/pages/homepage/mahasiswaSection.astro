@@ -1,15 +1,54 @@
 ---
 import { Image } from "astro:assets";
 import pattern2 from "@/assets/pattern/pattern_2.svg";
+
+// School logo imports
+import agsImg from "@/assets/image/homepage/ags.webp";
+import bpkPenaburImg from "@/assets/image/homepage/bpkPenabur.webp";
+import britishSchoolImg from "@/assets/image/homepage/britishSchool.webp";
+import cahayaRencanaImg from "@/assets/image/homepage/cahayaRencana.webp";
+import globalSevillaImg from "@/assets/image/homepage/globalSevillaSchool.webp";
+import icmImg from "@/assets/image/homepage/icm.webp";
+import kharismaBangsaImg from "@/assets/image/homepage/kharismaBangsa.webp";
+import kinderfieldImg from "@/assets/image/homepage/kinderfield.webp";
+import labschoolImg from "@/assets/image/homepage/labschool.webp";
+import mibosImg from "@/assets/image/homepage/mibos.webp";
+import sekolahParadisaImg from "@/assets/image/homepage/sekolahParadisaCendikia.webp";
+import sma4BandungImg from "@/assets/image/homepage/sma4bandung.webp";
+import sma47JakartaImg from "@/assets/image/homepage/sma47jakarta.webp";
+import sman8JakartaImg from "@/assets/image/homepage/sman8jakarta.webp";
+import sman39JakartaImg from "@/assets/image/homepage/sman39jakarta.webp";
+import sman47JakartaImg from "@/assets/image/homepage/sman47jakarta.webp";
+import surabayaCambridgeImg from "@/assets/image/homepage/surabayaCambridge.webp";
+
+const schools = [
+  { src: agsImg, alt: "AGS" },
+  { src: bpkPenaburImg, alt: "BPK Penabur" },
+  { src: britishSchoolImg, alt: "British School" },
+  { src: cahayaRencanaImg, alt: "Cahaya Rencana" },
+  { src: globalSevillaImg, alt: "Global Sevilla School" },
+  { src: icmImg, alt: "ICM" },
+  { src: kharismaBangsaImg, alt: "Kharisma Bangsa" },
+  { src: kinderfieldImg, alt: "Kinderfield" },
+  { src: labschoolImg, alt: "Labschool" },
+  { src: mibosImg, alt: "Mibos" },
+  { src: sekolahParadisaImg, alt: "Sekolah Paradisa Cendikia" },
+  { src: sma4BandungImg, alt: "SMA 4 Bandung" },
+  { src: sma47JakartaImg, alt: "SMA 47 Jakarta" },
+  { src: sman8JakartaImg, alt: "SMAN 8 Jakarta" },
+  { src: sman39JakartaImg, alt: "SMAN 39 Jakarta" },
+  { src: sman47JakartaImg, alt: "SMAN 47 Jakarta" },
+  { src: surabayaCambridgeImg, alt: "Surabaya Cambridge" },
+];
 ---
 
 <section
   id="mahasiswa"
   class="relative flex w-full flex-col items-center overflow-hidden bg-white"
-  aria-label="Mahasiswa dari berbagai universitas"
+  aria-label="Dipercaya keluarga dari berbagai sekolah di Indonesia"
   data-navbar="white"
 >
-  <!-- Background Pattern Image (Exact Figma Position & Dimensions) -->
+  <!-- Background Pattern Image -->
   <Image
     src={pattern2}
     alt=""
@@ -19,12 +58,12 @@ import pattern2 from "@/assets/pattern/pattern_2.svg";
     loading="lazy"
   />
 
-  <!-- Main Container (Matching Hero section width and padding for exact vertical alignment) -->
+  <!-- Main Container -->
   <div
     class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-start gap-[10px] px-[20px] py-[80px] sm:px-[24px] md:px-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <div class="flex w-full flex-col items-start justify-between gap-12 lg:flex-row">
-      <!-- Left Column: Heading (54px Desktop) -->
+      <!-- Left Column: Heading -->
       <div class="flex w-full flex-shrink-0 flex-col items-start text-left lg:w-auto">
         <h2
           id="mahasiswa-heading"
@@ -38,261 +77,21 @@ import pattern2 from "@/assets/pattern/pattern_2.svg";
         </h2>
       </div>
 
-      <!-- Right Column: University Logos Grid (Exact Figma Specs: 678px total width, 214px x 214px per logo container) -->
+      <!-- Right Column: School Logos Grid -->
       <div
         id="mahasiswa-logos"
-        class="mt-8 grid w-full grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:mt-0 lg:w-[678px]"
+        class="mt-8 grid w-full grid-cols-3 gap-4 sm:grid-cols-4 sm:gap-5 lg:mt-0 lg:max-w-[1200px] lg:grid-cols-6 lg:gap-6"
       >
-        <!-- UGM Logo Container (214px x 214px) -->
-        <div
-          class="university-logo flex h-[140px] w-full cursor-pointer items-center justify-center rounded-sm p-2 transition-transform duration-200 hover:scale-105 sm:h-[180px] lg:h-[214px] lg:w-[214px]"
-        >
-          <svg
-            width="125"
-            height="100"
-            viewBox="0 0 140 110"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g stroke="#1a4f8b" stroke-width="1.8" fill="none">
-              <circle cx="70" cy="38" r="24" stroke="#1a4f8b" stroke-width="1.5"></circle>
-              <path d="M70 14 C80 20 90 30 70 62 C50 30 60 20 70 14Z" fill="none"></path>
-              <path d="M46 38 C52 28 62 18 94 38 C62 58 52 48 46 38Z" fill="none"></path>
-              <polygon
-                points="70,26 73,34 81,34 74,39 77,47 70,42 63,47 66,39 59,34 67,34"
-                fill="#1a4f8b"></polygon>
-              <circle
-                cx="70"
-                cy="38"
-                r="28"
-                stroke="#1a4f8b"
-                stroke-width="1"
-                stroke-dasharray="2 2"></circle>
-            </g>
-            <text
-              x="70"
-              y="86"
-              text-anchor="middle"
-              font-family="'Plus Jakarta Sans', sans-serif"
-              font-weight="700"
-              font-size="10"
-              fill="#1a4f8b"
-              letter-spacing="1">UNIVERSITAS</text
-            >
-            <text
-              x="70"
-              y="98"
-              text-anchor="middle"
-              font-family="'Plus Jakarta Sans', sans-serif"
-              font-weight="700"
-              font-size="10"
-              fill="#1a4f8b"
-              letter-spacing="1">GADJAH MADA</text
-            >
-          </svg>
-        </div>
-
-        <!-- ITB Logo Container (214px x 214px) -->
-        <div
-          class="university-logo flex h-[140px] w-full cursor-pointer items-center justify-center rounded-sm p-2 transition-transform duration-200 hover:scale-105 sm:h-[180px] lg:h-[214px] lg:w-[214px]"
-        >
-          <svg
-            width="115"
-            height="115"
-            viewBox="0 0 110 110"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="55" cy="55" r="48" stroke="#005696" stroke-width="2.5" fill="none"></circle>
-            <circle cx="55" cy="55" r="42" stroke="#005696" stroke-width="1" fill="none"></circle>
-            <path id="itb-text-path" d="M 18,55 A 37,37 0 1,1 92,55" fill="none"></path>
-            <text
-              font-family="'Plus Jakarta Sans', sans-serif"
-              font-weight="700"
-              font-size="8"
-              fill="#005696"
-              letter-spacing="1"
-            >
-              <textPath href="#itb-text-path" startOffset="50%" text-anchor="middle"
-                >INSTITUT TEKNOLOGI BANDUNG</textPath
-              >
-            </text>
-            <g
-              transform="translate(35, 36) scale(0.8)"
-              stroke="#005696"
-              stroke-width="2"
-              fill="none"
-            >
-              <path d="M12 5 L25 0 L38 5 L25 15 Z" fill="#005696"></path>
-              <circle cx="25" cy="22" r="10"></circle>
-              <path d="M15 20 C8 15 5 25 15 28"></path>
-              <path d="M35 20 C42 15 45 25 35 28"></path>
-              <path d="M25 28 C25 38 32 38 30 32" stroke-width="2.5"></path>
-            </g>
-            <text
-              x="55"
-              y="86"
-              text-anchor="middle"
-              font-family="'Plus Jakarta Sans', sans-serif"
-              font-weight="700"
-              font-size="9"
-              fill="#005696">1920</text
-            >
-          </svg>
-        </div>
-
-        <!-- JAIST Logo Container (214px x 214px) -->
-        <div
-          class="university-logo flex h-[140px] w-full cursor-pointer items-center justify-center rounded-sm p-2 transition-transform duration-200 hover:scale-105 sm:h-[180px] lg:h-[214px] lg:w-[214px]"
-        >
-          <svg
-            width="150"
-            height="95"
-            viewBox="0 0 150 90"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <text
-              x="10"
-              y="44"
-              font-family="Georgia, serif"
-              font-weight="700"
-              font-size="44"
-              fill="#0c2340"
-              letter-spacing="-1">JAIST</text
-            >
-            <text
-              x="12"
-              y="56"
-              font-family="'Plus Jakarta Sans', sans-serif"
-              font-weight="600"
-              font-size="6.5"
-              fill="#4a5568"
-              letter-spacing="0.5">JAPAN</text
-            >
-            <text
-              x="12"
-              y="64"
-              font-family="'Plus Jakarta Sans', sans-serif"
-              font-weight="600"
-              font-size="6.5"
-              fill="#4a5568"
-              letter-spacing="0.5">ADVANCED INSTITUTE OF</text
-            >
-            <text
-              x="12"
-              y="72"
-              font-family="'Plus Jakarta Sans', sans-serif"
-              font-weight="600"
-              font-size="6.5"
-              fill="#4a5568"
-              letter-spacing="0.5">SCIENCE AND TECHNOLOGY</text
-            >
-            <text
-              x="12"
-              y="80"
-              font-family="'Plus Jakarta Sans', sans-serif"
-              font-weight="600"
-              font-size="6"
-              fill="#718096">1990</text
-            >
-            <circle cx="138" cy="40" r="5" fill="#00a651"></circle>
-          </svg>
-        </div>
-
-        <!-- NTU Singapore Logo Container (214px x 214px) -->
-        <div
-          class="university-logo flex h-[140px] w-full cursor-pointer items-center justify-center rounded-sm p-2 transition-transform duration-200 hover:scale-105 sm:h-[180px] lg:h-[214px] lg:w-[214px]"
-        >
-          <svg
-            width="190"
-            height="75"
-            viewBox="0 0 200 70"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g transform="translate(5, 10)">
-              <rect width="36" height="46" rx="2" fill="#c8102e"></rect>
-              <path d="M6 18 H30 M6 24 H30 M6 30 H30" stroke="#f2a900" stroke-width="2"></path>
-              <path d="M18 8 L24 16 L12 16 Z" fill="#f2a900"></path>
-              <rect x="6" y="4" width="6" height="4" fill="#ffffff"></rect>
-              <rect x="24" y="4" width="6" height="4" fill="#ffffff"></rect>
-            </g>
-            <text
-              x="50"
-              y="24"
-              font-family="'Plus Jakarta Sans', sans-serif"
-              font-weight="800"
-              font-size="13"
-              fill="#002b66"
-              letter-spacing="0.5">NANYANG</text
-            >
-            <text
-              x="50"
-              y="38"
-              font-family="'Plus Jakarta Sans', sans-serif"
-              font-weight="600"
-              font-size="9.5"
-              fill="#002b66"
-              letter-spacing="0.5">TECHNOLOGICAL</text
-            >
-            <text
-              x="50"
-              y="49"
-              font-family="'Plus Jakarta Sans', sans-serif"
-              font-weight="600"
-              font-size="9.5"
-              fill="#002b66"
-              letter-spacing="0.5">UNIVERSITY</text
-            >
-            <text
-              x="50"
-              y="60"
-              font-family="'Plus Jakarta Sans', sans-serif"
-              font-weight="700"
-              font-size="9"
-              fill="#c8102e"
-              letter-spacing="1">SINGAPORE</text
-            >
-          </svg>
-        </div>
-
-        <!-- The University of Tokyo Logo Container (214px x 214px) -->
-        <div
-          class="university-logo flex h-[140px] w-full cursor-pointer items-center justify-center rounded-sm p-2 transition-transform duration-200 hover:scale-105 sm:h-[180px] lg:h-[214px] lg:w-[214px]"
-        >
-          <svg
-            width="195"
-            height="75"
-            viewBox="0 0 210 70"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g transform="translate(10, 12)">
-              <path d="M22 42 C10 35 4 20 14 8 C24 18 28 30 22 42Z" fill="#00a3e0"></path>
-              <path d="M22 42 C34 35 40 20 30 8 C20 18 16 30 22 42Z" fill="#ffb800"></path>
-              <path d="M22 42 L22 48" stroke="#00a3e0" stroke-width="2"></path>
-            </g>
-            <text
-              x="58"
-              y="32"
-              font-family="'Hiragino Sans', 'Plus Jakarta Sans', sans-serif"
-              font-weight="700"
-              font-size="22"
-              fill="#1a1a1a"
-              letter-spacing="1">東京大学</text
-            >
-            <text
-              x="59"
-              y="47"
-              font-family="'Plus Jakarta Sans', sans-serif"
-              font-weight="700"
-              font-size="9"
-              fill="#1a1a1a"
-              letter-spacing="0.8">THE UNIVERSITY OF TOKYO</text
-            >
-          </svg>
-        </div>
+        {schools.map((school) => (
+          <div class="university-logo flex h-[120px] w-full cursor-pointer items-center justify-center transition-all duration-200 hover:scale-105 sm:h-[140px] lg:h-[160px]">
+            <Image
+              src={school.src}
+              alt={school.alt}
+              class="h-full w-full object-contain"
+              loading="lazy"
+            />
+          </div>
+        ))}
       </div>
     </div>
   </div>

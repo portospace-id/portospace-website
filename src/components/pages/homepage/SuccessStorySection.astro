@@ -1,8 +1,20 @@
 ---
 // SuccessStorySection.astro
 import { Image } from "astro:assets";
-import successStoryImg from "@/assets/image/homepage/successStory.webp";
 import SectionTitle from "@/components/ui/sectionTitle.astro";
+
+// Daftarkan semua foto yang ingin ditampilkan di slider
+import successStoryImg from "@/assets/image/homepage/successStory.jpg";
+import testimonialImg from "@/assets/image/homepage/testimonial.webp";
+import testimonial2Img from "@/assets/image/homepage/testimonial-2.webp";
+import testimonial3Img from "@/assets/image/homepage/testimonial-3.webp";
+
+const sliderImages = [
+  { src: successStoryImg, alt: "Jasmine Shafa - NYIA 2019" },
+  { src: testimonialImg, alt: "Siswa Maker's Academy" },
+  { src: testimonial2Img, alt: "Siswa Maker's Academy" },
+  { src: testimonial3Img, alt: "Siswa Maker's Academy" },
+];
 ---
 
 <section
@@ -16,36 +28,92 @@ import SectionTitle from "@/components/ui/sectionTitle.astro";
   >
     <!-- Content Wrapper -->
     <div class="flex w-full flex-col items-stretch justify-between gap-8 lg:flex-row lg:gap-12">
-      <!-- Left Column: Photo Card (500px x 600px, p-6, gap-2.5) -->
+      <!-- Left Column: Photo Card with Slider -->
       <div
         id="story-photo-card"
-        class="group relative flex h-[380px] w-full flex-shrink-0 flex-col items-start justify-end gap-2.5 overflow-hidden rounded-sm bg-[#1e1e24] p-6 shadow-md sm:h-[460px] md:h-[520px] lg:h-[600px] lg:w-[440px] xl:w-[500px]"
+        class="group relative flex h-[380px] w-full flex-shrink-0 flex-col items-start justify-end overflow-hidden rounded-sm bg-[#1e1e24] shadow-md sm:h-[460px] md:h-[520px] lg:h-[600px] lg:w-[440px] xl:w-[500px]"
+        aria-label="Foto slider kisah sukses"
       >
-        <!-- Background Image -->
-        <Image
-          src={successStoryImg}
-          alt="Jasmine Shafa"
-          class="pointer-events-none absolute inset-0 h-full w-full object-cover select-none"
-          loading="lazy"
-        />
+        <!-- Slider Images (crossfade) -->
+        <div id="story-slider-track" class="absolute inset-0">
+          {
+            sliderImages.map((img, i) => (
+              <div
+                class="story-slide absolute inset-0 transition-opacity duration-700 ease-in-out"
+                style={`opacity: ${i === 0 ? "1" : "0"}; z-index: ${i === 0 ? "1" : "0"};`}
+                data-index={i}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  class="pointer-events-none h-full w-full select-none object-cover"
+                  loading={i === 0 ? "eager" : "lazy"}
+                />
+              </div>
+            ))
+          }
+        </div>
 
-        <!-- Subtle Gradient Overlay -->
+        <!-- Gradient Overlay -->
         <div
-          class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"
+          class="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/30 to-transparent"
         >
         </div>
 
-        <!-- Card Content Foto (gap 2px) -->
-        <div class="relative z-10 flex flex-col items-start justify-center gap-0.5 text-white">
-          <h3 class="font-jakarta text-2xl leading-[150%] font-semibold text-white">
-            Jasmine Shafa
-          </h3>
-          <p class="font-jakarta text-sm leading-[150%] font-normal text-white lg:text-base">
-            Zamzam Syifa Boarding School
-          </p>
-          <p class="font-jakarta text-xs leading-[150%] font-normal text-white/80 lg:text-sm">
-            National Young Inventors Award (NYIA) 2019
-          </p>
+        <!-- Card Content + Controls -->
+        <div class="relative z-20 flex w-full flex-col gap-3 p-6">
+          <div class="flex flex-col items-start gap-0.5 text-white">
+            <h3 class="font-jakarta text-2xl leading-[150%] font-semibold text-white">
+              Jasmine Shafa
+            </h3>
+            <p class="font-jakarta text-sm leading-[150%] font-normal text-white lg:text-base">
+              Zamzam Syifa Boarding School
+            </p>
+            <p class="font-jakarta text-xs leading-[150%] font-normal text-white/80 lg:text-sm">
+              National Young Inventors Award (NYIA) 2019
+            </p>
+          </div>
+
+          <!-- Slider Controls: dots + prev/next -->
+          <div class="flex items-center justify-between">
+            <!-- Dots -->
+            <div id="story-dots" class="flex items-center gap-1.5" role="tablist" aria-label="Pilih foto">
+              {
+                sliderImages.map((_, i) => (
+                  <button
+                    class="story-dot h-1.5 rounded-full bg-white/40 transition-all duration-300"
+                    style={`width: ${i === 0 ? "24px" : "6px"}; opacity: ${i === 0 ? "1" : "0.5"};`}
+                    data-dot={i}
+                    aria-label={`Foto ${i + 1}`}
+                    role="tab"
+                    aria-selected={i === 0 ? "true" : "false"}
+                  />
+                ))
+              }
+            </div>
+
+            <!-- Prev / Next Arrows -->
+            <div class="flex items-center gap-2">
+              <button
+                id="story-prev"
+                class="flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-70"
+                aria-label="Foto sebelumnya"
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.75 10.5L5.25 7L8.75 3.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <button
+                id="story-next"
+                class="flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-70"
+                aria-label="Foto berikutnya"
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.25 3.5L8.75 7L5.25 10.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -55,9 +123,9 @@ import SectionTitle from "@/components/ui/sectionTitle.astro";
         <div class="flex flex-col items-start gap-4">
           <SectionTitle variant="light">Success Story</SectionTitle>
           <h2
-            class="font-jakarta text-xl leading-[150%] font-semibold text-gray-900 md:text-2xl lg:text-5xl"
+            class="font-jakarta text-lg leading-[150%] font-semibold text-gray-900 md:text-xl lg:text-3xl"
           >
-            Dari eksperimen menjadi project yang bisa dipresentasikan
+            "…Terimakasih kak Dena (Mentor PortoSpace) atas bimbingan dan ilmunya sehingga bisa menjadi 2nd winner NYIA dan IEYI Golden Awardee, sehingga dengan adanya prestasi tersebut saya bisa mendapatkan LoA dari 3 universitas LN..."
         </h2>
 
           <div class="mt-2 flex flex-col items-start">
@@ -70,7 +138,7 @@ import SectionTitle from "@/components/ui/sectionTitle.astro";
         <!-- Bottom Section: Project Title, Description & Awards -->
         <div class="flex flex-col items-start gap-3 pt-6">
           <p class="font-jakarta max-w-[620px] text-base leading-[150%] font-normal text-gray-900">
-           Jasmine mengembangkan inovasi thermoelectric solar bersama pendampingan mentor PortoSpace, lalu membawanya ke kompetisi nasional dan internasional.
+           Jasmine mengembangkan inovasi thermoelectric solar charger, lalu membawanya ke kompetisi nasional dan internasional
           </p>
 
           <div class="mt-2 flex flex-col gap-1">
@@ -96,6 +164,77 @@ import SectionTitle from "@/components/ui/sectionTitle.astro";
 
   gsap.registerPlugin(ScrollTrigger);
 
+  // ── Slider Logic ──────────────────────────────────────────────
+  const initSlider = () => {
+    const slides = document.querySelectorAll<HTMLElement>(".story-slide");
+    const dots = document.querySelectorAll<HTMLButtonElement>(".story-dot");
+    const prevBtn = document.getElementById("story-prev");
+    const nextBtn = document.getElementById("story-next");
+
+    if (!slides.length) return;
+
+    let current = 0;
+    let autoplayTimer: ReturnType<typeof setInterval>;
+    const AUTOPLAY_INTERVAL = 4000;
+
+    const goTo = (index: number) => {
+      const total = slides.length;
+      const next = (index + total) % total;
+
+      // Fade out current
+      slides[current].style.opacity = "0";
+      slides[current].style.zIndex = "0";
+      dots[current].style.width = "6px";
+      dots[current].style.opacity = "0.5";
+      dots[current].setAttribute("aria-selected", "false");
+
+      // Fade in next
+      slides[next].style.opacity = "1";
+      slides[next].style.zIndex = "1";
+      dots[next].style.width = "24px";
+      dots[next].style.opacity = "1";
+      dots[next].setAttribute("aria-selected", "true");
+
+      current = next;
+    };
+
+    const startAutoplay = () => {
+      autoplayTimer = setInterval(() => goTo(current + 1), AUTOPLAY_INTERVAL);
+    };
+
+    const resetAutoplay = () => {
+      clearInterval(autoplayTimer);
+      startAutoplay();
+    };
+
+    // Dot click
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        goTo(i);
+        resetAutoplay();
+      });
+    });
+
+    // Prev / Next
+    prevBtn?.addEventListener("click", () => {
+      goTo(current - 1);
+      resetAutoplay();
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      goTo(current + 1);
+      resetAutoplay();
+    });
+
+    // Pause on hover
+    const card = document.getElementById("story-photo-card");
+    card?.addEventListener("mouseenter", () => clearInterval(autoplayTimer));
+    card?.addEventListener("mouseleave", startAutoplay);
+
+    startAutoplay();
+  };
+
+  // ── Entrance Animations ───────────────────────────────────────
   const initAnimations = () => {
     const photoCard = document.querySelector("#story-photo-card");
     if (photoCard) {
@@ -136,8 +275,12 @@ import SectionTitle from "@/components/ui/sectionTitle.astro";
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initAnimations);
+    document.addEventListener("DOMContentLoaded", () => {
+      initSlider();
+      initAnimations();
+    });
   } else {
+    initSlider();
     initAnimations();
   }
 </script>
