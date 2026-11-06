@@ -75,8 +75,11 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
     }
   </div>
 
-  <!-- Dark Overlay -->
-  <div class="pointer-events-none absolute inset-0 z-[1] bg-black/40" aria-hidden="true"></div>
+  <!-- Gradient Overlay -->
+  <div
+    class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-black/90 via-black/50 to-black/20"
+    aria-hidden="true"
+  ></div>
 
   <!-- Main Hero Content -->
   <div
@@ -141,48 +144,53 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
   <script>
     import { gsap } from "gsap";
 
-    // Hero entrance animation timeline
-    const tl = gsap.timeline({ delay: 0.2 });
+    const initMakersHero = () => {
+      const badge = document.querySelector("#hero-badge");
+      const heading = document.querySelector("#hero-heading");
+      const desc = document.querySelector("#hero-desc");
+      if (!badge && !heading) return;
 
-    tl.from("#hero-badge", {
-      y: 20,
-      opacity: 0,
-      duration: 0.5,
-      ease: "power2.out",
-      clearProps: "transform,opacity",
-    })
-      .from(
-        "#hero-heading",
-        {
-          y: 35,
-          opacity: 0,
-          duration: 0.75,
-          ease: "power3.out",
-          clearProps: "transform,opacity",
-        },
-        "-=0.3"
-      )
-      .from(
-        "#hero-desc",
-        {
+      const tl = gsap.timeline({ delay: 0.2 });
+
+      if (badge) {
+        tl.from(badge, {
           y: 20,
           opacity: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          clearProps: "transform,opacity",
-        },
-        "-=0.4"
-      )
-      .from(
-        "#hero-indicator",
-        {
-          opacity: 0,
-          scaleX: 0.5,
           duration: 0.5,
           ease: "power2.out",
           clearProps: "transform,opacity",
-        },
-        "-=0.3"
-      );
+        });
+      }
+
+      if (heading) {
+        tl.from(
+          heading,
+          {
+            y: 35,
+            opacity: 0,
+            duration: 0.75,
+            ease: "power3.out",
+            clearProps: "transform,opacity",
+          },
+          "-=0.3"
+        );
+      }
+
+      if (desc) {
+        tl.from(
+          desc,
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            clearProps: "transform,opacity",
+          },
+          "-=0.4"
+        );
+      }
+    };
+
+    initMakersHero();
   </script>
 </section>

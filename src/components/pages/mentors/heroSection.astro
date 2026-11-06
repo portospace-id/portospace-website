@@ -70,8 +70,11 @@ const bgUrl = typeof bgImage === "string" ? bgImage : bgImage?.src;
     }
   </div>
 
-  <!-- Dark Overlay -->
-  <div class="pointer-events-none absolute inset-0 z-[1] bg-black/40" aria-hidden="true"></div>
+  <!-- Gradient Overlay -->
+  <div
+    class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-black/90 via-black/50 to-black/20"
+    aria-hidden="true"
+  ></div>
 
   <!-- Main Hero Content -->
   <div

@@ -24,13 +24,13 @@ const {
 
 <div
   class:list={[
-    "portfolio-output-card group flex w-[429px] flex-shrink-0 flex-col cursor-pointer",
+    "portfolio-output-card group flex w-[270px] flex-shrink-0 cursor-pointer flex-col sm:w-[310px] md:w-[350px] lg:w-[380px] xl:w-[429px]",
     className,
   ]}
 >
   <!-- Card Image -->
   <div
-    class="relative h-[460px] w-[429px] overflow-hidden rounded-[4px] transition-[height] duration-300 ease-in-out group-hover:h-[510px]"
+    class="portfolio-output-card-img relative h-[300px] w-full overflow-hidden rounded-[4px] transition-[height] duration-300 ease-in-out group-hover:h-[330px] sm:h-[350px] sm:group-hover:h-[385px] md:h-[400px] md:group-hover:h-[440px] lg:h-[460px] lg:group-hover:h-[510px]"
   >
     <Image
       src={image}
@@ -42,13 +42,13 @@ const {
   </div>
 
   <!-- Card Info -->
-  <div class="mt-4 flex flex-col gap-1">
-    <h3 class={`font-jakarta text-[16px] leading-[140%] font-semibold lg:text-[18px] ${textColor}`}>
+  <div class="portfolio-output-card-info mt-2.5 flex flex-shrink-0 flex-col gap-1 sm:mt-3 lg:mt-3.5">
+    <h3 class={`font-jakarta line-clamp-2 text-[14px] leading-[130%] font-semibold sm:text-[16px] sm:leading-[135%] lg:text-[18px] ${textColor}`}>
       {title}
     </h3>
     {
       showSubtitle && subtitle && (
-        <p class="font-jakarta text-[14px] leading-[140%] font-normal text-white/80">{subtitle}</p>
+        <p class="font-jakarta line-clamp-2 text-[12px] leading-[135%] font-normal text-white/80 sm:text-[13px] sm:leading-[140%] lg:text-[14px]">{subtitle}</p>
       )
     }
   </div>

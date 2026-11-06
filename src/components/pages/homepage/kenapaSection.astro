@@ -19,7 +19,7 @@ const programs = [
     id: "2",
     title: "Mentor match berbasis kebutuhan project",
     description:
-      "RMentor dipilih setelah goal dan scope cukup jelas, sehingga expertise mengikuti kebutuhan nyata siswa.",
+      "Mentor dipilih setelah goal dan scope cukup jelas, sehingga expertise mengikuti kebutuhan nyata siswa.",
     image: roboticsImg,
   },
   {
@@ -110,47 +110,66 @@ const programs = [
   gsap.registerPlugin(ScrollTrigger);
 
   // ── Entrance animations ────────────────────────────────────
-  gsap.from("#kenapa-badge", {
-    scrollTrigger: { trigger: "#kenapa", start: "top 85%", once: true },
-    y: 16,
-    opacity: 0,
-    duration: 0.5,
-    ease: "power2.out",
-  });
+  const initKenapaAnimations = () => {
+    const section = document.getElementById("kenapa");
+    if (!section) return;
 
-  gsap.from("#kenapa-heading", {
-    scrollTrigger: { trigger: "#kenapa", start: "top 80%", once: true },
-    y: 35,
-    opacity: 0,
-    duration: 0.8,
-    ease: "power3.out",
-    delay: 0.1,
-    clearProps: "transform,opacity",
-  });
+    const badge = document.getElementById("kenapa-badge");
+    if (badge) {
+      gsap.from(badge, {
+        scrollTrigger: { trigger: "#kenapa", start: "top 85%", once: true },
+        y: 16,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+    }
 
-  gsap.from("#kenapa-desc", {
-    scrollTrigger: { trigger: "#kenapa", start: "top 78%", once: true },
-    y: 20,
-    opacity: 0,
-    duration: 0.6,
-    ease: "power2.out",
-    delay: 0.2,
-    clearProps: "transform,opacity",
-  });
+    const heading = document.getElementById("kenapa-heading");
+    if (heading) {
+      gsap.from(heading, {
+        scrollTrigger: { trigger: "#kenapa", start: "top 80%", once: true },
+        y: 35,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 0.1,
+        clearProps: "transform,opacity",
+      });
+    }
 
-  gsap.from(".kenapa-accordion-item", {
-    scrollTrigger: {
-      trigger: "#kenapa-accordion",
-      start: "top 85%",
-      once: true,
-    },
-    y: 20,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.1,
-    ease: "power2.out",
-    clearProps: "transform,opacity",
-  });
+    const desc = document.getElementById("kenapa-desc");
+    if (desc) {
+      gsap.from(desc, {
+        scrollTrigger: { trigger: "#kenapa", start: "top 78%", once: true },
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: 0.2,
+        clearProps: "transform,opacity",
+      });
+    }
+
+    const accordionItems = document.querySelectorAll(".kenapa-accordion-item");
+    if (accordionItems.length > 0) {
+      gsap.from(accordionItems, {
+        scrollTrigger: {
+          trigger: "#kenapa-accordion",
+          start: "top 85%",
+          once: true,
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      });
+    }
+  };
+
+  initKenapaAnimations();
 
   // ── Accordion & Dynamic Image Switching Logic ─────────────
   const initAccordion = () => {

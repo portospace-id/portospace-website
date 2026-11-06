@@ -164,47 +164,63 @@ const testimonials: Testimonial[] = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.from("#testimonials-badge", {
-    scrollTrigger: {
-      trigger: "#testimonials",
-      start: "top 85%",
-      once: true,
-    },
-    y: 16,
-    opacity: 0,
-    duration: 0.5,
-    ease: "power2.out",
-    clearProps: "transform,opacity",
-  });
+  const initTestimonialsAnimations = () => {
+    const section = document.getElementById("testimonials");
+    if (!section) return;
 
-  gsap.from("#testimonials-heading", {
-    scrollTrigger: {
-      trigger: "#testimonials",
-      start: "top 80%",
-      once: true,
-    },
-    y: 35,
-    opacity: 0,
-    duration: 0.8,
-    ease: "power3.out",
-    delay: 0.1,
-    clearProps: "transform,opacity",
-  });
+    const badge = document.getElementById("testimonials-badge");
+    if (badge) {
+      gsap.from(badge, {
+        scrollTrigger: {
+          trigger: "#testimonials",
+          start: "top 85%",
+          once: true,
+        },
+        y: 16,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+      });
+    }
 
-  gsap.from(".testimonial-card", {
-    scrollTrigger: {
-      trigger: "#testimonials-carousel-outer",
-      start: "top 90%",
-      once: true,
-    },
-    y: 40,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.06,
-    ease: "power2.out",
-    delay: 0.2,
-    clearProps: "transform,opacity",
-  });
+    const heading = document.getElementById("testimonials-heading");
+    if (heading) {
+      gsap.from(heading, {
+        scrollTrigger: {
+          trigger: "#testimonials",
+          start: "top 80%",
+          once: true,
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 0.1,
+        clearProps: "transform,opacity",
+      });
+    }
+
+    const cards = document.querySelectorAll(".testimonial-card");
+    if (cards.length > 0) {
+      gsap.from(cards, {
+        scrollTrigger: {
+          trigger: "#testimonials-carousel-outer",
+          start: "top 90%",
+          once: true,
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.06,
+        ease: "power2.out",
+        delay: 0.2,
+        clearProps: "transform,opacity",
+      });
+    }
+  };
+
+  initTestimonialsAnimations();
 
   // Auto-scroll
   const track = document.getElementById("testimonials-track");

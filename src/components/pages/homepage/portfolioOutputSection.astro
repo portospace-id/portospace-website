@@ -3,11 +3,11 @@ import { Image } from "astro:assets";
 import SectionTitle from "@/components/ui/sectionTitle.astro";
 import CardPortfolioOutput from "@/components/card/cardPortfolioOutput.astro";
 
-import setmImg from "@/assets/image/homepage/setm.webp";
-import roboticsImg from "@/assets/image/homepage/robotics.webp";
-import codingImg from "@/assets/image/homepage/coding.webp";
-import entrepreneurshipImg from "@/assets/image/homepage/entepreneurship.webp";
-import successStoryImg from "@/assets/image/homepage/successStory.jpg";
+import project1Img from "@/assets/image/homepage/project-1.png";
+import project2Img from "@/assets/image/homepage/project-2.png";
+import project3Img from "@/assets/image/homepage/project-3.png";
+import project4Img from "@/assets/image/homepage/project-4.png";
+import project5Img from "@/assets/image/homepage/project-5.png";
 
 import PatternLine from "@/components/ui/patternLine.astro";
 
@@ -16,50 +16,38 @@ const portfolioOutputs = [
     id: "output-1",
     title: "PlantVoice: sensor kebutuhan air tanaman",
     description: "Prototype IoT yang membantu tanaman memberi sinyal ketika membutuhkan penyiraman.",
-    image: setmImg,
+    image: project5Img,
   },
   {
     id: "output-2",
     title: "Pemodelan kehilangan air pada saluran irigasi",
     description: "Applied mathematics dan eksperimen untuk membandingkan saluran berlapis dan tanpa lapisan.",
-    image: roboticsImg,
+    image: project4Img,
   },
   {
     id: "output-3",
     title: "Eksperimen laboratorium berbasis riset",
     description: "Tampilkan tujuan, metode, progres, dan kendala tanpa menambahkan outcome yang belum terjadi.",
-    image: codingImg,
+    image: project3Img,
   },
   {
     id: "output-4",
     title: "Aplikasi penyelamatan makanan berlebih",
     description: "Konsep produk digital untuk membantu makanan layak konsumsi mendapat kesempatan kedua.",
-    image: entrepreneurshipImg,
+    image: project2Img,
   },
   {
     id: "output-5",
-    title: "Aplikasi penyelamatan makanan berlebih",
-    description: "National Science Project Winner",
-    image: successStoryImg,
-  },
-  {
-    id: "output-6",
-    title: "Robot Navigasi Otonom untuk Penyelamatan Bencana",
-    description: "Robotics Olympiad Winner",
-    image: roboticsImg,
-  },
-  {
-    id: "output-7",
-    title: "Algoritma Pemrosesan Bahasa Alami Bahasa Daerah",
-    description: "Research Paper Publication",
-    image: setmImg,
+    title: "Prototipe rangkaian sensor & mikrokontroler",
+    description: "Eksperimen perakitan hardware pada breadboard dan pengujian pembacaan sensor ke layar OLED.",
+    image: project1Img,
   },
 ];
 ---
 
 <section
   id="portfolio-output"
-  class="bg-violet-normal relative flex min-h-screen w-full flex-col justify-center overflow-hidden pt-[90px] pb-[30px] lg:pt-[100px] lg:pb-[40px]"
+  class="bg-violet-normal relative flex h-screen h-[100dvh] max-h-[100dvh] w-full flex-col justify-between overflow-hidden pt-[84px] pb-3 sm:pt-[96px] sm:pb-5 md:pt-[104px] md:pb-6 lg:pt-[108px] lg:pb-7 xl:pt-[116px] xl:pb-8"
   aria-label="Portfolio Output"
   data-navbar="violet"
 >
@@ -75,21 +63,21 @@ const portfolioOutputs = [
 
   <!-- Header -->
   <div
-    class="relative z-10 mx-auto mb-[20px] w-full max-w-[1440px] px-[20px] sm:px-[24px] md:px-[28px] lg:mb-[28px] lg:px-[32px] xl:max-w-none xl:px-[32px]"
+    class="relative z-10 mx-auto mb-2.5 w-full max-w-[1440px] flex-shrink-0 px-[20px] sm:mb-3.5 sm:px-[24px] md:mb-4 md:px-[28px] lg:mb-5 lg:px-[32px] xl:max-w-none xl:px-[32px]"
   >
     <div
       id="portfolio-output-header"
-      class="flex w-full flex-col justify-between gap-4 lg:flex-row lg:items-end lg:gap-12"
+      class="flex w-full flex-col justify-between gap-2 sm:gap-2.5 lg:flex-row lg:items-end lg:gap-12"
     >
       <!-- Title & Heading -->
-      <div class="flex max-w-[720px] flex-col items-start gap-3 lg:gap-4">
+      <div class="flex max-w-[720px] flex-col items-start gap-1.5 sm:gap-2.5 lg:gap-3">
         <SectionTitle title="Project Gallery" />
         <h2
-          class="font-momo text-[32px] leading-[110%] font-semibold tracking-[-1.5px] text-white sm:text-[38px] md:text-[44px] lg:text-[48px]"
+          class="font-momo text-[24px] leading-[110%] font-semibold tracking-[-1px] text-white sm:text-[30px] md:text-[36px] lg:text-[40px] xl:text-[48px] lg:tracking-[-1.5px]"
         >
           Lihat proses nyata,<br />
           bukan hanya badge<span
-            class="font-caveat text-[42px] leading-[80%] font-semibold not-italic tracking-[-2px] text-white sm:text-[50px] md:text-[56px] lg:text-[64px]"
+            class="font-caveat ml-1 text-[32px] leading-[80%] font-semibold not-italic tracking-[-1.5px] text-white sm:text-[40px] md:text-[46px] lg:text-[52px] xl:text-[64px]"
             >kemenangan</span
           >
         </h2>
@@ -97,21 +85,21 @@ const portfolioOutputs = [
 
       <!-- Subtext -->
       <p
-        class="font-jakarta max-w-[420px] text-sm leading-[160%] font-normal text-white/90 lg:text-base"
+        class="font-jakarta max-w-[420px] text-xs leading-[145%] font-normal text-white/90 sm:text-sm sm:leading-[150%] lg:text-base lg:leading-[160%]"
       >
         Contoh di bawah mengikuti galeri ongoing pada deck. Tampilkan foto asli, status yang jujur, dan apa yang sedang diuji.
       </p>
     </div>
   </div>
 
-  <!-- Cards Carousel Track (Fixed height prevents layout shift on card hover) -->
+  <!-- Cards Carousel Track (Fits remaining 100dvh height without layout shift or clipping on card hover) -->
   <div
     id="portfolio-cards-container"
-    class="relative z-10 flex h-[590px] w-full items-start overflow-hidden sm:h-[610px] lg:h-[620px]"
+    class="relative z-10 flex min-h-0 w-full flex-1 items-center overflow-hidden"
   >
     <div
       id="portfolio-cards-track"
-      class="flex h-[590px] w-max items-start gap-[16px] px-[20px] will-change-transform sm:px-[24px] sm:h-[610px] md:px-[28px] lg:h-[620px] lg:px-[32px]"
+      class="flex h-full max-h-[440px] w-max items-start gap-[16px] px-[20px] will-change-transform sm:max-h-[500px] sm:gap-[20px] sm:px-[24px] md:max-h-[540px] md:px-[28px] lg:max-h-[580px] lg:px-[32px] xl:max-h-[610px]"
     >
       {
         portfolioOutputs.map((item) => (
@@ -120,12 +108,55 @@ const portfolioOutputs = [
             subtitle={item.description}
             image={item.image}
             alt={item.title}
+            class="h-full"
           />
         ))
       }
     </div>
   </div>
 </section>
+
+<style>
+  /* Adapt card image height dynamically inside the 100dvh viewport container
+     leaving enough room for card info even when the image expands on hover */
+  #portfolio-output :global(.portfolio-output-card) {
+    height: 100%;
+  }
+
+  /* Mobile (< 640px) */
+  #portfolio-output :global(.portfolio-output-card-img) {
+    height: calc(100% - 112px) !important;
+    min-height: 140px;
+  }
+
+  #portfolio-output :global(.portfolio-output-card:hover .portfolio-output-card-img) {
+    height: calc(100% - 92px) !important;
+  }
+
+  /* Tablet (>= 640px) */
+  @media (min-width: 640px) {
+    #portfolio-output :global(.portfolio-output-card-img) {
+      height: calc(100% - 130px) !important;
+      min-height: 180px;
+    }
+
+    #portfolio-output :global(.portfolio-output-card:hover .portfolio-output-card-img) {
+      height: calc(100% - 104px) !important;
+    }
+  }
+
+  /* Desktop (1024px and up) */
+  @media (min-width: 1024px) {
+    #portfolio-output :global(.portfolio-output-card-img) {
+      height: calc(100% - 142px) !important;
+      min-height: 220px;
+    }
+
+    #portfolio-output :global(.portfolio-output-card:hover .portfolio-output-card-img) {
+      height: calc(100% - 114px) !important;
+    }
+  }
+</style>
 
 <script>
   import { gsap } from "gsap";
@@ -139,7 +170,8 @@ const portfolioOutputs = [
     const track = document.getElementById("portfolio-cards-track");
     const container = document.getElementById("portfolio-cards-container");
 
-    if (!section || !track || !container) return;
+    if (!section || !track || !container || section.hasAttribute("data-gsap-init")) return;
+    section.setAttribute("data-gsap-init", "true");
 
     // Header animation
     gsap.from("#portfolio-output-header", {
@@ -152,11 +184,12 @@ const portfolioOutputs = [
       opacity: 0,
       duration: 0.8,
       ease: "power3.out",
+      clearProps: "transform,opacity",
     });
 
     // Horizontal scroll calculation
     const getScrollAmount = () => {
-      return Math.max(0, track.scrollWidth - window.innerWidth);
+      return Math.max(0, track.scrollWidth - container.clientWidth);
     };
 
     const horizontalTween = gsap.to(track, {
@@ -186,4 +219,5 @@ const portfolioOutputs = [
   } else {
     initPortfolioScroll();
   }
+  document.addEventListener("astro:page-load", initPortfolioScroll);
 </script>

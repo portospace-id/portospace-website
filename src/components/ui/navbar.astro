@@ -73,9 +73,9 @@ const isLinkActive = (href: string) => {
   <!-- Navbar -->
   <nav
     id="navbar"
-    class="relative z-30 w-full border-b border-transparent transition-all duration-300"
+    class="relative z-30 w-full border-b border-transparent bg-white transition-all duration-300"
     aria-label="Main navigation"
-    data-theme="transparent"
+    data-theme="white"
   >
     <div
       id="navbar-inner"
@@ -560,24 +560,6 @@ const isLinkActive = (href: string) => {
   }
 
   function detectTheme() {
-    if (isDropdownClickedOpen || isOpen) return;
-    const currentNav = document.getElementById("navbar");
-    if (!currentNav) return;
-
-    // Check for hero section on page
-    const heroSection = document.getElementById("hero") || document.querySelector('[data-navbar="transparent"]');
-    if (heroSection) {
-      const heroRect = heroSection.getBoundingClientRect();
-      const navBottom = currentNav.getBoundingClientRect().bottom;
-
-      // Inside Hero bounds -> Transparent theme
-      if (heroRect.top <= navBottom && heroRect.bottom > navBottom + 10) {
-        applyTheme("transparent");
-        return;
-      }
-    }
-
-    // Outside Hero section -> 100% Solid White theme
     applyTheme("white");
   }
 
